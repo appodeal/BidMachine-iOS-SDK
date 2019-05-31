@@ -1,0 +1,710 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0E795DDD06B3BFE1A005B10E /* Pods_BDMVASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */; };
+		12FA7868E228EC4282895143 /* Pods_BDMMRAIDAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */; };
+		4248C20C218F789A00279AE2 /* BDMNASTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C20B218F789A00279AE2 /* BDMNASTNetwork.m */; };
+		4248C20F218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */; };
+		4252730F2191DE23001EDA72 /* DisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4252730E2191DE23001EDA72 /* DisplayKit.framework */; };
+		425273112191DF1A001EDA72 /* DisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425273102191DF1A001EDA72 /* DisplayKit.framework */; };
+		427DE27D21A453B7009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
+		427DE27E21A453C7009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
+		427DE27F21A453CE009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
+		427DE28021A453D4009CCC25 /* DisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4252730E2191DE23001EDA72 /* DisplayKit.framework */; };
+		428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */; };
+		42C3FDAD21620E95004D3784 /* BDMMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */; };
+		42C3FDAE21620E95004D3784 /* NSError+BDMMRAIDAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */; };
+		42C3FDAF21620E95004D3784 /* BDMMRAIDNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */; };
+		42C3FDB021620E95004D3784 /* BDMMRAIDInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */; };
+		42C3FDB521620EA2004D3784 /* BDMVASTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB221620EA2004D3784 /* BDMVASTNetwork.m */; };
+		42C3FDB621620EA2004D3784 /* BDMVASTVideoAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */; };
+		6500EE2121AFCDED00E7D281 /* BDMBannerPreloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500EE2021AFCDED00E7D281 /* BDMBannerPreloadService.m */; };
+		6500EE2521B00B3500E7D281 /* BDMInterstitialPreloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500EE2421B00B3500E7D281 /* BDMInterstitialPreloadService.m */; };
+		651267C121AD6F5200DB45F8 /* BDMNativeMediaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 651267BF21AD6F5200DB45F8 /* BDMNativeMediaView.m */; };
+		651267C221AD6F5200DB45F8 /* BDMMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 651267C021AD6F5200DB45F8 /* BDMMediaViewController.m */; };
+		80B38B1994C2E73700CCE438 /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		429C1976216014720048F400 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		429C1983216014850048F400 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		429C19902160149B0048F400 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0D4C8D8C2E4BBE85E3FD04E1 /* Pods-BDMMRAIDAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F30F3B440AF6ADD3A2CF023 /* Pods-BDMMRAIDAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		4248C20A218F789A00279AE2 /* BDMNASTNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTNetwork.h; sourceTree = "<group>"; };
+		4248C20B218F789A00279AE2 /* BDMNASTNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTNetwork.m; sourceTree = "<group>"; };
+		4248C20D218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTNativeAdServiceAdapter.h; sourceTree = "<group>"; };
+		4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTNativeAdServiceAdapter.m; sourceTree = "<group>"; };
+		4252730E2191DE23001EDA72 /* DisplayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DisplayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		425273102191DF1A001EDA72 /* DisplayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DisplayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		427DE27C21A453B7009CCC25 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		428F5124218F7EED00BC9E2D /* BDMNASTDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTDisplayAdapter.h; sourceTree = "<group>"; };
+		428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTDisplayAdapter.m; sourceTree = "<group>"; };
+		429C1978216014720048F400 /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		429C1985216014850048F400 /* libBDMVASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMVASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		429C19922160149B0048F400 /* libBDMNASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMNASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C3FDA521620E95004D3784 /* BDMMRAIDInterstitialAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDInterstitialAdapter.h; sourceTree = "<group>"; };
+		42C3FDA621620E95004D3784 /* NSError+BDMMRAIDAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BDMMRAIDAdapter.h"; sourceTree = "<group>"; };
+		42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDBannerAdapter.m; sourceTree = "<group>"; };
+		42C3FDA821620E95004D3784 /* BDMMRAIDBannerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDBannerAdapter.h; sourceTree = "<group>"; };
+		42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BDMMRAIDAdapter.m"; sourceTree = "<group>"; };
+		42C3FDAA21620E95004D3784 /* BDMMRAIDNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDNetwork.h; sourceTree = "<group>"; };
+		42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDNetwork.m; sourceTree = "<group>"; };
+		42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDInterstitialAdapter.m; sourceTree = "<group>"; };
+		42C3FDB121620EA2004D3784 /* BDMVASTVideoAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMVASTVideoAdapter.h; sourceTree = "<group>"; };
+		42C3FDB221620EA2004D3784 /* BDMVASTNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMVASTNetwork.m; sourceTree = "<group>"; };
+		42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMVASTVideoAdapter.m; sourceTree = "<group>"; };
+		42C3FDB421620EA2004D3784 /* BDMVASTNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMVASTNetwork.h; sourceTree = "<group>"; };
+		44D3CEC6DB28E06E4E7949FD /* Pods-BDMNASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6500EE1F21AFCDED00E7D281 /* BDMBannerPreloadService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMBannerPreloadService.h; sourceTree = "<group>"; };
+		6500EE2021AFCDED00E7D281 /* BDMBannerPreloadService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMBannerPreloadService.m; sourceTree = "<group>"; };
+		6500EE2321B00B3500E7D281 /* BDMInterstitialPreloadService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInterstitialPreloadService.h; sourceTree = "<group>"; };
+		6500EE2421B00B3500E7D281 /* BDMInterstitialPreloadService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMInterstitialPreloadService.m; sourceTree = "<group>"; };
+		651267BD21AD6F5200DB45F8 /* BDMNativeMediaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMNativeMediaView.h; sourceTree = "<group>"; };
+		651267BE21AD6F5200DB45F8 /* BDMMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMediaViewController.h; sourceTree = "<group>"; };
+		651267BF21AD6F5200DB45F8 /* BDMNativeMediaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMNativeMediaView.m; sourceTree = "<group>"; };
+		651267C021AD6F5200DB45F8 /* BDMMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMediaViewController.m; sourceTree = "<group>"; };
+		7031672E17455C461103AE4F /* Pods_OPBNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OPBNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		95C93ECC2AB534F4B7C3EDF0 /* Pods-BDMVASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMRAIDAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5CB23B294E5E1FBE08663E8 /* Pods_OPBVASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OPBVASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		429C1975216014720048F400 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				427DE27E21A453C7009CCC25 /* BidMachine.framework in Frameworks */,
+				4252730F2191DE23001EDA72 /* DisplayKit.framework in Frameworks */,
+				12FA7868E228EC4282895143 /* Pods_BDMMRAIDAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		429C1982216014850048F400 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				427DE27F21A453CE009CCC25 /* BidMachine.framework in Frameworks */,
+				425273112191DF1A001EDA72 /* DisplayKit.framework in Frameworks */,
+				0E795DDD06B3BFE1A005B10E /* Pods_BDMVASTAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		429C198F2160149B0048F400 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				427DE28021A453D4009CCC25 /* DisplayKit.framework in Frameworks */,
+				427DE27D21A453B7009CCC25 /* BidMachine.framework in Frameworks */,
+				80B38B1994C2E73700CCE438 /* Pods_BDMNASTAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		429C195F2160127A0048F400 = {
+			isa = PBXGroup;
+			children = (
+				429C1979216014720048F400 /* BDMMRAIDAdapter */,
+				429C1986216014850048F400 /* BDMVASTAdapter */,
+				429C19932160149B0048F400 /* BDMNASTAdapter */,
+				429C19692160127A0048F400 /* Products */,
+				BFCA2E1CE2BD93ED3F976496 /* Pods */,
+				A42159B447762DCB7EC116EE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		429C19692160127A0048F400 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				429C1978216014720048F400 /* libBDMMRAIDAdapter.a */,
+				429C1985216014850048F400 /* libBDMVASTAdapter.a */,
+				429C19922160149B0048F400 /* libBDMNASTAdapter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		429C1979216014720048F400 /* BDMMRAIDAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				6500EE2221B00B0900E7D281 /* PreloadService */,
+				42C3FDA821620E95004D3784 /* BDMMRAIDBannerAdapter.h */,
+				42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */,
+				42C3FDA521620E95004D3784 /* BDMMRAIDInterstitialAdapter.h */,
+				42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */,
+				42C3FDAA21620E95004D3784 /* BDMMRAIDNetwork.h */,
+				42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */,
+				42C3FDA621620E95004D3784 /* NSError+BDMMRAIDAdapter.h */,
+				42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */,
+			);
+			path = BDMMRAIDAdapter;
+			sourceTree = "<group>";
+		};
+		429C1986216014850048F400 /* BDMVASTAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				42C3FDB421620EA2004D3784 /* BDMVASTNetwork.h */,
+				42C3FDB221620EA2004D3784 /* BDMVASTNetwork.m */,
+				42C3FDB121620EA2004D3784 /* BDMVASTVideoAdapter.h */,
+				42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */,
+			);
+			path = BDMVASTAdapter;
+			sourceTree = "<group>";
+		};
+		429C19932160149B0048F400 /* BDMNASTAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				651267C321AD6F5800DB45F8 /* MediaView */,
+				4248C20A218F789A00279AE2 /* BDMNASTNetwork.h */,
+				4248C20B218F789A00279AE2 /* BDMNASTNetwork.m */,
+				4248C20D218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.h */,
+				4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */,
+				428F5124218F7EED00BC9E2D /* BDMNASTDisplayAdapter.h */,
+				428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */,
+			);
+			path = BDMNASTAdapter;
+			sourceTree = "<group>";
+		};
+		6500EE2221B00B0900E7D281 /* PreloadService */ = {
+			isa = PBXGroup;
+			children = (
+				6500EE1F21AFCDED00E7D281 /* BDMBannerPreloadService.h */,
+				6500EE2021AFCDED00E7D281 /* BDMBannerPreloadService.m */,
+				6500EE2321B00B3500E7D281 /* BDMInterstitialPreloadService.h */,
+				6500EE2421B00B3500E7D281 /* BDMInterstitialPreloadService.m */,
+			);
+			name = PreloadService;
+			sourceTree = "<group>";
+		};
+		651267C321AD6F5800DB45F8 /* MediaView */ = {
+			isa = PBXGroup;
+			children = (
+				651267BD21AD6F5200DB45F8 /* BDMNativeMediaView.h */,
+				651267BF21AD6F5200DB45F8 /* BDMNativeMediaView.m */,
+				651267BE21AD6F5200DB45F8 /* BDMMediaViewController.h */,
+				651267C021AD6F5200DB45F8 /* BDMMediaViewController.m */,
+			);
+			name = MediaView;
+			sourceTree = "<group>";
+		};
+		A42159B447762DCB7EC116EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				427DE27C21A453B7009CCC25 /* BidMachine.framework */,
+				425273102191DF1A001EDA72 /* DisplayKit.framework */,
+				4252730E2191DE23001EDA72 /* DisplayKit.framework */,
+				B5CB23B294E5E1FBE08663E8 /* Pods_OPBVASTAdapter.framework */,
+				7031672E17455C461103AE4F /* Pods_OPBNASTAdapter.framework */,
+				B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */,
+				4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */,
+				3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFCA2E1CE2BD93ED3F976496 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F30F3B440AF6ADD3A2CF023 /* Pods-BDMMRAIDAdapter.debug.xcconfig */,
+				0D4C8D8C2E4BBE85E3FD04E1 /* Pods-BDMMRAIDAdapter.release.xcconfig */,
+				44D3CEC6DB28E06E4E7949FD /* Pods-BDMNASTAdapter.debug.xcconfig */,
+				8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */,
+				95C93ECC2AB534F4B7C3EDF0 /* Pods-BDMVASTAdapter.debug.xcconfig */,
+				8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		429C1977216014720048F400 /* BDMMRAIDAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 429C197E216014720048F400 /* Build configuration list for PBXNativeTarget "BDMMRAIDAdapter" */;
+			buildPhases = (
+				93432DD05BE4215D045AF7F0 /* [CP] Check Pods Manifest.lock */,
+				429C1974216014720048F400 /* Sources */,
+				429C1975216014720048F400 /* Frameworks */,
+				429C1976216014720048F400 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMMRAIDAdapter;
+			productName = OBMRAIDAdapter;
+			productReference = 429C1978216014720048F400 /* libBDMMRAIDAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		429C1984216014850048F400 /* BDMVASTAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 429C198B216014850048F400 /* Build configuration list for PBXNativeTarget "BDMVASTAdapter" */;
+			buildPhases = (
+				162556A8DFB7A87157BED601 /* [CP] Check Pods Manifest.lock */,
+				429C1981216014850048F400 /* Sources */,
+				429C1982216014850048F400 /* Frameworks */,
+				429C1983216014850048F400 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMVASTAdapter;
+			productName = OBVASTAdapter;
+			productReference = 429C1985216014850048F400 /* libBDMVASTAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		429C19912160149B0048F400 /* BDMNASTAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 429C19982160149B0048F400 /* Build configuration list for PBXNativeTarget "BDMNASTAdapter" */;
+			buildPhases = (
+				126922EAD87F44B5FBEB74E6 /* [CP] Check Pods Manifest.lock */,
+				429C198E2160149B0048F400 /* Sources */,
+				429C198F2160149B0048F400 /* Frameworks */,
+				429C19902160149B0048F400 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMNASTAdapter;
+			productName = OBNASTAdapter;
+			productReference = 429C19922160149B0048F400 /* libBDMNASTAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		429C19602160127A0048F400 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Stas Kochkin";
+				TargetAttributes = {
+					429C1977216014720048F400 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					429C1984216014850048F400 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					429C19912160149B0048F400 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 429C19632160127A0048F400 /* Build configuration list for PBXProject "Adaptors" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 429C195F2160127A0048F400;
+			productRefGroup = 429C19692160127A0048F400 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				429C1977216014720048F400 /* BDMMRAIDAdapter */,
+				429C1984216014850048F400 /* BDMVASTAdapter */,
+				429C19912160149B0048F400 /* BDMNASTAdapter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		126922EAD87F44B5FBEB74E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMNASTAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		162556A8DFB7A87157BED601 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMVASTAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93432DD05BE4215D045AF7F0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMMRAIDAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		429C1974216014720048F400 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42C3FDAD21620E95004D3784 /* BDMMRAIDBannerAdapter.m in Sources */,
+				42C3FDAE21620E95004D3784 /* NSError+BDMMRAIDAdapter.m in Sources */,
+				42C3FDAF21620E95004D3784 /* BDMMRAIDNetwork.m in Sources */,
+				6500EE2121AFCDED00E7D281 /* BDMBannerPreloadService.m in Sources */,
+				42C3FDB021620E95004D3784 /* BDMMRAIDInterstitialAdapter.m in Sources */,
+				6500EE2521B00B3500E7D281 /* BDMInterstitialPreloadService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		429C1981216014850048F400 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42C3FDB521620EA2004D3784 /* BDMVASTNetwork.m in Sources */,
+				42C3FDB621620EA2004D3784 /* BDMVASTVideoAdapter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		429C198E2160149B0048F400 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */,
+				4248C20F218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m in Sources */,
+				651267C121AD6F5200DB45F8 /* BDMNativeMediaView.m in Sources */,
+				651267C221AD6F5200DB45F8 /* BDMMediaViewController.m in Sources */,
+				4248C20C218F789A00279AE2 /* BDMNASTNetwork.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		429C196F2160127A0048F400 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		429C19702160127A0048F400 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		429C197F216014720048F400 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F30F3B440AF6ADD3A2CF023 /* Pods-BDMMRAIDAdapter.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Pods/Target\\ Support\\ Files/Namespaced\\ Dependencies\"",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		429C1980216014720048F400 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D4C8D8C2E4BBE85E3FD04E1 /* Pods-BDMMRAIDAdapter.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Pods/Target\\ Support\\ Files/Namespaced\\ Dependencies\"",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		429C198C216014850048F400 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95C93ECC2AB534F4B7C3EDF0 /* Pods-BDMVASTAdapter.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		429C198D216014850048F400 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		429C19992160149B0048F400 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44D3CEC6DB28E06E4E7949FD /* Pods-BDMNASTAdapter.debug.xcconfig */;
+			buildSettings = {
+				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		429C199A2160149B0048F400 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */;
+			buildSettings = {
+				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		429C19632160127A0048F400 /* Build configuration list for PBXProject "Adaptors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				429C196F2160127A0048F400 /* Debug */,
+				429C19702160127A0048F400 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		429C197E216014720048F400 /* Build configuration list for PBXNativeTarget "BDMMRAIDAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				429C197F216014720048F400 /* Debug */,
+				429C1980216014720048F400 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		429C198B216014850048F400 /* Build configuration list for PBXNativeTarget "BDMVASTAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				429C198C216014850048F400 /* Debug */,
+				429C198D216014850048F400 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		429C19982160149B0048F400 /* Build configuration list for PBXNativeTarget "BDMNASTAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				429C19992160149B0048F400 /* Debug */,
+				429C199A2160149B0048F400 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 429C19602160127A0048F400 /* Project object */;
+}

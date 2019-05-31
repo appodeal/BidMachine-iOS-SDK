@@ -1,0 +1,129 @@
+
+/* Class = "UILabel"; text = "Ad Domains:"; ObjectID = "8pm-O7-cfI"; */
+"8pm-O7-cfI.text" = "Ad Domains:";
+
+/* Class = "UIButton"; normalTitle = "Load Interstitial"; ObjectID = "993-Bu-Wz6"; */
+"993-Bu-Wz6.normalTitle" = "Load Interstitial";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "AZc-R8-PXy"; */
+"AZc-R8-PXy.text" = "Unknown";
+
+/* Class = "UIButton"; normalTitle = "Prepare request"; ObjectID = "By0-Hj-WNV"; */
+"By0-Hj-WNV.normalTitle" = "Prepare request";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "DV1-32-VMU"; */
+"DV1-32-VMU.text" = "Unknown";
+
+/* Class = "UILabel"; text = "Creative ID:"; ObjectID = "EwF-EZ-QbT"; */
+"EwF-EZ-QbT.text" = "Creative ID:";
+
+/* Class = "UIButton"; normalTitle = "Load rewarded video"; ObjectID = "LjL-cF-mdZ"; */
+"LjL-cF-mdZ.normalTitle" = "Load rewarded video";
+
+/* Class = "UILabel"; text = "CID:"; ObjectID = "M8N-Sy-ubi"; */
+"M8N-Sy-ubi.text" = "CID:";
+
+/* Class = "UIButton"; normalTitle = "Perform request"; ObjectID = "N2a-Nx-vej"; */
+"N2a-Nx-vej.normalTitle" = "Perform request";
+
+/* Class = "UILabel"; text = "Native Ad is under development"; ObjectID = "OrK-q6-nhd"; */
+"OrK-q6-nhd.text" = "Native Ad is under development";
+
+/* Class = "UISegmentedControl"; P6c-Q5-i0D.segmentTitles[0] = "iPhone"; ObjectID = "P6c-Q5-i0D"; */
+"P6c-Q5-i0D.segmentTitles[0]" = "iPhone";
+
+/* Class = "UISegmentedControl"; P6c-Q5-i0D.segmentTitles[1] = "iPad"; ObjectID = "P6c-Q5-i0D"; */
+"P6c-Q5-i0D.segmentTitles[1]" = "iPad";
+
+/* Class = "UISegmentedControl"; P6c-Q5-i0D.segmentTitles[2] = "MREC"; ObjectID = "P6c-Q5-i0D"; */
+"P6c-Q5-i0D.segmentTitles[2]" = "MREC";
+
+/* Class = "UIButton"; normalTitle = "Present rewarded video"; ObjectID = "RZx-ni-IjM"; */
+"RZx-ni-IjM.normalTitle" = "Present rewarded video";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "UoY-IZ-kKL"; */
+"UoY-IZ-kKL.text" = "Unknown";
+
+/* Class = "UILabel"; text = "Added to view hierarchy"; ObjectID = "VDY-oy-jdR"; */
+"VDY-oy-jdR.text" = "Added to view hierarchy";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "WBy-Bo-e88"; */
+"WBy-Bo-e88.normalTitle" = "Close";
+
+/* Class = "UITabBarItem"; title = "Banner"; ObjectID = "ZSd-ab-tCI"; */
+"ZSd-ab-tCI.title" = "Banner";
+
+/* Class = "UILabel"; text = "Interstitial"; ObjectID = "ZdW-Id-xxL"; */
+"ZdW-Id-xxL.text" = "Interstitial";
+
+/* Class = "UILabel"; text = "Demand Source:"; ObjectID = "aqi-MS-ADH"; */
+"aqi-MS-ADH.text" = "Demand Source:";
+
+/* Class = "UITabBarItem"; title = "Rewarded Video"; ObjectID = "bbI-jF-a7v"; */
+"bbI-jF-a7v.title" = "Rewarded Video";
+
+/* Class = "UITabBarItem"; title = "Native"; ObjectID = "bpA-Uc-PCE"; */
+"bpA-Uc-PCE.title" = "Native";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "brj-rC-U7n"; */
+"brj-rC-U7n.normalTitle" = "Close";
+
+/* Class = "UILabel"; text = "MRAID supports"; ObjectID = "cTH-rg-NCV"; */
+"cTH-rg-NCV.text" = "MRAID supports";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "fXy-iO-o4U"; */
+"fXy-iO-o4U.text" = "Unknown";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "hKm-Si-CpP"; */
+"hKm-Si-CpP.text" = "Unknown";
+
+/* Class = "UILabel"; text = "VAST supports"; ObjectID = "hNW-DY-lTp"; */
+"hNW-DY-lTp.text" = "VAST supports";
+
+/* Class = "UILabel"; text = "Price:"; ObjectID = "ih2-k8-S7O"; */
+"ih2-k8-S7O.text" = "Price:";
+
+/* Class = "UITextField"; placeholder = "Enter Seller ID here"; ObjectID = "mFS-cy-frP"; */
+"mFS-cy-frP.placeholder" = "Enter Seller ID here";
+
+/* Class = "UILabel"; text = "Choose banner size:"; ObjectID = "mlv-Q1-1cU"; */
+"mlv-Q1-1cU.text" = "Choose banner size:";
+
+/* Class = "UIButton"; normalTitle = "Start BidMachine"; ObjectID = "q1n-DF-LAi"; */
+"q1n-DF-LAi.normalTitle" = "Start BidMachine";
+
+/* Class = "UILabel"; text = "Write your Seller ID before ad initialization"; ObjectID = "qeP-jh-NRL"; */
+"qeP-jh-NRL.text" = "Write your Seller ID before ad initialization";
+
+/* Class = "UIButton"; normalTitle = "Load banner"; ObjectID = "raq-Q7-GuP"; */
+"raq-Q7-GuP.normalTitle" = "Load banner";
+
+/* Class = "UITabBarItem"; title = "Interstitial"; ObjectID = "sgg-ez-DUk"; */
+"sgg-ez-DUk.title" = "Interstitial";
+
+/* Class = "UITabBarItem"; title = "Corner cases"; ObjectID = "spW-gv-WH5"; */
+"spW-gv-WH5.title" = "Corner cases";
+
+/* Class = "UIButton"; normalTitle = "Prepare request"; ObjectID = "tO3-Wm-bbn"; */
+"tO3-Wm-bbn.normalTitle" = "Prepare request";
+
+/* Class = "UIButton"; normalTitle = "Present Interstitial"; ObjectID = "ttg-AC-GaR"; */
+"ttg-AC-GaR.normalTitle" = "Present Interstitial";
+
+/* Class = "UILabel"; text = "Rewarded Video"; ObjectID = "uD7-6c-fs5"; */
+"uD7-6c-fs5.text" = "Rewarded Video";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "w4J-7N-1Uq"; */
+"w4J-7N-1Uq.text" = "Unknown";
+
+/* Class = "UIButton"; normalTitle = "Load native"; ObjectID = "wqC-Ry-pNA"; */
+"wqC-Ry-pNA.normalTitle" = "Load native";
+
+/* Class = "UIButton"; normalTitle = "Save & Close"; ObjectID = "yMC-Hk-r7S"; */
+"yMC-Hk-r7S.normalTitle" = "Save & Close";
+
+/* Class = "UILabel"; text = "Bid ID:"; ObjectID = "ysr-c0-6SU"; */
+"ysr-c0-6SU.text" = "Bid ID:";
+
+/* Class = "UIButton"; normalTitle = "Save & Close"; ObjectID = "z2L-vX-Kek"; */
+"z2L-vX-Kek.normalTitle" = "Save & Close";

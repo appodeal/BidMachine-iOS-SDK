@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LocationTableViewCell" customModule="Sample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Incorrect" translatesAutoresizingMaskIntoConstraints="NO" id="bIU-XL-WyZ">
+                        <rect key="frame" x="16" y="11" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="2Pb-dq-DdW"/>
+                            <constraint firstAttribute="width" secondItem="bIU-XL-WyZ" secondAttribute="height" multiplier="1:1" id="TNr-QA-gpA"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="siE-rE-0pK">
+                        <rect key="frame" x="43" y="5" width="272" height="33.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xd-Rm-spX">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="LAT" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NF7-2o-jPy">
+                                <rect key="frame" x="108" y="0.0" width="83" height="33.5"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="LON" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-CK-ZAC">
+                                <rect key="frame" x="199" y="0.0" width="73" height="33.5"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            </textField>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bIU-XL-WyZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Hop-CR-ptL"/>
+                    <constraint firstAttribute="trailing" secondItem="siE-rE-0pK" secondAttribute="trailing" constant="5" id="Zsc-BY-WUx"/>
+                    <constraint firstItem="siE-rE-0pK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="akC-Dx-SIY"/>
+                    <constraint firstAttribute="bottom" secondItem="siE-rE-0pK" secondAttribute="bottom" constant="5" id="rJo-xG-p1p"/>
+                    <constraint firstItem="bIU-XL-WyZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="wHb-AJ-1oO"/>
+                    <constraint firstItem="siE-rE-0pK" firstAttribute="leading" secondItem="bIU-XL-WyZ" secondAttribute="trailing" constant="5" id="xqx-Tn-trk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="latTextField" destination="NF7-2o-jPy" id="KJy-lq-txI"/>
+                <outlet property="lonTextField" destination="aNG-CK-ZAC" id="hoC-2T-X5Z"/>
+                <outlet property="statusImageView" destination="bIU-XL-WyZ" id="ma1-Fr-dkP"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Incorrect" width="102.40000152587891" height="102.40000152587891"/>
+    </resources>
+</document>

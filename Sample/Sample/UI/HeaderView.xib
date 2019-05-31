@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HeaderView" customModule="Sample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="439" height="46"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXJ-Ea-RLn">
+                    <rect key="frame" x="16" y="14.5" width="37" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settingMoreOff" translatesAutoresizingMaskIntoConstraints="NO" id="4Ln-6K-fdv">
+                    <rect key="frame" x="387" y="5" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="4Ln-6K-fdv" secondAttribute="height" multiplier="1:1" id="8TR-ly-U5d"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4Ln-6K-fdv" secondAttribute="trailing" constant="16" id="0qF-g2-RyS"/>
+                <constraint firstItem="4Ln-6K-fdv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="ADE-vV-IRa"/>
+                <constraint firstItem="wXJ-Ea-RLn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Dn3-me-hV5"/>
+                <constraint firstItem="wXJ-Ea-RLn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fuU-3m-yWJ"/>
+                <constraint firstAttribute="bottom" secondItem="4Ln-6K-fdv" secondAttribute="bottom" constant="5" id="yI4-9e-kgr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="arrowImageView" destination="4Ln-6K-fdv" id="XD4-Mg-bIi"/>
+                <outlet property="titleLabel" destination="wXJ-Ea-RLn" id="pGu-4k-0LE"/>
+                <outletCollection property="gestureRecognizers" destination="qso-Rp-Ua6" appends="YES" id="0Mh-32-rMu"/>
+            </connections>
+            <point key="canvasLocation" x="2.3999999999999999" y="-231.18440779610197"/>
+        </view>
+        <tapGestureRecognizer id="qso-Rp-Ua6">
+            <connections>
+                <action selector="headerTouched:" destination="iN0-l3-epB" id="tlh-ti-X9O"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="settingMoreOff" width="22" height="11"/>
+    </resources>
+</document>

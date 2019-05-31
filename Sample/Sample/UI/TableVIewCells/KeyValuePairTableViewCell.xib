@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="KeyValuePairTableViewCell" customModule="Sample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Incorrect" translatesAutoresizingMaskIntoConstraints="NO" id="hqR-pQ-w1q">
+                        <rect key="frame" x="16" y="11" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="hqR-pQ-w1q" secondAttribute="height" multiplier="1:1" id="E8G-l8-rnZ"/>
+                            <constraint firstAttribute="width" secondItem="hqR-pQ-w1q" secondAttribute="height" multiplier="1:1" id="nCc-Mg-4gQ"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="rpi-Cl-wrV"/>
+                            <constraint firstAttribute="width" constant="22" id="vfH-Du-sLa"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Hyj-Ei-DxO">
+                        <rect key="frame" x="43" y="5" width="272" height="33.5"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Key" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-p9-R3o">
+                                <rect key="frame" x="0.0" y="0.0" width="115.5" height="33.5"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89Y-8Q-X5X">
+                                <rect key="frame" x="123.5" y="0.0" width="11.5" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orK-uG-nS5">
+                                <rect key="frame" x="143" y="0.0" width="129" height="33.5"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hqR-pQ-w1q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ceo-Jc-h1b"/>
+                    <constraint firstItem="Hyj-Ei-DxO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="MoA-wV-pb7"/>
+                    <constraint firstAttribute="trailing" secondItem="Hyj-Ei-DxO" secondAttribute="trailing" constant="5" id="lQt-vX-Y0r"/>
+                    <constraint firstItem="hqR-pQ-w1q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ojw-qo-F16"/>
+                    <constraint firstItem="Hyj-Ei-DxO" firstAttribute="leading" secondItem="hqR-pQ-w1q" secondAttribute="trailing" constant="5" id="rZG-re-fiT"/>
+                    <constraint firstAttribute="bottom" secondItem="Hyj-Ei-DxO" secondAttribute="bottom" constant="5" id="xlf-AO-JGf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="keyTextField" destination="ZLm-p9-R3o" id="vgp-Ze-Fnh"/>
+                <outlet property="statusImageView" destination="hqR-pQ-w1q" id="gKE-a6-ILt"/>
+                <outlet property="valueTextField" destination="orK-uG-nS5" id="yde-ea-lkB"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Incorrect" width="102.40000152587891" height="102.40000152587891"/>
+    </resources>
+</document>

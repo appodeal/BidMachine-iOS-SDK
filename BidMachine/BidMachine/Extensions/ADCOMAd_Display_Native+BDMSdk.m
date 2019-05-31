@@ -1,0 +1,102 @@
+//
+//  ADCOMAd_Display_Native+BDMSdk.m
+//  BidMachine
+//
+//  Created by Stas Kochkin on 29/11/2018.
+//  Copyright © 2018 Appodeal. All rights reserved.
+//
+
+#import "ADCOMAd_Display_Native+BDMSdk.h"
+#import <ASKExtension/ASKExtension.h>
+
+
+@implementation ADCOMAd_Display_Native (BDMSdk)
+
+- (NSMutableDictionary *)JSONRepresentation {
+    NSMutableDictionary *nast = NSMutableDictionary.dictionary;
+    
+    if (self.hasLink) {
+        NSMutableDictionary *link = NSMutableDictionary.dictionary;
+        [link setObject:self.link.URL forKey:@"url"];
+        [link setObject:self.link.trkrArray forKey:@"clicktrackers"];
+        [nast setObject:link forKey:@"link"];
+    }
+    
+    if (self.assetArray_Count > 0) {
+        ASKObject *assets = ASKObj(self.assetArray).transform(^id(ADCOMAd_Display_Native_Asset *obj, NSUInteger idx){
+            if (obj.hasTitle) {
+                NSMutableDictionary *asset = NSMutableDictionary.dictionary;
+                NSMutableDictionary *value = NSMutableDictionary.dictionary;
+                [asset setObject:@(123) forKey:@"id"];
+                [value setObject:obj.title.text forKey:@"text"];
+                [asset setObject:value forKey:@"title"];
+                return asset;
+            }
+            
+            if (obj.hasImage && obj.image.type == ADCOMNativeImageAssetType_NativeImageAssetTypeIconImage) {
+                NSMutableDictionary *asset = NSMutableDictionary.dictionary;
+                NSMutableDictionary *value = NSMutableDictionary.dictionary;
+                [asset setObject:@(124) forKey:@"id"];
+                [asset setObject:@(obj.image.w) forKey:@"w"];
+                [asset setObject:@(obj.image.h) forKey:@"h"];
+                [value setObject:obj.image.URL forKey:@"url"];
+                [asset setObject:value forKey:@"img"];
+                return asset;
+            }
+            
+            if (obj.hasImage && obj.image.type == ADCOMNativeImageAssetType_NativeImageAssetTypeMainImage) {
+                NSMutableDictionary *asset = NSMutableDictionary.dictionary;
+                NSMutableDictionary *value = NSMutableDictionary.dictionary;
+                [asset setObject:@(128) forKey:@"id"];
+                [asset setObject:@(obj.image.w) forKey:@"w"];
+                [asset setObject:@(obj.image.h) forKey:@"h"];
+                [value setObject:obj.image.URL forKey:@"url"];
+                [asset setObject:value forKey:@"img"];
+                return asset;
+            }
+            
+            if (obj.hasVideo) {
+                NSMutableDictionary *asset = NSMutableDictionary.dictionary;
+                NSMutableDictionary *value = NSMutableDictionary.dictionary;
+                [asset setObject:@(4) forKey:@"id"];
+                [value setObject:obj.video.adm forKey:@"vasttag"];
+                [asset setObject:value forKey:@"video"];
+                return asset;
+            }
+            
+            if (obj.hasData_p && obj.data_p.type == ADCOMNativeDataAssetType_NativeDataAssetTypeDesc) {
+                NSMutableDictionary *asset = NSMutableDictionary.dictionary;
+                NSMutableDictionary *value = NSMutableDictionary.dictionary;
+                [asset setObject:@(127) forKey:@"id"];
+                [value setObject:obj.data_p.value forKey:@"value"];
+                [asset setObject:value forKey:@"data"];
+                return asset;
+            }
+            
+            if (obj.hasData_p && obj.data_p.type == ADCOMNativeDataAssetType_NativeDataAssetTypeRating) {
+                NSMutableDictionary *asset = NSMutableDictionary.dictionary;
+                NSMutableDictionary *value = NSMutableDictionary.dictionary;
+                [asset setObject:@(7) forKey:@"id"];
+                [value setObject:obj.data_p.value forKey:@"value"];
+                [asset setObject:value forKey:@"data"];
+                return asset;
+            }
+            
+            if (obj.hasData_p && obj.data_p.type == ADCOMNativeDataAssetType_NativeDataAssetTypeCtaText) {
+                NSMutableDictionary *asset = NSMutableDictionary.dictionary;
+                NSMutableDictionary *value = NSMutableDictionary.dictionary;
+                [asset setObject:@(8) forKey:@"id"];
+                [value setObject:obj.data_p.value forKey:@"value"];
+                [asset setObject:value forKey:@"data"];
+                return asset;
+            }
+            
+            return nil;
+        });
+        [nast setObject:assets.array forKey:@"assets"];
+    }
+    
+    return nast;
+}
+
+@end

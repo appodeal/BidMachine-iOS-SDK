@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--InitializationVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="InitializationVC" customModule="ExampleOpenBids" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter PublisherID here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mFS-cy-frP">
+                                <rect key="frame" x="62.5" y="318.5" width="250" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1n-DF-LAi">
+                                <rect key="frame" x="149" y="429.5" width="77" height="30"/>
+                                <state key="normal" title="Initialize ad"/>
+                                <connections>
+                                    <action selector="initializeAd:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2gs-os-OUg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write your PublisherID before ad initialization" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeP-jh-NRL">
+                                <rect key="frame" x="62.5" y="202" width="250" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="mFS-cy-frP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5DZ-dW-rbU"/>
+                            <constraint firstItem="qeP-jh-NRL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GME-jz-1iz"/>
+                            <constraint firstItem="qeP-jh-NRL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="2/3" id="Qvq-06-lE4"/>
+                            <constraint firstItem="qeP-jh-NRL" firstAttribute="width" secondItem="mFS-cy-frP" secondAttribute="width" id="Zve-Pr-G30"/>
+                            <constraint firstItem="mFS-cy-frP" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2/3" id="aQK-8q-6PL"/>
+                            <constraint firstItem="mFS-cy-frP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bMm-ne-7ty"/>
+                            <constraint firstItem="q1n-DF-LAi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="4/3" id="l3k-h2-G1x"/>
+                            <constraint firstItem="q1n-DF-LAi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xOI-C7-nBP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Tkm-b8-7h8" appends="YES" id="fkN-DL-uhx"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="initializeAdButton" destination="q1n-DF-LAi" id="42G-bA-2x6"/>
+                        <outlet property="publisherIDTF" destination="mFS-cy-frP" id="be5-3h-7lE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Tkm-b8-7h8">
+                    <connections>
+                        <action selector="initializationVCTapped:" destination="BYZ-38-t0r" id="xKL-er-ygr"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+        </scene>
+        <!--Banner-->
+        <scene sceneID="fx5-on-H4Q">
+            <objects>
+                <viewController storyboardIdentifier="Banner" id="VPk-wf-7gB" customClass="BannerVC" customModule="ExampleOpenBids" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="262-zR-xXy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your AdSpace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLB-eh-DhJ">
+                                <rect key="frame" x="112" y="100.5" width="151.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your bidfloors " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br4-e2-bdI">
+                                <rect key="frame" x="110" y="212" width="155" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your AdSpace here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7lh-B4-zeH">
+                                <rect key="frame" x="94" y="133" width="187.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your bidfloors here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oZ7-qY-15Q">
+                                <rect key="frame" x="94" y="244.5" width="187.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2a-Nx-vej">
+                                <rect key="frame" x="144.5" y="318.5" width="86" height="30"/>
+                                <state key="normal" title="Load banner"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="N2a-Nx-vej" firstAttribute="centerX" secondItem="262-zR-xXy" secondAttribute="centerX" id="E8z-dJ-rds"/>
+                            <constraint firstItem="N2a-Nx-vej" firstAttribute="centerY" secondItem="262-zR-xXy" secondAttribute="centerY" id="EJT-7M-GEa"/>
+                            <constraint firstItem="FLB-eh-DhJ" firstAttribute="centerY" secondItem="262-zR-xXy" secondAttribute="centerY" multiplier="3/9" id="Lup-Ff-OhH"/>
+                            <constraint firstItem="Br4-e2-bdI" firstAttribute="centerY" secondItem="262-zR-xXy" secondAttribute="centerY" multiplier="6/9" id="NH9-rs-avg"/>
+                            <constraint firstItem="7lh-B4-zeH" firstAttribute="width" secondItem="oZ7-qY-15Q" secondAttribute="width" id="PV5-iS-0ct"/>
+                            <constraint firstItem="FLB-eh-DhJ" firstAttribute="centerX" secondItem="262-zR-xXy" secondAttribute="centerX" id="UXB-oo-Mgq"/>
+                            <constraint firstItem="oZ7-qY-15Q" firstAttribute="centerX" secondItem="262-zR-xXy" secondAttribute="centerX" id="ahp-LU-Tje"/>
+                            <constraint firstItem="Br4-e2-bdI" firstAttribute="centerX" secondItem="262-zR-xXy" secondAttribute="centerX" id="bjE-1a-T6Q"/>
+                            <constraint firstItem="7lh-B4-zeH" firstAttribute="centerX" secondItem="262-zR-xXy" secondAttribute="centerX" id="mOg-Mr-6Du"/>
+                            <constraint firstItem="oZ7-qY-15Q" firstAttribute="centerY" secondItem="262-zR-xXy" secondAttribute="centerY" multiplier="7/9" id="q1s-Dl-bXp"/>
+                            <constraint firstItem="7lh-B4-zeH" firstAttribute="centerY" secondItem="262-zR-xXy" secondAttribute="centerY" multiplier="4/9" id="wCC-3t-5Jj"/>
+                            <constraint firstItem="oZ7-qY-15Q" firstAttribute="width" secondItem="262-zR-xXy" secondAttribute="width" multiplier="1/2" id="x7C-4D-vDz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="o1f-yL-EIE"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Banner" id="ZSd-ab-tCI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pYH-lU-sJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2241" y="187"/>
+        </scene>
+        <!--Native-->
+        <scene sceneID="3zR-pp-gM4">
+            <objects>
+                <viewController storyboardIdentifier="Native" id="LFb-Yf-oKt" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mDG-G7-XJT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="crB-kb-LDq"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Native" id="bpA-Uc-PCE"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D4L-F7-Ro3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2241" y="870"/>
+        </scene>
+        <!--Fullscreen-->
+        <scene sceneID="Zfg-Cg-oh5">
+            <objects>
+                <viewController storyboardIdentifier="Fullscreen" id="3RA-Pm-kNr" customClass="FullscreenVC" customModule="ExampleOpenBids" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fGz-f0-Zpg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7FR-ei-9Eu"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Fullscreen" id="sgg-ez-DUk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qph-jd-w1R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2241" y="-484"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="roA-ye-B8R">
+            <objects>
+                <tabBarController storyboardIdentifier="adTabBarController" id="agv-Nk-Psn" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qvm-DJ-c6y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="3RA-Pm-kNr" kind="relationship" relationship="viewControllers" id="VDP-5H-eZo"/>
+                        <segue destination="VPk-wf-7gB" kind="relationship" relationship="viewControllers" id="JKN-m6-fcD"/>
+                        <segue destination="LFb-Yf-oKt" kind="relationship" relationship="viewControllers" id="16V-x0-bcv"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Mg-vl-aaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1407" y="27"/>
+        </scene>
+    </scenes>
+</document>

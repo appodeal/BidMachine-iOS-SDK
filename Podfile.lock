@@ -1,0 +1,75 @@
+PODS:
+  - AppodealSupportedModules/ASKDiskUtils (0.4.20):
+    - AppodealSupportedModules/ASKExtension
+  - AppodealSupportedModules/ASKExtension (0.4.20)
+  - AppodealSupportedModules/ASKGraphicButton (0.4.20)
+  - AppodealSupportedModules/ASKLogger (0.4.20)
+  - AppodealSupportedModules/ASKProductPresentation (0.4.20):
+    - AppodealSupportedModules/ASKExtension
+  - AppodealSupportedModules/ASKSpinner (0.4.20)
+  - AppodealSupportedModules/ASKViewability (0.4.20):
+    - AppodealSupportedModules/ASKExtension
+  - AppodealSupportedModules/OverlayPosition (0.4.20)
+  - AppodealSupportedModules/UIExtension (0.4.20):
+    - AppodealSupportedModules/ASKExtension
+  - Kiwi (3.0.0)
+  - MobileAdDisplayManagers/AppodealDocumentParser (0.2.8):
+    - AppodealSupportedModules/ASKExtension (~> 0.4)
+  - MobileAdDisplayManagers/AppodealNASTKit (0.2.8):
+    - AppodealSupportedModules/ASKExtension (~> 0.4)
+    - MobileAdDisplayManagers/AppodealVASTKit
+  - MobileAdDisplayManagers/AppodealVASTAssets (0.2.8):
+    - AppodealSupportedModules/ASKExtension (~> 0.4)
+    - AppodealSupportedModules/OverlayPosition (~> 0.4)
+    - AppodealSupportedModules/UIExtension (~> 0.4)
+    - MobileAdDisplayManagers/AppodealDocumentParser
+  - MobileAdDisplayManagers/AppodealVASTKit (0.2.8):
+    - AppodealSupportedModules/ASKExtension (~> 0.4)
+    - AppodealSupportedModules/ASKLogger (~> 0.4)
+    - MobileAdDisplayManagers/AppodealVASTAssets
+    - MobileAdDisplayManagers/AppodealVideoPlayer
+    - NexageSourceKitMRAID (~> 1.3)
+  - MobileAdDisplayManagers/AppodealVideoPlayer (0.2.8):
+    - AppodealSupportedModules/ASKDiskUtils (~> 0.4)
+    - AppodealSupportedModules/ASKExtension (~> 0.4)
+    - AppodealSupportedModules/ASKGraphicButton (~> 0.4)
+    - AppodealSupportedModules/ASKViewability (~> 0.4)
+    - AppodealSupportedModules/UIExtension (~> 0.4)
+  - NexageSourceKitMRAID (1.3.18)
+  - Protobuf (3.8.0)
+  - Toast-Swift (4.0.1)
+
+DEPENDENCIES:
+  - AppodealSupportedModules/ASKDiskUtils (~> 0.4)
+  - AppodealSupportedModules/ASKExtension (~> 0.4)
+  - AppodealSupportedModules/ASKLogger (~> 0.4)
+  - AppodealSupportedModules/ASKProductPresentation (~> 0.4)
+  - AppodealSupportedModules/ASKSpinner (~> 0.4)
+  - AppodealSupportedModules/ASKViewability (~> 0.4)
+  - Kiwi
+  - MobileAdDisplayManagers/AppodealNASTKit
+  - NexageSourceKitMRAID (~> 1.3)
+  - Protobuf (~> 3.6)
+  - Toast-Swift (~> 4.0.0)
+
+SPEC REPOS:
+  https://github.com/appodeal/CocoaPods.git:
+    - AppodealSupportedModules
+    - MobileAdDisplayManagers
+    - NexageSourceKitMRAID
+  https://github.com/cocoapods/specs.git:
+    - Kiwi
+    - Protobuf
+    - Toast-Swift
+
+SPEC CHECKSUMS:
+  AppodealSupportedModules: 516d34b96222edf6fcc95fdbad69d5287d9e8eea
+  Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
+  MobileAdDisplayManagers: 6bee988b8c119eba864ba749ba3e77ca63d406fc
+  NexageSourceKitMRAID: 6b3dc92dc7dc5ffff43ea806a964b62af19d6f3a
+  Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
+
+PODFILE CHECKSUM: f70f1fa0605a631700786ea4157ea6d1bb653139
+
+COCOAPODS: 1.6.1

@@ -1,0 +1,95 @@
+//
+//  BDMPlacementRequestBuilderProtocol.h
+//  BidMachine
+//
+//  Created by Stas Kochkin on 14/11/2018.
+//  Copyright © 2018 Appodeal. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+
+@protocol BDMExtPlacementBuilder <NSObject>
+
+@property (nonatomic, readonly) id placement;
+
+- (id<BDMExtPlacementBuilder>(^)(NSString *))appendAdSpaceId;
+
+@end
+
+@protocol BDMNativeFormatTypeBuilder <NSObject>
+
+@property (nonatomic, readonly) id format;
+
+- (id<BDMNativeFormatTypeBuilder>(^)(unsigned int))appendId;
+- (id<BDMNativeFormatTypeBuilder>(^)(BOOL))appendReq;
+
+@end
+
+@protocol BDMNativeFormatBuilder <NSObject>
+
+@property (nonatomic, readonly) id format;
+
+- (id<BDMNativeFormatBuilder>(^)(id <BDMNativeFormatTypeBuilder>))appendTitle;
+- (id<BDMNativeFormatBuilder>(^)(id <BDMNativeFormatTypeBuilder>))appendIcon;
+- (id<BDMNativeFormatBuilder>(^)(id <BDMNativeFormatTypeBuilder>))appendImage;
+- (id<BDMNativeFormatBuilder>(^)(id <BDMNativeFormatTypeBuilder>))appendDescription;
+- (id<BDMNativeFormatBuilder>(^)(id <BDMNativeFormatTypeBuilder>))appendCta;
+- (id<BDMNativeFormatBuilder>(^)(id <BDMNativeFormatTypeBuilder>))appendRating;
+- (id<BDMNativeFormatBuilder>(^)(id <BDMNativeFormatTypeBuilder>))appendSponsored;
+- (id<BDMNativeFormatBuilder>(^)(id <BDMNativeFormatTypeBuilder>))appendVideo;
+
+
+@end
+
+@protocol BDMDisplayPlacementBuilder <NSObject>
+
+@property (nonatomic, readonly) id placement;
+
+- (id<BDMDisplayPlacementBuilder>(^)(unsigned int))appendPos;
+- (id<BDMDisplayPlacementBuilder>(^)(BOOL))appendInstl;
+- (id<BDMDisplayPlacementBuilder>(^)(unsigned int))appendApi;
+- (id<BDMDisplayPlacementBuilder>(^)(id<BDMNativeFormatBuilder>))appendNativeFmt;
+- (id<BDMDisplayPlacementBuilder>(^)(id<BDMExtPlacementBuilder>))appendExt;
+- (id<BDMDisplayPlacementBuilder>(^)(unsigned int))appendUnit;
+- (id<BDMDisplayPlacementBuilder>(^)(float))appendWidth;
+- (id<BDMDisplayPlacementBuilder>(^)(float))appendHeight;
+- (id<BDMDisplayPlacementBuilder>(^)(NSArray<NSString *> *))appendMimes;
+
+@end
+
+@protocol BDMVideoPlacementBuilder <NSObject>
+
+@property (nonatomic, readonly) id placement;
+
+- (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendPos;
+- (id<BDMVideoPlacementBuilder>(^)(BOOL))appendskip;
+- (id<BDMVideoPlacementBuilder>(^)(NSArray<NSNumber *>*))appendCType;
+- (id<BDMVideoPlacementBuilder>(^)(id<BDMExtPlacementBuilder>))appendExt;
+- (id<BDMVideoPlacementBuilder> (^)(unsigned int))appendUnit;
+- (id<BDMVideoPlacementBuilder>(^)(float))appendWidth;
+- (id<BDMVideoPlacementBuilder>(^)(float))appendHeight;
+- (id<BDMVideoPlacementBuilder>(^)(NSArray<NSString *> *))appendMimes;
+- (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendMaxdur;
+- (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendMindur;
+- (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendMinbitr;
+- (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendMaxbitr;
+- (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendLinearity;
+
+@end
+
+@protocol BDMPlacementRequestBuilder <NSObject>
+
+@property (nonatomic, readonly) id placement;
+
+- (id<BDMPlacementRequestBuilder>(^)(NSString *))appendSDK;
+- (id<BDMPlacementRequestBuilder>(^)(NSString *))appendSDKVer;
+- (id<BDMPlacementRequestBuilder>(^)(BOOL))appendReward;
+
+- (id<BDMPlacementRequestBuilder>(^)(id<BDMDisplayPlacementBuilder>))appendDisplayPlacement;
+- (id<BDMPlacementRequestBuilder>(^)(id<BDMVideoPlacementBuilder>))appendVideoPlacement;
+
+@end
+
+

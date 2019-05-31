@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--OverlayVC-->
+        <scene sceneID="wYm-do-sKg">
+            <objects>
+                <viewController storyboardIdentifier="OverlayVC" id="Zo3-Zg-8Q4" customClass="OverlayVC" customModule="Sample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A8q-t4-3Me">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="5c2-MD-Iae">
+                                <rect key="frame" x="60.5" y="152" width="254" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="Zo3-Zg-8Q4" eventType="valueChanged" id="WjF-yJ-Lli"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uP-SR-bX0">
+                                <rect key="frame" x="62.5" y="100.5" width="250" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LK-7K-oZA" customClass="BDMBannerView">
+                                <rect key="frame" x="27.5" y="475.5" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="K2i-an-UiH"/>
+                                    <constraint firstAttribute="width" constant="320" id="eL2-Wt-jOa"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-1o-MJU">
+                                <rect key="frame" x="0.0" y="283.5" width="375" height="100"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="kYU-Ku-4FK"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFs-Jc-hVZ">
+                                <rect key="frame" x="135.5" y="222" width="104" height="30"/>
+                                <state key="normal" title="Turn on banner"/>
+                                <connections>
+                                    <action selector="turnOnBanner:" destination="Zo3-Zg-8Q4" eventType="touchUpInside" id="Mf4-Od-gSu"/>
+                                    <action selector="turnOnBanner:" destination="aVO-E7-9NN" eventType="touchUpInside" id="lee-my-gBR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zFs-Jc-hVZ" firstAttribute="top" secondItem="5c2-MD-Iae" secondAttribute="bottom" constant="40" id="2LJ-yp-mv9"/>
+                            <constraint firstItem="4LK-7K-oZA" firstAttribute="centerX" secondItem="A8q-t4-3Me" secondAttribute="centerX" id="5sx-SD-tgR"/>
+                            <constraint firstItem="5c2-MD-Iae" firstAttribute="width" secondItem="A8q-t4-3Me" secondAttribute="width" multiplier="2/3" id="Bkz-y4-ro4"/>
+                            <constraint firstItem="Jsw-1o-MJU" firstAttribute="width" secondItem="A8q-t4-3Me" secondAttribute="width" id="CCS-HS-fUj"/>
+                            <constraint firstItem="Jsw-1o-MJU" firstAttribute="centerX" secondItem="A8q-t4-3Me" secondAttribute="centerX" id="Jhx-Sl-zkb"/>
+                            <constraint firstItem="zFs-Jc-hVZ" firstAttribute="centerX" secondItem="A8q-t4-3Me" secondAttribute="centerX" id="Nf5-D7-x5F"/>
+                            <constraint firstItem="0uP-SR-bX0" firstAttribute="width" secondItem="5c2-MD-Iae" secondAttribute="width" id="eUO-ta-Kkt"/>
+                            <constraint firstItem="5c2-MD-Iae" firstAttribute="centerX" secondItem="A8q-t4-3Me" secondAttribute="centerX" id="gXN-Bd-Ee5"/>
+                            <constraint firstItem="4LK-7K-oZA" firstAttribute="centerY" secondItem="A8q-t4-3Me" secondAttribute="centerY" multiplier="18/12" id="jcL-2Y-TOm"/>
+                            <constraint firstItem="0uP-SR-bX0" firstAttribute="centerY" secondItem="A8q-t4-3Me" secondAttribute="centerY" multiplier="4/12" id="kzJ-jZ-VIF"/>
+                            <constraint firstItem="5c2-MD-Iae" firstAttribute="centerY" secondItem="A8q-t4-3Me" secondAttribute="centerY" multiplier="6/12" id="pbt-9T-cvq"/>
+                            <constraint firstItem="Jsw-1o-MJU" firstAttribute="centerY" secondItem="A8q-t4-3Me" secondAttribute="centerY" id="wwu-q4-h2S"/>
+                            <constraint firstItem="0uP-SR-bX0" firstAttribute="centerX" secondItem="A8q-t4-3Me" secondAttribute="centerX" id="zqq-J9-ysg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QUq-yU-wx1"/>
+                    </view>
+                    <connections>
+                        <outlet property="bannerView" destination="4LK-7K-oZA" id="WBs-G4-bnq"/>
+                        <outlet property="overlayView" destination="Jsw-1o-MJU" id="Ug3-oY-hMu"/>
+                        <outlet property="overlayViewCenterPosition" destination="wwu-q4-h2S" id="jyu-W7-jXo"/>
+                        <outlet property="slider" destination="5c2-MD-Iae" id="mzN-aR-SZg"/>
+                        <outlet property="sliderValueLabel" destination="0uP-SR-bX0" id="e3Q-co-3Ad"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bjN-bR-iaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3968.75" y="1538.671875"/>
+        </scene>
+        <!--VisibilityVC-->
+        <scene sceneID="kaN-bZ-pl9">
+            <objects>
+                <viewController storyboardIdentifier="VisibilityVC" id="h5X-P4-R56" customClass="VisibilityVC" customModule="Sample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XSL-Ep-pRI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPJ-dv-2FM">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wf-b8-3kf">
+                                        <rect key="frame" x="0.0" y="0.0" width="1500" height="1500"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChB-FB-QOV" customClass="BDMBannerView">
+                                                <rect key="frame" x="590" y="725" width="320" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="320" id="2QG-eR-FQj"/>
+                                                    <constraint firstAttribute="height" constant="50" id="Ohw-bA-odf"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ChB-FB-QOV" firstAttribute="centerY" secondItem="5wf-b8-3kf" secondAttribute="centerY" id="PYc-1i-OTD"/>
+                                            <constraint firstItem="ChB-FB-QOV" firstAttribute="centerX" secondItem="5wf-b8-3kf" secondAttribute="centerX" id="Uiu-yv-q9O"/>
+                                            <constraint firstAttribute="height" constant="1500" id="aWj-Yy-6Ey"/>
+                                            <constraint firstAttribute="width" constant="1500" id="zoo-Fm-zp0"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="5wf-b8-3kf" secondAttribute="bottom" id="Js3-kI-x5Z"/>
+                                    <constraint firstItem="5wf-b8-3kf" firstAttribute="leading" secondItem="yPJ-dv-2FM" secondAttribute="leading" id="alP-My-prv"/>
+                                    <constraint firstAttribute="trailing" secondItem="5wf-b8-3kf" secondAttribute="trailing" id="mkO-Xt-vwq"/>
+                                    <constraint firstItem="5wf-b8-3kf" firstAttribute="top" secondItem="yPJ-dv-2FM" secondAttribute="top" id="vUv-vw-2kh"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yPJ-dv-2FM" firstAttribute="leading" secondItem="pr8-cW-uTe" secondAttribute="leading" id="9GC-oh-lZE"/>
+                            <constraint firstItem="yPJ-dv-2FM" firstAttribute="top" secondItem="pr8-cW-uTe" secondAttribute="top" id="9ee-wu-Xci"/>
+                            <constraint firstItem="yPJ-dv-2FM" firstAttribute="trailing" secondItem="pr8-cW-uTe" secondAttribute="trailing" id="HMq-J1-tYe"/>
+                            <constraint firstItem="pr8-cW-uTe" firstAttribute="bottom" secondItem="yPJ-dv-2FM" secondAttribute="bottom" id="sLy-uM-YKa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pr8-cW-uTe"/>
+                    </view>
+                    <connections>
+                        <outlet property="bannerView" destination="ChB-FB-QOV" id="z1K-Ut-bAs"/>
+                        <outlet property="mainView" destination="XSL-Ep-pRI" id="dmS-ig-GKa"/>
+                        <outlet property="scrollView" destination="yPJ-dv-2FM" id="Y40-hy-V16"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JV6-LK-EYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4809.375" y="1538.671875"/>
+        </scene>
+        <!--Banner OverlayVC-->
+        <scene sceneID="LEY-GQ-jIF">
+            <objects>
+                <viewController storyboardIdentifier="BannerOverlayVC" id="LNe-aL-Hjc" customClass="BannerOverlayVC" customModule="Sample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FVM-CH-0JY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ti2-Qb-awn" customClass="BDMBannerView">
+                                <rect key="frame" x="27.5" y="531" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0be-Xr-nXd"/>
+                                    <constraint firstAttribute="width" constant="320" id="2o0-1Z-i7J"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8L-Sl-Jhd">
+                                <rect key="frame" x="136.5" y="318.5" width="102" height="30"/>
+                                <state key="normal" title="Load rewarded"/>
+                                <connections>
+                                    <action selector="loadRewardedVideo:" destination="LNe-aL-Hjc" eventType="touchUpInside" id="ll0-wa-pk6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ru0-ND-TId">
+                                <rect key="frame" x="127" y="374" width="121" height="30"/>
+                                <state key="normal" title="Present rewarded"/>
+                                <connections>
+                                    <action selector="presentRewarded:" destination="LNe-aL-Hjc" eventType="touchUpInside" id="if1-Eg-Z46"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g95-ya-rDQ">
+                                <rect key="frame" x="135.5" y="263" width="104" height="30"/>
+                                <state key="normal" title="Turn on banner"/>
+                                <connections>
+                                    <action selector="turnOnBanner:" destination="aVO-E7-9NN" eventType="touchUpInside" id="Kjz-lM-eTt"/>
+                                    <action selector="turnOnBanner:" destination="LNe-aL-Hjc" eventType="touchUpInside" id="hiO-KE-npP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ti2-Qb-awn" firstAttribute="centerX" secondItem="FVM-CH-0JY" secondAttribute="centerX" id="L6M-If-xwl"/>
+                            <constraint firstItem="q8L-Sl-Jhd" firstAttribute="centerX" secondItem="FVM-CH-0JY" secondAttribute="centerX" id="NBM-uX-Dkg"/>
+                            <constraint firstItem="ru0-ND-TId" firstAttribute="centerY" secondItem="FVM-CH-0JY" secondAttribute="centerY" multiplier="14/12" id="OMV-Yk-IV1"/>
+                            <constraint firstItem="ru0-ND-TId" firstAttribute="centerX" secondItem="FVM-CH-0JY" secondAttribute="centerX" id="PIz-cH-tc5"/>
+                            <constraint firstItem="g95-ya-rDQ" firstAttribute="centerY" secondItem="FVM-CH-0JY" secondAttribute="centerY" multiplier="10/12" id="U6j-p5-7Wj"/>
+                            <constraint firstItem="q8L-Sl-Jhd" firstAttribute="centerY" secondItem="FVM-CH-0JY" secondAttribute="centerY" id="aNa-l2-rX8"/>
+                            <constraint firstItem="g95-ya-rDQ" firstAttribute="centerX" secondItem="FVM-CH-0JY" secondAttribute="centerX" id="e7k-Yf-1HQ"/>
+                            <constraint firstItem="Ti2-Qb-awn" firstAttribute="centerY" secondItem="FVM-CH-0JY" secondAttribute="centerY" multiplier="20/12" id="zUK-jf-FFV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xdy-RA-Xis"/>
+                    </view>
+                    <connections>
+                        <outlet property="bannerView" destination="Ti2-Qb-awn" id="tHW-Yc-d0v"/>
+                        <outlet property="presentRewardedButton" destination="ru0-ND-TId" id="G9A-L2-vhM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qwQ-Ug-87i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5674" y="1539"/>
+        </scene>
+        <!--Banner LoadingVC-->
+        <scene sceneID="jjO-AE-KNz">
+            <objects>
+                <viewController storyboardIdentifier="BannerLoadingVC" id="aVO-E7-9NN" customClass="BannerLoadingVC" customModule="Sample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7TX-Ug-5LI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLf-Ul-YYS">
+                                <rect key="frame" x="135.5" y="318.5" width="104" height="30"/>
+                                <state key="normal" title="Turn on banner"/>
+                                <connections>
+                                    <action selector="turnOnBanner:" destination="aVO-E7-9NN" eventType="touchUpInside" id="66z-Sw-oAp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KLf-Ul-YYS" firstAttribute="centerX" secondItem="7TX-Ug-5LI" secondAttribute="centerX" id="jGs-nk-Jfj"/>
+                            <constraint firstItem="KLf-Ul-YYS" firstAttribute="centerY" secondItem="7TX-Ug-5LI" secondAttribute="centerY" id="zPD-ym-BAU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZDX-Gf-ljp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lEC-0R-3D9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6556" y="1539"/>
+        </scene>
+    </scenes>
+</document>

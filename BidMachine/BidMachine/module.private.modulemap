@@ -1,0 +1,14 @@
+explicit module BidMachine.Adapters {
+    header "BDMAdapterProtocol.h"
+    header "BDMNetworkProtocol.h"
+    header "NSError+BDMSdk.h"
+    export *
+}
+
+explicit module BidMachine.ParalellBidding {
+    header "BDMSdk+ParallelBidding.h"
+    header "BDMRequest+ParallelBidding.h"
+    header "BDMNetworkItem.h"
+    header "BDMS2SMacros.h"
+    export *
+}

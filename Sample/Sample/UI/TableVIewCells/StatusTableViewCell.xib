@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="FYN-lv-NxR" customClass="StatusTableViewCell" customModule="Sample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FYN-lv-NxR" id="6do-Rj-jkr">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ql-e1-yZp">
+                        <rect key="frame" x="16" y="11.5" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Incorrect" translatesAutoresizingMaskIntoConstraints="NO" id="6GG-5V-31e">
+                        <rect key="frame" x="337" y="11" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="6GG-5V-31e" secondAttribute="height" multiplier="1:1" id="Oa3-y5-Eku"/>
+                            <constraint firstAttribute="width" constant="22" id="iZt-Zz-JK0"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4ql-e1-yZp" firstAttribute="centerY" secondItem="6do-Rj-jkr" secondAttribute="centerY" id="5gi-Qu-Uvc"/>
+                    <constraint firstItem="6GG-5V-31e" firstAttribute="centerY" secondItem="6do-Rj-jkr" secondAttribute="centerY" id="dIU-fr-pSX"/>
+                    <constraint firstItem="4ql-e1-yZp" firstAttribute="leading" secondItem="6do-Rj-jkr" secondAttribute="leadingMargin" id="eR5-B7-W7e"/>
+                    <constraint firstAttribute="trailing" secondItem="6GG-5V-31e" secondAttribute="trailing" constant="16" id="lcG-Y5-fkF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="statusImageView" destination="6GG-5V-31e" id="vOk-eH-q8K"/>
+                <outlet property="statusOptionLabel" destination="4ql-e1-yZp" id="ucp-8k-oM5"/>
+            </connections>
+            <point key="canvasLocation" x="-28" y="149.32533733133434"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Incorrect" width="102.40000152587891" height="102.40000152587891"/>
+    </resources>
+</document>
