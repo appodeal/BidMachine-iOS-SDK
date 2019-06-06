@@ -25,8 +25,8 @@
 
 #pragma mark - BDMDisplayAd
 
-+ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMPlacementType)placementType {
-    if (placementType != BDMPlacementBanner) {
++ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMInternalPlacementType)placementType {
+    if (placementType != BDMInternalPlacementTypeBanner) {
         BDMLog(@"Trying to initialise BDMBannerViewDisplayAd with placement of unsupported type");
         return nil;
     }

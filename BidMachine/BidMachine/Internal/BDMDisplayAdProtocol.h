@@ -43,7 +43,7 @@
 @property (nonatomic, assign, readonly) BOOL hasLoadedCreative;
 @property (nonatomic, assign, readonly) BOOL availableToPresent;
 
-+ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMPlacementType)placementType;
++ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMInternalPlacementType)placementType;
 - (void)presentAd:(UIViewController *)controller container:(UIView *)container;
 - (void)prepare;
 - (void)invalidate;

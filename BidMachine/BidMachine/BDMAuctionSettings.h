@@ -7,6 +7,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BDMEventURL.h"
+
+
 typedef NS_ENUM(NSInteger, BDMAuctionType) {
     BDMAuctionTypeFirstPrice = 1,
     BDMAuctionTypeSecondPrice
@@ -26,7 +29,8 @@ typedef NS_ENUM(NSInteger, BDMAuctionType) {
 
 @interface BDMOpenRTBAuctionSettings : NSObject <BDMAuctionSettings>
 
-@property (nonatomic, strong) NSString *auctionURL;
+@property (nonatomic, copy) NSString *auctionURL;
+@property (nonatomic, copy) NSArray <BDMEventURL *> *eventURLs;
 
 + (BDMOpenRTBAuctionSettings *)defaultAuctionSettings;
 

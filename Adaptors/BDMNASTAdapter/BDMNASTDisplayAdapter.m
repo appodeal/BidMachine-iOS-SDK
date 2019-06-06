@@ -10,12 +10,10 @@
 #import <ASKDiskUtils/ASKDiskUtils.h>
 #import <ASKExtension/ASKExtension.h>
 
-#import "BDMNativeMediaView.h"
 
 @interface BDMNASTDisplayAdapter ()
 
-@property (nonatomic, strong) ANKAd * ad;
-@property (nonatomic, strong) BDMNativeMediaView *mediaView;
+@property (nonatomic, strong) ANKAd *ad;
 
 @end
 
@@ -44,21 +42,8 @@
     }
 
     if (view.mediaContainerView) {
-        NSString *videoURL = self.ad.VASTInLineModel.creatives.firstObject.linear.mediafiles.firstObject.content;
-        [self.mediaView setController:nil];
-        [self.mediaView setPlaceholderURL:[NSURL URLWithString:self.ad.mainURLString]];
-        [self.mediaView setVideoUrl:[NSURL URLWithString:videoURL]];
-        
-        [self.mediaView ask_constraint_edgesEqualToEdgesOfView:view.mediaContainerView];
-        [self.mediaView render];
+        // TODO: Add media view to native ad
     }
-}
-
-- (BDMNativeMediaView *)mediaView {
-    if (!_mediaView) {
-        _mediaView = [[BDMNativeMediaView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    }
-    return _mediaView;
 }
 
 @end

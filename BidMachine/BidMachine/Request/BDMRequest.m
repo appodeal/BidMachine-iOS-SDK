@@ -17,24 +17,26 @@
 #import "BDMSdk+Project.h"
 #import "BDMAuctionInfo+Project.h"
 #import "BDMFactory+BDMDisplayAd.h"
+
 #import <ASKExtension/ASKExtension.h>
+#import "BDMFactory+BDMEventMiddleware.h"
 
 
 @interface BDMRequest ()
 
 @property (nonatomic, assign) BDMRequestState state;
 
-@property (copy, nonatomic) NSArray <BDMNetworkItem *> * networks;
-@property (copy, nonatomic) NSDictionary <NSString *, id> * customParameters;
+@property (copy, nonatomic) NSArray <BDMNetworkItem *> *networks;
+@property (copy, nonatomic) NSDictionary <NSString *, id> *customParameters;
 
-@property (copy, nonatomic) NSString * adSpaceId;
-@property (copy, nonatomic) NSNumber * activeSegmentIdentifier;
-@property (copy, nonatomic) NSNumber * activePlacement;
+@property (copy, nonatomic) NSString *adSpaceId;
+@property (copy, nonatomic) NSNumber *activeSegmentIdentifier;
+@property (copy, nonatomic) NSNumber *activePlacement;
 
-@property (nonatomic, strong) ASKExpirationTimer * expirationTimer;
-@property (nonatomic, assign) BDMPlacementType placementType;
-
-@property (nonatomic, strong) NSHashTable <id<BDMRequestDelegate>> * delegates;
+@property (nonatomic, strong) ASKExpirationTimer *expirationTimer;
+@property (nonatomic, strong) BDMEventMiddleware *middleware;
+@property (nonatomic, assign) BDMInternalPlacementType placementType;
+@property (nonatomic, strong) NSHashTable <id<BDMRequestDelegate>> *delegates;
 @property (nonatomic, copy) id <BDMResponse> response;
 
 @end
@@ -57,7 +59,7 @@
 }
 
 - (void)_performWithRequest:(BDMRequest *)request
-              placementType:(BDMPlacementType)placementType
+              placementType:(BDMInternalPlacementType)placementType
            placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder {
     if (!BDMSdk.sharedSdk.sellerID.length) {
         BDMLog(@"You must call BDMSdk.sharedSdk startSessionWithSellerID:YOUR_SELLER_ID completion:...] before!. Sdk not initialized properly, see docs: https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation");
@@ -66,13 +68,18 @@
         return;
     }
     
+    if (self.state == BDMRequestStateAuction) {
+        BDMLog(@"Trying to perform non idle request");
+        return;
+    }
+    
     self.placementType = placementType;
     // Populate targeting
     request.targeting = request.targeting ?: BDMSdk.sharedSdk.targeting;
     self.state = BDMRequestStateAuction;
+    [self.middleware startEvent:BDMEventAuction];
     // Make request by expiration timer
     __weak typeof(self) weakSelf = self;
-    
     [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:^(BDMAuctionBuilder *builder) {
         builder
         .appendPlacementBuilder(placementBuilder)
@@ -85,10 +92,12 @@
         // Save response object
         weakSelf.response = response;
         weakSelf.state = BDMRequestStateSuccessful;
+        [weakSelf.middleware fulfillEvent:BDMEventAuction];
         [weakSelf beginExpirationMonitoring];
         [weakSelf notifyDelegatesOnSuccess];
-    } failure:^(NSError * error) {
+    } failure:^(NSError *error) {
         weakSelf.state = BDMRequestStateFailed;
+        [weakSelf.middleware rejectEvent:BDMEventAuction code:error.code];
         [weakSelf notifyDelegatesOnFail:error];
     }];
 }
@@ -118,6 +127,14 @@
     self.state = BDMRequestStateExpired;
     [self invalidate];
     [self notifyDelegatesOnExpire];
+}
+
+- (BDMEventMiddleware *)middleware {
+    if (!_middleware) {
+        _middleware = [BDMFactory.sharedFactory middlewareWithRequest:self
+                                                        eventProducer:nil];
+    }
+    return _middleware;
 }
 
 #pragma mark - Delegate
@@ -153,7 +170,7 @@
 }
 
 - (void)performWithRequest:(BDMRequest *)request
-             placementType:(BDMPlacementType)placementType
+             placementType:(BDMInternalPlacementType)placementType
           placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder {
     [self _performWithRequest:request
                 placementType:placementType
@@ -161,6 +178,7 @@
 }
 
 - (void)invalidate {
+    [self.middleware rejectAll:BDMErrorCodeWasDestroyed];
     self.state = BDMRequestStateIdle;
     [self _invalidate];
 }

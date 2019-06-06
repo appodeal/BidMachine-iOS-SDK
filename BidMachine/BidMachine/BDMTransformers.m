@@ -53,7 +53,7 @@
         
         CLLocation * deviceLocation = ask_currentLocation();
         CLLocation * desiredLocation;
-
+        
         if (userProvidedLocation && deviceLocation) {
             NSComparisonResult comrasionResult = [userProvidedLocation.timestamp compare:deviceLocation.timestamp];
             if (comrasionResult == NSOrderedAscending) {
@@ -79,6 +79,29 @@
             geo.lon = desiredLocation.coordinate.longitude;
         }
         return geo;
+    };
+}
+
++ (NSArray <BDMEventURL *> *(^)(NSArray <ADCOMAd_Event *> *))eventURLs {
+    return ^id(NSArray <ADCOMAd_Event *> *events) {
+        if (!events.count) {
+            return @[];
+        }
+        
+        NSArray <BDMEventURL *> *trackers = events.ask_transform(^id(ADCOMAd_Event * event, NSUInteger idx){
+            if (!event.URL.length) {
+                return nil;
+            }
+            
+            int32_t rawType = ADCOMAd_Event_Type_RawValue(event);
+            if (!BDMEventTypeExtended_IsValidValue(rawType)) {
+                return nil;
+            }
+            
+            BDMEventURL * tracker = [BDMEventURL trackerWithStringURL:event.URL type:rawType];
+            return tracker;
+        });
+        return trackers;
     };
 }
 

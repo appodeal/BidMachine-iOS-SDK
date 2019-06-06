@@ -14,8 +14,10 @@
 #define BDM_API_REQUEST_CONTENT_TYPE_INIT       ask_debugSession() ? @"application/x-protobuf; messageType=bidmachine.protobuf.InitRequest" : @"application/x-protobuf"
 
 #define BDM_API_REQUEST_USER_AGENT              BDMUserAgentProvider.userAgent
+#define BDM_INIT_REQUEST_ENDPOINT               @"https://api.appodealx.com/init" // @"https://staging.appodealx.com/init"
 
 static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
+
 
 @interface BDMApiRequest ()
 
@@ -28,7 +30,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
 + (BDMApiRequest *)request:(void (^)(BDMAuctionBuilder *))build {
     BDMAuctionBuilder * builder = [BDMAuctionBuilder new];
     build(builder);
-    NSURL * URL = [NSURL URLWithString:BDMSdk.sharedSdk.auctionSettings.auctionURL];
+    NSURL *URL = [NSURL URLWithString:BDMSdk.sharedSdk.auctionSettings.auctionURL];
     BDMApiRequest * request = [BDMApiRequest requestWithURL:URL
                                                 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                             timeoutInterval:kBDMRequestTimeoutInterval];
@@ -47,7 +49,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
     BDMSessionBuilder *builder = [BDMSessionBuilder new];
     build(builder);
     
-    NSURL * URL = [NSURL URLWithString:@"https://api.appodealx.com/init"];
+    NSURL * URL = [NSURL URLWithString:BDM_INIT_REQUEST_ENDPOINT];
     BDMApiRequest * request = [BDMApiRequest requestWithURL:URL
                                                 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                             timeoutInterval:kBDMRequestTimeoutInterval];

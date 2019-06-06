@@ -20,6 +20,8 @@
 #import "BDMServerCommunicator.h"
 #import "BDMRetryTimer.h"
 #import "BDMAuctionSettings.h"
+#import "BDMEventMiddleware.h"
+
 #import <ASKExtension/ASKExtension.h>
 
 
@@ -41,14 +43,17 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
 
 @interface BDMSdk () <BDMNetworkConfiguratorDataSource>
 
-@property (nonatomic, readwrite) BDMRegistry * registry;
 @property (nonatomic, assign, readwrite, getter=isInitialized) BOOL initialized;
-@property (nonatomic, strong) NSOperationQueue * operationQueue;
-@property (nonatomic, copy) NSString * sellerID;
-@property (nonatomic, copy) BDMSdkConfiguration * configuration;
+
+@property (nonatomic, strong) BDMRegistry *registry;
+@property (nonatomic, strong) BDMEventMiddleware *middleware;
 @property (nonatomic, strong) BDMRetryTimer *retryTimer;
-@property (nonatomic, strong) BDMOpenRTBAuctionSettings *auctionSettings;
 @property (nonatomic, strong) ASKNetworkReachability *reachability;
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
+
+@property (nonatomic, copy) NSString *sellerID;
+@property (nonatomic, copy) BDMSdkConfiguration *configuration;
+@property (nonatomic, strong) BDMOpenRTBAuctionSettings *auctionSettings;
 
 @end
 
@@ -114,7 +119,7 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
     // Parallel bidding
     [self registerNetworks];
 
-    NSArray <BDMNetworkItem *> * networkItems = self.configuration.extensions[BDMParallelBiddingInitialisatationItemsExtensionKey];
+    NSArray <BDMNetworkItem *> *networkItems = self.configuration.extensions[BDMParallelBiddingInitialisatationItemsExtensionKey];
     if (!networkItems.count) {
         self.initialized = YES;
         completion ? completion() : nil;
@@ -129,14 +134,24 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
     
     __weak typeof(self) weakSelf = self;
     self.retryTimer = BDMRetryTimer.timer(^(BDMRetryTimer *timer){
+        // Register initialisation event
+        [weakSelf.middleware startEvent:BDMEventInitialisation];
+        
         [BDMServerCommunicator.sharedCommunicator makeInitRequest:^(BDMSessionBuilder *builder) {
             builder
             .appendSellerID(weakSelf.sellerID)
             .appendTargeting(weakSelf.configuration.targeting);
         } success:^(id<BDMInitialisationResponse> response) {
+            // Save auction config
             weakSelf.auctionSettings.auctionURL = response.auctionURL.absoluteString;
+            weakSelf.auctionSettings.eventURLs = response.eventURLs;
+            // Fulfill initialisation
+            [weakSelf.middleware fulfillEvent:BDMEventInitialisation];
             timer.stop();
         } failure:^(NSError *error) {
+            // Reject initialisation
+            [weakSelf.middleware rejectEvent:BDMEventAuction code:error.code];
+            // Repeat action
             timer.repeat();
         }];
     });
@@ -167,6 +182,18 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
         _operationQueue.qualityOfService = NSQualityOfServiceUtility;
     }
     return _operationQueue;
+}
+
+- (BDMEventMiddleware *)middleware {
+    if (!_middleware) {
+        _middleware = [BDMEventMiddleware buildMiddleware:^(BDMEventMiddlewareBuilder *builder) {
+            __weak typeof(self) weakSelf = self;
+            builder.events(^NSArray<BDMEventURL *> *{
+                return weakSelf.auctionSettings.eventURLs;
+            });
+        }];
+    }
+    return _middleware;
 }
 
 #pragma mark - BDMNetworkConfiguratorDataSource
@@ -241,7 +268,7 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
 
 - (void)registerNetworks {
     // Register networks first
-    NSArray <NSString *> * embeddedNetworks = @[@"BDMMRAIDNetwork", @"BDMVASTNetwork", @"BDMNASTNetwork"];
+    NSArray <NSString *> * embeddedNetworks = @[ @"BDMMRAIDNetwork", @"BDMVASTNetwork", @"BDMNASTNetwork" ];
     NSMutableArray <NSString *> * networkClassesString = [self.configuration.extensions[BDMParallelBiddingNetworksExtensionKey] mutableCopy] ?: [NSMutableArray new];
     [embeddedNetworks enumerateObjectsUsingBlock:^(NSString * networkClassString, NSUInteger idx, BOOL * stop) {
         if ([NSClassFromString(networkClassString) conformsToProtocol:@protocol(BDMNetwork)]) {
@@ -256,7 +283,7 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
 
 - (void)initializeParallelBiddingNetworks:(NSArray <BDMNetworkItem *> *)networks
                                completion:(void(^)(void))completion {
-    BDMInitializationOperation * operation = [BDMFactory.sharedFactory initializeNetworkOperation:networks];
+    BDMInitializationOperation *operation = [BDMFactory.sharedFactory initializeNetworkOperation:networks];
     operation.dataSource = self;
     __weak typeof(self) weakSelf = self;
     operation.completionBlock = ^{

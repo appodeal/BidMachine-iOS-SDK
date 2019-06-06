@@ -11,23 +11,17 @@
 		12FA7868E228EC4282895143 /* Pods_BDMMRAIDAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */; };
 		4248C20C218F789A00279AE2 /* BDMNASTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C20B218F789A00279AE2 /* BDMNASTNetwork.m */; };
 		4248C20F218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */; };
-		4252730F2191DE23001EDA72 /* DisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4252730E2191DE23001EDA72 /* DisplayKit.framework */; };
-		425273112191DF1A001EDA72 /* DisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425273102191DF1A001EDA72 /* DisplayKit.framework */; };
 		427DE27D21A453B7009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
 		427DE27E21A453C7009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
 		427DE27F21A453CE009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
-		427DE28021A453D4009CCC25 /* DisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4252730E2191DE23001EDA72 /* DisplayKit.framework */; };
 		428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */; };
+		42BE023422A56A6000D391CC /* BDMMRAIDInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */; };
 		42C3FDAD21620E95004D3784 /* BDMMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */; };
 		42C3FDAE21620E95004D3784 /* NSError+BDMMRAIDAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */; };
 		42C3FDAF21620E95004D3784 /* BDMMRAIDNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */; };
-		42C3FDB021620E95004D3784 /* BDMMRAIDInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */; };
 		42C3FDB521620EA2004D3784 /* BDMVASTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB221620EA2004D3784 /* BDMVASTNetwork.m */; };
 		42C3FDB621620EA2004D3784 /* BDMVASTVideoAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */; };
-		6500EE2121AFCDED00E7D281 /* BDMBannerPreloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500EE2021AFCDED00E7D281 /* BDMBannerPreloadService.m */; };
-		6500EE2521B00B3500E7D281 /* BDMInterstitialPreloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500EE2421B00B3500E7D281 /* BDMInterstitialPreloadService.m */; };
-		651267C121AD6F5200DB45F8 /* BDMNativeMediaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 651267BF21AD6F5200DB45F8 /* BDMNativeMediaView.m */; };
-		651267C221AD6F5200DB45F8 /* BDMMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 651267C021AD6F5200DB45F8 /* BDMMediaViewController.m */; };
+		42DAE22422A54A370011E054 /* BDMMRAIDClosableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */; };
 		80B38B1994C2E73700CCE438 /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,8 +63,6 @@
 		4248C20B218F789A00279AE2 /* BDMNASTNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTNetwork.m; sourceTree = "<group>"; };
 		4248C20D218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTNativeAdServiceAdapter.h; sourceTree = "<group>"; };
 		4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTNativeAdServiceAdapter.m; sourceTree = "<group>"; };
-		4252730E2191DE23001EDA72 /* DisplayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DisplayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		425273102191DF1A001EDA72 /* DisplayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DisplayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		427DE27C21A453B7009CCC25 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		428F5124218F7EED00BC9E2D /* BDMNASTDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTDisplayAdapter.h; sourceTree = "<group>"; };
 		428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTDisplayAdapter.m; sourceTree = "<group>"; };
@@ -89,16 +81,10 @@
 		42C3FDB221620EA2004D3784 /* BDMVASTNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMVASTNetwork.m; sourceTree = "<group>"; };
 		42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMVASTVideoAdapter.m; sourceTree = "<group>"; };
 		42C3FDB421620EA2004D3784 /* BDMVASTNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMVASTNetwork.h; sourceTree = "<group>"; };
+		42DAE22222A54A370011E054 /* BDMMRAIDClosableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDClosableView.h; sourceTree = "<group>"; };
+		42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDClosableView.m; sourceTree = "<group>"; };
 		44D3CEC6DB28E06E4E7949FD /* Pods-BDMNASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6500EE1F21AFCDED00E7D281 /* BDMBannerPreloadService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMBannerPreloadService.h; sourceTree = "<group>"; };
-		6500EE2021AFCDED00E7D281 /* BDMBannerPreloadService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMBannerPreloadService.m; sourceTree = "<group>"; };
-		6500EE2321B00B3500E7D281 /* BDMInterstitialPreloadService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInterstitialPreloadService.h; sourceTree = "<group>"; };
-		6500EE2421B00B3500E7D281 /* BDMInterstitialPreloadService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMInterstitialPreloadService.m; sourceTree = "<group>"; };
-		651267BD21AD6F5200DB45F8 /* BDMNativeMediaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMNativeMediaView.h; sourceTree = "<group>"; };
-		651267BE21AD6F5200DB45F8 /* BDMMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMediaViewController.h; sourceTree = "<group>"; };
-		651267BF21AD6F5200DB45F8 /* BDMNativeMediaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMNativeMediaView.m; sourceTree = "<group>"; };
-		651267C021AD6F5200DB45F8 /* BDMMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMediaViewController.m; sourceTree = "<group>"; };
 		7031672E17455C461103AE4F /* Pods_OPBNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OPBNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,7 +99,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				427DE27E21A453C7009CCC25 /* BidMachine.framework in Frameworks */,
-				4252730F2191DE23001EDA72 /* DisplayKit.framework in Frameworks */,
 				12FA7868E228EC4282895143 /* Pods_BDMMRAIDAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,7 +108,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				427DE27F21A453CE009CCC25 /* BidMachine.framework in Frameworks */,
-				425273112191DF1A001EDA72 /* DisplayKit.framework in Frameworks */,
 				0E795DDD06B3BFE1A005B10E /* Pods_BDMVASTAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427DE28021A453D4009CCC25 /* DisplayKit.framework in Frameworks */,
 				427DE27D21A453B7009CCC25 /* BidMachine.framework in Frameworks */,
 				80B38B1994C2E73700CCE438 /* Pods_BDMNASTAdapter.framework in Frameworks */,
 			);
@@ -166,15 +149,13 @@
 		429C1979216014720048F400 /* BDMMRAIDAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				6500EE2221B00B0900E7D281 /* PreloadService */,
+				6500EE2221B00B0900E7D281 /* Supports */,
 				42C3FDA821620E95004D3784 /* BDMMRAIDBannerAdapter.h */,
 				42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */,
 				42C3FDA521620E95004D3784 /* BDMMRAIDInterstitialAdapter.h */,
 				42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */,
 				42C3FDAA21620E95004D3784 /* BDMMRAIDNetwork.h */,
 				42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */,
-				42C3FDA621620E95004D3784 /* NSError+BDMMRAIDAdapter.h */,
-				42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */,
 			);
 			path = BDMMRAIDAdapter;
 			sourceTree = "<group>";
@@ -193,7 +174,6 @@
 		429C19932160149B0048F400 /* BDMNASTAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				651267C321AD6F5800DB45F8 /* MediaView */,
 				4248C20A218F789A00279AE2 /* BDMNASTNetwork.h */,
 				4248C20B218F789A00279AE2 /* BDMNASTNetwork.m */,
 				4248C20D218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.h */,
@@ -204,34 +184,21 @@
 			path = BDMNASTAdapter;
 			sourceTree = "<group>";
 		};
-		6500EE2221B00B0900E7D281 /* PreloadService */ = {
+		6500EE2221B00B0900E7D281 /* Supports */ = {
 			isa = PBXGroup;
 			children = (
-				6500EE1F21AFCDED00E7D281 /* BDMBannerPreloadService.h */,
-				6500EE2021AFCDED00E7D281 /* BDMBannerPreloadService.m */,
-				6500EE2321B00B3500E7D281 /* BDMInterstitialPreloadService.h */,
-				6500EE2421B00B3500E7D281 /* BDMInterstitialPreloadService.m */,
+				42DAE22222A54A370011E054 /* BDMMRAIDClosableView.h */,
+				42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */,
+				42C3FDA621620E95004D3784 /* NSError+BDMMRAIDAdapter.h */,
+				42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */,
 			);
-			name = PreloadService;
-			sourceTree = "<group>";
-		};
-		651267C321AD6F5800DB45F8 /* MediaView */ = {
-			isa = PBXGroup;
-			children = (
-				651267BD21AD6F5200DB45F8 /* BDMNativeMediaView.h */,
-				651267BF21AD6F5200DB45F8 /* BDMNativeMediaView.m */,
-				651267BE21AD6F5200DB45F8 /* BDMMediaViewController.h */,
-				651267C021AD6F5200DB45F8 /* BDMMediaViewController.m */,
-			);
-			name = MediaView;
+			name = Supports;
 			sourceTree = "<group>";
 		};
 		A42159B447762DCB7EC116EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				427DE27C21A453B7009CCC25 /* BidMachine.framework */,
-				425273102191DF1A001EDA72 /* DisplayKit.framework */,
-				4252730E2191DE23001EDA72 /* DisplayKit.framework */,
 				B5CB23B294E5E1FBE08663E8 /* Pods_OPBVASTAdapter.framework */,
 				7031672E17455C461103AE4F /* Pods_OPBNASTAdapter.framework */,
 				B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */,
@@ -414,11 +381,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C3FDAD21620E95004D3784 /* BDMMRAIDBannerAdapter.m in Sources */,
+				42DAE22422A54A370011E054 /* BDMMRAIDClosableView.m in Sources */,
 				42C3FDAE21620E95004D3784 /* NSError+BDMMRAIDAdapter.m in Sources */,
 				42C3FDAF21620E95004D3784 /* BDMMRAIDNetwork.m in Sources */,
-				6500EE2121AFCDED00E7D281 /* BDMBannerPreloadService.m in Sources */,
-				42C3FDB021620E95004D3784 /* BDMMRAIDInterstitialAdapter.m in Sources */,
-				6500EE2521B00B3500E7D281 /* BDMInterstitialPreloadService.m in Sources */,
+				42BE023422A56A6000D391CC /* BDMMRAIDInterstitialAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,8 +403,6 @@
 			files = (
 				428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */,
 				4248C20F218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m in Sources */,
-				651267C121AD6F5200DB45F8 /* BDMNativeMediaView.m in Sources */,
-				651267C221AD6F5200DB45F8 /* BDMMediaViewController.m in Sources */,
 				4248C20C218F789A00279AE2 /* BDMNASTNetwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,7 +535,7 @@
 					"\"$(SRCROOT)/../Pods/Target\\ Support\\ Files/Namespaced\\ Dependencies\"",
 					"$(inherited)",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -593,7 +557,7 @@
 					"\"$(SRCROOT)/../Pods/Target\\ Support\\ Files/Namespaced\\ Dependencies\"",
 					"$(inherited)",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -27,7 +27,7 @@
     return self;
 }
 
-+ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMPlacementType)placementType {
++ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMInternalPlacementType)placementType {
     BDMLog(@"BDMBaseDisplayAd can't be initialized by +displayAdWithAdapter:response:!");
     return nil;
 }

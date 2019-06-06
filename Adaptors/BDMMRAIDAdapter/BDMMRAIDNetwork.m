@@ -10,6 +10,7 @@
 #import "BDMMRAIDInterstitialAdapter.h"
 #import "BDMMRAIDBannerAdapter.h"
 
+
 @interface BDMMRAIDNetwork ()
 
 @end
@@ -24,7 +25,7 @@
 }
 
 + (NSString *)sdkVersion {
-    return @"1.3.18";
+    return @"3.0";
 }
 
 + (Class<BDMFullscreenAdapter>)interstitialAdAdapterClassForSdk:(BDMSdk *)sdk {

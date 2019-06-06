@@ -20,11 +20,11 @@
 
 @interface BDMBannerView () <BDMRequestDelegate, BDMDisplayAdDelegate>
 
-@property (nonatomic, strong) BDMEventMiddleware * middleware;
+@property (nonatomic, strong) BDMEventMiddleware *middleware;
 @property (nonatomic, strong) id <BDMDisplayAd> displayAd;
 
 @property (nonatomic, assign) BOOL isCreativeOnScreen;
-@property (nonatomic, strong) BDMBannerRequest * currentRequest;
+@property (nonatomic, strong) BDMBannerRequest *currentRequest;
 
 @end
 
@@ -109,9 +109,15 @@
         return;
     }
     
+    [self.middleware startEvent:BDMEventImpression];
+    [self.middleware startEvent:BDMEventClosed];
+    [self.middleware startEvent:BDMEventClick];
+    [self.middleware startEvent:BDMEventViewable];
+    
     [self.currentRequest cancelExpirationTimer];
     self.isCreativeOnScreen = YES;
     self.displayAd.delegate = self;
+    
     [UIView animateWithDuration:0.3f animations:^{
         [self.displayAd presentAd:rootViewController container:self];
     }];
@@ -124,11 +130,14 @@
         [self.delegate bannerView:self failedWithError:error];
         return;
     }
+    
+    [self.middleware startEvent:BDMEventCreativeLoading];
     self.displayAd.delegate = self;
     [self.displayAd prepare];
 }
 
 - (void)invalidate {
+    [self.middleware rejectAll:BDMErrorCodeWasDestroyed];
     [self.currentRequest invalidate];
     [self.displayAd invalidate];
 }
@@ -159,12 +168,11 @@
 }
 
 - (void)request:(BDMRequest *)request failedWithError:(NSError *)error {
-    [self.middleware registerError:BDMEventLoaded code:error.code];
     [self.delegate bannerView:self failedWithError:error];
 }
 
 - (void)requestDidExpire:(BDMRequest *)request {
-    [self.middleware registerError:BDMEventImpression code:BDMErrorCodeWasExpired];
+    [self.middleware rejectEvent:BDMEventImpression code:BDMErrorCodeWasExpired];
     if ([self.delegate respondsToSelector:@selector(bannerViewDidExpire:)]) {
         [self.delegate bannerViewDidExpire:self];
     }
@@ -173,7 +181,7 @@
 #pragma mark - BDMDisplayAdDelegate
 
 - (void)displayAdReady:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventLoaded];
+    [self.middleware fulfillEvent:BDMEventCreativeLoading];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated"
     if ([self.delegate respondsToSelector:@selector(bannerView:readyToPresentAd:)]) {
@@ -188,29 +196,29 @@
 }
 
 - (void)displayAd:(id<BDMDisplayAd>)displayAd failedWithError:(NSError *)error {
-    [self.middleware registerError:BDMEventLoaded code:error.code];
+    [self.middleware rejectEvent:BDMEventCreativeLoading code:error.code];
     [self.delegate bannerView:self failedWithError:error];
 }
 
 - (void)displayAdLogStartView:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventImpression];
+    [self.middleware fulfillEvent:BDMEventImpression];
 }
 
 - (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventViewable];
+    [self.middleware fulfillEvent:BDMEventViewable];
 }
 
 - (void)displayAdLogFinishView:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventClosed];
+    [self.middleware fulfillEvent:BDMEventClosed];
 }
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventClick];
+    [self.middleware fulfillEvent:BDMEventClick];
     [self.delegate bannerViewRecieveUserInteraction:self];
 }
 
 - (void)displayAd:(id<BDMDisplayAd>)displayAd failedToPresent:(NSError *)error {
-    [self.middleware registerError:BDMEventImpression code:error.code];
+    [self.middleware rejectEvent:BDMEventImpression code:error.code];
     [self.delegate bannerView:self failedWithError:error];
 }
 

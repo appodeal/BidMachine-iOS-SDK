@@ -17,23 +17,29 @@ export TEMP_DIR=$PROJECT_DIR/build
 
 export COMPONENTS=(
     "BidMachine.framework/BidMachine"
-    "DisplayKit.framework/DisplayKit"
     "libBDMMRAIDAdapter.a"
     "libBDMNASTAdapter.a"
     "libBDMVASTAdapter.a"
-    "NexageSourceKitMRAID.framework/NexageSourceKitMRAID"
     "Protobuf.framework/Protobuf"
 )
 
 export PODS_DEPS=(
     "AppodealDocumentParser"
+    "AppodealMRAIDKit"
     "AppodealNASTKit"
-    "ASKProductPresentation"
-    "ASKSpinner"
+    "AppodealVASTAssets"
+    "AppodealVASTKit"
+    "AppodealVideoPlayer"
+    "ASKExtension"
+    "ASKGraphicButton"
     "ASKLogger"
+    "ASKViewability"
+    "ASKUIExtension"
     "ASKDiskUtils"
     "ASKViewabilityTracker"
-    "ASKExtension"
+    "ASKProductPresentation"
+    "ASKSpinner"
+    "OverlayPosition"
 )
 
 # Utility 
@@ -136,13 +142,11 @@ while test $# -gt 0; do
                         echo -e "$package [options] application [arguments]"
                         echo -e " "
                         echo -e "options:"
-                        echo -e "-h, --help                                       show brief help"
-                        echo -e "-v, --version                                    specify version of build. ${WARNING}Required${INFO}"
-                    #  Currently no supported
-                    #  echo -e "-wo, -without_adapters=YES                       remove adapters, by default is NO ${WARNING}Optional${INFO}"            
-                        echo -e "-pu, --pod_update=YES                            update CocoaPods Environment. ${WARNING}Optional${INFO}" 
-                        echo -e "-s3, --s3_upload=YES                             upload results to Amazon s3. ${WARNING}Optional${INFO}"
-                        echo -e "-z, --zip=YES                                    compress results. ${WARNING}Optional${INFO}"
+                        echo -e "-h,  --help                                       Show brief help"
+                        echo -e "-v,  --version                                    Specify version of build. ${WARNING}Required${INFO}"            
+                        echo -e "-pi, --pod_install=YES                             Update CocoaPods Environment. ${WARNING}Optional${INFO}" 
+                        echo -e "-s3, --s3_upload=YES                              Upload results to Amazon s3. ${WARNING}Optional${INFO}"
+                        echo -e "-z,  --zip=YES                                    Compress results. ${WARNING}Optional${INFO}"
                         exit 0
                         ;;
                 -wo)
@@ -175,7 +179,7 @@ while test $# -gt 0; do
                                 BUILD_NAME="Appodeal-SDK-iOS-$VERSION" 
                         shift
                         ;;        
-                -pu)
+                -pi)
                         shift
                         if test $# -gt 0; then
                                 SHOULD_UPDATE_PODS=$1
@@ -185,7 +189,7 @@ while test $# -gt 0; do
                         fi
                         shift
                         ;;
-                --pod_update*)
+                --pod_install*)
                         export SHOULD_UPDATE_PODS=`echo -e $1 | sed -e 's/^[^=]*=//g'`
                         shift
                         ;;
@@ -244,7 +248,7 @@ echo -e "Core only:         ${WARNING}${WITHOUT_ADAPTERS}${INFO}"
 echo -e "ZIP:               ${WARNING}$SHOULD_COMPRESS_RESULTS${INFO}"
 echo -e "S3 upload:         ${WARNING}$SHOULD_UPLOAD_TO_S3${INFO}"
 
-[ "$SHOULD_UPDATE_PODS" = "YES" ] && pod update
+[ "$SHOULD_UPDATE_PODS" = "YES" ] && pod install
 
 echo -e "${WARNING}🔨 Build release framework modules${INFO}"
 rebuild_components

@@ -8,23 +8,33 @@
 
 #import "BDMMRAIDBannerAdapter.h"
 #import "BDMMRAIDNetwork.h"
-#import "BDMBannerPreloadService.h"
+#import "BDMMRAIDClosableView.h"
+#import "NSError+BDMMRAIDAdapter.h"
 #import <BidMachine/NSError+BDMSdk.h>
 
 @import ASKSpinner;
 @import ASKProductPresentation;
+@import ASKGraphicButton;
 @import ASKExtension;
+@import AppodealMRAIDKit;
+
 
 const CGSize kBDMAdSize320x50  = {.width = 320.0f, .height = 50.0f  };
 const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 
 
-@interface BDMMRAIDBannerAdapter () <BDMBannerPreloadServiceDelegate, ASKProductControllerDelegate>
+@interface BDMMRAIDBannerAdapter () <AMKAdDelegate, AMKWebServiceDelegate, AMKViewPresenterDelegate, ASKProductControllerDelegate>
 
-@property (nonatomic, assign) CGSize bannerSize;
-@property (nonatomic, strong) SKMRAIDView* bannerView;
-@property (nonatomic, strong) BDMBannerPreloadService * preloadService;
-@property (nonatomic, strong) ASKProductController * productPresenter;
+@property (nonatomic, strong) AMKAd *ad;
+@property (nonatomic, strong) AMKViewPresenter *presenter;
+
+@property (nonatomic, strong) ASKProductController *productPresenter;
+@property (nonatomic, strong) ASKSpinnerView *activityIndicatorView;
+
+@property (nonatomic, weak) UIView *container;
+
+@property (nonatomic, assign) BOOL shouldCache;
+@property (nonatomic, assign) NSTimeInterval closableViewDelay;
 
 @end
 
@@ -35,78 +45,115 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 }
 
 - (UIView *)adView {
-    return self.bannerView;
+    return self.presenter;
 }
 
 - (void)prepareContent:(NSDictionary *)contentInfo {
     self.adContent          = contentInfo[@"creative"];
-    self.bannerSize         = [self sizeFromContentInfo:contentInfo];
-    CGRect frame            = (CGRect){.size = self.bannerSize};
-    NSArray * mraidFeatures = @[
-                                MRAIDSupportsTel,
-                                MRAIDSupportsCalendar,
-                                MRAIDSupportsSMS,
-                                MRAIDSupportsInlineVideo,
-                                MRAIDSupportsStorePicture
+    self.shouldCache        = contentInfo[@"should_cache"] ? [contentInfo[@"should_cache"] boolValue] : YES;
+    self.closableViewDelay  = contentInfo[@"closable_view_delay"] ? [contentInfo[@"closable_view_delay"] floatValue] : 10.0f;
+    
+    CGSize bannerSize       = [self sizeFromContentInfo:contentInfo];
+    CGRect frame            = (CGRect){.size = bannerSize};
+    
+    NSArray *mraidFeatures  = @[
+                                kMRAIDSupportsInlineVideo,
+                                kMRAIDSupportsLoging
                                 ];
+    self.ad = [AMKAd new];
+    self.ad.delegate = self;
+    self.ad.serviceManager.delegate = self;
+    [self.ad.serviceManager.configuration registerServices:mraidFeatures];
     
+    self.presenter = [AMKViewPresenter new];
+    self.presenter.delegate = self;
+    self.presenter.frame = frame;
     
-    
-    self.preloadService = [[BDMBannerPreloadService alloc] initWithDelegate:self];
-    if (contentInfo[@"should_cache"]) {
-        [self.preloadService setPreload:[contentInfo[@"should_cache"] boolValue]];
+    if (self.shouldCache) {
+        [self.ad loadHTML:self.adContent];
+    } else {
+        [self.loadingDelegate adapterPreparedContent:self];
     }
-    if (contentInfo[@"closable_view_delay"]) {
-        [self.preloadService setCloseTime:[contentInfo[@"closable_view_delay"] floatValue]];
-    }
-    
-    __weak typeof(self) weakSelf = self;
-    [self.preloadService loadProcess:^{
-        weakSelf.bannerView = [[SKMRAIDView alloc] initWithFrame:frame
-                                               supportedFeatures:mraidFeatures
-                                                        delegate:weakSelf.preloadService
-                                                 serviceDelegate:weakSelf.preloadService
-                                              rootViewController:weakSelf.rootViewController];
-        [weakSelf.bannerView loadAdHTML:weakSelf.adContent];
-    }];
 }
-
 
 - (void)presentInContainer:(UIView *)container {
-    __weak typeof(self) weakSelf = self;
-    [self.preloadService presentProcess:container
-                           preloadBlock:^{
-                               [container.subviews enumerateObjectsUsingBlock:^(UIView * subview, NSUInteger idx, BOOL * stop) {
-                                   [subview removeFromSuperview];
-                               }];
-                               [container addSubview:weakSelf.bannerView];
-                               weakSelf.bannerView.rootViewController = weakSelf.rootViewController;
-                               [weakSelf.bannerView setIsViewable:YES];
-                           }];
+    [container.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.container = container;
+    if (self.shouldCache) {
+        [container addSubview:self.presenter];
+        [self.presenter presentAd:self.ad];
+    } else {
+        self.activityIndicatorView = [[ASKSpinnerView alloc] initWithFrame:self.presenter.frame blurred:YES];
+        self.activityIndicatorView.hidden = NO;
+        [container addSubview:self.activityIndicatorView];
+        [self.ad loadHTML:self.adContent];
+    }
 }
 
-#pragma mark - BDMBannerPreloadServiceDelegate
+#pragma mark - AMKAdDelegate
 
-- (void)mraidViewAdReady:(SKMRAIDView *)mraidView {
-    [self.loadingDelegate adapterPreparedContent:self];
+- (void)didLoadAd:(AMKAd *)ad {
+    if (self.shouldCache) {
+        [self.loadingDelegate adapterPreparedContent:self];
+    } else {
+        [self.presenter presentAd:ad];
+        __weak typeof(self) weakSelf = self;
+        [UIView animateWithDuration:0.2 animations:^{
+            [weakSelf.activityIndicatorView removeFromSuperview];
+            [weakSelf.container addSubview:weakSelf.presenter];
+        }];
+    }
 }
 
-- (void)mraidView:(SKMRAIDView *)mraidView failToLoadAdThrowError:(NSError *)error {
-    [self.loadingDelegate adapter:self failedToPrepareContentWithError:[error bdm_wrappedWithCode:BDMErrorCodeNoContent]];
+- (void)didFailToLoadAd:(AMKAd *)ad withError:(NSError *)error {
+     if (self.shouldCache) {
+         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
+     } else {
+         [self.activityIndicatorView removeFromSuperview];
+         [self.displayDelegate adapter:self failedToPresentAdWithError:error];
+     }
 }
 
-- (void)mraidView:(SKMRAIDView *)mraidView failToPresentAdThrowError:(NSError *)error {
-    [self.displayDelegate adapter:self failedToPresentAdWithError:[error bdm_wrappedWithCode:BDMErrorCodeBadContent]];
-}
-
-- (void)mraidViewNavigate:(SKMRAIDView *)mraidView withURL:(NSURL *)url {
+- (void)didUserInteractionAd:(AMKAd *)ad withURL:(NSURL *)url {
     [self.displayDelegate adapterRegisterUserInteraction:self];
+    NSArray <NSURL *> *urls = url ? @[url] : @[];
     [ASKSpinnerScreen show];
-    [self.productPresenter openURL:url];
+    [self.productPresenter presentUrls:urls];
 }
 
-- (BOOL)mraidViewShouldResize:(SKMRAIDView *)mraidView toPosition:(CGRect)position allowOffscreen:(BOOL)allowOffscreen {
-    return YES;
+#pragma mark - AMKWebServiceDelegate
+
+- (void)mraidServiceDidReceiveLogMessage:(NSString *)message {
+    BDMLog(@"%@", message);
+}
+
+- (void)mraidServicePreloadProductUrl:(NSURL *)url {
+    NSArray <NSURL *> *urls = url ? @[url] : @[];
+    [self.productPresenter prepareUrls:urls];
+}
+
+#pragma mark - ASKProductControllerDelegate
+
+- (UIViewController *)presenterRootViewController {
+    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.ask_topPresentedViewController;
+}
+
+- (void)controller:(ASKProductController *)controller didDismissProduct:(NSURL *)productURL {
+    [self.displayDelegate adapterDidDismissScreen:self];
+}
+
+- (void)controller:(ASKProductController *)controller didFailToPresentWithError:(NSError *)error {
+    [ASKSpinnerScreen hide];
+}
+
+- (void)controller:(ASKProductController *)controller willLeaveApplicationToProduct:(NSURL *)productURL {
+    [ASKSpinnerScreen hide];
+    [self.displayDelegate adapterWillLeaveApplication:self];
+}
+
+- (void)controller:(ASKProductController *)controller willPresentProduct:(NSURL *)productURL {
+    [ASKSpinnerScreen hide];
+    [self.displayDelegate adapterWillPresentScreen:self];
 }
 
 #pragma mark - Private
@@ -115,11 +162,11 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
     NSNumber * width = contentInfo[@"width"];
     NSNumber * height = contentInfo[@"height"];
     if ([width ask_number] != nil || [height ask_number] != nil) {
-        return [self sizeFromDevice];
+        return [self defaultAdSize];
     }
     if (width.floatValue <= 0 ||
         height.floatValue <= 0) {
-        return [self sizeFromDevice];
+        return [self defaultAdSize];
     }
     
     return CGSizeMake(width.floatValue,
@@ -134,35 +181,8 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
     return _productPresenter;
 }
 
-- (UIViewController *)rootViewController {
-    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.ask_topPresentedViewController;
-}
-
-- (CGSize)sizeFromDevice {
+- (CGSize)defaultAdSize {
     return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? kBDMAdSize728x90 : kBDMAdSize320x50;
 }
-
-#pragma mark - ASKProductControllerDelegate
-
-- (void)controller:(ASKProductController *)controller didFailToPresentWithError:(NSError *)error {
-    [ASKSpinnerScreen hide];
-}
-
-- (void)controller:(ASKProductController *)controller willPresentProduct:(NSURL *)productURL {
-    [ASKSpinnerScreen hide];
-    [self.displayDelegate adapterWillPresentScreen:self];
-}
-
-- (void)controller:(ASKProductController *)controller didDissmissProduct:(NSURL *)productURL {
-    [self.displayDelegate adapterDidDismissScreen:self];
-}
-
-- (void)controller:(ASKProductController *)controller willLeaveApplicationToProduct:(NSURL *)productURL {
-    [ASKSpinnerScreen hide];
-    [self.displayDelegate adapterWillLeaveApplication:self];
-}
-
-- (void)controller:(ASKProductController *)controller didDismissProduct:(NSURL *)productURL {}
-
 
 @end

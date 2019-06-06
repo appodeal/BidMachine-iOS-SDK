@@ -9,20 +9,27 @@
 #import "BDMMRAIDInterstitialAdapter.h"
 #import "BDMMRAIDNetwork.h"
 #import "NSError+BDMMRAIDAdapter.h"
-#import "BDMInterstitialPreloadService.h"
+#import "BDMMRAIDClosableView.h"
 #import <BidMachine/NSError+BDMSdk.h>
 
-@import DisplayKit;
-@import ASKExtension;
-@import ASKProductPresentation;
+
 @import ASKSpinner;
+@import ASKProductPresentation;
+@import ASKGraphicButton;
+@import ASKExtension;
+@import AppodealMRAIDKit;
 
-@interface BDMMRAIDInterstitialAdapter () <BDMInterstitialPreloadServiceDelegate, ASKProductControllerDelegate, DSKCustomControlLayerDelegate, DSKCustomControlLayerDataSource>
 
-@property (nonatomic, strong) SKMRAIDInterstitial * interstitial;
-@property (nonatomic, strong) DSKCustomControlLayer * controlLayer;
-@property (nonatomic, strong) BDMInterstitialPreloadService *preloadService;
-@property (nonatomic, strong) ASKProductController * productPresenter;
+@interface BDMMRAIDInterstitialAdapter () <AMKAdDelegate, AMKWebServiceDelegate, AMKInterstitialPresenterDelegate, ASKProductControllerDelegate>
+
+@property (nonatomic, strong) AMKAd *ad;
+@property (nonatomic, strong) AMKInterstitialPresenter *presenter;
+
+@property (nonatomic, strong) ASKProductController *productPresenter;
+@property (nonatomic, strong) ASKSpinnerWindow *activityWindow;
+
+@property (nonatomic, assign) BOOL shouldCache;
+@property (nonatomic, assign) NSTimeInterval closableViewDelay;
 
 @end
 
@@ -33,59 +40,55 @@
 }
 
 - (UIView *)adView {
-    return [self.interstitial ask_valueForKeyPath:@"mraidView.currentWebView"];
+    return self.ad.webView;
 }
 
 - (void)prepareContent:(NSDictionary *)contentInfo {
-    self.adContent = contentInfo[@"creative"];
+    self.adContent          = contentInfo[@"creative"];
+    self.shouldCache        = contentInfo[@"should_cache"] ? [contentInfo[@"should_cache"] boolValue] : YES;
+    self.closableViewDelay  = contentInfo[@"closable_view_delay"] ? [contentInfo[@"closable_view_delay"] floatValue] : 10.0f;
     
-    NSArray * supportedFeatures = @[
-                                    MRAIDSupportsTel,
-                                    MRAIDSupportsCalendar,
-                                    MRAIDSupportsSMS,
-                                    MRAIDSupportsInlineVideo,
-                                    MRAIDSupportsStorePicture
-                                    ];
+    NSArray *mraidFeatures  = @[
+                                kMRAIDSupportsInlineVideo,
+                                kMRAIDSupportsLoging,
+                                kMRAIDPreloadURL
+                                ];
     
-    self.preloadService = [[BDMInterstitialPreloadService alloc] initWithDelegate:self];
-    if (contentInfo[@"should_cache"]) {
-        [self.preloadService setPreload:[contentInfo[@"should_cache"] boolValue]];
+    self.ad = [AMKAd new];
+    self.ad.delegate = self;
+    self.ad.serviceManager.delegate = self;
+    [self.ad.serviceManager.configuration registerServices:mraidFeatures];
+    
+    self.presenter = [AMKInterstitialPresenter new];
+    self.presenter.delegate = self;
+    
+    if (self.shouldCache) {
+        [self.ad loadHTML:self.adContent];
+    } else {
+        [self.loadingDelegate adapterPreparedContent:self];
     }
-    if (contentInfo[@"closable_view_delay"]) {
-        [self.preloadService setCloseTime:[contentInfo[@"closable_view_delay"] floatValue]];
-    }
-    
-    self.controlLayer = [[DSKCustomControlLayer alloc] initWithScenario:mraidInterstitialScenario()];
-    
-    __weak typeof(self) weakSelf = self;
-    [self.preloadService loadProcess:^{
-        weakSelf.interstitial = [[SKMRAIDInterstitial alloc] initWithSupportedFeatures:supportedFeatures
-                                                                              delegate:weakSelf.preloadService
-                                                                       serviceDelegate:weakSelf.preloadService
-                                                                    rootViewController:weakSelf.rootViewController];
-        
-        [weakSelf.interstitial loadAdHTML:weakSelf.adContent];
-    }];
 }
 
 - (void)present {
-    __weak typeof(self) weakSelf = self;
-    [self.preloadService presentProcess:self.rootViewController preloadBlock:^{
-        weakSelf.interstitial.rootViewController = weakSelf.rootViewController;
-        [weakSelf.interstitial show];
-    }];
+    if (self.shouldCache) {
+        [self.presenter presentAd:self.ad];
+    } else {
+        self.activityWindow = [[ASKSpinnerWindow alloc] initWithBlur:YES];
+        __weak typeof(self) weakSelf = self;
+        BDMMRAIDClosableView *closableView = [BDMMRAIDClosableView closableView:self.closableViewDelay action:^(BDMMRAIDClosableView *closableView) {
+            [weakSelf hideActivityWindow];
+            NSError *error = NSError.bdm_error(@"User skip interstitial");
+            [weakSelf.displayDelegate adapter:weakSelf failedToPresentAdWithError:error];
+        }];
+        self.activityWindow.hidden = NO;
+        [closableView render:self.activityWindow];
+        [self.ad loadHTML:self.adContent];
+    }
 }
 
-- (void)addCustomControlOnInterstitial:(SKMRAIDInterstitial *)interstitial{
-    [self.controlLayer addOnView:self.adView];
-    [self.controlLayer setFrame:[self.adView frame]];
-    [self.controlLayer setDelegate:self];
-    [self.controlLayer setDataSource:self];
-    [self.controlLayer processEvent:CCEventStartScenario];
-}
-
-- (UIViewController *)rootViewController {
-    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.ask_topPresentedViewController;
+- (void)hideActivityWindow {
+    self.activityWindow.hidden = YES;
+    self.activityWindow = nil;
 }
 
 - (ASKProductController *)productPresenter {
@@ -96,64 +99,66 @@
     return _productPresenter;
 }
 
-#pragma mark - SKMRAIDInterstitialDelegate
+#pragma mark - AMKAdDelegate
 
-- (void)mraidInterstitialAdReady:(SKMRAIDInterstitial *)mraidInterstitial {
-    [self.loadingDelegate adapterPreparedContent:self];
+- (void)didLoadAd:(AMKAd *)ad {
+    if (self.shouldCache) {
+        [self.loadingDelegate adapterPreparedContent:self];
+    } else {
+        [self hideActivityWindow];
+        [self.presenter presentAd:ad];
+    }
 }
 
-- (void)mraidInterstitialAdFailed:(SKMRAIDInterstitial *)mraidInterstitial {
-    NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeNoContent description:@"Failed to load ad."];
-    [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
+- (void)didFailToLoadAd:(AMKAd *)ad withError:(NSError *)error {
+    if (self.shouldCache) {
+        [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
+    } else {
+        [self hideActivityWindow];
+        [self.displayDelegate adapter:self failedToPresentAdWithError:error];
+    }
 }
 
-- (void)mraidInterstitialWillShow:(SKMRAIDInterstitial *)mraidInterstitial {
-    [self addCustomControlOnInterstitial:mraidInterstitial];
+- (void)didUserInteractionAd:(AMKAd *)ad withURL:(NSURL *)url {
+    [self.displayDelegate adapterRegisterUserInteraction:self];
+    NSArray <NSURL *> *urls = url ? @[url] : @[];
+    [ASKSpinnerScreen show];
+    [self.productPresenter presentUrls:urls];
+}
+
+#pragma mark - AMKWebServiceDelegate
+
+- (void)mraidServiceDidReceiveLogMessage:(NSString *)message {
+    BDMLog(@"%@", message);
+}
+
+- (void)mraidServicePreloadProductUrl:(NSURL *)url {
+    NSArray <NSURL *> *urls = url ? @[url] : @[];
+    [self.productPresenter prepareUrls:urls];
+}
+
+#pragma mark - AMKInterstitialPresenterDelegate
+
+- (void)presenterDidAppear:(id<AMKPresenter>)presenter {
     [self.displayDelegate adapterWillPresent:self];
 }
 
-- (void)mraidInterstitial:(SKMRAIDInterstitial *)mraidInterstitial failToPresentAdThrowError:(NSError *)error {
-    [self.displayDelegate adapter:self failedToPresentAdWithError:[error bdm_wrappedWithCode:BDMErrorCodeBadContent]];
-}
-
-- (void)mraidInterstitialDidHide:(SKMRAIDInterstitial *)mraidInterstitial {
-    if (self.rewarded) {
-        [self.displayDelegate adapterFinishRewardAction:self];
-    }
+- (void)presenterDidDisappear:(id<AMKPresenter>)presenter {
     [self.displayDelegate adapterDidDismiss:self];
 }
 
-- (void)mraidInterstitialNavigate:(SKMRAIDInterstitial *)mraidInterstitial withURL:(NSURL *)url {
-    [self.displayDelegate adapterRegisterUserInteraction:self];
-    if (url) {
-        [ASKSpinnerScreen show];
-        [self.productPresenter openURL:url];
-    }
-}
-
-- (void)mraidInterstitial:(SKMRAIDInterstitial *)mraidInterstitial useCustomClose:(BOOL)customClose {
-    [self.controlLayer processEvent:customClose ? CCEventUseCustomCloseTrue : CCEventUseCustomCloseFalse];
-}
-
-#pragma mark - CustomControl
-
-- (void)DSK_clickOnButtonType:(CCType)type {
-    if (type == CCTypeClose || type == CCTypeTimerClose) {
-        [self.interstitial close];
-    }
-}
-
-- (NSNumber *)DSK_closeTime {
-    return @DEFAULT_SKIP_INTERVAL;
+- (void)presenterFailToPresent:(id<AMKPresenter>)presenter withError:(NSError *)error {
+    NSError *wrappedError = [error bdm_wrappedWithCode:BDMErrorCodeBadContent];
+    [self.displayDelegate adapter:self failedToPresentAdWithError:wrappedError];
 }
 
 #pragma mark - ASKProductControllerDelegate
 
-- (void)controller:(ASKProductController *)controller didFailToPresentWithError:(NSError *)error {
-    [ASKSpinnerScreen hide];
+- (UIViewController *)presenterRootViewController {
+    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.ask_topPresentedViewController;
 }
 
-- (void)controller:(ASKProductController *)controller willPresentProduct:(NSURL *)productURL {
+- (void)controller:(ASKProductController *)controller didFailToPresentWithError:(NSError *)error {
     [ASKSpinnerScreen hide];
 }
 
@@ -161,7 +166,10 @@
     [ASKSpinnerScreen hide];
 }
 
-- (void)controller:(ASKProductController *)controller didDismissProduct:(NSURL *)productURL {}
+- (void)controller:(ASKProductController *)controller willPresentProduct:(NSURL *)productURL {
+    [ASKSpinnerScreen hide];
+}
 
+- (void)controller:(ASKProductController *)controller didDismissProduct:(NSURL *)productURL {}
 
 @end

@@ -7,12 +7,13 @@
 #import <Foundation/Foundation.h>
 @import BidMachine.Adapters;
 
+
 @interface BDMMRAIDInterstitialAdapter : NSObject <BDMFullscreenAdapter>
 
 @property (nonatomic, weak) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
 @property (nonatomic, weak) id <BDMAdapterLoadingDelegate> loadingDelegate;
 
-@property (nonatomic, strong) NSString * adContent;
+@property (nonatomic, strong) NSString *adContent;
 @property (nonatomic, assign, readwrite) BOOL rewarded;
 
 @end

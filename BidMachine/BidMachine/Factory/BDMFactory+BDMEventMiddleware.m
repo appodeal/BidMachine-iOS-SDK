@@ -9,6 +9,7 @@
 #import "BDMFactory+BDMEventMiddleware.h"
 #import "BDMRequest+Private.h"
 #import "BDMRequest+ParallelBidding.h"
+#import "BDMSdk+Project.h"
 
 
 @implementation BDMFactory (BDMEventMiddleware)
@@ -16,17 +17,22 @@
 - (BDMEventMiddleware *)middlewareWithRequest:(BDMRequest *)request eventProducer:(id<BDMAdEventProducer>)eventProducer {
     __weak typeof(eventProducer) weakProducer = eventProducer;
     __weak typeof(request) weakRequest = request;
-    return [BDMEventMiddleware buildMidleware:^(BDMEventMiddlewareBuilder * builder) {
+    return [BDMEventMiddleware buildMiddleware:^(BDMEventMiddlewareBuilder * builder) {
         builder.segment(^NSNumber *{
             return weakRequest.activeSegmentIdentifier;
         });
+        
         builder.placement(^NSNumber *{
             return weakRequest.activePlacement;
         });
+        
         builder.events(^NSArray<BDMEventURL *> *{
-            return weakRequest.eventTrackers;
+            NSArray <BDMEventURL *> *trackers =  weakRequest.eventTrackers ?: @[];
+            trackers = BDMSdk.sharedSdk.auctionSettings.eventURLs ? [trackers arrayByAddingObjectsFromArray:BDMSdk.sharedSdk.auctionSettings.eventURLs] : trackers;
+            return trackers;
         });
-        builder.producer(^id<BDMAdEventProducer>{
+        
+        builder.producer(^id<BDMAdEventProducer> {
             return weakProducer;
         });
     }];

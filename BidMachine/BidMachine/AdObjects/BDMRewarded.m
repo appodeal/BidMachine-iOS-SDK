@@ -89,6 +89,12 @@
         [self.delegate rewarded:self failedToPresentWithError:error];
         return;
     }
+    
+    [self.middleware startEvent:BDMEventImpression];
+    [self.middleware startEvent:BDMEventClosed];
+    [self.middleware startEvent:BDMEventClick];
+    [self.middleware startEvent:BDMEventViewable];
+    
     [self.currentRequest cancelExpirationTimer];
     [self.displayAd presentAd:rootViewController container:nil];
 }
@@ -100,11 +106,14 @@
         [self.delegate rewarded:self failedWithError:error];
         return;
     }
+    
+    [self.middleware startEvent:BDMEventCreativeLoading];
     self.displayAd.delegate = self;
     [self.displayAd prepare];
 }
 
 - (void)invalidate {
+    [self.middleware rejectAll:BDMErrorCodeWasDestroyed];
     [self.currentRequest invalidate];
     [self.displayAd invalidate];
     self.currentRequest = nil;
@@ -118,12 +127,11 @@
 }
 
 - (void)request:(BDMRequest *)request failedWithError:(NSError *)error {
-    [self.middleware registerError:BDMEventLoaded code:error.code];
     [self.delegate rewarded:self failedWithError:error];
 }
 
 - (void)requestDidExpire:(BDMRequest *)request {
-    [self.middleware registerError:BDMEventImpression code:BDMErrorCodeWasExpired];
+    [self.middleware rejectEvent:BDMEventImpression code:BDMErrorCodeWasExpired];
     if ([self.delegate respondsToSelector:@selector(rewardedDidExpire:)]) {
         [self.delegate rewardedDidExpire:self];
     }
@@ -132,7 +140,7 @@
 #pragma mark - BDMDisplayAdDelegate
 
 - (void)displayAdReady:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventLoaded];
+    [self.middleware fulfillEvent:BDMEventCreativeLoading];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated"
     if ([self.delegate respondsToSelector:@selector(rewarded:readyToPresentAd:)]) {
@@ -143,30 +151,30 @@
 }
 
 - (void)displayAd:(id<BDMDisplayAd>)displayAd failedWithError:(NSError *)error {
-    [self.middleware registerError:BDMEventLoaded code:error.code];
+    [self.middleware rejectEvent:BDMEventCreativeLoading code:error.code];
     [self.delegate rewarded:self failedWithError:error];
 }
 
 - (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {}
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventClick];
+    [self.middleware fulfillEvent:BDMEventClick];
     [self.delegate rewardedRecieveUserInteraction:self];
 }
 
 - (void)displayAdLogStartView:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventImpression];
+    [self.middleware fulfillEvent:BDMEventImpression];
     [self.delegate rewardedWillPresent:self];
 }
 
 - (void)displayAdLogFinishView:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventClosed];
+    [self.middleware fulfillEvent:BDMEventClosed];
     [self.delegate rewardedDidDismiss:self];
     [self invalidate];
 }
 
 - (void)displayAd:(id<BDMDisplayAd>)displayAd failedToPresent:(NSError *)error {
-    [self.middleware registerError:BDMEventImpression code:error.code];
+    [self.middleware rejectEvent:BDMEventImpression code:error.code];
     [self.delegate rewarded:self failedToPresentWithError:error];
     if (error.code != BDMErrorCodeNoConnection) {
         [self invalidate];
@@ -174,7 +182,7 @@
 }
 
 - (void)displayAdCompleteRewardAction:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventViewable];
+    [self.middleware fulfillEvent:BDMEventViewable];
     [self.delegate rewardedFinishRewardAction:self];
 }
 

@@ -29,7 +29,7 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event) {
 @implementation BDMEventURL
 
 + (BDMEventURL *)trackerWithStringURL:(NSString *)stringURL type:(NSInteger)type {
-    BDMEventURL * tracker = [self URLWithString:stringURL];
+    BDMEventURL *tracker = [self URLWithString:stringURL];
     tracker.type = type;
     return tracker;
 }
@@ -63,6 +63,18 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event) {
 - (BDMEventURL *(^)(BDMErrorCode))extendedByErrorCode {
     return ^id(BDMErrorCode code) {
         return [self trackerByReplaceMacros:@"BM_ERROR_REASON" withParameter:@(code).stringValue];
+    };
+}
+
+- (BDMEventURL *(^)(NSDate *))extendedByStartTime {
+    return ^id(NSDate *startTime) {
+        return [self trackerByReplaceMacros:@"BM_ACTION_START" withParameter:@((long long)(startTime.timeIntervalSince1970 * 1000)).stringValue];
+    };
+}
+
+- (BDMEventURL *(^)(NSDate *))extendedByFinishTime {
+    return ^id(NSDate *finishTime) {
+        return [self trackerByReplaceMacros:@"BM_ACTION_FINISH" withParameter:@((long long)(finishTime.timeIntervalSince1970 * 1000)).stringValue];
     };
 }
 
@@ -101,6 +113,26 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event) {
              @"%%5B%@%%5D",
              @"[%@]"
              ];
+}
+
+#pragma mark - NSSecureCoding, NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    BDMEventURL *copy = [super copyWithZone:zone];
+    copy.type = self.type;
+    return copy;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        self.type = [aDecoder decodeIntegerForKey:@"type"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeInteger:self.type forKey:@"type"];
 }
 
 @end

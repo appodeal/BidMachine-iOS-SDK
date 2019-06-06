@@ -11,9 +11,13 @@
 #import <ASKExtension/ASKExtension.h>
 
 #define BDM_AUCTION_URL_KEY   "kBDMAuctonUrl"
+#define BDM_EVENTS_KEY        "kBDMEventsKey"
+
 #define BDM_AUCTION_URL       "https://api.appodealx.com/openrtb3/auction"
 
+
 static NSString *carrierCode = nil;
+
 
 @implementation BDMOpenRTBAuctionSettings
 
@@ -21,6 +25,7 @@ static NSString *carrierCode = nil;
     BDMOpenRTBAuctionSettings *settings = BDMOpenRTBAuctionSettings.new;
     
     settings.auctionURL = self.defaultAuctionURL;
+    settings.eventURLs = self.defaultEventURLs;
     return settings;
 }
 
@@ -48,6 +53,14 @@ static NSString *carrierCode = nil;
     return BDMAuctionTypeSecondPrice;
 }
 
+- (void)setEventURLs:(NSArray<BDMEventURL *> *)eventURLs {
+    if (eventURLs) {
+        _eventURLs = eventURLs;
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:eventURLs];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@BDM_EVENTS_KEY];
+    }
+}
+
 - (void)setAuctionURL:(NSString *)auctionURL {
     if (auctionURL) {
         _auctionURL = auctionURL;
@@ -60,6 +73,12 @@ static NSString *carrierCode = nil;
 + (NSString *)defaultAuctionURL {
     NSString *cachedUrl = [[NSUserDefaults standardUserDefaults] stringForKey:@BDM_AUCTION_URL_KEY];
     return NSString.ask_isValid(cachedUrl) && cachedUrl.length ? cachedUrl : @BDM_AUCTION_URL;
+}
+
++ (NSArray <BDMEventURL *> *)defaultEventURLs {
+    NSData *archivedData = [[NSUserDefaults standardUserDefaults] objectForKey:@BDM_EVENTS_KEY];
+    NSArray <BDMEventURL *> *cachedEvents = archivedData ? [NSKeyedUnarchiver unarchiveObjectWithData:archivedData] : nil;
+    return cachedEvents ?: @[];
 }
 
 @end

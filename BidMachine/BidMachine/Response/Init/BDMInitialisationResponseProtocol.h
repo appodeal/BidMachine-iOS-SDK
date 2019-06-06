@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BDMEventURL.h"
+
 
 @protocol BDMInitialisationResponse <NSObject>
 
-@property (nonatomic, copy, readonly) NSURL * auctionURL;
+@property (nonatomic, copy, readonly) NSURL *auctionURL;
+@property (nonatomic, copy, readonly) NSArray <BDMEventURL *> *eventURLs;
 
 @end
 

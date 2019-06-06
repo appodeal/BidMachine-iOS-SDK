@@ -12,7 +12,7 @@
 
 @interface BDMFactory (BDMDisplayAd)
 
-- (id<BDMDisplayAd>)displayAdWithResponse:(id<BDMResponse>)response plecementType:(BDMPlacementType)placementType;
+- (id<BDMDisplayAd>)displayAdWithResponse:(id<BDMResponse>)response plecementType:(BDMInternalPlacementType)placementType;
 - (id<BDMDisplayAd>)displayAdWithRequest:(BDMRequest *)request error:(NSError **)error;
 
 @end

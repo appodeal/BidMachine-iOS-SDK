@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @import BidMachine.Adapters;
+
 
 @interface BDMMRAIDBannerAdapter : NSObject <BDMBannerAdapter>
 
 @property (nonatomic, weak) id <BDMBannerAdapterDisplayDelegate> displayDelegate;
 @property (nonatomic, weak) id <BDMAdapterLoadingDelegate> loadingDelegate;
 
-@property (nonatomic, strong) NSString * adContent;
+@property (nonatomic, strong) NSString *adContent;
  
 @end
 
