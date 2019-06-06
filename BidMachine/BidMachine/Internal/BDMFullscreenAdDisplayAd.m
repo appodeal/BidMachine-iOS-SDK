@@ -25,8 +25,8 @@
 
 #pragma mark - BDMDisplayAd
 
-+ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMPlacementType)placementType {
-    if (placementType > BDMPlacementRewardedVideo) {
++ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMInternalPlacementType)placementType {
+    if (placementType > BDMInternalPlacementTypeRewardedVideo) {
         BDMLog(@"Trying to initialise BDMFullscreenAdDisplayAd with placement of unsupported type");
         return nil;
     }
@@ -40,7 +40,7 @@
         adapter = [BDMSdk.sharedSdk interstitialAdAdapterForNetwork:displayAd.displayManager];
     }
     
-    if (placementType == BDMPlacementRewardedVideo &&
+    if (placementType == BDMInternalPlacementTypeRewardedVideo &&
         [adapter respondsToSelector:@selector(setRewarded:)]) {
         [adapter setRewarded:YES];
     }

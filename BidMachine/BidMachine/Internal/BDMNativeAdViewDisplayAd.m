@@ -29,8 +29,8 @@
 
 @implementation BDMNativeAdViewDisplayAd
 
-+ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMPlacementType)placementType {
-    if (placementType != BDMPlacementNative) {
++ (instancetype)displayAdWithResponse:(id<BDMResponse>)response placementType:(BDMInternalPlacementType)placementType {
+    if (placementType != BDMInternalPlacementTypeNative) {
         BDMLog(@"Trying to initialise BDMNativeAdViewDisplayAd with placement of unsupported type");
         return nil;
     }

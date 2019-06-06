@@ -10,8 +10,4 @@
 
 + (NSError *(^)(NSString *))bdm_error;
 
-//+ (NSError *(^)(NSString *))error;
-//
-//+ (NSError *)bdm_mraid_errorWithReason:(NSString *)reason;
-
 @end

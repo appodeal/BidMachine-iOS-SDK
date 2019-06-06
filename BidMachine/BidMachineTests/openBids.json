@@ -1,9 +1,0 @@
-
-{
-    @"request.item.spec.placement.ext(PlacementExtension).ad_space_id" : @"testAdSpaceID",
-    @"request.context.app.pub.id" : @"testPublisherID",
-    @"request.context.user.gender" : @"gender",
-    @"request.context.user.yob" : @"job",
-    @"equest.context.user.keywords" : @"keywords",
-    @"request.context.user.id"
-}

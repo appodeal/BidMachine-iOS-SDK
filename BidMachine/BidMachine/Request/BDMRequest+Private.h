@@ -12,11 +12,11 @@
 #import "BDMEventURL.h"
 
 
-typedef NS_ENUM(NSInteger, BDMPlacementType) {
-    BDMPlacementInterstitial = 0,
-    BDMPlacementRewardedVideo,
-    BDMPlacementBanner,
-    BDMPlacementNative
+typedef NS_ENUM(NSInteger, BDMInternalPlacementType) {
+    BDMInternalPlacementTypeInterstitial = 0,
+    BDMInternalPlacementTypeRewardedVideo,
+    BDMInternalPlacementTypeBanner,
+    BDMInternalPlacementTypeNative
 };
 
 typedef NS_ENUM(NSInteger, BDMRequestState) {
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, BDMRequestState) {
 @property (nonatomic, copy, readonly) NSArray<BDMEventURL *> * eventTrackers;
 
 - (void)performWithRequest:(BDMRequest *)request
-             placementType:(BDMPlacementType)placementType
+             placementType:(BDMInternalPlacementType)placementType
           placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder;
 - (void)registerDelegate:(id<BDMRequestDelegate>)delegate;
 - (void)cancelExpirationTimer;

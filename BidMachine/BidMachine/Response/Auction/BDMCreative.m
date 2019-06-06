@@ -9,7 +9,10 @@
 #import "BDMCreative.h"
 #import "ADCOMAd_Display_Native+BDMSdk.h"
 #import "BDMProtoAPI-Umbrella.h"
+#import "BDMTransformers.h"
+
 #import <ASKExtension/ASKExtension.h>
+
 
 static NSString * const kBDMCreativeKey     = @"creative";
 static NSString * const kBDMWidthKey        = @"w";
@@ -83,22 +86,7 @@ static NSString * const kBDMMRAIDClosableViewDelayKey   = @"closable_view_delay"
 }
 
 - (void)populateEvents:(NSArray <ADCOMAd_Event *> *)events {
-    if (!events.count) {
-        return;
-    }
-    self.trackers = events.ask_transform(^id(ADCOMAd_Event * event, NSUInteger idx){
-        if (!event.URL.length) {
-            return nil;
-        }
-        
-        int32_t rawType = ADCOMAd_Event_Type_RawValue(event);
-        if (!BDMEventTypeExtended_IsValidValue(rawType)) {
-            return nil;
-        }
-        
-        BDMEventURL * tracker = [BDMEventURL trackerWithStringURL:event.URL type:rawType];
-        return tracker;
-    });
+    self.trackers = BDMTransformers.eventURLs(events);
 }
 
 - (void)populateVieabilityConfig:(BDMAdExtension *)extension {

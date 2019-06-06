@@ -39,13 +39,7 @@ describe(@"BDMServerCommunicator", ^{
         it(@"RequestBuilder should build request", ^{
             [communicator stub:@selector(session) andReturn:sessionMock];
             [[BDMApiRequest should] receive:@selector(request:)];
-            [communicator makeAuctionRequest:^(BDMAuctionBuilder *builder) {
-                
-            } success:^(id<BDMResponse> response) {
-                
-            } failure:^(NSError * error) {
-                
-            }];
+            [communicator makeAuctionRequest:^(BDMAuctionBuilder *builder) {} success:^(id<BDMResponse> response) {} failure:^(NSError * error) {}];
         });
     });
 });

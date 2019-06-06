@@ -20,10 +20,10 @@
 
 @interface BDMInterstitial () <BDMRequestDelegate, BDMDisplayAdDelegate>
 
-@property (nonatomic, strong) BDMEventMiddleware * middleware;
+@property (nonatomic, strong) BDMEventMiddleware *middleware;
 @property (nonatomic, strong) id <BDMDisplayAd> displayAd;
 
-@property (nonatomic, strong) BDMInterstitialRequest * currentRequest;
+@property (nonatomic, strong) BDMInterstitialRequest *currentRequest;
 
 @end
 
@@ -83,11 +83,18 @@
         [self.delegate interstitial:self failedWithError:error];
         return;
     }
+    
+    [self.middleware startEvent:BDMEventCreativeLoading];
     self.displayAd.delegate = self;
     [self.displayAd prepare];
 }
 
 - (void)presentFromRootViewController:(UIViewController *)rootViewController {
+    [self.middleware startEvent:BDMEventImpression];
+    [self.middleware startEvent:BDMEventClosed];
+    [self.middleware startEvent:BDMEventClick];
+    [self.middleware startEvent:BDMEventViewable];
+    
     [self presentWithPlacement:nil fromRootViewController:rootViewController];
 }
 
@@ -98,6 +105,7 @@
 #pragma mark - Private
 
 - (void)invalidate {
+    [self.middleware rejectAll:BDMErrorCodeWasDestroyed];
     [self.currentRequest invalidate];
     [self.displayAd invalidate];
     self.currentRequest = nil;
@@ -123,12 +131,11 @@
 }
 
 - (void)request:(BDMRequest *)request failedWithError:(NSError *)error {
-    [self.middleware registerError:BDMEventLoaded code:error.code];
     [self.delegate interstitial:self failedWithError:error];
 }
 
 - (void)requestDidExpire:(BDMRequest *)request {
-    [self.middleware registerError:BDMEventImpression code:BDMErrorCodeWasExpired];
+    [self.middleware rejectEvent:BDMEventImpression code:BDMErrorCodeWasExpired];
     if ([self.delegate respondsToSelector:@selector(interstitialDidExpire:)]) {
         [self.delegate interstitialDidExpire:self];
     }
@@ -137,7 +144,7 @@
 #pragma mark - BDMDisplayAdDelegate
 
 - (void)displayAdReady:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventLoaded];
+    [self.middleware fulfillEvent:BDMEventCreativeLoading];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated"
     if ([self.delegate respondsToSelector:@selector(interstitial:readyToPresentAd:)]) {
@@ -148,32 +155,32 @@
 }
 
 - (void)displayAd:(id<BDMDisplayAd>)displayAd failedWithError:(NSError *)error {
-    [self.middleware registerError:BDMEventLoaded code:error.code];
+    [self.middleware rejectEvent:BDMEventCreativeLoading code:error.code];
     [self.delegate interstitial:self failedWithError:error];
 }
 
 - (void)displayAdLogStartView:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventImpression];
+    [self.middleware fulfillEvent:BDMEventImpression];
     [self.delegate interstitialWillPresent:self];
 }
 
 - (void)displayAdLogFinishView:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventClosed];
+    [self.middleware fulfillEvent:BDMEventClosed];
     [self.delegate interstitialDidDismiss:self];
     [self invalidate];
 }
 
 - (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventViewable];
+    [self.middleware fulfillEvent:BDMEventViewable];
 }
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
-    [self.middleware registerEvent:BDMEventClick];
+    [self.middleware fulfillEvent:BDMEventClick];
     [self.delegate interstitialRecieveUserInteraction:self];
 }
 
 - (void)displayAd:(id<BDMDisplayAd>)displayAd failedToPresent:(NSError *)error {
-    [self.middleware registerError:BDMEventImpression code:error.code];
+    [self.middleware rejectEvent:BDMEventImpression code:error.code];
     [self.delegate interstitial:self failedToPresentWithError:error];
     if (error.code != BDMErrorCodeNoConnection) {
         [self invalidate];

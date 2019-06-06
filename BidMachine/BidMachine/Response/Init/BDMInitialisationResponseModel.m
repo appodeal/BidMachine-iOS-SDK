@@ -8,11 +8,13 @@
 
 #import "BDMInitialisationResponseModel.h"
 #import "BDMProtoAPI-Umbrella.h"
+#import "BDMTransformers.h"
 
 
 @interface BDMInitialisationResponseModel ()
 
-@property (nonatomic, copy, readwrite) NSURL * auctionURL;
+@property (nonatomic, copy, readwrite) NSURL *auctionURL;
+@property (nonatomic, copy, readwrite) NSArray <BDMEventURL *> *eventURLs;
 
 @end
 
@@ -27,6 +29,8 @@
     
     BDMInitialisationResponseModel * model = BDMInitialisationResponseModel.new;
     model.auctionURL = responseMessage.endpoint ? [NSURL URLWithString:responseMessage.endpoint] : nil;
+    model.eventURLs = BDMTransformers.eventURLs(responseMessage.eventArray);
+    
     return model;
 }
 

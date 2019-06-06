@@ -39,6 +39,14 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event);
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedBySegment)(NSNumber *);
 /**
+ Replace BM_ACTION_START in URL
+ */
+@property (nonatomic, readonly, copy) BDMEventURL *(^extendedByStartTime)(NSDate *);
+/**
+ Replace BM_ACTION_FINISH in URL
+ */
+@property (nonatomic, readonly, copy) BDMEventURL *(^extendedByFinishTime)(NSDate *);
+/**
  Replace macros 
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByAction)(NSInteger);

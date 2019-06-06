@@ -15,7 +15,7 @@
 - (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
     [self registerDelegate: delegate];
     id <BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement bannerPlacementWithAdSize:self.adSize];
-    [super performWithRequest:self placementType:BDMPlacementBanner placementBuilder:builder];
+    [super performWithRequest:self placementType:BDMInternalPlacementTypeBanner placementBuilder:builder];
 }
 
 @end
@@ -25,7 +25,7 @@
 - (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
     [self registerDelegate: delegate];
     id <BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement interstitialPlacementWithAdType:self.type];
-    [self performWithRequest:self placementType:BDMPlacementInterstitial placementBuilder:builder];
+    [self performWithRequest:self placementType:BDMInternalPlacementTypeInterstitial placementBuilder:builder];
 }
 
 @end
@@ -48,7 +48,7 @@
 - (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
     [self registerDelegate: delegate];
     id<BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement rewardedPlacementWithAdType:self.type];
-    [self performWithRequest:self placementType:BDMPlacementRewardedVideo placementBuilder:builder];
+    [self performWithRequest:self placementType:BDMInternalPlacementTypeRewardedVideo placementBuilder:builder];
 }
 
 @end

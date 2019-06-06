@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		421429B822A928850019BAA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421429B722A928840019BAA1 /* AppDelegate.swift */; };
 		424047DD21CB6EB9005C16E1 /* NavigationTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424047DB21CB6EB9005C16E1 /* NavigationTitle.xib */; };
 		424047DE21CB6EB9005C16E1 /* NavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424047DC21CB6EB9005C16E1 /* NavigationTitle.swift */; };
 		424047E021CB7392005C16E1 /* CornerCases.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 424047DF21CB7392005C16E1 /* CornerCases.storyboard */; };
 		424A9F6821B82647008335EE /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6721B82647008335EE /* BidMachine.framework */; };
-		424A9F6A21B82647008335EE /* DisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6921B82647008335EE /* DisplayKit.framework */; };
 		424A9F6C21B82647008335EE /* libBDMMRAIDAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6B21B82647008335EE /* libBDMMRAIDAdapter.a */; };
 		424A9F6E21B82647008335EE /* libBDMNASTAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6D21B82647008335EE /* libBDMNASTAdapter.a */; };
 		424A9F7021B82647008335EE /* libBDMVASTAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6F21B82647008335EE /* libBDMVASTAdapter.a */; };
@@ -53,7 +53,6 @@
 		831FA6D9BEC5469BDC185E70 /* Pods_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A0EAE2E66F69A24E54C713 /* Pods_Sample.framework */; };
 		D901693221F6030C00FECE42 /* BannerLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D901693121F6030C00FECE42 /* BannerLoadingVC.swift */; };
 		D91BDE8621B28F4700C538CE /* TableViewContentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BDE8521B28F4700C538CE /* TableViewContentEntity.swift */; };
-		D91F84A52175CC11005A92F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91F84A42175CC11005A92F1 /* AppDelegate.swift */; };
 		D91F84A72175CC11005A92F1 /* InitializationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91F84A62175CC11005A92F1 /* InitializationVC.swift */; };
 		D91F84AC2175CC12005A92F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D91F84AB2175CC12005A92F1 /* Assets.xcassets */; };
 		D91F84AF2175CC12005A92F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91F84AD2175CC12005A92F1 /* LaunchScreen.storyboard */; };
@@ -74,11 +73,11 @@
 
 /* Begin PBXFileReference section */
 		15A0EAE2E66F69A24E54C713 /* Pods_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		421429B722A928840019BAA1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		424047DB21CB6EB9005C16E1 /* NavigationTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationTitle.xib; sourceTree = "<group>"; };
 		424047DC21CB6EB9005C16E1 /* NavigationTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationTitle.swift; sourceTree = "<group>"; };
 		424047DF21CB7392005C16E1 /* CornerCases.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CornerCases.storyboard; sourceTree = "<group>"; };
 		424A9F6721B82647008335EE /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		424A9F6921B82647008335EE /* DisplayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DisplayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		424A9F6B21B82647008335EE /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		424A9F6D21B82647008335EE /* libBDMNASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMNASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		424A9F6F21B82647008335EE /* libBDMVASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMVASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +103,6 @@
 		427DE26E21A432AC009CCC25 /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		427DE27021A432AC009CCC25 /* libBDMNASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMNASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		427DE27221A432AC009CCC25 /* libBDMVASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMVASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		427DE27421A432BD009CCC25 /* DisplayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DisplayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		428AC84E219C0D0B001CB485 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		428AC852219C104F001CB485 /* RequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestVC.swift; sourceTree = "<group>"; };
 		42A8BE3E21BD7AA80044CC8D /* ExtensionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 		D901693121F6030C00FECE42 /* BannerLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerLoadingVC.swift; sourceTree = "<group>"; };
 		D91BDE8521B28F4700C538CE /* TableViewContentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewContentEntity.swift; sourceTree = "<group>"; };
 		D91F84A12175CC11005A92F1 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D91F84A42175CC11005A92F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../DisplayKit/DisplayKit/AppDelegate.swift; sourceTree = "<group>"; };
 		D91F84A62175CC11005A92F1 /* InitializationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationVC.swift; sourceTree = "<group>"; };
 		D91F84A92175CC11005A92F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D91F84AB2175CC12005A92F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,7 +153,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				424A9F6821B82647008335EE /* BidMachine.framework in Frameworks */,
-				424A9F6A21B82647008335EE /* DisplayKit.framework in Frameworks */,
 				424A9F6C21B82647008335EE /* libBDMMRAIDAdapter.a in Frameworks */,
 				424A9F6E21B82647008335EE /* libBDMNASTAdapter.a in Frameworks */,
 				424A9F7021B82647008335EE /* libBDMVASTAdapter.a in Frameworks */,
@@ -279,11 +275,9 @@
 			children = (
 				427A0E5C2227F85B00A7416E /* CoreTelephony.framework */,
 				424A9F6721B82647008335EE /* BidMachine.framework */,
-				424A9F6921B82647008335EE /* DisplayKit.framework */,
 				424A9F6B21B82647008335EE /* libBDMMRAIDAdapter.a */,
 				424A9F6D21B82647008335EE /* libBDMNASTAdapter.a */,
 				424A9F6F21B82647008335EE /* libBDMVASTAdapter.a */,
-				427DE27421A432BD009CCC25 /* DisplayKit.framework */,
 				427DE26E21A432AC009CCC25 /* libBDMMRAIDAdapter.a */,
 				427DE27021A432AC009CCC25 /* libBDMNASTAdapter.a */,
 				427DE27221A432AC009CCC25 /* libBDMVASTAdapter.a */,
@@ -316,7 +310,7 @@
 		D91F84A32175CC11005A92F1 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				D91F84A42175CC11005A92F1 /* AppDelegate.swift */,
+				421429B722A928840019BAA1 /* AppDelegate.swift */,
 				D91F84AB2175CC12005A92F1 /* Assets.xcassets */,
 				42D5972F21CA203E00B1ABAA /* Runtime */,
 				424B186721A2F355004F113B /* Models */,
@@ -389,7 +383,7 @@
 				D91F849D2175CC11005A92F1 /* Sources */,
 				D91F849E2175CC11005A92F1 /* Frameworks */,
 				D91F849F2175CC11005A92F1 /* Resources */,
-				ADDAA617A020877FB219EB19 /* [CP] Embed Pods Frameworks */,
+				224C61AD00F22656A2BC46E1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -462,7 +456,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		ADDAA617A020877FB219EB19 /* [CP] Embed Pods Frameworks */ = {
+		224C61AD00F22656A2BC46E1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -472,7 +466,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/NexageSourceKitMRAID/NexageSourceKitMRAID.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -480,7 +473,6 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NexageSourceKitMRAID.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +507,7 @@
 			files = (
 				D91BDE8621B28F4700C538CE /* TableViewContentEntity.swift in Sources */,
 				424B186421A2EC4B004F113B /* BooleanTableViewCell.swift in Sources */,
+				421429B822A928850019BAA1 /* AppDelegate.swift in Sources */,
 				42708D2121A1BB9D00240630 /* ConfigurationVC.swift in Sources */,
 				D98AE1C62175EDFE00414343 /* BannerVC.swift in Sources */,
 				424B185821A2EBAC004F113B /* EnumTableViewCell.swift in Sources */,
@@ -545,7 +538,6 @@
 				42F86ED721BA8EC700B58CB5 /* NativeAdViewCell.swift in Sources */,
 				D9BBD5EE21CA9174006233F9 /* BannerOverlayVC.swift in Sources */,
 				D9B5670F21AFF97D0045E95D /* NativeTableVC.swift in Sources */,
-				D91F84A52175CC11005A92F1 /* AppDelegate.swift in Sources */,
 				425A779321C10AEF00DA04C9 /* GeneratableDataTableViewCell.swift in Sources */,
 				42F86ECE21BA7D5600B58CB5 /* StatusTableViewCell.swift in Sources */,
 				D901693221F6030C00FECE42 /* BannerLoadingVC.swift in Sources */,

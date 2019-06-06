@@ -17,13 +17,13 @@
 
 @implementation BDMFactory (BDMDisplayAd)
 
-- (id<BDMDisplayAd>)displayAdWithResponse:(id<BDMResponse>)response plecementType:(BDMPlacementType)placementType {
+- (id<BDMDisplayAd>)displayAdWithResponse:(id<BDMResponse>)response plecementType:(BDMInternalPlacementType)placementType {
     id <BDMDisplayAd> displayAd;
     switch (placementType) {
-        case BDMPlacementBanner: displayAd = [BDMBannerViewDisplayAd displayAdWithResponse:response placementType:placementType]; break;
-        case BDMPlacementNative: displayAd = [BDMNativeAdViewDisplayAd displayAdWithResponse:response placementType:placementType]; break;
-        case BDMPlacementInterstitial: displayAd = [BDMFullscreenAdDisplayAd displayAdWithResponse:response placementType:placementType]; break;
-        case BDMPlacementRewardedVideo: displayAd = [BDMFullscreenAdDisplayAd displayAdWithResponse:response placementType:placementType]; break;
+        case BDMInternalPlacementTypeBanner:        displayAd = [BDMBannerViewDisplayAd displayAdWithResponse:response placementType:placementType]; break;
+        case BDMInternalPlacementTypeNative:        displayAd = [BDMNativeAdViewDisplayAd displayAdWithResponse:response placementType:placementType]; break;
+        case BDMInternalPlacementTypeInterstitial:  displayAd = [BDMFullscreenAdDisplayAd displayAdWithResponse:response placementType:placementType]; break;
+        case BDMInternalPlacementTypeRewardedVideo: displayAd = [BDMFullscreenAdDisplayAd displayAdWithResponse:response placementType:placementType]; break;
     }
     return displayAd;
 }

@@ -18,19 +18,43 @@ static NSInteger const BDMEventError = 1000;
 static NSInteger const BDMEventTrackingError = 1001;
 
 
-NSString * NSStringFromBDMEvent(BDMEvent event) {
+NSString *NSStringFromBDMEvent(BDMEvent event) {
     switch (event) {
-        case BDMEventLoaded: return @"Loading"; break;
+        case BDMEventCreativeLoading: return @"Creative loading"; break;
         case BDMEventClick: return @"User interaction"; break;
         case BDMEventClosed: return @"Closing"; break;
         case BDMEventViewable: return @"Viewable"; break;
         case BDMEventDestroyed: return @"Destroying"; break;
         case BDMEventImpression: return @"Impression"; break;
+        case BDMEventAuction: return @"Auction"; break;
+        case BDMEventInitialisation: return @"Initialisation"; break;
     }
 }
 
 
-NSString * NSStringFromBDMErrorCode(BDMErrorCode code) {
+BDMEvent BDMEventFromNSString(NSString *event) {
+    if ([event isEqualToString:@"Creative loading"]) {
+        return BDMEventCreativeLoading;
+    } else if ([event isEqualToString:@"User interaction"]) {
+        return BDMEventClick;
+    } else if ([event isEqualToString:@"Closing"]) {
+        return BDMEventClosed;
+    } else if ([event isEqualToString:@"Viewable"]) {
+        return BDMEventViewable;
+    } else if ([event isEqualToString:@"Destroying"]) {
+        return BDMEventDestroyed;
+    } else if ([event isEqualToString:@"Impression"]) {
+        return BDMEventImpression;
+    } else if ([event isEqualToString:@"Auction"]) {
+        return BDMEventAuction;
+    } else if ([event isEqualToString:@"Initialisation"]) {
+        return BDMEventInitialisation;
+    }
+    return 0;
+}
+
+
+NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
     switch (code) {
         case BDMErrorCodeInternal: return @"Internal"; break;
         case BDMErrorCodeTimeout: return @"Timeout"; break;
@@ -92,6 +116,7 @@ NSString * NSStringFromBDMErrorCode(BDMErrorCode code) {
 
 @interface BDMEventMiddleware ()
 
+@property (nonatomic, strong) NSMutableDictionary <NSString *, NSDate *> *startTimeByEventType;
 @property (nonatomic, copy) NSNumber *(^updatePlacement)(void);
 @property (nonatomic, copy) NSNumber *(^updateSegment)(void);
 @property (nonatomic, copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
@@ -101,23 +126,51 @@ NSString * NSStringFromBDMErrorCode(BDMErrorCode code) {
 
 @implementation BDMEventMiddleware
 
-+ (instancetype)buildMidleware:(void(^)(BDMEventMiddlewareBuilder *))build {
++ (instancetype)buildMiddleware:(void(^)(BDMEventMiddlewareBuilder *))build {
     BDMEventMiddlewareBuilder * builder = BDMEventMiddlewareBuilder.new;
     build(builder);
     return [[self alloc] initWithBuilder:builder];
 }
 
-- (void)registerError:(BDMEvent)event code:(BDMErrorCode)code {
-    BDMLog(@"Handling lifecycle error: %@ for %@ event", NSStringFromBDMErrorCode(code), NSStringFromBDMEvent(event));
+- (void)rejectAll:(BDMErrorCode)code {
+    NSArray <NSString *> *enumerator = [[self.startTimeByEventType copy] allKeys];
+    [enumerator enumerateObjectsUsingBlock:^(NSString *eventString, NSUInteger idx, BOOL *stop) {
+        BDMEvent event = BDMEventFromNSString(eventString);
+        // Send trackers for requiered events
+        if (event != BDMEventViewable &&
+            event != BDMEventClosed &&
+            event != BDMEventImpression &&
+            event != BDMEventClick) {
+            [self rejectEvent:event code:code];
+        // Just remove non required
+        } else {
+            [self.startTimeByEventType removeObjectForKey:eventString];
+        }
+    }];
+}
 
-    NSArray <BDMEventURL *> * trackers = ASK_RUN_BLOCK(self.updateEvents);
-    BDMEventURL * URL = [trackers bdm_searchTrackerOfType:BDMEventError];
+- (void)rejectEvent:(BDMEvent)type
+               code:(BDMErrorCode)code {
+    NSString *eventString = NSStringFromBDMEvent(type);
+    NSDate *startTime = self.startTimeByEventType[eventString];
+    NSDate *finishTime = [NSDate date];
+    [self.startTimeByEventType removeObjectForKey:eventString];
+    
+    BDMLog(@"Handling lifecycle error: %@ for %@ event, timing: %1.2f sec",
+           NSStringFromBDMErrorCode(code),
+           eventString,
+           finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
+    
+    NSArray <BDMEventURL *> *trackers = ASK_RUN_BLOCK(self.updateEvents);
+    BDMEventURL *URL = [trackers bdm_searchTrackerOfType:BDMEventError];
     if (!URL) {
         return;
     }
     
     URL = URL
-    .extendedByAction(event)
+    .extendedByStartTime(startTime)
+    .extendedByFinishTime(finishTime)
+    .extendedByAction(type)
     .extendedByErrorCode(code)
     .extendedBySegment(ASK_RUN_BLOCK(self.updateSegment))
     .extendedByPlacement(ASK_RUN_BLOCK(self.updatePlacement));
@@ -125,45 +178,78 @@ NSString * NSStringFromBDMErrorCode(BDMErrorCode code) {
     [BDMServerCommunicator.sharedCommunicator trackEvent:URL];
 }
 
-- (void)registerEvent:(BDMEvent)type {
-    BDMLog(@"Handling %@ event", NSStringFromBDMEvent(type));
+- (void)startEvent:(BDMEvent)type {
+    NSString *eventString = NSStringFromBDMEvent(type);
+    NSDate *startTime = [NSDate date];
+    self.startTimeByEventType[eventString] = startTime;
+}
+
+- (void)fulfillEvent:(BDMEvent)type {
+    NSString *eventString = NSStringFromBDMEvent(type);
+    NSDate *startTime = self.startTimeByEventType[eventString];
+    NSDate *finishTime = [NSDate date];
+    [self.startTimeByEventType removeObjectForKey:eventString];
+    
+    BDMLog(@"Handling %@ event, timing: %1.2f sec", eventString, finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
     [self notifyProducerDelegateIfNeeded:type];
+    
     NSArray <BDMEventURL *> * trackers = ASK_RUN_BLOCK(self.updateEvents);
-    BDMEventURL * URL = [trackers bdm_searchTrackerOfType:type];
+    BDMEventURL *URL = [trackers bdm_searchTrackerOfType:type];
     if (!URL) {
         return;
     }
     
-    BDMEventURL * fallbackURL = [trackers bdm_searchTrackerOfType:BDMEventTrackingError];
-
+    BDMEventURL *fallbackURL = [trackers bdm_searchTrackerOfType:BDMEventTrackingError];
+    
     URL = URL
+    .extendedByStartTime(startTime)
+    .extendedByFinishTime(finishTime)
     .extendedBySegment(ASK_RUN_BLOCK(self.updateSegment))
     .extendedByPlacement(ASK_RUN_BLOCK(self.updatePlacement));
+    
     __weak typeof(self) weakSelf = self;
-    [BDMServerCommunicator.sharedCommunicator trackEvent:URL success:nil failure:^(NSError * error) {
-        [weakSelf fallback:type url:fallbackURL code:error.code];
-    }];
+    [BDMServerCommunicator.sharedCommunicator trackEvent:URL
+                                                 success:nil
+                                                 failure:^(NSError * error) {
+                                                     [weakSelf fallback:type
+                                                                    url:fallbackURL
+                                                                   code:error.code
+                                                              startTime:startTime
+                                                             finishTime:finishTime];
+                                                 }];
 }
 
 #pragma mark - Private
 
 - (instancetype)initWithBuilder:(BDMEventMiddlewareBuilder *)builder {
     if (self = [super init]) {
-        self.updateEvents = [builder.updateEvents copy];
-        self.updatePlacement = [builder.updatePlacement copy];
-        self.updateSegment = [builder.updateSegment copy];
-        self.updateProducer = [builder.updateProducer copy];
+        self.updateEvents           = [builder.updateEvents copy];
+        self.updatePlacement        = [builder.updatePlacement copy];
+        self.updateSegment          = [builder.updateSegment copy];
+        self.updateProducer         = [builder.updateProducer copy];
+        self.startTimeByEventType   = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
-- (void)fallback:(BDMEvent)event url:(BDMEventURL *)url code:(BDMErrorCode)code {
+- (void)fallback:(BDMEvent)event
+             url:(BDMEventURL *)url
+            code:(BDMErrorCode)code
+       startTime:(NSDate *)startTime
+      finishTime:(NSDate *)finishTime {
+    
     if (!url) {
         return;
     }
     
-    BDMLog(@"Handling tracking error: %@ for %@ event", NSStringFromBDMErrorCode(code), NSStringFromBDMEvent(event));
+    BDMLog(@"Handling tracking error: %@ for event %@, timing: %1.2f sec",
+           NSStringFromBDMErrorCode(code),
+           NSStringFromBDMEvent(event),
+           finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
+    
     url = url
+    .extendedByStartTime(startTime)
+    .extendedByFinishTime(finishTime)
     .extendedByEvent(event)
     .extendedByErrorCode(code)
     .extendedBySegment(ASK_RUN_BLOCK(self.updateSegment))
