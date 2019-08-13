@@ -23,18 +23,13 @@
         {
             "ad_units": [
                 {
-                    "facebook_key": "1419966511382477_2249153695130417",
-                    "format": "banner"
-                },
-                {
-                    "facebook_key": "754722298026822_1251166031715777",
-                    "format": "interstitial_static"
+                    "facebook_key": "323042751509018_640127076467249",
+                    "format": "rewarded"
                 }
             ],
-            "app_id": "754722298026822",
+            "app_id": "323042751509018",
             "placement_ids": [
-                "754722298026822_1251166031715777",
-                "1419966511382477_2249153695130417"
+                "323042751509018_640127076467249"
             ],
             "network": "facebook",
             "network_class": "BDMFacebookAdNetwork"

@@ -14,9 +14,10 @@
 @import StackUIKit;
 
 
-@interface BDMFacebookFullscreenAdapter () <FBInterstitialAdDelegate>
+@interface BDMFacebookFullscreenAdapter () <FBInterstitialAdDelegate, FBRewardedVideoAdDelegate>
 
 @property (nonatomic, strong) FBInterstitialAd *interstitialAd;
+@property (nonatomic, strong) FBRewardedVideoAd *rewardedVideo;
 
 @end
 
@@ -38,16 +39,26 @@
         return;
     }
     
-    self.interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:placement];
-    self.interstitialAd.delegate = self;
-    [self.interstitialAd loadAdWithBidPayload:payload];
+    if (self.rewarded) {
+        self.rewardedVideo = [[FBRewardedVideoAd alloc] initWithPlacementID:placement];
+        self.rewardedVideo.delegate = self;
+        [self.rewardedVideo loadAdWithBidPayload:payload];
+    } else {
+        self.interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:placement];
+        self.interstitialAd.delegate = self;
+        [self.interstitialAd loadAdWithBidPayload:payload];
+    }
 }
 
 - (void)present {
-    if (self.interstitialAd.isAdValid) {
+    if (self.interstitialAd.isAdValid && !self.rewarded) {
         [self.displayDelegate adapterWillPresent:self];
         UIViewController *rootViewController = [self.displayDelegate rootViewControllerForAdapter:self];
         [self.interstitialAd showAdFromRootViewController:rootViewController];
+    } else if (self.rewardedVideo.isAdValid && self.rewarded) {
+        [self.displayDelegate adapterWillPresent:self];
+        UIViewController *rootViewController = [self.displayDelegate rootViewControllerForAdapter:self];
+        [self.rewardedVideo showAdFromRootViewController:rootViewController];
     } else {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"FBInterstitialAd is invalid"];
         [self.displayDelegate adapter:self failedToPresentAdWithError:error];
@@ -76,5 +87,34 @@
 /// Noop
 - (void)interstitialAdWillClose:(FBInterstitialAd *)interstitialAd {}
 - (void)interstitialAdWillLogImpression:(FBInterstitialAd *)interstitialAd {}
+
+#pragma mark - FBRewardedVideoDelegate
+
+- (void)rewardedVideoAdDidClick:(FBRewardedVideoAd *)rewardedVideoAd {
+    [self.displayDelegate adapterRegisterUserInteraction:self];
+}
+
+- (void)rewardedVideoAdDidLoad:(FBRewardedVideoAd *)rewardedVideoAd {
+    [self.loadingDelegate adapterPreparedContent:self];
+}
+
+- (void)rewardedVideoAdDidClose:(FBRewardedVideoAd *)rewardedVideoAd {
+    [self.displayDelegate adapterDidDismiss:self];
+}
+
+- (void)rewardedVideoAd:(FBRewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error {
+    NSError *wrapper = [error bdm_wrappedWithCode:BDMErrorCodeNoContent];
+    [self.loadingDelegate adapter:self failedToPrepareContentWithError:wrapper];
+}
+
+- (void)rewardedVideoAdVideoComplete:(FBRewardedVideoAd *)rewardedVideoAd {
+    [self.displayDelegate adapterFinishRewardAction:self];
+}
+
+/// Noop
+- (void)rewardedVideoAdWillClose:(FBRewardedVideoAd *)rewardedVideoAd {}
+- (void)rewardedVideoAdWillLogImpression:(FBRewardedVideoAd *)rewardedVideoAd {}
+- (void)rewardedVideoAdServerRewardDidSucceed:(FBRewardedVideoAd *)rewardedVideoAd {}
+- (void)rewardedVideoAdServerRewardDidFail:(FBRewardedVideoAd *)rewardedVideoAd {}
 
 @end
