@@ -12,18 +12,16 @@ class GeneratableDataTableViewCell: UITableViewCell {
     typealias EntityGenerationComplitionCallback = (DataEntity) -> ()
     typealias EntityGenerationAction = (DataEntity, @escaping EntityGenerationComplitionCallback)->()
     
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var userInputTextField: UITextField!
+    @IBOutlet private weak var statusImageView: UIImageView!
+    
     var entity: DataEntity? {
-        didSet {
-            update()
-        }
+        didSet { update() }
     }
     
     var binding: ((DataEntity) -> ())?
     var generate:(EntityGenerationAction)?
-    
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var userInputTextField: UITextField!
-    @IBOutlet private weak var statusImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,42 +55,23 @@ class GeneratableDataTableViewCell: UITableViewCell {
     }
     
     private func update() {
-        guard entity != nil else {
-            return
-        }
-        switch entity!.type {
-        case .commaSeparatedList:
-            userInputTextField.keyboardType = .default
-            userInputTextField.placeholder = "Comma separated list"
-            break
-        case .numeric:
-            userInputTextField.keyboardType = .numberPad
-            userInputTextField.placeholder = "Numeric value"
-            break
-        case .string:
-            userInputTextField.keyboardType = .default
-            userInputTextField.placeholder = "String value"
-            break
-        case .url:
-            userInputTextField.keyboardType = .URL
-            userInputTextField.placeholder = "URL value"
-            break
-        }
-        titleLabel.text = entity!.info
-        userInputTextField.text = entity!.value
+        guard let entity = entity else { return }
+        userInputTextField.setDataType(entity.type)
+        titleLabel.text = entity.info
+        userInputTextField.text = entity.value
         let _ = validate()
     }
 }
 
+
 extension GeneratableDataTableViewCell: NibProvider {
+    static let reuseIdentifier: String = "GeneratableDataTableViewCellReuseID"
+    
     static var nib: UINib {
         return UINib(nibName: "GeneratableDataTableViewCell", bundle: Bundle(for: self))
     }
-    
-    static var reuseIdentifier: String {
-        return "GeneratableDataTableViewCellReuseID"
-    }
 }
+
 
 extension GeneratableDataTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -107,6 +86,7 @@ extension GeneratableDataTableViewCell: UITextFieldDelegate {
         return true
     }
 }
+
 
 extension GeneratableDataTableViewCell: BindingView {
     typealias T = DataEntity

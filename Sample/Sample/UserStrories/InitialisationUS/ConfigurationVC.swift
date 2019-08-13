@@ -13,6 +13,8 @@ import BidMachine
 class ConfigurationVC: DataTableViewController {    
     override func setupSections() {
         addAppConfigurationSection()
+        addUrlSection()
+        addHeaderBiddingSection()
         addUserTargetingSection()
         addLocationTargetingSection()
         addAppTargetingSection()
@@ -20,21 +22,24 @@ class ConfigurationVC: DataTableViewController {
         addSdkRestrictionsSection()
     }
     
+    private var configs: [BDMAdNetworkConfigEntity] = []
+    
     @IBAction func clouseTouched(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveAndCloseTouched(_ sender: UIButton) {
         SdkContext.shared.synchronise()
+        SdkContext.shared.configuration.networkConfigurations = configs.filter { $0.included }.compactMap { $0.config }
         dismiss(animated: true, completion: nil)
     }
     
     private func addAppConfigurationSection() {
-        let _ = addSection { section in
+        addSection { section in
             section.title = "App configuration"
             section.state = .expanded
             
-            let _ = section
+            section
                 .addRow {
                     [unowned self] row in
                     let cell: BooleanTableViewCell = self.tableView.dequeueCell()
@@ -62,13 +67,54 @@ class ConfigurationVC: DataTableViewController {
                     cell.entity = BooleanEntity(info: "Location", value:SdkContext.shared.appConfiguration.location)
                     cell.binding = { SdkContext.shared.appConfiguration.location = $0.value! }
                     row.cell = cell
-            }
+                }
                 .addRow {
                     [unowned self] row in
                     let cell: BooleanTableViewCell = self.tableView.dequeueCell()
                     cell.entity = BooleanEntity(info: "Toasts", value:SdkContext.shared.appConfiguration.toast)
                     cell.binding = { SdkContext.shared.appConfiguration.toast = $0.value! }
                     row.cell = cell
+            }
+        }
+    }
+    
+    private func addUrlSection() {
+        addSection { section in
+            section.title = "Base URL"
+            section.state = .collapsed
+            section.addRow { row in
+                let cell: DataTableViewCell = self.tableView.dequeueCell()
+                cell.entity = DataEntity(info: "Init endpointh", type:.url,
+                                         value: SdkContext.shared.configuration.baseURL.absoluteString)
+                cell.binding = { SdkContext.shared.configuration.baseURL = $0.value.flatMap(URL.init)!  }
+                row.cell = cell
+            }
+        }
+    }
+    
+    private func addHeaderBiddingSection() {
+        addSection { section in
+            section.title = "Header Bidding"
+            section.state = .expanded
+            HeaderBiddingProvider.shared.getConfigEntities { entries in
+                self.configs = entries
+                entries.forEach { entry in
+                    section.addRow { [unowned self] row in
+                        let cell: OnlyLabelTableViewCell = self.tableView.dequeueCell()
+                        let name = entry.config.name
+                        cell.entity = OnlyLabelEntity(info: name.capitalizingFirstLetter(), value: name)
+                        cell.accessoryType = .none
+                        row.onSelection = {
+                            cell.accessoryType.switch()
+                            let index = self.configs.firstIndex { $0.config.name == name }!
+                            let unit = self.configs[index]
+                            self.configs.remove(at: index)
+                            self.configs.insert((unit.config, cell.accessoryType.marked),
+                                                at: index)
+                        }
+                        row.cell = cell
+                    }
+                }
             }
         }
     }

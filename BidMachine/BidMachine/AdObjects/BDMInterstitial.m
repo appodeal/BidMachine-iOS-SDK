@@ -7,15 +7,15 @@
 //
 
 #import "BDMInterstitial.h"
-#import "BDMRequest+ParallelBidding.h"
+#import "BDMRequest+HeaderBidding.h"
 #import "BDMRequest+Private.h"
 #import "BDMFactory+BDMEventMiddleware.h"
 #import "BDMFactory+BDMDisplayAd.h"
-#import "BDMSdk+ParallelBidding.h"
+#import "BDMSdkConfiguration+HeaderBidding.h"
 #import "BDMSdk+Project.h"
 #import "NSError+BDMSdk.h"
 
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 @interface BDMInterstitial () <BDMRequestDelegate, BDMDisplayAdDelegate>
@@ -36,7 +36,7 @@
 }
 
 - (void)populateWithRequest:(BDMInterstitialRequest *)request {
-    NSAssert(BDMInterstitialRequest.ask_isValid(request), @"BDMInterstitial request should be kind of class BDMInterstitialRequest");
+    NSAssert(BDMInterstitialRequest.stk_isValid(request), @"BDMInterstitial request should be kind of class BDMInterstitialRequest");
     self.currentRequest = request;
     self.middleware = [BDMFactory.sharedFactory middlewareWithRequest:self.currentRequest eventProducer:self];
     switch (self.currentRequest.state) {
@@ -90,12 +90,20 @@
 }
 
 - (void)presentFromRootViewController:(UIViewController *)rootViewController {
+    if (!self.displayAd.hasLoadedCreative) {
+        NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeNoContent
+                                         description:@"Display ad not ready to present any ad!"];
+        [self.delegate interstitial:self failedToPresentWithError:error];
+        return;
+    }
+    
     [self.middleware startEvent:BDMEventImpression];
     [self.middleware startEvent:BDMEventClosed];
     [self.middleware startEvent:BDMEventClick];
     [self.middleware startEvent:BDMEventViewable];
-    
-    [self presentWithPlacement:nil fromRootViewController:rootViewController];
+    // Try to present
+    self.displayAd.delegate = self;
+    [self.displayAd presentAd:rootViewController container:nil];
 }
 
 - (void)dealloc {
@@ -110,18 +118,6 @@
     [self.displayAd invalidate];
     self.currentRequest = nil;
     self.displayAd = nil;
-}
-
-- (void)presentWithPlacement:(NSNumber *)placement fromRootViewController:(UIViewController *)rootViewController {
-    if (!self.displayAd.hasLoadedCreative) {
-        NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeNoContent
-                                         description:@"Display ad not ready to present any ad!"];
-        [self.delegate interstitial:self failedToPresentWithError:error];
-        return;
-    }
-    // Try to present
-    self.displayAd.delegate = self;
-    [self.displayAd presentAd:rootViewController container:nil];
 }
 
 #pragma mark - BDMRequestDelegate

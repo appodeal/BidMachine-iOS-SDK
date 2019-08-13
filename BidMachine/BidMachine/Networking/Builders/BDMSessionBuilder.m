@@ -8,13 +8,15 @@
 #import "BDMProtoAPI-Umbrella.h"
 #import "BDMTransformers.h"
 #import "BDMSdk+Project.h"
-#import <ASKExtension/ASKExtension.h>
+
+#import <StackFoundation/StackFoundation.h>
 
 
 @interface BDMSessionBuilder ()
 
-@property (nonatomic, copy) NSString * sellerID;
-@property (nonatomic, copy) BDMTargeting * targeting;
+@property (nonatomic, copy) NSURL *baseURL;
+@property (nonatomic, copy) NSString *sellerID;
+@property (nonatomic, copy) BDMTargeting *targeting;
 
 @end
 
@@ -34,15 +36,35 @@
     };
 }
 
+- (BDMSessionBuilder *(^)(NSURL *))appendBaseURL {
+    return ^id(NSURL *baseURL) {
+        self.baseURL = [baseURL URLByAppendingPathComponent:@"init"];
+        return self;
+    };
+}
+
 - (GPBMessage *)message {
-    BDMInitRequest * requestMessage = BDMInitRequest.message;
+    BOOL isGDPRRestricted = BDMSdk.sharedSdk.restrictions.subjectToGDPR && !BDMSdk.sharedSdk.restrictions.hasConsent;
+    BOOL isCoppa = BDMSdk.sharedSdk.restrictions.coppa;
+    
+    BDMInitRequest *requestMessage = BDMInitRequest.message;
     requestMessage.sellerId = self.sellerID;
-    requestMessage.bundle = ask_bundle();
-    requestMessage.os = BDMTransformers.osType(ask_deviceOs());
-    requestMessage.osv = ask_deviceOsVersion();
+    requestMessage.bundle = STKBundle.ID;
+    requestMessage.os = BDMTransformers.osType(STKDevice.os);
+    requestMessage.osv = STKDevice.osV;
     requestMessage.sdk = @"BidMachine";
     requestMessage.sdkver = kBDMVersion;
     requestMessage.geo = self.geoMessage;
+    requestMessage.deviceType = BDMTransformers.deviceType(STKDevice.type);
+    
+    if (!isGDPRRestricted && !isCoppa) {
+        requestMessage.ifa = STKAd.advertisingIdentifier;
+    }
+    
+    if (!isCoppa) {
+        requestMessage.contype  = BDMTransformers.connectionType(STKConnection.statusName);
+    }
+    
     return requestMessage;
 }
 
@@ -61,7 +83,7 @@
         geoMessage.zip     = self.targeting.zip;
     }
     
-    geoMessage.utcoffset = ask_utc();
+    geoMessage.utcoffset = (int)STKLocation.utc;
     
     return geoMessage;
 }

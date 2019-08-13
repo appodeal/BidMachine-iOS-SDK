@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@import ASKUIExtension;
+@import StackUIKit;
 
-@interface BDMMRAIDClosableView : ASKContentButton
+@interface BDMMRAIDClosableView : STKInteractionView
 
 + (instancetype)closableView:(NSTimeInterval)timeout action:(void (^)(BDMMRAIDClosableView *))action;
 - (void)render:(UIView *)superview;

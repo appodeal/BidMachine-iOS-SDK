@@ -12,16 +12,21 @@
 #import "BDMViewabilityMetricProvider.h"
 
 
+typedef NS_ENUM(NSInteger, BDMCreativeFormat) {
+    BDMCreativeFormatBanner = 0,
+    BDMCreativeFormatVideo,
+    BDMCreativeFormatNative
+};
+
 @protocol BDMCreative <NSObject, NSCopying>
 
-@property (nonatomic, copy, readonly) NSString * ID;
-@property (nonatomic, copy, readonly) NSString * displaymanager;
-@property (nonatomic, copy, readonly) NSDictionary <NSString *, id> * renderingInfo;
-@property (nonatomic, copy, readonly) NSArray <NSString *> * adDomains;
-
-@property (nonatomic, copy, readonly) NSArray <BDMEventURL *> * trackers;
-
-@property (nonatomic, copy, readonly) BDMViewabilityMetricConfiguration * viewabilityConfig;
+@property (nonatomic, copy, readonly) NSString *ID;
+@property (nonatomic, copy, readonly) NSString *displaymanager;
+@property (nonatomic, copy, readonly) NSDictionary <NSString *, NSString *> *renderingInfo;
+@property (nonatomic, copy, readonly) NSArray <NSString *> *adDomains;
+@property (nonatomic, copy, readonly) NSArray <BDMEventURL *> *trackers;
+@property (nonatomic, copy, readonly) BDMViewabilityMetricConfiguration *viewabilityConfig;
+@property (nonatomic, assign, readonly) BDMCreativeFormat format;
 
 @end
 

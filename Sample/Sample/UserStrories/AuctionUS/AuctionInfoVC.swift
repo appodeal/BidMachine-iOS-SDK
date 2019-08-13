@@ -32,5 +32,4 @@ class AuctionInfoVC: UIViewController {
         cidLabel.text = info.cID
         adDomainsLabel.text = info.adDomains?.joined(separator: ", ")
     }
-    
 }

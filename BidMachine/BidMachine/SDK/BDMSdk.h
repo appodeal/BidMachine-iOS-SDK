@@ -24,8 +24,7 @@
 /**
  Restrictions
  */
-@property (copy, nonatomic, readwrite, nullable) BDMUserRestrictions * restrictions;
-
+@property (copy, nonatomic, readwrite, nullable) BDMUserRestrictions *restrictions;
 
 + (nonnull instancetype)new NS_UNAVAILABLE;
 - (nonnull instancetype)init NS_UNAVAILABLE;

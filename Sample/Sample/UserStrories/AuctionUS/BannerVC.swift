@@ -10,7 +10,8 @@ import UIKit
 import BidMachine
 import Toast_Swift
 
-class BannerVC: UIViewController {
+
+final class BannerVC: UIViewController {
     @IBOutlet weak var bannerSizeSegments: UISegmentedControl!
     
     private weak var widthConstraint: NSLayoutConstraint?

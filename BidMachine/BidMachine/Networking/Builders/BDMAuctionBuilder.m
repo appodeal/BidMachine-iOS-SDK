@@ -9,17 +9,18 @@
 #import "BDMSdk+Project.h"
 
 #import "BDMProtoAPI-Umbrella.h"
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 @interface BDMAuctionBuilder ()
 
-@property (nonatomic, strong) BDMRequest * request;
-@property (nonatomic, strong) id<BDMAuctionSettings> auctionSettings;
-@property (nonatomic, assign) BOOL testMode;
 @property (nonatomic, copy) NSString * sellerID;
-@property (nonatomic, strong) id<BDMPlacementRequestBuilder> placementBuilder;
+@property (nonatomic, assign) BOOL testMode;
+
+@property (nonatomic, strong) BDMRequest *request;
 @property (nonatomic, strong) BDMUserRestrictions *restrictions;
+@property (nonatomic, strong) id<BDMAuctionSettings> auctionSettings;
+@property (nonatomic, strong) id<BDMPlacementRequestBuilder> placementBuilder;
 
 @end
 
@@ -91,7 +92,7 @@
     BOOL isCoppa = self.restrictions.coppa;
     
     if (isGDPRRestricted || isCoppa) {
-         openRtbMessage = [self restrictOpenRtbMessage:openRtbMessage gdpr:isGDPRRestricted coppa:isCoppa];
+        openRtbMessage = [self restrictOpenRtbMessage:openRtbMessage gdpr:isGDPRRestricted coppa:isCoppa];
     }
     
     return openRtbMessage;
@@ -103,7 +104,8 @@
                                    gdpr:(BOOL)gdp
                                   coppa:(BOOL)coppa
 {
-    NSDictionary *baseRestrictedPath = @{@"gender"      : @"user.gender",
+    NSDictionary *baseRestrictedPath = @{
+                                         @"gender"      : @"user.gender",
                                          @"yob"         : @"user.yob",
                                          @"keywords"    : @"user.keywords",
                                          @"userId"      : @"user.id_p",
@@ -118,7 +120,8 @@
                                          @"type"        : @"device.geo.type"
                                          };
     
-    NSDictionary *coppaAdditionalRestrictedPath = @{@"contype"     : @"device.contype",
+    NSDictionary *coppaAdditionalRestrictedPath = @{
+                                                    @"contype"     : @"device.contype",
                                                     @"mccmnc"      : @"device.mccmnc",
                                                     @"carrier"     : @"device.carrier",
                                                     @"hwv"         : @"device.hwv",
@@ -126,7 +129,7 @@
                                                     @"model"       : @"device.model",
                                                     @"lang"        : @"device.lang",
                                                     };
-   
+    
     
     NSMutableDictionary *restrictedPath = [NSMutableDictionary dictionary];
     if (gdp || coppa) {
@@ -142,14 +145,14 @@
     
     if (!error) {
         [restrictedPath enumerateKeysAndObjectsUsingBlock:^(NSString  *key, NSString *path, BOOL * _Nonnull stop) {
-            id message = [context ask_valueForKeyPath:path];
-            if (GPBMessage.ask_isValid(message)) {
+            id message = [context stk_valueForKeyPath:path];
+            if (GPBMessage.stk_isValid(message)) {
                 [message clear];
             }
-            else if (NSString.ask_isValid(message)) {
+            else if (NSString.stk_isValid(message)) {
                 [context setValue:nil forKeyPath:path];
             }
-            else if (NSNumber.ask_isValid(message)) {
+            else if (NSNumber.stk_isValid(message)) {
                 [context setValue:@0 forKeyPath:path];
             }
         }];
@@ -176,13 +179,13 @@
     itemMessage.qty                 = 1;
     itemMessage.id_p                = NSUUID.UUID.UUIDString; // For Parallel Bidding it should be ad unit id
     itemMessage.spec                = self.adcomPlacementMessage;
-    itemMessage.dealArray           = pricefloors.ask_transform(^ORTBRequest_Item_Deal *(BDMPriceFloor * floor, NSUInteger idx) {
+    itemMessage.dealArray           = [pricefloors stk_transform:^ORTBRequest_Item_Deal *(BDMPriceFloor * floor, NSUInteger idx) {
         ORTBRequest_Item_Deal * deal = ORTBRequest_Item_Deal.message;
         deal.id_p   = floor.ID;
         deal.flr    = floor.value.doubleValue;
         deal.flrcur = self.auctionSettings.auctionCurrency;
         return deal;
-    }).mutableCopy;
+    }].mutableCopy;
     return [NSMutableArray arrayWithObject:itemMessage];
 }
 
@@ -221,36 +224,36 @@
     app.storeid     = self.request.targeting.storeId;
     app.storeurl    = self.request.targeting.storeURL.absoluteString;
     app.paid        = self.request.targeting.paid;
-    app.bundle      = ask_bundle();
-    app.ver         = ask_appVersion();
+    app.bundle      = STKBundle.ID;
+    app.ver         = STKBundle.bundleVersion;
     app.name        = [NSBundle.mainBundle objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey];
     return app;
 }
 
 - (ADCOMContext_Device *)adcomContextDeviceMessage {
     ADCOMContext_Device *device = [ADCOMContext_Device message];
-    device.type     = BDMTransformers.deviceType(ask_deviceType());
-    device.ua       = ask_userAgent();
-    device.lmt      = !ask_advertisingTrackingEnabled();
-    device.contype  = BDMTransformers.connectionType(ask_connectionTypeString());
-    device.mccmnc   = ask_mccmnc();
-    device.carrier  = ask_carrierName();
-    device.w        = ask_screenWidth() * ask_screenRatio();
-    device.h        = ask_screenHeight() * ask_screenRatio();
-    device.ppi      = ask_screenPpi();
-    device.pxratio  = ask_screenRatio();
-    device.os       = BDMTransformers.osType(ask_deviceOs());
-    device.osv      = ask_deviceOsVersion();
-    device.hwv      = ask_hardwareVersion();
-    device.make     = ask_deviceMaker();
-    device.model    = ask_deviceName();
-    device.lang     = ask_deviceLanguage();
+    device.type     = BDMTransformers.deviceType(STKDevice.type);
+    device.ua       = STKDevice.userAgent;
+    device.lmt      = !STKAd.advertisingTrackingEnabled;
+    device.contype  = BDMTransformers.connectionType(STKConnection.statusName);
+    device.mccmnc   = STKConnection.mccmnc;
+    device.carrier  = STKConnection.carrierName;
+    device.w        = STKScreen.width * STKScreen.ratio;
+    device.h        = STKScreen.height * STKScreen.ratio;
+    device.ppi      = STKScreen.ppi;
+    device.pxratio  = STKScreen.ratio;
+    device.os       = BDMTransformers.osType(STKDevice.os);
+    device.osv      = STKDevice.osV;
+    device.hwv      = STKDevice.hardwareV;
+    device.make     = STKDevice.maker;
+    device.model    = STKDevice.name;
+    device.lang     = STKDevice.language;
     device.geo      = BDMTransformers.geoMessage(self.request.targeting.deviceLocation);
     
     if (self.restrictions.subjectToGDPR && !self.restrictions.hasConsent) {
         device.ifa = @"00000000-0000-0000-0000-000000000000";
     } else {
-        device.ifa = ask_advertisingID();
+        device.ifa = STKAd.advertisingIdentifier;
     }
     
     return device;

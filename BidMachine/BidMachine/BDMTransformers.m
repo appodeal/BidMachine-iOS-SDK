@@ -5,22 +5,41 @@
 //
 
 #import "BDMTransformers.h"
-#import <ASKExtension/ASKExtension.h>
 
 @implementation BDMTransformers
 
-+ (ADCOMDeviceType (^)(UIUserInterfaceIdiom))deviceType {
-    return ^ADCOMDeviceType (UIUserInterfaceIdiom type){
-        return type == UIUserInterfaceIdiomPad ? ADCOMDeviceType_DeviceTypeTablet : ADCOMDeviceType_DeviceTypePhoneDevice;
+BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDMAdUnitFormat fmt) {
+    switch (fmt) {
+        case BDMAdUnitFormatUnknown: return NO; break;
+        case BDMAdUnitFormatRewardedVideo: return placement == BDMInternalPlacementTypeRewardedVideo; break;
+        case BDMAdUnitFormatRewardedPlayable: return placement == BDMInternalPlacementTypeRewardedVideo; break;
+        case BDMAdUnitFormatRewardedUnknown: return placement == BDMInternalPlacementTypeRewardedVideo; break;
+            
+        case BDMAdUnitFormatInterstitialVideo: return placement == BDMInternalPlacementTypeInterstitial; break;
+        case BDMAdUnitFormatInterstitialStatic: return placement == BDMInternalPlacementTypeInterstitial; break;
+        case BDMAdUnitFormatInterstitialUnknown: return placement == BDMInternalPlacementTypeInterstitial; break;
+            
+        case BDMAdUnitFormatInLineBanner: return placement == BDMInternalPlacementTypeBanner; break;
+        case BDMAdUnitFormatBanner320x50: return placement == BDMInternalPlacementTypeBanner; break;
+        case BDMAdUnitFormatBanner728x90: return placement == BDMInternalPlacementTypeBanner; break;
+        case BDMAdUnitFormatBanner300x250: return placement == BDMInternalPlacementTypeBanner; break;
+    }
+}
+
++ (ADCOMDeviceType (^)(STKDeviceType))deviceType {
+    return ^ADCOMDeviceType (STKDeviceType type){
+        NSRange iPhoneRange = NSMakeRange(STKDeviceTypeIphone, STKDeviceTypeIphoneXSMax);
+        BOOL isIphone = NSLocationInRange(type, iPhoneRange);
+        return isIphone ? ADCOMDeviceType_DeviceTypePhoneDevice : ADCOMDeviceType_DeviceTypeTablet;
     };
 }
 
 + (ADCOMConnectionType (^)(NSString *))connectionType {
     return ^ADCOMConnectionType (NSString *connectionType){
-        return ASKObj(@{@"other"  : @(ADCOMConnectionType_ConnectionTypeInvalid),
-                        @"wifi"   : @(ADCOMConnectionType_ConnectionTypeWifi),
-                        @"mobile" : @(ADCOMConnectionType_ConnectionTypeCellularNetworkUnknown)
-                        })
+        return ANY((@{@"other"  : @(ADCOMConnectionType_ConnectionTypeInvalid),
+                      @"wifi"   : @(ADCOMConnectionType_ConnectionTypeWifi),
+                      @"mobile" : @(ADCOMConnectionType_ConnectionTypeCellularNetworkUnknown)
+        }))
         .from(connectionType)
         .number
         .unsignedIntValue;
@@ -35,10 +54,10 @@
 
 + (NSString *(^)(BDMUserGender *))gender {
     return ^NSString *(BDMUserGender * gender){
-        return ASKObj(@{kBDMUserGenderMale     : @"M",
-                        kBDMUserGenderFemale   : @"F",
-                        kBDMUserGenderUnknown  : @"O"
-                        })
+        return ANY((@{kBDMUserGenderMale     : @"M",
+                      kBDMUserGenderFemale   : @"F",
+                      kBDMUserGenderUnknown  : @"O"
+        }))
         .from(gender)
         .string;
     };
@@ -48,10 +67,10 @@
     return ^ADCOMContext_Geo *(CLLocation * userProvidedLocation) {
         ADCOMContext_Geo *geo = [ADCOMContext_Geo message];
         
-        geo.utcoffset = ask_utc();
+        geo.utcoffset = (int)STKLocation.utc;
         ADCOMLocationType type = ADCOMLocationType_LocationTypeInvalid;
         
-        CLLocation * deviceLocation = ask_currentLocation();
+        CLLocation * deviceLocation = STKLocation.location;
         CLLocation * desiredLocation;
         
         if (userProvidedLocation && deviceLocation) {
@@ -88,7 +107,7 @@
             return @[];
         }
         
-        NSArray <BDMEventURL *> *trackers = events.ask_transform(^id(ADCOMAd_Event * event, NSUInteger idx){
+        NSArray <BDMEventURL *> *trackers = [events stk_transform:^id(ADCOMAd_Event * event, NSUInteger idx) {
             if (!event.URL.length) {
                 return nil;
             }
@@ -100,9 +119,38 @@
             
             BDMEventURL * tracker = [BDMEventURL trackerWithStringURL:event.URL type:rawType];
             return tracker;
-        });
+        }];
         return trackers;
     };
 }
+
++ (NSDictionary<NSString *,NSString *> *(^)(NSMutableDictionary<NSString *,NSString *> *))jsonObject {
+    return ^id(NSMutableDictionary<NSString *,NSString *> *protobufMap) {
+        return protobufMap ?: @{};
+    };
+}
+
++ (NSMutableDictionary<NSString *,NSString *> *(^)(NSDictionary<NSString *,id> *))protobufMap {
+    return ^id(NSDictionary<NSString *,id> *jsonObject) {
+        NSMutableDictionary <NSString *, NSString *> *protobufMap = [NSMutableDictionary dictionaryWithCapacity:jsonObject.count];
+        [jsonObject enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+            if ([obj isKindOfClass:NSString.class]) {
+                protobufMap[key] = (NSString *)obj;
+            } else if ([obj isKindOfClass:NSNumber.class]) {
+                protobufMap[key] = [(NSNumber *)obj stringValue];
+            }
+        }];
+        return protobufMap;
+    };
+}
+
++ (NSArray <BDMAdUnit *> *(^)(BDMAdNetworkConfiguration *, BDMInternalPlacementType))adUnits {
+    return ^NSArray *(BDMAdNetworkConfiguration *config, BDMInternalPlacementType placement) {
+        return ANY(config.adUnits).filter(^BOOL(BDMAdUnit *unit){
+                return isBDMAdUnitFormatSatisfyToPlacement(placement, unit.format);
+            }).array ?: @[];
+    };
+}
+
 
 @end

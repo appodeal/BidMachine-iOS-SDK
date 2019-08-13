@@ -5,14 +5,14 @@
 //
 
 #import "BDMRetryTimer.h"
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 static NSInteger const kBDMRetryTimerIntervalDegreeThreshold = 7;
 
 @interface BDMRetryTimer ()
 
 @property (nonatomic,   copy) BDMActionBlock actionBlock;
-@property (nonatomic, strong) ASKTimer *timer;
+@property (nonatomic, strong) STKTimer *timer;
 @property (nonatomic, assign) int repeatCount;
 
 @end
@@ -29,7 +29,7 @@ static NSInteger const kBDMRetryTimerIntervalDegreeThreshold = 7;
 
 - (void (^)(void))start {
     return ^{
-        ASK_RUN_BLOCK(self.actionBlock, self);
+        STK_RUN_BLOCK(self.actionBlock, self);
     };
 }
 
@@ -47,8 +47,8 @@ static NSInteger const kBDMRetryTimerIntervalDegreeThreshold = 7;
 - (void (^)(void))repeat {
     return ^{
         __weak typeof(self) weakSelf = self;
-        self.timer = [ASKTimer timerWithInterval:self.repeatInterval periodic:NO block:^{
-            ASK_RUN_BLOCK(weakSelf.actionBlock, weakSelf);
+        self.timer = [STKTimer timerWithInterval:self.repeatInterval periodic:NO block:^{
+            STK_RUN_BLOCK(weakSelf.actionBlock, weakSelf);
         }];
     };
 }

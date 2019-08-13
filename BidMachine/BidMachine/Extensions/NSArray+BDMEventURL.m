@@ -7,18 +7,18 @@
 //
 
 #import "NSArray+BDMEventURL.h"
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 @implementation NSArray (BDMEventURL)
 
 - (BDMEventURL *)bdm_searchTrackerOfType:(NSInteger)type {
-    return self.ask_filter(^BOOL(BDMEventURL * tracker){
-        if (!BDMEventURL.ask_isValid(tracker)) {
+    return [self stk_filter:^BOOL(BDMEventURL * tracker) {
+        if (!BDMEventURL.stk_isValid(tracker)) {
             return false;
         }
         return tracker.type == type;
-    }).firstObject;
+    }].firstObject;
 }
 
 @end

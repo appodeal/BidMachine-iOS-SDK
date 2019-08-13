@@ -8,7 +8,7 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <AdSupport/AdSupport.h>
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 #define BDM_AUCTION_URL_KEY   "kBDMAuctonUrl"
 #define BDM_EVENTS_KEY        "kBDMEventsKey"
@@ -72,7 +72,7 @@ static NSString *carrierCode = nil;
 
 + (NSString *)defaultAuctionURL {
     NSString *cachedUrl = [[NSUserDefaults standardUserDefaults] stringForKey:@BDM_AUCTION_URL_KEY];
-    return NSString.ask_isValid(cachedUrl) && cachedUrl.length ? cachedUrl : @BDM_AUCTION_URL;
+    return NSString.stk_isValid(cachedUrl) && cachedUrl.length ? cachedUrl : @BDM_AUCTION_URL;
 }
 
 + (NSArray <BDMEventURL *> *)defaultEventURLs {

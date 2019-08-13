@@ -114,25 +114,16 @@ private extension NavigationTitle {
 
 private extension Dictionary where Key == String, Value == Any {
     func firstResult() -> Dictionary? {
-        guard let results = self["results"] as? [Any] else {
-            return nil
-        }
-        
-        guard let result = results.first as? [String:Any] else {
-            return nil
-        }
-        
+        guard let result = (self["results"] as? [Any])?.first as? [String:Any] else { return nil }
         return result
     }
 }
 
 
 extension NavigationTitle: NibProvider {
+    static let reuseIdentifier: String = ""
+
     static var nib: UINib {
         return UINib(nibName: "NavigationTitle", bundle: Bundle(for: self.self))
-    }
-    
-    static var reuseIdentifier: String {
-        return ""
     }
 }

@@ -10,13 +10,14 @@
 		4204768F21353E1B00FA2261 /* BDMNativeAdProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4204768E21353E1B00FA2261 /* BDMNativeAdProtocol.m */; };
 		420476932135483600FA2261 /* BDMRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 420476912135483600FA2261 /* BDMRuntimeExtensions.h */; };
 		420476942135483600FA2261 /* BDMRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 420476922135483600FA2261 /* BDMRuntimeExtensions.m */; };
-		420476962135AB1600FA2261 /* BDMNativeAdProtocolSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 420476952135AB1600FA2261 /* BDMNativeAdProtocolSpec.m */; };
 		420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */; };
 		421137F021E880D200B65454 /* BDMAdRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 421137EE21E880D200B65454 /* BDMAdRequests.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		421137F121E880D200B65454 /* BDMAdRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421137EF21E880D200B65454 /* BDMAdRequests.m */; };
 		421137F421E8947100B65454 /* BDMRequest+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 421137F221E8947100B65454 /* BDMRequest+Private.h */; };
 		4218D90C21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 4218D90A21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h */; };
 		4218D90D21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4218D90B21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m */; };
+		421AFFB522D898A3004DF0EB /* ADCOMAd+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 421AFFB322D898A3004DF0EB /* ADCOMAd+Private.h */; };
+		421AFFB622D898A3004DF0EB /* ADCOMAd+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 421AFFB422D898A3004DF0EB /* ADCOMAd+Private.m */; };
 		421B9FD1218B4227004CED22 /* BDMFactory+BDMDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 421B9FCF218B4227004CED22 /* BDMFactory+BDMDisplayAd.h */; };
 		421B9FD2218B4227004CED22 /* BDMFactory+BDMDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 421B9FD0218B4227004CED22 /* BDMFactory+BDMDisplayAd.m */; };
 		422712FA2164B5D100EE5012 /* BDMTargeting.h in Headers */ = {isa = PBXBuildFile; fileRef = 422712F82164B5D100EE5012 /* BDMTargeting.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,14 +49,6 @@
 		42515D942186DF000025C231 /* BDMDisplayAdProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42515D922186DF000025C231 /* BDMDisplayAdProtocol.h */; };
 		42515D982186F9CB0025C231 /* BDMBannerViewDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 42515D962186F9CB0025C231 /* BDMBannerViewDisplayAd.h */; };
 		42515D992186F9CB0025C231 /* BDMBannerViewDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 42515D972186F9CB0025C231 /* BDMBannerViewDisplayAd.m */; };
-		4252245522983323002CCF30 /* Init.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4252244F22983322002CCF30 /* Init.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4252245722983323002CCF30 /* Extensions.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 4252245122983323002CCF30 /* Extensions.pbobjc.h */; };
-		4252245822983323002CCF30 /* Extensions.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4252245222983323002CCF30 /* Extensions.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4252245922983323002CCF30 /* Init.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 4252245322983323002CCF30 /* Init.pbobjc.h */; };
-		4252245D2298332D002CCF30 /* Openrtb.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 4252245B2298332C002CCF30 /* Openrtb.pbobjc.h */; };
-		4252245E2298332D002CCF30 /* Openrtb.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4252245C2298332C002CCF30 /* Openrtb.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4252246122983337002CCF30 /* Adcom.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4252245F22983337002CCF30 /* Adcom.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4252246222983337002CCF30 /* Adcom.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 4252246022983337002CCF30 /* Adcom.pbobjc.h */; };
 		425EF00F2164C897004B1839 /* BDMSdkConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 425EF00D2164C897004B1839 /* BDMSdkConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425EF0102164C897004B1839 /* BDMSdkConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 425EF00E2164C897004B1839 /* BDMSdkConfiguration.m */; };
 		4269622521836145004D9B17 /* BDMFullscreenAdDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 4269622321836145004D9B17 /* BDMFullscreenAdDisplayAd.h */; };
@@ -64,6 +57,10 @@
 		4269D16621B0019A00E3E13B /* ADCOMAd_Display_Native+BDMSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269D16421B0019A00E3E13B /* ADCOMAd_Display_Native+BDMSdk.m */; };
 		4269D16921B01B0E00E3E13B /* NSError+BDMSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 4269D16721B01B0E00E3E13B /* NSError+BDMSdk.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		4269D16A21B01B0E00E3E13B /* NSError+BDMSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269D16821B01B0E00E3E13B /* NSError+BDMSdk.m */; };
+		426AA21922E89A06003FA6AF /* BDMAdUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 426AA21722E89A06003FA6AF /* BDMAdUnit.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		426AA21A22E89A06003FA6AF /* BDMAdUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 426AA21822E89A06003FA6AF /* BDMAdUnit.m */; };
+		426AA21D22E8A1AB003FA6AF /* BDMHeaderBiddingController.h in Headers */ = {isa = PBXBuildFile; fileRef = 426AA21B22E8A1AB003FA6AF /* BDMHeaderBiddingController.h */; };
+		426AA21E22E8A1AB003FA6AF /* BDMHeaderBiddingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 426AA21C22E8A1AB003FA6AF /* BDMHeaderBiddingController.m */; };
 		4270379D21AD1C48007B47E4 /* BDMAuctionBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4270379721AD1C47007B47E4 /* BDMAuctionBuilderSpec.m */; };
 		4270379E21AD1C48007B47E4 /* BDMApiRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4270379821AD1C48007B47E4 /* BDMApiRequestSpec.m */; };
 		4270379F21AD1C48007B47E4 /* BDMSpecUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4270379921AD1C48007B47E4 /* BDMSpecUtils.m */; };
@@ -77,12 +74,21 @@
 		427E63C921A57528005DB6B5 /* BDMCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 427E63C721A57528005DB6B5 /* BDMCreative.h */; };
 		427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 427E63C821A57528005DB6B5 /* BDMCreative.m */; };
 		427E63D921A5A32E005DB6B5 /* BDMAuctionInfo+Project.h in Headers */ = {isa = PBXBuildFile; fileRef = 427E63D821A5A32E005DB6B5 /* BDMAuctionInfo+Project.h */; };
-		42B65DA42162597F006C8A4C /* BDMSdk+ParallelBidding.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B65DA32162597F006C8A4C /* BDMSdk+ParallelBidding.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		42B65DA621625D95006C8A4C /* BDMRequest+ParallelBidding.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B65DA521625D95006C8A4C /* BDMRequest+ParallelBidding.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42B65DA42162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B65DA32162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42B65DA621625D95006C8A4C /* BDMRequest+HeaderBidding.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B65DA521625D95006C8A4C /* BDMRequest+HeaderBidding.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		42C075DC2189D3DE00256E7B /* BDMNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C075DA2189D3DE00256E7B /* BDMNativeAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C075DD2189D3DE00256E7B /* BDMNativeAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C075DB2189D3DE00256E7B /* BDMNativeAd.m */; };
 		42C075E02189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C075DE2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h */; };
 		42C075E12189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C075DF2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m */; };
+		42C4D4D622FC23A400A076AD /* BDMAdNetworksMocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4D4D522FC23A400A076AD /* BDMAdNetworksMocks.m */; };
+		42C4D4D922FC303100A076AD /* BDMHeaderBiddingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4D4D822FC303100A076AD /* BDMHeaderBiddingSpec.m */; };
+		42CF2F6E22E065E8000E825A /* BDMHeaderBiddingPreparationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D730FE22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.m */; };
+		42D730F922DF24CB00AEB066 /* BDMPlacementAdUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D730F722DF24CB00AEB066 /* BDMPlacementAdUnit.h */; };
+		42D730FA22DF24CB00AEB066 /* BDMPlacementAdUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D730F822DF24CB00AEB066 /* BDMPlacementAdUnit.m */; };
+		42D730FC22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D730FB22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h */; };
+		42D730FF22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D730FD22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h */; };
+		42D7310322DF4B0200AEB066 /* BDMAdNetworkConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D7310122DF4B0200AEB066 /* BDMAdNetworkConfiguration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42D7310422DF4B0200AEB066 /* BDMAdNetworkConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D7310222DF4B0200AEB066 /* BDMAdNetworkConfiguration.m */; };
 		42E6C681219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E6C680219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h */; };
 		42F86EDE21BAB7A400B58CB5 /* BDMPriceFloor.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F86EDC21BAB7A400B58CB5 /* BDMPriceFloor.m */; };
 		42F86EDF21BAB7A400B58CB5 /* BDMPriceFloor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F86EDD21BAB7A400B58CB5 /* BDMPriceFloor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -95,7 +101,6 @@
 		651532E021A428A20098AC67 /* Pods_BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651532DF21A428A20098AC67 /* Pods_BidMachine.framework */; };
 		651D8DF8219EDC5100216162 /* BDMAdTypePlacement.h in Headers */ = {isa = PBXBuildFile; fileRef = 651D8DF6219EDC5100216162 /* BDMAdTypePlacement.h */; };
 		651D8DF9219EDC5100216162 /* BDMAdTypePlacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 651D8DF7219EDC5100216162 /* BDMAdTypePlacement.m */; };
-		657AC3F920FCC6840039741B /* BDMS2SMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 657AC3F820FCC6840039741B /* BDMS2SMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		65CE5DA121B14E5800652496 /* BDMSessionBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */; };
 		65CE5DA221B14E5800652496 /* BDMSessionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CE5DA021B14E5800652496 /* BDMSessionBuilder.m */; };
 		65CE5DA521B15F0400652496 /* BDMRetryTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CE5DA321B15F0400652496 /* BDMRetryTimer.h */; };
@@ -123,16 +128,12 @@
 		9C69DC761FC2E14800EDC6E5 /* BDMUserAgentProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */; };
 		9C6A65142031A1BE00D5A98A /* BDMAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6A65122031A1BE00D5A98A /* BDMAsyncOperation.h */; };
 		9C6A65152031A1BE00D5A98A /* BDMAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A65132031A1BE00D5A98A /* BDMAsyncOperation.m */; };
-		9C6A65182031A2C900D5A98A /* BDMNetworkConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6A65162031A2C900D5A98A /* BDMNetworkConfigurator.h */; };
-		9C6A65192031A2C900D5A98A /* BDMNetworkConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A65172031A2C900D5A98A /* BDMNetworkConfigurator.m */; };
 		9C6A651C2031D7F000D5A98A /* BDMFactory+BDMOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6A651A2031D7F000D5A98A /* BDMFactory+BDMOperation.h */; };
 		9C6A651D2031D7F000D5A98A /* BDMFactory+BDMOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A651B2031D7F000D5A98A /* BDMFactory+BDMOperation.m */; };
 		9C71DBAE1FB5F03800D0DCCA /* BDMBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C71DBAC1FB5F03800D0DCCA /* BDMBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C71DBAF1FB5F03800D0DCCA /* BDMBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C71DBAD1FB5F03800D0DCCA /* BDMBannerView.m */; };
-		9C7FA1051FB45F810095D766 /* BDMNetworkItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C7FA1031FB45F810095D766 /* BDMNetworkItem.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		9C7FA1061FB45F810095D766 /* BDMNetworkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FA1041FB45F810095D766 /* BDMNetworkItem.m */; };
-		9CAF86AC203AC7430088CFBD /* BDMInitializationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CAF86AA203AC7430088CFBD /* BDMInitializationOperation.h */; };
-		9CAF86AD203AC7430088CFBD /* BDMInitializationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF86AB203AC7430088CFBD /* BDMInitializationOperation.m */; };
+		9CAF86AC203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CAF86AA203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h */; };
+		9CAF86AD203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF86AB203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m */; };
 		9CBED2201FB2DBC4004C4669 /* BDMRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CBED21E1FB2DBC4004C4669 /* BDMRegistry.h */; };
 		9CBED2211FB2DBC4004C4669 /* BDMRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBED21F1FB2DBC4004C4669 /* BDMRegistry.m */; };
 		9CBED2261FB30A09004C4669 /* BDMAdapterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CBED2251FB30A09004C4669 /* BDMAdapterProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -162,13 +163,14 @@
 		4204768E21353E1B00FA2261 /* BDMNativeAdProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAdProtocol.m; sourceTree = "<group>"; };
 		420476912135483600FA2261 /* BDMRuntimeExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRuntimeExtensions.h; sourceTree = "<group>"; };
 		420476922135483600FA2261 /* BDMRuntimeExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRuntimeExtensions.m; sourceTree = "<group>"; };
-		420476952135AB1600FA2261 /* BDMNativeAdProtocolSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAdProtocolSpec.m; sourceTree = "<group>"; };
 		420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMProtoAPI-Umbrella.h"; sourceTree = "<group>"; };
 		421137EE21E880D200B65454 /* BDMAdRequests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdRequests.h; sourceTree = "<group>"; };
 		421137EF21E880D200B65454 /* BDMAdRequests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdRequests.m; sourceTree = "<group>"; };
 		421137F221E8947100B65454 /* BDMRequest+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMRequest+Private.h"; sourceTree = "<group>"; };
 		4218D90A21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMBaseDisplayAd.h; sourceTree = "<group>"; };
 		4218D90B21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMBaseDisplayAd.m; sourceTree = "<group>"; };
+		421AFFB322D898A3004DF0EB /* ADCOMAd+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ADCOMAd+Private.h"; sourceTree = "<group>"; };
+		421AFFB422D898A3004DF0EB /* ADCOMAd+Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ADCOMAd+Private.m"; sourceTree = "<group>"; };
 		421B9FCF218B4227004CED22 /* BDMFactory+BDMDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFactory+BDMDisplayAd.h"; sourceTree = "<group>"; };
 		421B9FD0218B4227004CED22 /* BDMFactory+BDMDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMFactory+BDMDisplayAd.m"; sourceTree = "<group>"; };
 		422712F82164B5D100EE5012 /* BDMTargeting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTargeting.h; sourceTree = "<group>"; };
@@ -200,14 +202,6 @@
 		42515D922186DF000025C231 /* BDMDisplayAdProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMDisplayAdProtocol.h; sourceTree = "<group>"; };
 		42515D962186F9CB0025C231 /* BDMBannerViewDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMBannerViewDisplayAd.h; sourceTree = "<group>"; };
 		42515D972186F9CB0025C231 /* BDMBannerViewDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMBannerViewDisplayAd.m; sourceTree = "<group>"; };
-		4252244F22983322002CCF30 /* Init.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Init.pbobjc.m; path = ../../../../Proto/BidMachineAPI/bidmachine/protobuf/Init.pbobjc.m; sourceTree = "<group>"; };
-		4252245122983323002CCF30 /* Extensions.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Extensions.pbobjc.h; path = ../../../../Proto/BidMachineAPI/bidmachine/protobuf/Extensions.pbobjc.h; sourceTree = "<group>"; };
-		4252245222983323002CCF30 /* Extensions.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Extensions.pbobjc.m; path = ../../../../Proto/BidMachineAPI/bidmachine/protobuf/Extensions.pbobjc.m; sourceTree = "<group>"; };
-		4252245322983323002CCF30 /* Init.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Init.pbobjc.h; path = ../../../../Proto/BidMachineAPI/bidmachine/protobuf/Init.pbobjc.h; sourceTree = "<group>"; };
-		4252245B2298332C002CCF30 /* Openrtb.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Openrtb.pbobjc.h; path = ../../../../Proto/BidMachineAPI/bidmachine/protobuf/openrtb/Openrtb.pbobjc.h; sourceTree = "<group>"; };
-		4252245C2298332C002CCF30 /* Openrtb.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Openrtb.pbobjc.m; path = ../../../../Proto/BidMachineAPI/bidmachine/protobuf/openrtb/Openrtb.pbobjc.m; sourceTree = "<group>"; };
-		4252245F22983337002CCF30 /* Adcom.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Adcom.pbobjc.m; path = ../../../../Proto/BidMachineAPI/bidmachine/protobuf/adcom/Adcom.pbobjc.m; sourceTree = "<group>"; };
-		4252246022983337002CCF30 /* Adcom.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Adcom.pbobjc.h; path = ../../../../Proto/BidMachineAPI/bidmachine/protobuf/adcom/Adcom.pbobjc.h; sourceTree = "<group>"; };
 		425EF00D2164C897004B1839 /* BDMSdkConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSdkConfiguration.h; sourceTree = "<group>"; };
 		425EF00E2164C897004B1839 /* BDMSdkConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSdkConfiguration.m; sourceTree = "<group>"; };
 		4269622321836145004D9B17 /* BDMFullscreenAdDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFullscreenAdDisplayAd.h; sourceTree = "<group>"; };
@@ -216,6 +210,10 @@
 		4269D16421B0019A00E3E13B /* ADCOMAd_Display_Native+BDMSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ADCOMAd_Display_Native+BDMSdk.m"; sourceTree = "<group>"; };
 		4269D16721B01B0E00E3E13B /* NSError+BDMSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+BDMSdk.h"; sourceTree = "<group>"; };
 		4269D16821B01B0E00E3E13B /* NSError+BDMSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+BDMSdk.m"; sourceTree = "<group>"; };
+		426AA21722E89A06003FA6AF /* BDMAdUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMAdUnit.h; sourceTree = "<group>"; };
+		426AA21822E89A06003FA6AF /* BDMAdUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMAdUnit.m; sourceTree = "<group>"; };
+		426AA21B22E8A1AB003FA6AF /* BDMHeaderBiddingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMHeaderBiddingController.h; sourceTree = "<group>"; };
+		426AA21C22E8A1AB003FA6AF /* BDMHeaderBiddingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMHeaderBiddingController.m; sourceTree = "<group>"; };
 		4270379721AD1C47007B47E4 /* BDMAuctionBuilderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMAuctionBuilderSpec.m; sourceTree = "<group>"; };
 		4270379821AD1C48007B47E4 /* BDMApiRequestSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMApiRequestSpec.m; sourceTree = "<group>"; };
 		4270379921AD1C48007B47E4 /* BDMSpecUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMSpecUtils.m; sourceTree = "<group>"; };
@@ -231,13 +229,24 @@
 		427E63C821A57528005DB6B5 /* BDMCreative.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMCreative.m; sourceTree = "<group>"; };
 		427E63D821A5A32E005DB6B5 /* BDMAuctionInfo+Project.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMAuctionInfo+Project.h"; sourceTree = "<group>"; };
 		429C195D2160123C0048F400 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		42B65DA32162597F006C8A4C /* BDMSdk+ParallelBidding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMSdk+ParallelBidding.h"; sourceTree = "<group>"; };
-		42B65DA521625D95006C8A4C /* BDMRequest+ParallelBidding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMRequest+ParallelBidding.h"; sourceTree = "<group>"; };
+		42B65DA32162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMSdkConfiguration+HeaderBidding.h"; sourceTree = "<group>"; };
+		42B65DA521625D95006C8A4C /* BDMRequest+HeaderBidding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMRequest+HeaderBidding.h"; sourceTree = "<group>"; };
 		42C075DA2189D3DE00256E7B /* BDMNativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNativeAd.h; sourceTree = "<group>"; };
 		42C075DB2189D3DE00256E7B /* BDMNativeAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAd.m; sourceTree = "<group>"; };
 		42C075DE2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNativeAdViewDisplayAd.h; sourceTree = "<group>"; };
 		42C075DF2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAdViewDisplayAd.m; sourceTree = "<group>"; };
 		42C3FDB921623E70004D3784 /* module.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.private.modulemap; sourceTree = "<group>"; };
+		42C4D4D422FC23A400A076AD /* BDMAdNetworksMocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdNetworksMocks.h; sourceTree = "<group>"; };
+		42C4D4D522FC23A400A076AD /* BDMAdNetworksMocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdNetworksMocks.m; sourceTree = "<group>"; };
+		42C4D4D822FC303100A076AD /* BDMHeaderBiddingSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMHeaderBiddingSpec.m; sourceTree = "<group>"; };
+		42C4D4DA22FC316900A076AD /* BDMSdk+Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMSdk+Tests.h"; sourceTree = "<group>"; };
+		42D730F722DF24CB00AEB066 /* BDMPlacementAdUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMPlacementAdUnit.h; sourceTree = "<group>"; };
+		42D730F822DF24CB00AEB066 /* BDMPlacementAdUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMPlacementAdUnit.m; sourceTree = "<group>"; };
+		42D730FB22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMHeaderBiddingOperationProtocol.h; sourceTree = "<group>"; };
+		42D730FD22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMHeaderBiddingPreparationOperation.h; sourceTree = "<group>"; };
+		42D730FE22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMHeaderBiddingPreparationOperation.m; sourceTree = "<group>"; };
+		42D7310122DF4B0200AEB066 /* BDMAdNetworkConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdNetworkConfiguration.h; sourceTree = "<group>"; };
+		42D7310222DF4B0200AEB066 /* BDMAdNetworkConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdNetworkConfiguration.m; sourceTree = "<group>"; };
 		42E6C680219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMPlacementRequestBuilderProtocol.h; sourceTree = "<group>"; };
 		42ECABEA217F5611009DD85B /* BDMNetworkProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNetworkProtocol.h; sourceTree = "<group>"; };
 		42F86EDC21BAB7A400B58CB5 /* BDMPriceFloor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMPriceFloor.m; sourceTree = "<group>"; };
@@ -253,7 +262,6 @@
 		651532DF21A428A20098AC67 /* Pods_BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		651D8DF6219EDC5100216162 /* BDMAdTypePlacement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDMAdTypePlacement.h; path = BidMachine/Networking/Builders/BDMAdTypePlacement.h; sourceTree = SOURCE_ROOT; };
 		651D8DF7219EDC5100216162 /* BDMAdTypePlacement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BDMAdTypePlacement.m; path = BidMachine/Networking/Builders/BDMAdTypePlacement.m; sourceTree = SOURCE_ROOT; };
-		657AC3F820FCC6840039741B /* BDMS2SMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMS2SMacros.h; sourceTree = "<group>"; };
 		65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSessionBuilder.h; sourceTree = "<group>"; };
 		65CE5DA021B14E5800652496 /* BDMSessionBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSessionBuilder.m; sourceTree = "<group>"; };
 		65CE5DA321B15F0400652496 /* BDMRetryTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRetryTimer.h; sourceTree = "<group>"; };
@@ -283,16 +291,12 @@
 		9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMUserAgentProvider.h; sourceTree = "<group>"; };
 		9C6A65122031A1BE00D5A98A /* BDMAsyncOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAsyncOperation.h; sourceTree = "<group>"; };
 		9C6A65132031A1BE00D5A98A /* BDMAsyncOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAsyncOperation.m; sourceTree = "<group>"; };
-		9C6A65162031A2C900D5A98A /* BDMNetworkConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNetworkConfigurator.h; sourceTree = "<group>"; };
-		9C6A65172031A2C900D5A98A /* BDMNetworkConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNetworkConfigurator.m; sourceTree = "<group>"; };
 		9C6A651A2031D7F000D5A98A /* BDMFactory+BDMOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFactory+BDMOperation.h"; sourceTree = "<group>"; };
 		9C6A651B2031D7F000D5A98A /* BDMFactory+BDMOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMFactory+BDMOperation.m"; sourceTree = "<group>"; };
 		9C71DBAC1FB5F03800D0DCCA /* BDMBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMBannerView.h; sourceTree = "<group>"; };
 		9C71DBAD1FB5F03800D0DCCA /* BDMBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMBannerView.m; sourceTree = "<group>"; };
-		9C7FA1031FB45F810095D766 /* BDMNetworkItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNetworkItem.h; sourceTree = "<group>"; };
-		9C7FA1041FB45F810095D766 /* BDMNetworkItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNetworkItem.m; sourceTree = "<group>"; };
-		9CAF86AA203AC7430088CFBD /* BDMInitializationOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInitializationOperation.h; sourceTree = "<group>"; };
-		9CAF86AB203AC7430088CFBD /* BDMInitializationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMInitializationOperation.m; sourceTree = "<group>"; };
+		9CAF86AA203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMHeaderBiddingInitialisationOperation.h; sourceTree = "<group>"; };
+		9CAF86AB203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMHeaderBiddingInitialisationOperation.m; sourceTree = "<group>"; };
 		9CBED21E1FB2DBC4004C4669 /* BDMRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRegistry.h; sourceTree = "<group>"; };
 		9CBED21F1FB2DBC4004C4669 /* BDMRegistry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRegistry.m; sourceTree = "<group>"; };
 		9CBED2251FB30A09004C4669 /* BDMAdapterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdapterProtocol.h; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 				4269D16421B0019A00E3E13B /* ADCOMAd_Display_Native+BDMSdk.m */,
 				4269D16721B01B0E00E3E13B /* NSError+BDMSdk.h */,
 				4269D16821B01B0E00E3E13B /* NSError+BDMSdk.m */,
+				421AFFB322D898A3004DF0EB /* ADCOMAd+Private.h */,
+				421AFFB422D898A3004DF0EB /* ADCOMAd+Private.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -352,14 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */,
-				4252245122983323002CCF30 /* Extensions.pbobjc.h */,
-				4252245222983323002CCF30 /* Extensions.pbobjc.m */,
-				4252245322983323002CCF30 /* Init.pbobjc.h */,
-				4252244F22983322002CCF30 /* Init.pbobjc.m */,
-				4252245B2298332C002CCF30 /* Openrtb.pbobjc.h */,
-				4252245C2298332C002CCF30 /* Openrtb.pbobjc.m */,
-				4252246022983337002CCF30 /* Adcom.pbobjc.h */,
-				4252245F22983337002CCF30 /* Adcom.pbobjc.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -504,17 +502,32 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
-		42C3FDBB21624175004D3784 /* ParallelBidding */ = {
+		42C3FDBB21624175004D3784 /* HeaderBidding */ = {
 			isa = PBXGroup;
 			children = (
-				9C7FA1031FB45F810095D766 /* BDMNetworkItem.h */,
-				9C7FA1041FB45F810095D766 /* BDMNetworkItem.m */,
-				9C6A65162031A2C900D5A98A /* BDMNetworkConfigurator.h */,
-				9C6A65172031A2C900D5A98A /* BDMNetworkConfigurator.m */,
-				42B65DA32162597F006C8A4C /* BDMSdk+ParallelBidding.h */,
-				42B65DA521625D95006C8A4C /* BDMRequest+ParallelBidding.h */,
+				42D7310122DF4B0200AEB066 /* BDMAdNetworkConfiguration.h */,
+				42D7310222DF4B0200AEB066 /* BDMAdNetworkConfiguration.m */,
+				42D730FB22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h */,
+				42D730F722DF24CB00AEB066 /* BDMPlacementAdUnit.h */,
+				42D730F822DF24CB00AEB066 /* BDMPlacementAdUnit.m */,
+				426AA21722E89A06003FA6AF /* BDMAdUnit.h */,
+				426AA21822E89A06003FA6AF /* BDMAdUnit.m */,
+				42B65DA32162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h */,
+				42B65DA521625D95006C8A4C /* BDMRequest+HeaderBidding.h */,
 			);
-			path = ParallelBidding;
+			path = HeaderBidding;
+			sourceTree = "<group>";
+		};
+		42C4D4D722FC300E00A076AD /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				42C4D4D422FC23A400A076AD /* BDMAdNetworksMocks.h */,
+				42C4D4D522FC23A400A076AD /* BDMAdNetworksMocks.m */,
+				4270379C21AD1C48007B47E4 /* BDMSpecUtils.h */,
+				4270379921AD1C48007B47E4 /* BDMSpecUtils.m */,
+				42C4D4DA22FC316900A076AD /* BDMSdk+Tests.h */,
+			);
+			name = Supports;
 			sourceTree = "<group>";
 		};
 		42ECABD0217F1E6A009DD85B /* Internal */ = {
@@ -565,7 +578,7 @@
 				9CBED22B1FB3269A004C4669 /* Adapters */,
 				9C6A651120318A6100D5A98A /* Operation */,
 				420476902135481600FA2261 /* Extensions */,
-				42C3FDBB21624175004D3784 /* ParallelBidding */,
+				42C3FDBB21624175004D3784 /* HeaderBidding */,
 				429C045E2167584C000C5265 /* Request */,
 				9C2597451FB1EA2E006F3FA7 /* Response */,
 				4227C0C0217A56040022C1D5 /* Viewability */,
@@ -573,7 +586,6 @@
 				429C045F2167585C000C5265 /* AdObjects */,
 				9C2597321FB1DFFF006F3FA7 /* BDMDefines.h */,
 				9C2597331FB1DFFF006F3FA7 /* BDMDefines.m */,
-				657AC3F820FCC6840039741B /* BDMS2SMacros.h */,
 				9C2597261FB1DC91006F3FA7 /* BidMachine.h */,
 				429C195D2160123C0048F400 /* Info.plist */,
 				42C3FDB921623E70004D3784 /* module.private.modulemap */,
@@ -610,8 +622,12 @@
 		9C6A651120318A6100D5A98A /* Operation */ = {
 			isa = PBXGroup;
 			children = (
-				9CAF86AA203AC7430088CFBD /* BDMInitializationOperation.h */,
-				9CAF86AB203AC7430088CFBD /* BDMInitializationOperation.m */,
+				9CAF86AA203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h */,
+				9CAF86AB203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m */,
+				42D730FD22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h */,
+				42D730FE22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.m */,
+				426AA21B22E8A1AB003FA6AF /* BDMHeaderBiddingController.h */,
+				426AA21C22E8A1AB003FA6AF /* BDMHeaderBiddingController.m */,
 				9C6A65122031A1BE00D5A98A /* BDMAsyncOperation.h */,
 				9C6A65132031A1BE00D5A98A /* BDMAsyncOperation.m */,
 			);
@@ -663,16 +679,15 @@
 		9CFBD1771FB982BE00C31DE6 /* BidMachineTests */ = {
 			isa = PBXGroup;
 			children = (
+				42C4D4D722FC300E00A076AD /* Supports */,
 				9CFBD1821FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m */,
 				427037BD21AD1D3C007B47E4 /* BDMRegistrySpec.m */,
 				427037BA21AD1D3C007B47E4 /* BDMSdkSpec.m */,
-				420476952135AB1600FA2261 /* BDMNativeAdProtocolSpec.m */,
 				4270379A21AD1C48007B47E4 /* BDMAdTypePlacementSpec.m */,
 				4270379821AD1C48007B47E4 /* BDMApiRequestSpec.m */,
 				4270379B21AD1C48007B47E4 /* BDMAuctionSettingsSpec.m */,
 				4270379721AD1C47007B47E4 /* BDMAuctionBuilderSpec.m */,
-				4270379C21AD1C48007B47E4 /* BDMSpecUtils.h */,
-				4270379921AD1C48007B47E4 /* BDMSpecUtils.m */,
+				42C4D4D822FC303100A076AD /* BDMHeaderBiddingSpec.m */,
 			);
 			path = BidMachineTests;
 			sourceTree = "<group>";
@@ -695,9 +710,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D730FF22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h in Headers */,
 				9C2597301FB1DD64006F3FA7 /* BDMServerCommunicator.h in Headers */,
 				421137F421E8947100B65454 /* BDMRequest+Private.h in Headers */,
-				42B65DA621625D95006C8A4C /* BDMRequest+ParallelBidding.h in Headers */,
+				42B65DA621625D95006C8A4C /* BDMRequest+HeaderBidding.h in Headers */,
 				9C2597391FB1E0FE006F3FA7 /* BDMResponse.h in Headers */,
 				9C2597521FB2002C006F3FA7 /* BDMSdk+Project.h in Headers */,
 				6510F19E2183461300F528AD /* BDMApiRequest.h in Headers */,
@@ -707,13 +723,13 @@
 				42515D942186DF000025C231 /* BDMDisplayAdProtocol.h in Headers */,
 				9C25974F1FB1F8A0006F3FA7 /* BDMInterstitial.h in Headers */,
 				9C6A651C2031D7F000D5A98A /* BDMFactory+BDMOperation.h in Headers */,
-				42B65DA42162597F006C8A4C /* BDMSdk+ParallelBidding.h in Headers */,
-				4252245722983323002CCF30 /* Extensions.pbobjc.h in Headers */,
+				42B65DA42162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h in Headers */,
 				422CAC3821AE7A38000A0D51 /* NSArray+BDMEventURL.h in Headers */,
 				9C6A65142031A1BE00D5A98A /* BDMAsyncOperation.h in Headers */,
 				421137F021E880D200B65454 /* BDMAdRequests.h in Headers */,
 				422712FA2164B5D100EE5012 /* BDMTargeting.h in Headers */,
 				65CE5DA521B15F0400652496 /* BDMRetryTimer.h in Headers */,
+				42D7310322DF4B0200AEB066 /* BDMAdNetworkConfiguration.h in Headers */,
 				42420DDC21B7AA930041C724 /* BDMInitialisationResponseModel.h in Headers */,
 				427E4D5E219427D3001EE6C7 /* BDMUserRestrictions.h in Headers */,
 				423A823C21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h in Headers */,
@@ -724,10 +740,12 @@
 				427E63C921A57528005DB6B5 /* BDMCreative.h in Headers */,
 				9CBED2201FB2DBC4004C4669 /* BDMRegistry.h in Headers */,
 				9C69DC761FC2E14800EDC6E5 /* BDMUserAgentProvider.h in Headers */,
-				9C6A65182031A2C900D5A98A /* BDMNetworkConfigurator.h in Headers */,
 				42420DD921B7AA280041C724 /* BDMInitialisationResponseProtocol.h in Headers */,
+				42D730FC22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h in Headers */,
 				421B9FD1218B4227004CED22 /* BDMFactory+BDMDisplayAd.h in Headers */,
+				42D730F922DF24CB00AEB066 /* BDMPlacementAdUnit.h in Headers */,
 				420476932135483600FA2261 /* BDMRuntimeExtensions.h in Headers */,
+				426AA21D22E8A1AB003FA6AF /* BDMHeaderBiddingController.h in Headers */,
 				9C25974B1FB1EC49006F3FA7 /* BDMSdk.h in Headers */,
 				6510F19A2183352400F528AD /* BDMAuctionBuilder.h in Headers */,
 				9C2597471FB1EA50006F3FA7 /* BDMNetworkProtocol.h in Headers */,
@@ -736,10 +754,10 @@
 				4248C208218C88CE00279AE2 /* UIView+BDMNativeAd.h in Headers */,
 				4228797A21A2A7DF00FFEAD1 /* BDMRewarded.h in Headers */,
 				65D17ECE219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h in Headers */,
-				4252245922983323002CCF30 /* Init.pbobjc.h in Headers */,
 				4218D90C21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h in Headers */,
 				9C25973C1FB1E25C006F3FA7 /* BDMFactory.h in Headers */,
-				9C7FA1051FB45F810095D766 /* BDMNetworkItem.h in Headers */,
+				426AA21922E89A06003FA6AF /* BDMAdUnit.h in Headers */,
+				421AFFB522D898A3004DF0EB /* ADCOMAd+Private.h in Headers */,
 				42FBC7322180A23300B1D324 /* BDMEventURL.h in Headers */,
 				424BA2A22199CCD300E2745D /* BDMAuctionSettings.h in Headers */,
 				425EF00F2164C897004B1839 /* BDMSdkConfiguration.h in Headers */,
@@ -747,7 +765,6 @@
 				420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */,
 				9CBED2261FB30A09004C4669 /* BDMAdapterProtocol.h in Headers */,
 				9C2597431FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h in Headers */,
-				657AC3F920FCC6840039741B /* BDMS2SMacros.h in Headers */,
 				42E6C681219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h in Headers */,
 				42515D982186F9CB0025C231 /* BDMBannerViewDisplayAd.h in Headers */,
 				42C075E02189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h in Headers */,
@@ -756,15 +773,13 @@
 				4227C0C7217DC7620022C1D5 /* BDMAuctionInfo.h in Headers */,
 				422CAC3421AE781A000A0D51 /* BDMEventMiddleware.h in Headers */,
 				65CE5DA121B14E5800652496 /* BDMSessionBuilder.h in Headers */,
-				4252245D2298332D002CCF30 /* Openrtb.pbobjc.h in Headers */,
-				4252246222983337002CCF30 /* Adcom.pbobjc.h in Headers */,
 				4269D16521B0019A00E3E13B /* ADCOMAd_Display_Native+BDMSdk.h in Headers */,
 				4227C0C3217A56420022C1D5 /* BDMViewabilityMetricProvider.h in Headers */,
 				423CAF4D217DED98000FF60D /* BDMViewabilityMetricAppodeal.h in Headers */,
 				9C2597341FB1DFFF006F3FA7 /* BDMDefines.h in Headers */,
 				427037C821AD245F007B47E4 /* BDMAdEventProducerProtocol.h in Headers */,
 				651D8DF8219EDC5100216162 /* BDMAdTypePlacement.h in Headers */,
-				9CAF86AC203AC7430088CFBD /* BDMInitializationOperation.h in Headers */,
+				9CAF86AC203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,6 +850,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 9C2597191FB1DC91006F3FA7;
 			productRefGroup = 9C2597241FB1DC91006F3FA7 /* Products */;
@@ -892,11 +908,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kiwi/Kiwi.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/StackAPI/StackAPI.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kiwi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StackAPI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -930,10 +948,10 @@
 			files = (
 				4227C0C4217A56420022C1D5 /* BDMViewabilityMetricProvider.m in Sources */,
 				9C6A651D2031D7F000D5A98A /* BDMFactory+BDMOperation.m in Sources */,
-				4252245822983323002CCF30 /* Extensions.pbobjc.m in Sources */,
 				65CE5DA621B15F0400652496 /* BDMRetryTimer.m in Sources */,
 				4269622621836145004D9B17 /* BDMFullscreenAdDisplayAd.m in Sources */,
 				4248C209218C88CE00279AE2 /* UIView+BDMNativeAd.m in Sources */,
+				42CF2F6E22E065E8000E825A /* BDMHeaderBiddingPreparationOperation.m in Sources */,
 				425EF0102164C897004B1839 /* BDMSdkConfiguration.m in Sources */,
 				9C2597441FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m in Sources */,
 				6510F19F2183461300F528AD /* BDMApiRequest.m in Sources */,
@@ -944,36 +962,35 @@
 				9C2597311FB1DD64006F3FA7 /* BDMServerCommunicator.m in Sources */,
 				4218D90D21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m in Sources */,
 				9C25974C1FB1EC49006F3FA7 /* BDMSdk.m in Sources */,
-				9C7FA1061FB45F810095D766 /* BDMNetworkItem.m in Sources */,
 				422CAC3521AE781A000A0D51 /* BDMEventMiddleware.m in Sources */,
 				9C6A65152031A1BE00D5A98A /* BDMAsyncOperation.m in Sources */,
 				9C71DBAF1FB5F03800D0DCCA /* BDMBannerView.m in Sources */,
 				421B9FD2218B4227004CED22 /* BDMFactory+BDMDisplayAd.m in Sources */,
+				426AA21E22E8A1AB003FA6AF /* BDMHeaderBiddingController.m in Sources */,
 				9C2597501FB1F8A0006F3FA7 /* BDMInterstitial.m in Sources */,
 				423CAF4E217DED98000FF60D /* BDMViewabilityMetricAppodeal.m in Sources */,
 				424BA2A12199CCD300E2745D /* BDMAuctionSettings.m in Sources */,
 				42515D992186F9CB0025C231 /* BDMBannerViewDisplayAd.m in Sources */,
 				9CBED2211FB2DBC4004C4669 /* BDMRegistry.m in Sources */,
-				9C6A65192031A2C900D5A98A /* BDMNetworkConfigurator.m in Sources */,
-				9CAF86AD203AC7430088CFBD /* BDMInitializationOperation.m in Sources */,
+				9CAF86AD203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m in Sources */,
 				421137F121E880D200B65454 /* BDMAdRequests.m in Sources */,
 				42C075E12189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m in Sources */,
 				42420DDD21B7AA930041C724 /* BDMInitialisationResponseModel.m in Sources */,
 				9C2597381FB1E0FE006F3FA7 /* BDMResponse.m in Sources */,
 				424BA29A2199CCC800E2745D /* BDMUserAgentProvider.m in Sources */,
 				65CE5DA221B14E5800652496 /* BDMSessionBuilder.m in Sources */,
-				4252246122983337002CCF30 /* Adcom.pbobjc.m in Sources */,
 				422712FB2164B5D100EE5012 /* BDMTargeting.m in Sources */,
 				65D17ECF219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m in Sources */,
-				4252245E2298332D002CCF30 /* Openrtb.pbobjc.m in Sources */,
 				B993BB4120BFDA48000592D4 /* BDMNativeAdService.m in Sources */,
 				4269D16A21B01B0E00E3E13B /* NSError+BDMSdk.m in Sources */,
+				426AA21A22E89A06003FA6AF /* BDMAdUnit.m in Sources */,
+				42D7310422DF4B0200AEB066 /* BDMAdNetworkConfiguration.m in Sources */,
 				4269D16621B0019A00E3E13B /* ADCOMAd_Display_Native+BDMSdk.m in Sources */,
+				42D730FA22DF24CB00AEB066 /* BDMPlacementAdUnit.m in Sources */,
 				42FBC7332180A23300B1D324 /* BDMEventURL.m in Sources */,
 				427E4D5F219427D3001EE6C7 /* BDMUserRestrictions.m in Sources */,
 				424BA29F2199CCD300E2745D /* BDMTransformers.m in Sources */,
 				9CBED22A1FB3218D004C4669 /* BDMRequest.m in Sources */,
-				4252245522983323002CCF30 /* Init.pbobjc.m in Sources */,
 				42C075DD2189D3DE00256E7B /* BDMNativeAd.m in Sources */,
 				651D8DF9219EDC5100216162 /* BDMAdTypePlacement.m in Sources */,
 				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
@@ -983,6 +1000,7 @@
 				427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */,
 				4204768F21353E1B00FA2261 /* BDMNativeAdProtocol.m in Sources */,
 				6510F19B2183352400F528AD /* BDMAuctionBuilder.m in Sources */,
+				421AFFB622D898A3004DF0EB /* ADCOMAd+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -991,8 +1009,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4270379D21AD1C48007B47E4 /* BDMAuctionBuilderSpec.m in Sources */,
+				42C4D4D622FC23A400A076AD /* BDMAdNetworksMocks.m in Sources */,
 				427037C421AD1D3C007B47E4 /* BDMRegistrySpec.m in Sources */,
-				420476962135AB1600FA2261 /* BDMNativeAdProtocolSpec.m in Sources */,
+				42C4D4D922FC303100A076AD /* BDMHeaderBiddingSpec.m in Sources */,
 				9CFBD1831FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m in Sources */,
 				4270379F21AD1C48007B47E4 /* BDMSpecUtils.m in Sources */,
 				4270379E21AD1C48007B47E4 /* BDMApiRequestSpec.m in Sources */,
@@ -1155,14 +1174,14 @@
 				);
 				INFOPLIST_FILE = BidMachine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/BidMachine/module.private.modulemap";
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appodeal.openbids;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.explorestack.bidmachine;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1197,14 +1216,14 @@
 				);
 				INFOPLIST_FILE = BidMachine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/BidMachine/module.private.modulemap";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appodeal.openbids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.explorestack.bidmachine;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

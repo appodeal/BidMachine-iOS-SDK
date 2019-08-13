@@ -7,10 +7,9 @@
 //
 
 #import "BDMRequest.h"
-#import "BDMRequest+ParallelBidding.h"
+#import "BDMRequest+HeaderBidding.h"
 #import "BDMRequest+Private.h"
 
-#import "BDMNetworkItem.h"
 #import "BDMServerCommunicator.h"
 
 #import "NSError+BDMSdk.h"
@@ -18,22 +17,20 @@
 #import "BDMAuctionInfo+Project.h"
 #import "BDMFactory+BDMDisplayAd.h"
 
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 #import "BDMFactory+BDMEventMiddleware.h"
-
 
 @interface BDMRequest ()
 
 @property (nonatomic, assign) BDMRequestState state;
 
-@property (copy, nonatomic) NSArray <BDMNetworkItem *> *networks;
 @property (copy, nonatomic) NSDictionary <NSString *, id> *customParameters;
 
 @property (copy, nonatomic) NSString *adSpaceId;
 @property (copy, nonatomic) NSNumber *activeSegmentIdentifier;
 @property (copy, nonatomic) NSNumber *activePlacement;
 
-@property (nonatomic, strong) ASKExpirationTimer *expirationTimer;
+@property (nonatomic, strong) STKExpirationTimer *expirationTimer;
 @property (nonatomic, strong) BDMEventMiddleware *middleware;
 @property (nonatomic, assign) BDMInternalPlacementType placementType;
 @property (nonatomic, strong) NSHashTable <id<BDMRequestDelegate>> *delegates;
@@ -74,31 +71,36 @@
     }
     
     self.placementType = placementType;
-    // Populate targeting
-    request.targeting = request.targeting ?: BDMSdk.sharedSdk.targeting;
-    self.state = BDMRequestStateAuction;
-    [self.middleware startEvent:BDMEventAuction];
-    // Make request by expiration timer
+    
     __weak typeof(self) weakSelf = self;
-    [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:^(BDMAuctionBuilder *builder) {
-        builder
-        .appendPlacementBuilder(placementBuilder)
-        .appendRequest(request)
-        .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
-        .appendSellerID(BDMSdk.sharedSdk.sellerID)
-        .appendTestMode(BDMSdk.sharedSdk.testMode)
-        .appendRestrictions(BDMSdk.sharedSdk.restrictions);
-    } success:^(id<BDMResponse> response) {
-        // Save response object
-        weakSelf.response = response;
-        weakSelf.state = BDMRequestStateSuccessful;
-        [weakSelf.middleware fulfillEvent:BDMEventAuction];
-        [weakSelf beginExpirationMonitoring];
-        [weakSelf notifyDelegatesOnSuccess];
-    } failure:^(NSError *error) {
-        weakSelf.state = BDMRequestStateFailed;
-        [weakSelf.middleware rejectEvent:BDMEventAuction code:error.code];
-        [weakSelf notifyDelegatesOnFail:error];
+    [BDMSdk.sharedSdk collectHeaderBiddingAdUnits:placementType completion:^(NSArray<id<BDMPlacementAdUnit>> *placememntAdUnits) {
+        // Append header bidding
+        placementBuilder.appendHeaderBidding(placememntAdUnits);
+        // Populate targeting
+        request.targeting = request.targeting ?: BDMSdk.sharedSdk.targeting;
+        weakSelf.state = BDMRequestStateAuction;
+        [weakSelf.middleware startEvent:BDMEventAuction];
+        // Make request by expiration timer
+        [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:^(BDMAuctionBuilder *builder) {
+            builder
+            .appendPlacementBuilder(placementBuilder)
+            .appendRequest(request)
+            .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
+            .appendSellerID(BDMSdk.sharedSdk.sellerID)
+            .appendTestMode(BDMSdk.sharedSdk.testMode)
+            .appendRestrictions(BDMSdk.sharedSdk.restrictions);
+        } success:^(id<BDMResponse> response) {
+            // Save response object
+            weakSelf.response = response;
+            weakSelf.state = BDMRequestStateSuccessful;
+            [weakSelf.middleware fulfillEvent:BDMEventAuction];
+            [weakSelf beginExpirationMonitoring];
+            [weakSelf notifyDelegatesOnSuccess];
+        } failure:^(NSError *error) {
+            weakSelf.state = BDMRequestStateFailed;
+            [weakSelf.middleware rejectEvent:BDMEventAuction code:error.code];
+            [weakSelf notifyDelegatesOnFail:error];
+        }];
     }];
 }
 
@@ -115,7 +117,7 @@
 - (void)beginExpirationMonitoring {
     __weak typeof (self) weakSelf = self;
     BDMLog(@"Start expiration monitoring for response: %@ of time: %1.2f s", self.response.identifier, self.response.expirationTime.doubleValue);
-    self.expirationTimer = [ASKExpirationTimer expirationTimerWithExpirationTimeinterval:self.response.expirationTime.doubleValue
+    self.expirationTimer = [STKExpirationTimer expirationTimerWithExpirationTimeinterval:self.response.expirationTime.doubleValue
                                                                           observableItem:self.response
                                                                                   expire:^(id<BDMResponse> response) {
                                                                                       [weakSelf expire];
@@ -195,7 +197,7 @@
 
 - (id<BDMDisplayAd>)displayAdWithError:(NSError *__autoreleasing *)error {
     if (self.state != BDMRequestStateSuccessful) {
-        ASK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"Request not successful and unable to create display ad!"]);
+        STK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"Request not successful and unable to create display ad!"]);
     }
     return [BDMFactory.sharedFactory displayAdWithResponse:self.response
                                              plecementType:self.placementType];

@@ -22,6 +22,13 @@
 
 @implementation BDMInterstitialRequest
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.type = BDMFullscreenAdTypeAll;
+    }
+    return self;
+}
+
 - (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
     [self registerDelegate: delegate];
     id <BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement interstitialPlacementWithAdType:self.type];

@@ -11,23 +11,21 @@ import CoreLocation
 
 
 class LocationTableViewCell: UITableViewCell {
-    var entity: LocationEntity? {
-        didSet {
-            update()
-        }
-    }
-    
     @IBOutlet private weak var latTextField: UITextField!
     @IBOutlet private weak var statusImageView: UIImageView!
     @IBOutlet private weak var lonTextField: UITextField!
     
+    var entity: LocationEntity? {
+        didSet { update() }
+    }
+    
+    var binding:((LocationEntity)->())?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         update()
     }
 
-    var binding:((LocationEntity)->())?
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         latTextField.delegate = self
@@ -65,6 +63,7 @@ class LocationTableViewCell: UITableViewCell {
     }
 }
 
+
 extension LocationTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         validateInput()
@@ -76,13 +75,12 @@ extension LocationTableViewCell: UITextFieldDelegate {
     }
 }
 
+
 extension LocationTableViewCell: NibProvider {
+    static let reuseIdentifier: String = "LocationTableViewCellReusedID"
+
     static var nib: UINib {
         return UINib(nibName: "LocationTableViewCell", bundle: Bundle(for: self))
-    }
-    
-    static var reuseIdentifier: String {
-        return "LocationTableViewCellReusedID"
     }
 }
 

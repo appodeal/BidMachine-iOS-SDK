@@ -20,27 +20,16 @@ export COMPONENTS=(
     "libBDMMRAIDAdapter.a"
     "libBDMNASTAdapter.a"
     "libBDMVASTAdapter.a"
-    "Protobuf.framework/Protobuf"
+    "StackAPI.framework/StackAPI"
 )
 
-export PODS_DEPS=(
-    "AppodealDocumentParser"
-    "AppodealMRAIDKit"
-    "AppodealNASTKit"
-    "AppodealVASTAssets"
-    "AppodealVASTKit"
-    "AppodealVideoPlayer"
-    "ASKExtension"
-    "ASKGraphicButton"
-    "ASKLogger"
-    "ASKViewability"
-    "ASKUIExtension"
-    "ASKDiskUtils"
-    "ASKViewabilityTracker"
-    "ASKProductPresentation"
-    "ASKSpinner"
-    "OverlayPosition"
-)
+export ADAPTERS=(
+    "BDMMyTargetAdapter"
+    "BDMFacebookAdapter"
+    "BDMAdColonyAdapter"
+    "BDMVungleAdapter"
+    "BDMTapjoyAdapter"
+    )
 
 # Utility 
 export ERROR='\033[0;31m'   # Red color
@@ -103,6 +92,10 @@ function rebuild_components {
     for component in ${COMPONENTS[@]}; do
       lipo -create "$device_temp_dir/$component" "$simulator_temp_dir/$component" -output "$universal_temp_dir/$component"
     done
+
+    for adapter in ${ADAPTERS[@]}; do
+      lipo -create "$device_temp_dir/lib$adapter.a" "$simulator_temp_dir/lib$adapter.a" -output "$universal_temp_dir/lib$adapter.a"
+    done
 }
 
 function merge_components {
@@ -118,18 +111,24 @@ function merge_components {
       fi
     done
 
-    for dependency in ${PODS_DEPS[@]}; do
-        dependencies_paths+=( $(find "$PROJECT_DIR/Pods" -type f -iname $dependency) )
-    done
-
     libtool -static -o "$universal_temp_dir/BidMachine.framework/BidMachine" "${components_paths[@]}" "${dependencies_paths[@]}"
     mv "$universal_temp_dir/BidMachine.framework" "$RELEASE_DIR/BidMachine.framework"
 }
 
+function copy_adapters {
+    local universal_temp_dir=$TEMP_DIR/universal
+
+    for adapter in ${ADAPTERS[@]}; do 
+        echo -e "${INFO}Copy $adapter${INFO}"
+       mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a" 
+    done
+}
+
 function compress_and_upload {
-  cd $RELEASE_DIR
-  [ "$SHOULD_COMPRESS_RESULTS" = "YES" ] &&  zip -r "$BUILD_NAME.zip" * > /dev/null
-  [ "$SHOULD_UPLOAD_TO_S3" = "YES" ] && aws s3 cp "$(PWD)/$BUILD_NAME.zip" "s3://appodeal-ios/BidMachine/$VERSION/$BUILD_NAME.zip" --acl public-read
+    cp "LICENSE" "$RELEASE_DIR/LICENSE"
+    cd "$RELEASE_DIR"
+    [ "$SHOULD_COMPRESS_RESULTS" = "YES" ] &&  zip -r "$BUILD_NAME.zip" * > /dev/null
+    [ "$SHOULD_UPLOAD_TO_S3" = "YES" ] && aws s3 cp "$(PWD)/$BUILD_NAME.zip" "s3://appodeal-ios/BidMachine/$VERSION/$BUILD_NAME.zip" --acl public-read
 }
 
 
@@ -254,6 +253,7 @@ echo -e "${WARNING}🔨 Build release framework modules${INFO}"
 rebuild_components
 echo -e "${WARNING}📦 Link statically release framework modules${INFO}"
 merge_components
+copy_adapters
 echo -e "${WARNING}🚀 Compress and upload results${INFO}"
 compress_and_upload
 end=`date +%s`

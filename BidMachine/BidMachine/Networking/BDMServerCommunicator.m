@@ -13,7 +13,7 @@
 #import "BDMApiRequest.h"
 #import "NSError+BDMSdk.h"
 #import "BDMInitialisationResponseModel.h"
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 @interface BDMServerCommunicator ()
@@ -45,10 +45,10 @@
                                                          NSError * wrappedError = [weakSelf wrappedError:error response:response wrappedResponse:wrappedResponse];
                                                          if (wrappedError) {
                                                              BDMLog(@"Auction request failed with error: %@", wrappedError);
-                                                             ASK_RUN_BLOCK(failure, wrappedError);
+                                                             STK_RUN_BLOCK(failure, wrappedError);
                                                          } else {
                                                              BDMLog(@"Auction request successful  with response: %@", wrappedResponse);
-                                                             ASK_RUN_BLOCK(success, wrappedResponse);
+                                                             STK_RUN_BLOCK(success, wrappedResponse);
                                                          }
                                                      });
                                                  }];
@@ -69,10 +69,10 @@
                                                          NSError * wrappedError = [weakSelf wrappedError:error response:response wrappedResponse:wrappedResponse];
                                                          if (wrappedError) {
                                                              BDMLog(@"Init request failed with error: %@", wrappedError);
-                                                             ASK_RUN_BLOCK(failure, wrappedError);
+                                                             STK_RUN_BLOCK(failure, wrappedError);
                                                          } else {
                                                              BDMLog(@"Init request successful  with response: %@", wrappedResponse);
-                                                             ASK_RUN_BLOCK(success, wrappedResponse);
+                                                             STK_RUN_BLOCK(success, wrappedResponse);
                                                          }
                                                      });
                                                  }];
@@ -107,10 +107,10 @@
             NSError * wrappedError = [weakSelf wrappedError:error response:response];
             if (wrappedError) {
                 BDMLog(@"Failed to sent event tracker: %@. Error: %@", tracker, wrappedError);
-                ASK_RUN_BLOCK(failure, wrappedError);
+                STK_RUN_BLOCK(failure, wrappedError);
             } else {
                 BDMLog(@"Successfully sent event tracker: %@", tracker);
-                ASK_RUN_BLOCK(success);
+                STK_RUN_BLOCK(success);
             }
         });
     }];
@@ -128,7 +128,7 @@
     } else if (response.bdm_errorCode > BDMErrorCodeUnknown) {
         wrappedError = [NSError bdm_errorWithCode:response.bdm_errorCode description:@"Invalid status code!"];
     } else if (!wrappedResponse) {
-        wrappedError = [NSError bdm_errorWithCode:BDMErrorCodeBadContent description:@"Response serialisation failed"];
+        wrappedError = [NSError bdm_errorWithCode:BDMErrorCodeNoContent description:@"Response serialisation failed"];
     }
     return wrappedError;
 }

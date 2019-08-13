@@ -20,20 +20,20 @@
 
 #pragma mark - BDMNetwork
 
-+ (NSString *)name {
+- (NSString *)name {
     return @"mraid";
 }
 
-+ (NSString *)sdkVersion {
+- (NSString *)sdkVersion {
     return @"3.0";
 }
 
-+ (Class<BDMFullscreenAdapter>)interstitialAdAdapterClassForSdk:(BDMSdk *)sdk {
-    return BDMMRAIDInterstitialAdapter.class;
+- (id<BDMFullscreenAdapter>)interstitialAdAdapterForSdk:(BDMSdk *)sdk {
+    return [BDMMRAIDInterstitialAdapter new];
 }
 
-+ (Class<BDMBannerAdapter>)bannerAdapterClassForSdk:(BDMSdk *)sdk {
-    return BDMMRAIDBannerAdapter.class;
+- (id<BDMBannerAdapter>)bannerAdapterForSdk:(BDMSdk *)sdk {
+    return [BDMMRAIDBannerAdapter new];
 }
 
 @end

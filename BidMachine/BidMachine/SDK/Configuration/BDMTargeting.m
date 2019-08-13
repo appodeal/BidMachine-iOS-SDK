@@ -7,7 +7,6 @@
 //
 
 #import "BDMTargeting.h"
-#import <ASKExtension/ASKExtension.h>
 
 @interface BDMTargeting ()
 
@@ -22,6 +21,17 @@
         self.yearOfBirth = @(kBDMUndefinedYearOfBirth);
     }
     return self;
+}
+
+- (NSNumber *)userAge {
+    NSInteger yob = self.yearOfBirth.unsignedIntegerValue;
+    NSInteger age = 0;
+    if (yob > 0) {
+        NSCalendar *gregorian = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+        NSInteger year = [gregorian component:NSCalendarUnitYear fromDate:NSDate.date];
+        age = year - yob;
+    }
+    return @(age);
 }
 
 #pragma mark - NSCopying

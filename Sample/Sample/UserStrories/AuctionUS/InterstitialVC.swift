@@ -35,7 +35,6 @@ class InterstitialVC: UIViewController {
         presentButton.isEnabled = false
     }
     
-    
     @IBAction func loadIntersitial(_ sender: Any) {
         request.type = selectedType
         interstitial.populate(with: request)
@@ -62,6 +61,7 @@ class InterstitialVC: UIViewController {
     
     @IBAction func configureRequest(_ sender: Any) {
         let requestVC: InterstitialRequestVC? =  UIApplication.shared.mainStoryboard.instantiateVC()
+        requestVC?.add(self.request)
         requestVC?.onUpdateRequest = { [unowned self] request in
             request.map { self.request = $0 }
         }
@@ -69,6 +69,7 @@ class InterstitialVC: UIViewController {
         navigationController?.present(requestVC!, animated: true, completion: nil)
     }
 }
+
 
 extension InterstitialVC {
     func updateSwitches() {
@@ -90,6 +91,7 @@ extension InterstitialVC {
         }
     }
 }
+
 
 extension InterstitialVC: BDMRequestDelegate {
     func requestDidExpire(_ request: BDMRequest) {

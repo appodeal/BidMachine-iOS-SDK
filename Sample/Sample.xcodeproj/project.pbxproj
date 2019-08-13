@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		421429B822A928850019BAA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421429B722A928840019BAA1 /* AppDelegate.swift */; };
+		421429B622A9280D0019BAA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421429B522A9280D0019BAA1 /* AppDelegate.swift */; };
+		4220558522E1F26200E1CA89 /* libBDMAdColonyAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4220558422E1F26200E1CA89 /* libBDMAdColonyAdapter.a */; };
+		4231D01722E0CAFC002852CE /* libBDMMyTargetAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4231D01622E0CAFC002852CE /* libBDMMyTargetAdapter.a */; };
 		424047DD21CB6EB9005C16E1 /* NavigationTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424047DB21CB6EB9005C16E1 /* NavigationTitle.xib */; };
 		424047DE21CB6EB9005C16E1 /* NavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424047DC21CB6EB9005C16E1 /* NavigationTitle.swift */; };
 		424047E021CB7392005C16E1 /* CornerCases.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 424047DF21CB7392005C16E1 /* CornerCases.storyboard */; };
@@ -32,12 +34,17 @@
 		424B187121A425C2004F113B /* RewardedVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424B187021A425C2004F113B /* RewardedVideoVC.swift */; };
 		425A779321C10AEF00DA04C9 /* GeneratableDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A779121C10AEF00DA04C9 /* GeneratableDataTableViewCell.swift */; };
 		425A779421C10AEF00DA04C9 /* GeneratableDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 425A779221C10AEF00DA04C9 /* GeneratableDataTableViewCell.xib */; };
+		42675D9122E216CE008298F5 /* libBDMVungleAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42675D9022E216CE008298F5 /* libBDMVungleAdapter.a */; };
 		42708D2121A1BB9D00240630 /* ConfigurationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42708D1F21A1BB9D00240630 /* ConfigurationVC.swift */; };
 		4273C8F521EF596500F3F94E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91F84A82175CC11005A92F1 /* Main.storyboard */; };
 		427A0E5D2227F85B00A7416E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427A0E5C2227F85B00A7416E /* CoreTelephony.framework */; };
 		428AC853219C104F001CB485 /* RequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428AC852219C104F001CB485 /* RequestVC.swift */; };
 		42A8BE4021BD7AA80044CC8D /* ExtensionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A8BE3E21BD7AA80044CC8D /* ExtensionsTableViewCell.swift */; };
 		42A8BE4121BD7AA80044CC8D /* ExtensionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42A8BE3F21BD7AA80044CC8D /* ExtensionsTableViewCell.xib */; };
+		42A93E4822E5ED6E005053A2 /* libBDMTapjoyAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A93E4722E5ED6E005053A2 /* libBDMTapjoyAdapter.a */; };
+		42A93E5D22E705EC005053A2 /* libBDMFacebookAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A93E5C22E705EC005053A2 /* libBDMFacebookAdapter.a */; };
+		42D730E622DE024600AEB066 /* HeaderBidding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D730E522DE024600AEB066 /* HeaderBidding.swift */; };
+		42D730E922DE028D00AEB066 /* HeaderBidding.json in Resources */ = {isa = PBXBuildFile; fileRef = 42D730E822DE028D00AEB066 /* HeaderBidding.json */; };
 		42D9A76821B96AE70090C273 /* SdkContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9A76721B96AE70090C273 /* SdkContext.swift */; };
 		42F2C7B721BFF2A5004CFF9F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F2C7B621BFF2A5004CFF9F /* Utilities.swift */; };
 		42F86EC721BA7D1200B58CB5 /* StatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F86EC621BA7D1200B58CB5 /* StatusVC.swift */; };
@@ -73,7 +80,9 @@
 
 /* Begin PBXFileReference section */
 		15A0EAE2E66F69A24E54C713 /* Pods_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		421429B722A928840019BAA1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		421429B522A9280D0019BAA1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4220558422E1F26200E1CA89 /* libBDMAdColonyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMAdColonyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4231D01622E0CAFC002852CE /* libBDMMyTargetAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMMyTargetAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		424047DB21CB6EB9005C16E1 /* NavigationTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationTitle.xib; sourceTree = "<group>"; };
 		424047DC21CB6EB9005C16E1 /* NavigationTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationTitle.swift; sourceTree = "<group>"; };
 		424047DF21CB7392005C16E1 /* CornerCases.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CornerCases.storyboard; sourceTree = "<group>"; };
@@ -97,6 +106,7 @@
 		424B187021A425C2004F113B /* RewardedVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedVideoVC.swift; sourceTree = "<group>"; };
 		425A779121C10AEF00DA04C9 /* GeneratableDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratableDataTableViewCell.swift; sourceTree = "<group>"; };
 		425A779221C10AEF00DA04C9 /* GeneratableDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneratableDataTableViewCell.xib; sourceTree = "<group>"; };
+		42675D9022E216CE008298F5 /* libBDMVungleAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMVungleAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42708D1F21A1BB9D00240630 /* ConfigurationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationVC.swift; sourceTree = "<group>"; };
 		427A0E5C2227F85B00A7416E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		427DE26A21A43298009CCC25 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +117,10 @@
 		428AC852219C104F001CB485 /* RequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestVC.swift; sourceTree = "<group>"; };
 		42A8BE3E21BD7AA80044CC8D /* ExtensionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTableViewCell.swift; sourceTree = "<group>"; };
 		42A8BE3F21BD7AA80044CC8D /* ExtensionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtensionsTableViewCell.xib; sourceTree = "<group>"; };
+		42A93E4722E5ED6E005053A2 /* libBDMTapjoyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMTapjoyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A93E5C22E705EC005053A2 /* libBDMFacebookAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMFacebookAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D730E522DE024600AEB066 /* HeaderBidding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBidding.swift; sourceTree = "<group>"; };
+		42D730E822DE028D00AEB066 /* HeaderBidding.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HeaderBidding.json; sourceTree = "<group>"; };
 		42D9A76721B96AE70090C273 /* SdkContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkContext.swift; sourceTree = "<group>"; };
 		42F2C7B621BFF2A5004CFF9F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		42F86EC621BA7D1200B58CB5 /* StatusVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusVC.swift; sourceTree = "<group>"; };
@@ -153,6 +167,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				424A9F6821B82647008335EE /* BidMachine.framework in Frameworks */,
+				42A93E5D22E705EC005053A2 /* libBDMFacebookAdapter.a in Frameworks */,
+				42A93E4822E5ED6E005053A2 /* libBDMTapjoyAdapter.a in Frameworks */,
+				42675D9122E216CE008298F5 /* libBDMVungleAdapter.a in Frameworks */,
+				4220558522E1F26200E1CA89 /* libBDMAdColonyAdapter.a in Frameworks */,
+				4231D01722E0CAFC002852CE /* libBDMMyTargetAdapter.a in Frameworks */,
 				424A9F6C21B82647008335EE /* libBDMMRAIDAdapter.a in Frameworks */,
 				424A9F6E21B82647008335EE /* libBDMNASTAdapter.a in Frameworks */,
 				424A9F7021B82647008335EE /* libBDMVASTAdapter.a in Frameworks */,
@@ -171,7 +190,7 @@
 				424B186821A2F375004F113B /* DataEntities.swift */,
 				42D9A76721B96AE70090C273 /* SdkContext.swift */,
 				D91BDE8521B28F4700C538CE /* TableViewContentEntity.swift */,
-				650DD9D621C8FF370092473F /* Sample-Bridging-Header.h */,
+				42D730E522DE024600AEB066 /* HeaderBidding.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +269,18 @@
 			path = Runtime;
 			sourceTree = "<group>";
 		};
+		42D730E722DE026100AEB066 /* ApplicationSupport */ = {
+			isa = PBXGroup;
+			children = (
+				D91F84AB2175CC12005A92F1 /* Assets.xcassets */,
+				650DD9D621C8FF370092473F /* Sample-Bridging-Header.h */,
+				421429B522A9280D0019BAA1 /* AppDelegate.swift */,
+				D91F84B02175CC12005A92F1 /* Info.plist */,
+				42D730E822DE028D00AEB066 /* HeaderBidding.json */,
+			);
+			name = ApplicationSupport;
+			sourceTree = "<group>";
+		};
 		42F86ED121BA8EBC00B58CB5 /* NativeAds */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +304,11 @@
 		ABBBB8C34D78D07CCC36518F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42A93E5C22E705EC005053A2 /* libBDMFacebookAdapter.a */,
+				42A93E4722E5ED6E005053A2 /* libBDMTapjoyAdapter.a */,
+				42675D9022E216CE008298F5 /* libBDMVungleAdapter.a */,
+				4220558422E1F26200E1CA89 /* libBDMAdColonyAdapter.a */,
+				4231D01622E0CAFC002852CE /* libBDMMyTargetAdapter.a */,
 				427A0E5C2227F85B00A7416E /* CoreTelephony.framework */,
 				424A9F6721B82647008335EE /* BidMachine.framework */,
 				424A9F6B21B82647008335EE /* libBDMMRAIDAdapter.a */,
@@ -310,15 +346,13 @@
 		D91F84A32175CC11005A92F1 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				421429B722A928840019BAA1 /* AppDelegate.swift */,
-				D91F84AB2175CC12005A92F1 /* Assets.xcassets */,
+				42D730E722DE026100AEB066 /* ApplicationSupport */,
 				42D5972F21CA203E00B1ABAA /* Runtime */,
 				424B186721A2F355004F113B /* Models */,
 				D98AE1CE21775EC200414343 /* Storyboards */,
 				426AA094219C63CE00CA75C1 /* UI */,
 				D9A4956B21AD9D5A007A7611 /* Utilities */,
 				D98AE1C72175EE2B00414343 /* UserStrories */,
-				D91F84B02175CC12005A92F1 /* Info.plist */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -384,6 +418,7 @@
 				D91F849E2175CC11005A92F1 /* Frameworks */,
 				D91F849F2175CC11005A92F1 /* Resources */,
 				224C61AD00F22656A2BC46E1 /* [CP] Embed Pods Frameworks */,
+				22E11CCDF4A7FB64CA3E6CBF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -445,6 +480,7 @@
 				424B185921A2EBAC004F113B /* EnumTableViewCell.xib in Resources */,
 				42F86ECD21BA7D5600B58CB5 /* StatusTableViewCell.xib in Resources */,
 				424047E021CB7392005C16E1 /* CornerCases.storyboard in Resources */,
+				42D730E922DE028D00AEB066 /* HeaderBidding.json in Resources */,
 				425A779421C10AEF00DA04C9 /* GeneratableDataTableViewCell.xib in Resources */,
 				424B186121A2EC35004F113B /* DataTableViewCell.xib in Resources */,
 				D9BBD5E721CA3838006233F9 /* OnlyLabelTableViewCell.xib in Resources */,
@@ -466,6 +502,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/StackAPI/StackAPI.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -473,11 +510,35 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StackAPI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		22E11CCDF4A7FB64CA3E6CBF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-resources.sh",
+				"${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_v12.3.1/Libraries/Tapjoy.embeddedframework/Resources/TapjoyResources.bundle",
+				"${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_v12.3.1/Libraries/Tapjoy.embeddedframework/Tapjoy.framework/Versions/A/Resources/TapjoyResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TapjoyResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4E8582B0BFC343588896906 /* [CP] Check Pods Manifest.lock */ = {
@@ -507,7 +568,7 @@
 			files = (
 				D91BDE8621B28F4700C538CE /* TableViewContentEntity.swift in Sources */,
 				424B186421A2EC4B004F113B /* BooleanTableViewCell.swift in Sources */,
-				421429B822A928850019BAA1 /* AppDelegate.swift in Sources */,
+				421429B622A9280D0019BAA1 /* AppDelegate.swift in Sources */,
 				42708D2121A1BB9D00240630 /* ConfigurationVC.swift in Sources */,
 				D98AE1C62175EDFE00414343 /* BannerVC.swift in Sources */,
 				424B185821A2EBAC004F113B /* EnumTableViewCell.swift in Sources */,
@@ -528,6 +589,7 @@
 				D9BBD5EA21CA45C6006233F9 /* OverlayVC.swift in Sources */,
 				42F86ECC21BA7D5600B58CB5 /* LocationTableViewCell.swift in Sources */,
 				42F86ED621BA8EC700B58CB5 /* ContentTableViewCell.swift in Sources */,
+				42D730E622DE024600AEB066 /* HeaderBidding.swift in Sources */,
 				424B186021A2EC35004F113B /* DataTableViewCell.swift in Sources */,
 				D9A4956D21AD9D85007A7611 /* ToastMaker.swift in Sources */,
 				D98AE1C42175EDEC00414343 /* InterstitialVC.swift in Sources */,
@@ -691,7 +753,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = WG4VFF78ZM;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Sample/Info.plist";
@@ -705,7 +767,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bidmachine.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Sample/Models/Sample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sample/Sample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -720,7 +782,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = WG4VFF78ZM;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Sample/Info.plist";
@@ -734,7 +796,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bidmachine.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Sample/Models/Sample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sample/Sample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

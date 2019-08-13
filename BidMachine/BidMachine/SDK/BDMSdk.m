@@ -8,48 +8,33 @@
 
 #import "BDMSdk.h"
 #import "BDMSdk+Project.h"
-#import "BDMSdk+ParallelBidding.h"
+#import "BDMSdkConfiguration+HeaderBidding.h"
 
 #import "BDMRegistry.h"
 #import "BDMFactory.h"
-#import "BDMNetworkConfigurator.h"
 #import "BDMAsyncOperation.h"
 #import "BDMFactory+BDMOperation.h"
-#import "BDMInitializationOperation.h"
+#import "BDMHeaderBiddingInitialisationOperation.h"
+#import "BDMHeaderBiddingPreparationOperation.h"
 #import "BDMViewabilityMetricAppodeal.h"
 #import "BDMServerCommunicator.h"
 #import "BDMRetryTimer.h"
 #import "BDMAuctionSettings.h"
 #import "BDMEventMiddleware.h"
 
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
-NSString * const BDMParallelBiddingNetworksExtensionKey = @"ParallelBiddingNetworksExtensionKey";
-NSString * const BDMSSPExtensionKey = @"SSPExtensionKey";
-NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"ParallelBiddingInitialisatationItemsExtensionKey";
-
-
-@interface BDMSdk (ParallelBidding)
-
-@property (nonatomic, copy, readonly) NSString * ssp;
-
-- (void)initializeParallelBiddingNetworks:(NSArray <BDMNetworkItem *> *)networks
-                               completion:(void(^)(void))completion;
-- (void)registerNetworks;
-
-@end
-
-
-@interface BDMSdk () <BDMNetworkConfiguratorDataSource>
+@interface BDMSdk () <BDMHeaderBiddingControllerDelegate>
 
 @property (nonatomic, assign, readwrite, getter=isInitialized) BOOL initialized;
 
 @property (nonatomic, strong) BDMRegistry *registry;
 @property (nonatomic, strong) BDMEventMiddleware *middleware;
 @property (nonatomic, strong) BDMRetryTimer *retryTimer;
-@property (nonatomic, strong) ASKNetworkReachability *reachability;
+@property (nonatomic, strong) STKNetworkReachability *reachability;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
+@property (nonatomic, strong) BDMHeaderBiddingController *headerBiddingController;
 
 @property (nonatomic, copy) NSString *sellerID;
 @property (nonatomic, copy) BDMSdkConfiguration *configuration;
@@ -84,6 +69,10 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
     return self.configuration.testMode;
 }
 
+- (NSURL *)baseURL {
+    return self.configuration.baseURL;
+}
+
 - (void)setEnableLogging:(BOOL)enableLogging {
     _enableLogging = enableLogging;
     BDMSdkLoggingEnabled = enableLogging;
@@ -108,8 +97,8 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
     }
     
     // Start location manager
-    if (ask_locationTrackingEnabled()) {
-        ask_startLocationMonitoring();
+    if (STKLocation.locationTrackingEnabled) {
+        [STKLocation startMonitoring];
     }
     
     // Just save data
@@ -118,14 +107,15 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
     
     // Parallel bidding
     [self registerNetworks];
-
-    NSArray <BDMNetworkItem *> *networkItems = self.configuration.extensions[BDMParallelBiddingInitialisatationItemsExtensionKey];
-    if (!networkItems.count) {
+    [self.registry initNetworks];
+    
+    NSArray <BDMAdNetworkConfiguration *> *networkConfigs = self.configuration.networkConfigurations;
+    if (!networkConfigs.count) {
         self.initialized = YES;
-        completion ? completion() : nil;
+        STK_RUN_BLOCK(completion);
     } else {
-        [self initializeParallelBiddingNetworks:networkItems
-                                     completion:completion];
+        [self initializeNetworks:networkConfigs
+                      completion:completion];
     }
     
     if (self.retryTimer) {
@@ -139,11 +129,14 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
         
         [BDMServerCommunicator.sharedCommunicator makeInitRequest:^(BDMSessionBuilder *builder) {
             builder
+            .appendBaseURL(weakSelf.configuration.baseURL)
             .appendSellerID(weakSelf.sellerID)
             .appendTargeting(weakSelf.configuration.targeting);
         } success:^(id<BDMInitialisationResponse> response) {
             // Save auction config
-            weakSelf.auctionSettings.auctionURL = response.auctionURL.absoluteString;
+            if (response.auctionURL) {
+                weakSelf.auctionSettings.auctionURL = response.auctionURL.absoluteString;
+            }
             weakSelf.auctionSettings.eventURLs = response.eventURLs;
             // Fulfill initialisation
             [weakSelf.middleware fulfillEvent:BDMEventInitialisation];
@@ -158,19 +151,25 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
     self.retryTimer.start();
 }
 
-- (ASKNetworkReachability *)reachability {
+- (STKNetworkReachability *)reachability {
     if (!_reachability) {
         NSString * host = [NSURL URLWithString:self.auctionSettings.auctionURL].host;
-        _reachability = [ASKNetworkReachability reachabilityWithHostName:host];
+        _reachability = [[STKNetworkReachability alloc] initWithHost:host];
     }
     return _reachability;
 }
 
-- (BOOL)isDeviceReachable {
-    if ([self.reachability currentReachabilityStatus] == 0) {
-        return NO;
+- (BDMHeaderBiddingController *)headerBiddingController {
+    if (!_headerBiddingController) {
+        _headerBiddingController = [BDMHeaderBiddingController new];
+        _headerBiddingController.delegate = self;
+        _headerBiddingController.middleware = self.middleware;
     }
-    return YES;
+    return _headerBiddingController;
+}
+
+- (BOOL)isDeviceReachable {
+    return self.reachability.status != STKNetworkStatusNotReachability;
 }
 
 #pragma mark - Private
@@ -196,38 +195,18 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
     return _middleware;
 }
 
-#pragma mark - BDMNetworkConfiguratorDataSource
+#pragma mark - BDMHeaderBiddingControllerDelegate
 
-- (id <BDMAdapter>)adapterWithName:(NSString *)name
-                            adType:(BDMFullscreenAdType)type
-                      interstitial:(BOOL)interstitial {
-    id <BDMAdapter> adapter;
-    // Try to select adapter for ad type
-    switch (type) {
-            // Banner can be fullscreen or not
-        case BDMFullsreenAdTypeBanner: {
-            if (interstitial) {
-                adapter = [self interstitialAdAdapterForNetwork:name];
-            } else {
-                adapter = [self bannerAdapterForNetwork:name];
-            }
-        } break;
-            // Video and native can't be fullscreen
-        case BDMFullscreenAdTypeVideo: adapter = [self videoAdapterForNetwork:name]; break;
-        case BDMFullscreenAdTypeAll: adapter = [self nativeAdAdapterForNetwork:name]; break;
-        default: break;
-    }
-    return adapter;
-}
-
-- (Class <BDMNetwork>)networkClassWithName:(NSString *)name forConfigurator:(BDMNetworkConfigurator *)congigurator {
-    return [self.registry networkClassByName:name];
+- (id<BDMNetwork>)networkWithName:(NSString *)name controller:(BDMHeaderBiddingController *)controller {
+    return [self.registry networkByName:name];
 }
 
 @end
 
 
 @implementation BDMSdk (Project)
+
+#pragma mark - BDMSdkContext
 
 - (id <BDMBannerAdapter>)bannerAdapterForNetwork:(NSString *)networkName {
     return [self.registry bannerAdapterForNetwork:networkName];
@@ -245,52 +224,69 @@ NSString * const BDMParallelBiddingInitialisatationItemsExtensionKey = @"Paralle
     return [self.registry nativeAdAdapterForNetwork:networkName];
 }
 
-- (NSSet *)exchangeRequestBodyFromSdkRequest:(BDMRequest *)request
-                                interstitial:(BOOL)intserstitial {
-    BDMNetworkConfigurator * configurator = [BDMFactory.sharedFactory configurator];
-    configurator.dataSource = self;
-    return [configurator exchangeRequestBodyFromSdkRequest:request
-                                              interstitial:intserstitial
-                                                       ssp:self.ssp];
-}
-
 - (BDMTargeting *)targeting {
     return self.configuration.targeting;
 }
 
-@end
-
-@implementation BDMSdk (ParallelBidding)
+#pragma mark - BDMSdkHeaderBiddingContext
 
 - (NSString *)ssp {
-    return self.configuration.extensions[BDMSSPExtensionKey];
+    return self.configuration.ssp;
 }
 
 - (void)registerNetworks {
     // Register networks first
-    NSArray <NSString *> * embeddedNetworks = @[ @"BDMMRAIDNetwork", @"BDMVASTNetwork", @"BDMNASTNetwork" ];
-    NSMutableArray <NSString *> * networkClassesString = [self.configuration.extensions[BDMParallelBiddingNetworksExtensionKey] mutableCopy] ?: [NSMutableArray new];
-    [embeddedNetworks enumerateObjectsUsingBlock:^(NSString * networkClassString, NSUInteger idx, BOOL * stop) {
-        if ([NSClassFromString(networkClassString) conformsToProtocol:@protocol(BDMNetwork)]) {
-            [networkClassesString addObject:networkClassString];
+    NSArray <NSString *> *embeddedNetworks = @[ @"BDMMRAIDNetwork", @"BDMVASTNetwork", @"BDMNASTNetwork" ];
+    NSMutableArray <Class<BDMNetwork>> *networkClasses = ANY(self.configuration.networkConfigurations)
+    .flatMap(^id(BDMAdNetworkConfiguration *config){
+        return config.networkClass;
+    }).array.mutableCopy ?: [NSMutableArray arrayWithCapacity:3];
+    
+    [embeddedNetworks enumerateObjectsUsingBlock:^(NSString *networkClassString, NSUInteger idx, BOOL *stop) {
+        Class <BDMNetwork> cls = NSClassFromString(networkClassString);
+        if ([cls conformsToProtocol:@protocol(BDMNetwork)]) {
+            [networkClasses addObject:cls];
         }
     }];
     
-    [networkClassesString enumerateObjectsUsingBlock:^(NSString * network, NSUInteger idx, BOOL * stop) {
+    [networkClasses enumerateObjectsUsingBlock:^(Class<BDMNetwork> network, NSUInteger idx, BOOL *stop) {
         [self.registry registerNetworkClass:network];
     }];
 }
 
-- (void)initializeParallelBiddingNetworks:(NSArray <BDMNetworkItem *> *)networks
-                               completion:(void(^)(void))completion {
-    BDMInitializationOperation *operation = [BDMFactory.sharedFactory initializeNetworkOperation:networks];
-    operation.dataSource = self;
+- (void)initializeNetworks:(NSArray <BDMAdNetworkConfiguration *> *)configs
+                completion:(void(^)(void))completion {
+    BDMHeaderBiddingInitialisationOperation *operation = [BDMFactory.sharedFactory initialisationOperationForNetworks:configs
+                                                                                                           controller:self.headerBiddingController
+                                                                                                    waitUntilFinished:NO];
     __weak typeof(self) weakSelf = self;
     operation.completionBlock = ^{
         weakSelf.initialized = YES;
-        dispatch_async(dispatch_get_main_queue(), completion);
+        completion ? dispatch_async(dispatch_get_main_queue(), completion) : nil;
     };
     [self.operationQueue addOperation:operation];
+}
+
+- (void)collectHeaderBiddingAdUnits:(BDMInternalPlacementType)placementType
+                         completion:(void (^)(NSArray<id<BDMPlacementAdUnit>> *))completion {
+    [self.middleware startEvent:BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared
+                      placement:placementType];
+    BDMHeaderBiddingInitialisationOperation *initialisation = [BDMFactory.sharedFactory initialisationOperationForNetworks:self.configuration.networkConfigurations
+                                                                                                                controller:self.headerBiddingController
+                                                                                                         waitUntilFinished:YES];
+    BDMHeaderBiddingPreparationOperation *preparation = [BDMFactory.sharedFactory preparationOperationForNetworks:self.configuration.networkConfigurations
+                                                                                                       controller:self.headerBiddingController
+                                                                                                        placement:placementType];
+    [preparation addDependency:initialisation];
+    __weak typeof(preparation) weakPreparation = preparation;
+    __weak typeof(self) weakSelf = self;
+    preparation.completionBlock = ^{
+        [weakSelf.middleware fulfillEvent:BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared
+                                placement:placementType];
+        STK_RUN_BLOCK(completion, weakPreparation.result);
+    };
+    [self.operationQueue addOperation:initialisation];
+    [self.operationQueue addOperation:preparation];
 }
 
 @end

@@ -11,24 +11,47 @@
 #import "BDMRequest.h"
 #import "BDMRegistry.h"
 #import "BDMAuctionSettings.h"
+#import "BDMPlacementAdUnit.h"
+#import "BDMRequest+Private.h"
+#import "BDMAdNetworkConfiguration.h"
 
-@interface BDMSdk (Project)
 
-@property (nonatomic, copy, readonly) NSString * sellerID;
-@property (nonatomic, copy, readonly) BDMTargeting * targeting;
+@protocol BDMSdkContext <NSObject>
+
+@property (nonatomic, copy, readonly) NSString *sellerID;
+@property (nonatomic, copy, readonly) BDMTargeting *targeting;
+@property (nonatomic, copy, readonly) BDMUserRestrictions *restrictions;
+
 @property (nonatomic, assign, readonly) BOOL testMode;
-@property (nonatomic, strong, readonly) BDMOpenRTBAuctionSettings *auctionSettings;
-
 @property (nonatomic, assign, readonly) BOOL isDeviceReachable;
 
-@property (nonatomic, copy, readonly) BDMUserRestrictions * restrictions;
+@property (nonatomic, strong, readonly) BDMOpenRTBAuctionSettings *auctionSettings;
 
 - (id <BDMBannerAdapter>)bannerAdapterForNetwork:(NSString *)networkName;
 - (id <BDMFullscreenAdapter>)interstitialAdAdapterForNetwork:(NSString *)networkName;
 - (id <BDMFullscreenAdapter>)videoAdapterForNetwork:(NSString *)networkName;
 - (id <BDMNativeAdServiceAdapter>)nativeAdAdapterForNetwork:(NSString *)networkName;
 
-- (NSSet *)exchangeRequestBodyFromSdkRequest:(BDMRequest *)request
-                                interstitial:(BOOL)intserstitial;
+@end
+
+
+@protocol BDMSdkHeaderBiddingContext <NSObject>
+
+@property (nonatomic, copy, readonly) NSString *ssp;
+
+- (void)collectHeaderBiddingAdUnits:(BDMInternalPlacementType)placementType
+                         completion:(void (^)(NSArray<id<BDMPlacementAdUnit>> *))completion;
+
+- (void)initializeNetworks:(NSArray <BDMAdNetworkConfiguration *> *)configs
+                completion:(void(^)(void))completion;
+
+- (void)registerNetworks;
+
+@end
+
+
+@interface BDMSdk (Project) <BDMSdkContext, BDMSdkHeaderBiddingContext>
+
+@property (nonatomic, copy, readonly) NSURL *baseURL;
 
 @end

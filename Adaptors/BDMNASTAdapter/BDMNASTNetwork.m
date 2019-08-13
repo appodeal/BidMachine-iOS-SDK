@@ -14,16 +14,16 @@
 
 #pragma mark - BDMNetwork
 
-+ (NSString *)name {
+- (NSString *)name {
     return @"nast";
 }
 
-+ (NSString *)sdkVersion {
+- (NSString *)sdkVersion {
     return @"2.0";
 }
 
-+ (Class<BDMNativeAdServiceAdapter>)nativeAdAdapterClassForSdk:(BDMSdk *)sdk {
-    return BDMNASTNativeAdServiceAdapter.class;
+- (id<BDMNativeAdServiceAdapter>)nativeAdAdapterForSdk:(BDMSdk *)sdk {
+    return [BDMNASTNativeAdServiceAdapter new];
 }
 
 @end

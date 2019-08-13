@@ -6,8 +6,9 @@
 
 #import "BDMPlacementRequestBuilder.h"
 #import "BDMProtoAPI-Umbrella.h"
-#import <ASKExtension/ASKExtension.h>
+#import "BDMTransformers.h"
 
+#import <StackFoundation/StackFoundation.h>
 
 @interface BDMPlacementRequestBuilder ()
 
@@ -16,6 +17,16 @@
 @end
 
 @implementation BDMPlacementRequestBuilder
+
+BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
+    switch (fmt) {
+        case BDMAdUnitFormatInterstitialUnknown: return YES; break;
+        case BDMAdUnitFormatInterstitialVideo: return YES; break;
+        case BDMAdUnitFormatRewardedUnknown: return YES; break;
+        case BDMAdUnitFormatRewardedVideo: return YES; break;
+        default: return NO; break;
+    }
+}
 
 - (id<BDMPlacementRequestBuilder> (^)(NSString *))appendSDK {
     return ^id<BDMPlacementRequestBuilder>(NSString * sdk){
@@ -32,8 +43,25 @@
 }
 
 - (id<BDMPlacementRequestBuilder> (^)(BOOL))appendReward {
-    return ^id<BDMPlacementRequestBuilder>(BOOL reward){
+    return ^id<BDMPlacementRequestBuilder>(BOOL reward) {
         self.placement.reward = reward;
+        return self;
+    };
+}
+
+- (id<BDMDisplayPlacementBuilder> (^)(NSArray <id<BDMPlacementAdUnit>> *))appendHeaderBidding {
+    return ^id(NSArray <id<BDMPlacementAdUnit>> *adUnits) {
+        NSArray <id<BDMPlacementAdUnit>> *videoExt = ANY(adUnits).filter(^BOOL(id<BDMPlacementAdUnit> unit) { return isBDMAdUnitFormatVideo(unit.format); }).array;
+        NSArray <id<BDMPlacementAdUnit>> *displayExt = ANY(adUnits).filter(^BOOL(id<BDMPlacementAdUnit> unit) { return !isBDMAdUnitFormatVideo(unit.format); }).array;
+        
+        if (displayExt.count) {
+            self.placement.display.extArray = [self headerBiddingExt:displayExt];
+        }
+        
+        if (videoExt.count) {
+            self.placement.video.extArray = [self headerBiddingExt:videoExt];
+        }
+        
         return self;
     };
 }
@@ -57,6 +85,20 @@
         _placement = [ADCOMPlacement message];
     }
     return _placement;
+}
+
+- (NSMutableArray <GPBAny *> *)headerBiddingExt:(NSArray <id<BDMPlacementAdUnit>> *)adUnits {
+    BDMHeaderBiddingPlacement *placement = [BDMHeaderBiddingPlacement message];
+    placement.adUnitsArray =  ANY(adUnits).flatMap(^BDMHeaderBiddingPlacement_AdUnit *(id<BDMPlacementAdUnit> unit) {
+        BDMHeaderBiddingPlacement_AdUnit *message = [BDMHeaderBiddingPlacement_AdUnit message];
+        message.bidder = unit.bidder;
+        message.bidderSdkver = unit.bidderSdkVersion;
+        message.clientParams = BDMTransformers.protobufMap(unit.clientParams);
+        return message;
+    }).array.mutableCopy;
+    
+    GPBAny *any = [GPBAny anyWithMessage:placement error:nil];
+    return any ? [NSMutableArray arrayWithObject:any] : [NSMutableArray new];
 }
 
 @end
@@ -93,24 +135,12 @@
 
 - (id<BDMVideoPlacementBuilder> (^)(NSArray<NSNumber *>*))appendCType {
     return ^id<BDMVideoPlacementBuilder>(NSArray<NSNumber *>* cTypes){
-        self.placement.ctypeArray = ASKObj(cTypes).reduce([GPBEnumArray array], ^(GPBEnumArray *array, NSNumber *value){
+        self.placement.ctypeArray = ANY(cTypes).reduce([GPBEnumArray array], ^(GPBEnumArray *array, NSNumber *value){
             [array addValue:value.unsignedIntValue];
-        }).original;
+        }).value;
         return self;
     };
 }
-
-- (id<BDMVideoPlacementBuilder> (^)(id<BDMExtPlacementBuilder>))appendExt {
-    return ^id<BDMVideoPlacementBuilder>(id<BDMExtPlacementBuilder> ext){
-        self.placement.extArray = ASKObj(ext.placement).transform(^id(BDMPlacementExtension *extention, NSUInteger idx){
-            NSError *error = nil;
-            GPBAny *any = [[GPBAny alloc] initWithMessage:extention error:&error];
-            return !error ? any : nil;
-        }).array.mutableCopy;
-        return self;
-    };
-}
-
 
 - (id<BDMVideoPlacementBuilder> (^)(float))appendHeight {
     return ^id<BDMVideoPlacementBuilder>(float value){
@@ -230,17 +260,6 @@
     };
 }
 
-- (id<BDMDisplayPlacementBuilder> (^)(id<BDMExtPlacementBuilder>))appendExt {
-    return ^id<BDMDisplayPlacementBuilder>(id<BDMExtPlacementBuilder> ext){
-        self.placement.extArray = ASKObj(ext.placement).transform(^id(BDMPlacementExtension *extention, NSUInteger idx){
-            NSError *error = nil;
-            GPBAny *any = [[GPBAny alloc] initWithMessage:extention error:&error];
-            return !error ? any : nil;
-        }).array.mutableCopy;
-        return self;
-    };
-}
-
 - (id<BDMDisplayPlacementBuilder> (^)(unsigned int))appendUnit {
     return ^id<BDMDisplayPlacementBuilder>(unsigned int unitSize){
         self.placement.unit = (ADCOMSizeUnit)unitSize;
@@ -264,33 +283,6 @@
 
 @end
 
-@interface BDMExtPlacementBuilder()
-
-@property (nonatomic, readwrite, strong) BDMPlacementExtension *placement;
-
-@end
-
-@implementation BDMExtPlacementBuilder
-
-- (id<BDMExtPlacementBuilder> (^)(NSString *))appendAdSpaceId {
-    return ^id<BDMExtPlacementBuilder> (NSString *spaceId) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-        self.placement.adSpaceId = spaceId;
-#pragma clang diagnostic pop
-
-        return self;
-    };
-}
-
-- (BDMPlacementExtension *)placement {
-    if (!_placement) {
-        _placement = [BDMPlacementExtension message];
-    }
-    return _placement;
-}
-
-@end
 
 @interface BDMNativeFormatBuilder()
 
@@ -305,7 +297,7 @@
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_TitleAssetFormat *title = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_TitleAssetFormat.new;
         [title setLen:104];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setTitle:title];
-        [self.format.assetArray ask_addObject:builder.format];
+        [self.format.assetArray stk_addObject:builder.format];
         return self;
     };
 }
@@ -315,7 +307,7 @@
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_ImageAssetFormat *img = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_ImageAssetFormat.new;
         [img setType:ADCOMNativeImageAssetType_NativeImageAssetTypeIconImage];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setImg:img];
-        [self.format.assetArray ask_addObject:builder.format];
+        [self.format.assetArray stk_addObject:builder.format];
         return self;
     };
 }
@@ -325,7 +317,7 @@
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_ImageAssetFormat *img = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_ImageAssetFormat.new;
         [img setType:ADCOMNativeImageAssetType_NativeImageAssetTypeMainImage];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setImg:img];
-        [self.format.assetArray ask_addObject:builder.format];
+        [self.format.assetArray stk_addObject:builder.format];
         return self;
     };
 }
@@ -335,7 +327,7 @@
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_DataAssetFormat *data = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_DataAssetFormat.new;
         [data setType:ADCOMNativeDataAssetType_NativeDataAssetTypeDesc];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setData_p:data];
-        [self.format.assetArray ask_addObject:builder.format];
+        [self.format.assetArray stk_addObject:builder.format];
         return self;
     };
 }
@@ -345,7 +337,7 @@
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_DataAssetFormat *data = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_DataAssetFormat.new;
         [data setType:ADCOMNativeDataAssetType_NativeDataAssetTypeCtaText];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setData_p:data];
-        [self.format.assetArray ask_addObject:builder.format];
+        [self.format.assetArray stk_addObject:builder.format];
         return self;
     };
 }
@@ -355,7 +347,7 @@
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_DataAssetFormat *data = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_DataAssetFormat.new;
         [data setType:ADCOMNativeDataAssetType_NativeDataAssetTypeRating];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setData_p:data];
-        [self.format.assetArray ask_addObject:builder.format];
+        [self.format.assetArray stk_addObject:builder.format];
         return self;
     };
 }
@@ -365,7 +357,7 @@
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_DataAssetFormat *data = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_DataAssetFormat.new;
         [data setType:ADCOMNativeDataAssetType_NativeDataAssetTypeSponsored];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setData_p:data];
-        [self.format.assetArray ask_addObject:builder.format];
+        [self.format.assetArray stk_addObject:builder.format];
         return self;
     };
 }
@@ -384,7 +376,7 @@
         
         ADCOMPlacement_VideoPlacement *video = (ADCOMPlacement_VideoPlacement *)videoBuilder.placement ;
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setVideo:video];
-        [self.format.assetArray ask_addObject:builder.format];
+        [self.format.assetArray stk_addObject:builder.format];
         return self;
     };
 }

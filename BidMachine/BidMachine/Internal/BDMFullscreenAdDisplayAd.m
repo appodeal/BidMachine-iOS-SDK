@@ -8,14 +8,14 @@
 
 #import "BDMFullscreenAdDisplayAd.h"
 #import "NSError+BDMSdk.h"
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 #import "BDMSdk+Project.h"
 
 
 @interface BDMFullscreenAdDisplayAd () <BDMFullscreenAdapterDisplayDelegate>
 
 @property (nonatomic, strong) id<BDMFullscreenAdapter> adapter;
-@property (nonatomic, weak) UIViewController * rootViewController;
+@property (nonatomic, weak) UIViewController *rootViewController;
 @property (nonatomic, assign) NSTimeInterval startViewTimestamp;
 
 @end
@@ -33,11 +33,9 @@
     
     id <BDMFullscreenAdapter> adapter;
     BDMFullscreenAdDisplayAd * displayAd = [[BDMFullscreenAdDisplayAd alloc] initWithResponse:response];
-    BOOL isVideo =  ([displayAd.displayManager isEqualToString:@"vast"]);
-    if (isVideo) {
-        adapter = [BDMSdk.sharedSdk videoAdapterForNetwork:displayAd.displayManager];
-    } else {
-        adapter = [BDMSdk.sharedSdk interstitialAdAdapterForNetwork:displayAd.displayManager];
+    switch (response.creative.format) {
+        case BDMCreativeFormatVideo: adapter = [BDMSdk.sharedSdk videoAdapterForNetwork:displayAd.displayManager]; break;
+        default: adapter = [BDMSdk.sharedSdk interstitialAdAdapterForNetwork:displayAd.displayManager]; break;
     }
     
     if (placementType == BDMInternalPlacementTypeRewardedVideo &&
@@ -94,13 +92,13 @@
 
 - (void)adapterWillPresent:(id<BDMFullscreenAdapter>)adapter {
     BDMLog(@"Adapter: %@ will present ad", adapter);
-    self.startViewTimestamp = NSDate.ask_currentTimeInMilliseconds;
+    self.startViewTimestamp = NSDate.stk_currentTimeInMilliseconds;
     [self.delegate displayAdLogStartView:self];
 }
 
 - (void)adapterDidDismiss:(id<BDMFullscreenAdapter>)adapter {
     // Log impression if needed
-    NSTimeInterval finishViewTimestamp = NSDate.ask_currentTimeInMilliseconds;
+    NSTimeInterval finishViewTimestamp = NSDate.stk_currentTimeInMilliseconds;
     if ((finishViewTimestamp - self.startViewTimestamp) > self.viewabilityConfig.impressionInterval) {
         BDMLog(@"Adapter: %@ will log impression", adapter);
         [self.delegate displayAdLogImpression:self];

@@ -7,23 +7,23 @@
 //
 
 #import "BDMRewarded.h"
-#import "BDMRequest+ParallelBidding.h"
+#import "BDMRequest+HeaderBidding.h"
 #import "BDMRequest+Private.h"
 #import "BDMFactory+BDMEventMiddleware.h"
 #import "BDMFactory+BDMDisplayAd.h"
-#import "BDMSdk+ParallelBidding.h"
+#import "BDMSdkConfiguration+HeaderBidding.h"
 #import "BDMSdk+Project.h"
 #import "NSError+BDMSdk.h"
 
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 @interface BDMRewarded () <BDMRequestDelegate, BDMDisplayAdDelegate>
 
-@property (nonatomic, strong) BDMEventMiddleware * middleware;
+@property (nonatomic, strong) BDMEventMiddleware *middleware;
 @property (nonatomic, strong) id <BDMDisplayAd> displayAd;
 
-@property (nonatomic, strong) BDMRewardedRequest * currentRequest;
+@property (nonatomic, strong) BDMRewardedRequest *currentRequest;
 
 @end
 
@@ -36,7 +36,7 @@
 }
 
 - (void)populateWithRequest:(BDMRewardedRequest *)request {
-    NSAssert(BDMRewardedRequest.ask_isValid(request), @"BDMRewarded request should be kind of class BDMRewardedRequest");
+    NSAssert(BDMRewardedRequest.stk_isValid(request), @"BDMRewarded request should be kind of class BDMRewardedRequest");
     self.currentRequest = request;
     self.middleware = [BDMFactory.sharedFactory middlewareWithRequest:self.currentRequest eventProducer:self];
     switch (self.currentRequest.state) {
@@ -77,12 +77,6 @@
 }
 
 - (void)presentFromRootViewController:(UIViewController *)rootViewController {
-    [self presentWithPlacement:nil fromRootViewController:rootViewController];
-}
-
-#pragma mark - Private
-
-- (void)presentWithPlacement:(NSNumber *)placement fromRootViewController:(UIViewController *)rootViewController {
     if (!self.displayAd.hasLoadedCreative) {
         NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeNoContent
                                          description:@"Display ad not ready to present any ad!"];
@@ -98,6 +92,8 @@
     [self.currentRequest cancelExpirationTimer];
     [self.displayAd presentAd:rootViewController container:nil];
 }
+
+#pragma mark - Private
 
 - (void)prepareDisplayAd {
     NSError * error;

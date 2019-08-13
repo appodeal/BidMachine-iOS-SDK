@@ -8,18 +8,17 @@
 
 import UIKit
 
+
 class KeyValuePairTableViewCell: UITableViewCell {
-    var entity: DictionaryEntity? {
-        didSet {
-            update()
-        }
-    }
-    
-    var binding:((T)->())?
-    
     @IBOutlet private weak var keyTextField: UITextField!
     @IBOutlet private weak var valueTextField: UITextField!
     @IBOutlet private weak var statusImageView: UIImageView!
+    
+    var binding:((T)->())?
+
+    var entity: DictionaryEntity? {
+        didSet { update() }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,27 +49,20 @@ class KeyValuePairTableViewCell: UITableViewCell {
     }
     
     private func update() {
-        guard entity != nil else {
-            return
-        }
-    
+        guard entity != nil else { return }
         self.statusImageView.image = parsedDictionary() == nil ? #imageLiteral(resourceName: "Incorrect") : #imageLiteral(resourceName: "Correct")
     }
 }
 
-extension Int {
-    
-}
 
 extension KeyValuePairTableViewCell: NibProvider {
+    static let reuseIdentifier: String = "KeyValuePairTableViewCellReuseID"
+
     static var nib: UINib {
         return UINib(nibName: "KeyValuePairTableViewCell", bundle: Bundle(for: self))
     }
-    
-    static var reuseIdentifier: String {
-        return "KeyValuePairTableViewCellReuseID"
-    }
 }
+
 
 extension KeyValuePairTableViewCell: BindingView {
     typealias T = DictionaryEntity

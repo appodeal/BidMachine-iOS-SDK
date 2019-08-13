@@ -10,8 +10,9 @@
 #import "ADCOMAd_Display_Native+BDMSdk.h"
 #import "BDMProtoAPI-Umbrella.h"
 #import "BDMTransformers.h"
+#import "ADCOMAd+Private.h"
 
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 static NSString * const kBDMCreativeKey     = @"creative";
@@ -25,14 +26,13 @@ static NSString * const kBDMMRAIDClosableViewDelayKey   = @"closable_view_delay"
 
 @interface BDMCreative ()
 
-@property (nonatomic, copy, readwrite) NSArray <BDMEventURL *> * trackers;
+@property (nonatomic, copy, readwrite) NSArray <BDMEventURL *> *trackers;
 @property (nonatomic, copy, readwrite) BDMViewabilityMetricConfiguration * viewabilityConfig;
-
-@property (nonatomic, copy, readwrite) NSArray <NSString *> * adDomains;
-@property (nonatomic, copy, readwrite) NSString * displaymanager;
-@property (nonatomic, copy, readwrite) NSString * ID;
-
-@property (nonatomic, copy, readwrite) NSDictionary <NSString *, id> * renderingInfo;
+@property (nonatomic, copy, readwrite) NSArray <NSString *> *adDomains;
+@property (nonatomic, copy, readwrite) NSString *displaymanager;
+@property (nonatomic, copy, readwrite) NSString *ID;
+@property (nonatomic, copy, readwrite) NSDictionary <NSString *, NSString *> *renderingInfo;
+@property (nonatomic, assign, readwrite) BDMCreativeFormat format;
 
 @end
 
@@ -66,22 +66,44 @@ static NSString * const kBDMMRAIDClosableViewDelayKey   = @"closable_view_delay"
 #pragma mark - Private
 
 - (void)populateRenderingData:(ADCOMAd *)ad extensions:(BDMAdExtension *)extensions {
-    NSMutableDictionary <NSString *, id> * renderingInfo = [NSMutableDictionary new];
+    NSMutableDictionary <NSString *, NSString *> * renderingInfo = [NSMutableDictionary new];
+    BDMHeaderBiddingAd *headerBiddingAd;
+    // Check DSP Creative from video placement first
     if (ad.video.adm.length > 0) {
+        // All video creatives are displayed by VAST
         self.displaymanager = @"vast";
+        self.format = BDMCreativeFormatVideo;
         renderingInfo[kBDMCreativeKey] = ad.video.adm;
+    // Check DSP Creative from display placement
     } else if (ad.display.adm.length > 0) {
+        // All video creatives are displayed by MRAID
         self.displaymanager = @"mraid";
+        self.format = BDMCreativeFormatBanner;
+        
         renderingInfo[kBDMCreativeKey]                  = ad.display.adm;
-        renderingInfo[kBDMWidthKey]                     = @(ad.display.w);
-        renderingInfo[kBDMHeightKey]                    = @(ad.display.h);
-        renderingInfo[kBDMMRAIDPreloadKey]              = @(extensions == nil || extensions.preload);
-        renderingInfo[kBDMMRAIDClosableViewDelayKey]    = @(extensions.skipAfter);
+        renderingInfo[kBDMWidthKey]                     = @(ad.display.w).stringValue;
+        renderingInfo[kBDMHeightKey]                    = @(ad.display.h).stringValue;
+        renderingInfo[kBDMMRAIDPreloadKey]              = @(extensions == nil || extensions.preload).stringValue;
+        renderingInfo[kBDMMRAIDClosableViewDelayKey]    = @(extensions.skipAfter).stringValue;
+    // Check DSP Creative of native fmt
     } else if (ad.display.native.assetArray.count > 0) {
         self.displaymanager = @"nast";
+        self.format = BDMCreativeFormatNative;
         renderingInfo = ad.display.native.JSONRepresentation;
+    } else {
+        // Then try to get Header Bidding Ad
+        if ((headerBiddingAd = ad.bdm_nativeHeaderBiddingAd)) {
+            self.format = BDMCreativeFormatNative;
+        } else if ((headerBiddingAd = ad.bdm_videoHeaderBiddingAd)) {
+            self.format = BDMCreativeFormatVideo;
+        } else if ((headerBiddingAd = ad.bdm_bannerHeaderBiddingAd)) {
+            self.format = BDMCreativeFormatBanner;
+        }
+        
+        self.displaymanager = headerBiddingAd.bidder;
+        [renderingInfo addEntriesFromDictionary:BDMTransformers.jsonObject(headerBiddingAd.clientParams)];
+        [renderingInfo addEntriesFromDictionary:BDMTransformers.jsonObject(headerBiddingAd.serverParams)];
     }
-    
     self.renderingInfo = renderingInfo;
 }
 
@@ -107,6 +129,7 @@ static NSString * const kBDMMRAIDClosableViewDelayKey   = @"closable_view_delay"
     copy.renderingInfo       = self.renderingInfo;
     copy.adDomains           = self.adDomains;
     copy.ID                  = self.ID;
+    copy.format              = self.format;
     
     return copy;
 }    

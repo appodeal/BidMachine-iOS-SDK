@@ -7,23 +7,22 @@
 //
 
 #import "BDMNASTDisplayAdapter.h"
-#import <ASKDiskUtils/ASKDiskUtils.h>
-#import <ASKExtension/ASKExtension.h>
+#import <StackUIKit/StackUIKit.h>
 
 
 @interface BDMNASTDisplayAdapter ()
 
-@property (nonatomic, strong) ANKAd *ad;
+@property (nonatomic, strong) STKNASTAd *ad;
 
 @end
 
 @implementation BDMNASTDisplayAdapter
 
-+ (instancetype)displayAdapterForAd:(ANKAd *)ad {
++ (instancetype)displayAdapterForAd:(STKNASTAd *)ad {
     return [[self alloc] initWithNativeAd:ad];
 }
 
-- (instancetype)initWithNativeAd:(ANKAd *)ad {
+- (instancetype)initWithNativeAd:(STKNASTAd *)ad {
     if (self = [super init]) {
         self.ad = ad;
     }
@@ -38,7 +37,7 @@
     view.callToActionLabel.text = self.ad.callToAction;
     
     if (view.iconView) {
-        view.iconView.askFastImageCache([NSURL URLWithString:self.ad.iconURLString]);
+        view.iconView.stkFastImageCache([NSURL URLWithString:self.ad.iconURLString]);
     }
 
     if (view.mediaContainerView) {

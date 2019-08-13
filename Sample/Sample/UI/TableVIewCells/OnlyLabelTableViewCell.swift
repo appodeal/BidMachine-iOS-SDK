@@ -8,16 +8,15 @@
 
 import UIKit
 
+
 class OnlyLabelTableViewCell: UITableViewCell {
+    @IBOutlet weak var label: UILabel!
     
     var entity: OnlyLabelEntity? {
-        didSet {
-            update()
-        }
+        didSet {  update() }
     }
-    var binding:((OnlyLabelEntity)->())?
     
-    @IBOutlet weak var label: UILabel!
+    var binding:((OnlyLabelEntity)->())?
     
     private func update() {
         label.text = entity?.info
@@ -25,12 +24,10 @@ class OnlyLabelTableViewCell: UITableViewCell {
 }
 
 extension OnlyLabelTableViewCell: NibProvider {
+    static let reuseIdentifier: String = "OnlyLabelTableViewCellReuseID"
+    
     static var nib: UINib {
         return UINib(nibName: "OnlyLabelTableViewCell", bundle: Bundle(for: self))
-    }
-    
-    static var reuseIdentifier: String {
-        return "OnlyLabelTableViewCellReuseID"
     }
 }
 

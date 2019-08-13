@@ -9,8 +9,9 @@
 #import "BDMFactory.h"
 #import "BDMSdk.h"
 #import "BDMRegistry.h"
-#import "BDMNetworkConfigurator.h"
-#import "BDMInitializationOperation.h"
+#import "BDMHeaderBiddingInitialisationOperation.h"
+#import "BDMHeaderBiddingPreparationOperation.h"
+
 
 @implementation BDMFactory
 
@@ -31,12 +32,20 @@
     return [BDMRegistry new];
 }
 
-- (BDMNetworkConfigurator *)configurator {
-    return [BDMNetworkConfigurator new];
+- (BDMHeaderBiddingInitialisationOperation *)initialisationOperationForNetworks:(NSArray <BDMAdNetworkConfiguration *> *)networks
+                                                                     controller:(BDMHeaderBiddingController *)controller
+                                                              waitUntilFinished:(BOOL)waitUntilFinished {
+    return [BDMHeaderBiddingInitialisationOperation initialisationOperationForNetworks:networks
+                                                                            controller:controller
+                                                                     waitUntilFinished:waitUntilFinished];
 }
 
-- (BDMInitializationOperation *)initializeNetworkOperation:(NSArray<BDMNetworkItem *> *)networks {
-    return [BDMInitializationOperation initilizeNetworkOperation:networks];
+- (BDMHeaderBiddingPreparationOperation *)preparationOperationForNetworks:(NSArray<BDMAdNetworkConfiguration *> *)networks
+                                                               controller:(BDMHeaderBiddingController *)controller
+                                                                placement:(BDMInternalPlacementType)placement {
+    return [BDMHeaderBiddingPreparationOperation preparationOperationForNetworks:networks
+                                                                      controller:controller
+                                                                       placement:placement];
 }
 
 - (UIViewController *)topPresentedViewController {

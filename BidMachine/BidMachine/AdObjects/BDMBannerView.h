@@ -94,11 +94,11 @@
  Root view controller for present modal controllers and
  viewability tracking
  */
-@property (nonatomic, weak, nullable) IBOutlet UIViewController * rootViewController;
+@property (nonatomic, weak, nullable) IBOutlet UIViewController *rootViewController;
 /**
  Info of latest sucessful auctuion
  */
-@property (nonatomic, copy, readonly, nullable) BDMAuctionInfo * latestAuctionInfo;
+@property (nonatomic, copy, readonly, nullable) BDMAuctionInfo *latestAuctionInfo;
 /**
  Banner ad size
  */

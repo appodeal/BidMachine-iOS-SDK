@@ -9,6 +9,7 @@
 import UIKit
 import BidMachine
 
+
 class InitializationVC: UIViewController {
     @IBOutlet weak var sellerIdTextField: UITextField!
     @IBOutlet weak var initializeAdButton: UIButton!
@@ -41,7 +42,7 @@ class InitializationVC: UIViewController {
         BDMSdk.shared().startSession(withSellerID:SdkContext.shared.sellerId,
                                      configuration:SdkContext.shared.configuration){
                                         SdkContext.shared.synchronise()
-                                        print("Open Bids SDK was initialized")
+                                        print("BidMachine SDK was initialized")
         }
         let  tabBarVC: TabBarController? =  UIApplication.shared.mainStoryboard.instantiateVC()
         self.navigationController?.pushViewController(tabBarVC!, animated: true)

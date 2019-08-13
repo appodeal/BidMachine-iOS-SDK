@@ -1,79 +1,82 @@
 PODS:
-  - AppodealSupportedModules/ASKDiskUtils (0.5.4):
-    - AppodealSupportedModules/ASKExtension
-  - AppodealSupportedModules/ASKExtension (0.5.4)
-  - AppodealSupportedModules/ASKGraphicButton (0.5.4)
-  - AppodealSupportedModules/ASKLogger (0.5.4)
-  - AppodealSupportedModules/ASKProductPresentation (0.5.4):
-    - AppodealSupportedModules/ASKExtension
-  - AppodealSupportedModules/ASKSpinner (0.5.4)
-  - AppodealSupportedModules/ASKViewability (0.5.4):
-    - AppodealSupportedModules/ASKExtension
-  - AppodealSupportedModules/OverlayPosition (0.5.4)
-  - AppodealSupportedModules/UIExtension (0.5.4):
-    - AppodealSupportedModules/ASKExtension
+  - AdColony (3.3.8.1)
+  - FBAudienceNetwork (5.4.0)
   - Kiwi (3.0.0)
-  - MobileAdDisplayManagers/AppodealDocumentParser (0.4.2):
-    - AppodealSupportedModules/ASKExtension (~> 0.5.0)
-  - MobileAdDisplayManagers/AppodealMRAIDKit (0.4.2):
-    - AppodealSupportedModules/ASKExtension (~> 0.5.0)
-    - AppodealSupportedModules/ASKGraphicButton (~> 0.5.0)
-    - AppodealSupportedModules/ASKViewability (~> 0.5.0)
-    - AppodealSupportedModules/OverlayPosition (~> 0.5.0)
-    - AppodealSupportedModules/UIExtension (~> 0.5.0)
-  - MobileAdDisplayManagers/AppodealNASTKit (0.4.2):
-    - AppodealSupportedModules/ASKExtension (~> 0.5.0)
-    - MobileAdDisplayManagers/AppodealVASTKit
-  - MobileAdDisplayManagers/AppodealVASTAssets (0.4.2):
-    - AppodealSupportedModules/ASKExtension (~> 0.5.0)
-    - AppodealSupportedModules/OverlayPosition (~> 0.5.0)
-    - AppodealSupportedModules/UIExtension (~> 0.5.0)
-    - MobileAdDisplayManagers/AppodealDocumentParser
-  - MobileAdDisplayManagers/AppodealVASTKit (0.4.2):
-    - AppodealSupportedModules/ASKExtension (~> 0.5.0)
-    - AppodealSupportedModules/ASKLogger (~> 0.5.0)
-    - MobileAdDisplayManagers/AppodealMRAIDKit
-    - MobileAdDisplayManagers/AppodealVASTAssets
-    - MobileAdDisplayManagers/AppodealVideoPlayer
-  - MobileAdDisplayManagers/AppodealVideoPlayer (0.4.2):
-    - AppodealSupportedModules/ASKDiskUtils (~> 0.5.0)
-    - AppodealSupportedModules/ASKExtension (~> 0.5.0)
-    - AppodealSupportedModules/ASKGraphicButton (~> 0.5.0)
-    - AppodealSupportedModules/ASKViewability (~> 0.5.0)
-    - AppodealSupportedModules/UIExtension (~> 0.5.0)
-  - Protobuf (3.8.0)
+  - myTargetSDK (5.3.3)
+  - Protobuf (3.9.0)
+  - StackAPI/BidMachine (0.1.2):
+    - Protobuf (~> 3.8)
+  - StackIAB/StackMRAIDKit (0.5.2):
+    - StackModules (~> 0.6.3)
+  - StackIAB/StackNASTKit (0.5.2):
+    - StackIAB/StackVASTKit
+    - StackModules (~> 0.6.3)
+  - StackIAB/StackVASTAssets (0.5.2):
+    - StackIAB/StackXML
+    - StackModules (~> 0.6.3)
+  - StackIAB/StackVASTKit (0.5.2):
+    - StackIAB/StackMRAIDKit
+    - StackIAB/StackVASTAssets
+    - StackIAB/StackVideoPlayer
+    - StackModules (~> 0.6.3)
+  - StackIAB/StackVideoPlayer (0.5.2):
+    - StackModules (~> 0.6.3)
+  - StackIAB/StackXML (0.5.2):
+    - StackModules (~> 0.6.3)
+  - StackModules (0.6.6):
+    - StackModules/StackUIKit (= 0.6.6)
+  - StackModules/StackFoundation (0.6.6)
+  - StackModules/StackUIKit (0.6.6):
+    - StackModules/StackFoundation
+  - TapjoySDK (12.3.1)
   - Toast-Swift (4.0.1)
+  - VungleSDK-iOS (6.3.2)
 
 DEPENDENCIES:
-  - AppodealSupportedModules/ASKDiskUtils (~> 0.5.0)
-  - AppodealSupportedModules/ASKExtension (~> 0.5.0)
-  - AppodealSupportedModules/ASKLogger (~> 0.5.0)
-  - AppodealSupportedModules/ASKProductPresentation (~> 0.5.0)
-  - AppodealSupportedModules/ASKSpinner (~> 0.5.0)
-  - AppodealSupportedModules/ASKViewability (~> 0.5.0)
+  - AdColony (~> 3.3)
+  - FBAudienceNetwork (~> 5.4)
   - Kiwi
-  - MobileAdDisplayManagers/AppodealMRAIDKit (~> 0.4.0)
-  - MobileAdDisplayManagers/AppodealNASTKit (~> 0.4.0)
-  - MobileAdDisplayManagers/AppodealVASTKit (~> 0.4.0)
-  - Protobuf (~> 3.6)
+  - myTargetSDK (~> 5.3)
+  - Protobuf
+  - StackAPI/BidMachine (~> 0.1.0)
+  - StackIAB/StackMRAIDKit (~> 0.5.0)
+  - StackIAB/StackNASTKit (~> 0.5.0)
+  - StackIAB/StackVASTKit (~> 0.5.0)
+  - StackModules (~> 0.6.3)
+  - StackModules/StackFoundation (~> 0.6.3)
+  - StackModules/StackUIKit (~> 0.6.3)
+  - TapjoySDK (~> 12.3)
   - Toast-Swift (~> 4.0.0)
+  - VungleSDK-iOS (~> 6.3)
 
 SPEC REPOS:
   https://github.com/appodeal/CocoaPods.git:
-    - AppodealSupportedModules
-    - MobileAdDisplayManagers
+    - FBAudienceNetwork
+    - StackAPI
+    - StackIAB
+    - StackModules
   https://github.com/cocoapods/specs.git:
+    - AdColony
     - Kiwi
+    - myTargetSDK
     - Protobuf
+    - TapjoySDK
     - Toast-Swift
+    - VungleSDK-iOS
 
 SPEC CHECKSUMS:
-  AppodealSupportedModules: 31b983161e612ad285c9f851fb3243cc028f0939
+  AdColony: 21c9cdcc780854d406e213cb1e5ef9f2b165cca3
+  FBAudienceNetwork: d139bc387b26f018bedef8f5a75e7affae0bc77d
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  MobileAdDisplayManagers: 8b82d560d0c319edd71e27c847b2dc71a723ca6e
-  Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
+  myTargetSDK: e63e4e5be9e8dd714339df9ade73059bf3a3d385
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  StackAPI: 222922252854078576b896250fcfb385abd24cec
+  StackIAB: 1ed16132c93eb86e9b01cf4dae60e82eb952aaf6
+  StackModules: 1aaf237a520de33a13e151fcb467f4ed3cea3f16
+  TapjoySDK: 753e103874719a63dd37c479bd8046db3c274cd6
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
+  VungleSDK-iOS: 69a7f407b60281d2954ffc5eeeac349fbfed51d6
 
-PODFILE CHECKSUM: 7edac9d930def1dc7330c74d81238ed7d0b662f3
+PODFILE CHECKSUM: 504be9cdc728b4d18cbd5a0303d5d799234d4c0a
 
 COCOAPODS: 1.6.1

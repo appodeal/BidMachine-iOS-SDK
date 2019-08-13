@@ -8,9 +8,8 @@
 
 #import "BDMRequest.h"
 #import "BDMPlacementRequestBuilderProtocol.h"
-#import "BDMEventMiddleware.h"
-#import "BDMEventURL.h"
 
+@class BDMEventURL;
 
 typedef NS_ENUM(NSInteger, BDMInternalPlacementType) {
     BDMInternalPlacementTypeInterstitial = 0,
@@ -30,7 +29,7 @@ typedef NS_ENUM(NSInteger, BDMRequestState) {
 @interface BDMRequest (Private)
 
 @property (nonatomic, assign, readonly) BDMRequestState state;
-@property (nonatomic, copy, readonly) NSArray<BDMEventURL *> * eventTrackers;
+@property (nonatomic, copy, readonly) NSArray<BDMEventURL *> *eventTrackers;
 
 - (void)performWithRequest:(BDMRequest *)request
              placementType:(BDMInternalPlacementType)placementType

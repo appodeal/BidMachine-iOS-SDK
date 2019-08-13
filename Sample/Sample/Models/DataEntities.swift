@@ -9,11 +9,13 @@
 import Foundation
 import BidMachine
 
+
 protocol Entity: Equatable {
     associatedtype T
     var info: String? { get }
     var value:T? { get }
 }
+
 
 struct BooleanEntity : Entity {
     typealias T = Bool
@@ -25,6 +27,7 @@ struct BooleanEntity : Entity {
     }
 }
 
+
 struct LocationEntity : Entity {
     typealias T = CLLocation
     var info: String?
@@ -34,6 +37,7 @@ struct LocationEntity : Entity {
         return lhs.info == rhs.info
     }
 }
+
 
 struct StringEnumEntity : Entity {
     typealias T = String
@@ -46,6 +50,7 @@ struct StringEnumEntity : Entity {
     }
 }
 
+
 struct DictionaryEntity : Entity {
     typealias T = [String:Any]
     var info: String?
@@ -55,6 +60,7 @@ struct DictionaryEntity : Entity {
         return lhs.info == rhs.info
     }
 }
+
 
 struct DataEntity : Entity {
     enum DataType {
@@ -74,6 +80,7 @@ struct DataEntity : Entity {
     }
 }
 
+
 struct StatusEntity : Entity {
     typealias T = Bool
     var info: String?
@@ -83,6 +90,7 @@ struct StatusEntity : Entity {
         return lhs.info == rhs.info
     }
 }
+
 
 struct OnlyLabelEntity : Entity {
     typealias T = String?

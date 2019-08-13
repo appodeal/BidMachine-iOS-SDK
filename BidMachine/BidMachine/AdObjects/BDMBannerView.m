@@ -7,15 +7,15 @@
 //
 
 #import "BDMBannerView.h"
-#import "BDMRequest+ParallelBidding.h"
+#import "BDMRequest+HeaderBidding.h"
 #import "BDMRequest+Private.h"
 #import "BDMFactory+BDMEventMiddleware.h"
 #import "BDMFactory+BDMDisplayAd.h"
 #import "NSError+BDMSdk.h"
-#import "BDMSdk+ParallelBidding.h"
+#import "BDMSdkConfiguration+HeaderBidding.h"
 #import "BDMSdk+Project.h"
 
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 @interface BDMBannerView () <BDMRequestDelegate, BDMDisplayAdDelegate>
@@ -66,7 +66,7 @@
 }
 
 - (void)populateWithRequest:(BDMBannerRequest *)request {
-    NSAssert(BDMBannerRequest.ask_isValid(request), @"BDMBannerView request should be kind of class BDMBannerRequest");
+    NSAssert(BDMBannerRequest.stk_isValid(request), @"BDMBannerView request should be kind of class BDMBannerRequest");
     self.currentRequest = request;
     self.middleware = [BDMFactory.sharedFactory middlewareWithRequest:self.currentRequest eventProducer:self];
     switch (self.currentRequest.state) {

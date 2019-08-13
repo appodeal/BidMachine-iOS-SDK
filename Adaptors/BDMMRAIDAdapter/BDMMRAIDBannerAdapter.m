@@ -12,24 +12,22 @@
 #import "NSError+BDMMRAIDAdapter.h"
 #import <BidMachine/NSError+BDMSdk.h>
 
-@import ASKSpinner;
-@import ASKProductPresentation;
-@import ASKGraphicButton;
-@import ASKExtension;
-@import AppodealMRAIDKit;
+@import StackUIKit;
+@import StackFoundation;
+@import StackMRAIDKit;
 
 
 const CGSize kBDMAdSize320x50  = {.width = 320.0f, .height = 50.0f  };
 const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 
 
-@interface BDMMRAIDBannerAdapter () <AMKAdDelegate, AMKWebServiceDelegate, AMKViewPresenterDelegate, ASKProductControllerDelegate>
+@interface BDMMRAIDBannerAdapter () <STKMRAIDAdDelegate, STKMRAIDServiceDelegate, STKMRAIDViewPresenterDelegate, STKProductControllerDelegate>
 
-@property (nonatomic, strong) AMKAd *ad;
-@property (nonatomic, strong) AMKViewPresenter *presenter;
+@property (nonatomic, strong) STKMRAIDAd *ad;
+@property (nonatomic, strong) STKMRAIDViewPresenter *presenter;
 
-@property (nonatomic, strong) ASKProductController *productPresenter;
-@property (nonatomic, strong) ASKSpinnerView *activityIndicatorView;
+@property (nonatomic, strong) STKProductController *productPresenter;
+@property (nonatomic, strong) STKSpinnerView *activityIndicatorView;
 
 @property (nonatomic, weak) UIView *container;
 
@@ -40,15 +38,11 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 
 @implementation BDMMRAIDBannerAdapter
 
-- (Class)relativeAdNetworkClass {
-    return BDMMRAIDNetwork.class;
-}
-
 - (UIView *)adView {
     return self.presenter;
 }
 
-- (void)prepareContent:(NSDictionary *)contentInfo {
+- (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
     self.adContent          = contentInfo[@"creative"];
     self.shouldCache        = contentInfo[@"should_cache"] ? [contentInfo[@"should_cache"] boolValue] : YES;
     self.closableViewDelay  = contentInfo[@"closable_view_delay"] ? [contentInfo[@"closable_view_delay"] floatValue] : 10.0f;
@@ -60,12 +54,12 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
                                 kMRAIDSupportsInlineVideo,
                                 kMRAIDSupportsLoging
                                 ];
-    self.ad = [AMKAd new];
+    self.ad = [STKMRAIDAd new];
     self.ad.delegate = self;
-    self.ad.serviceManager.delegate = self;
-    [self.ad.serviceManager.configuration registerServices:mraidFeatures];
+    self.ad.service.delegate = self;
+    [self.ad.service.configuration registerServices:mraidFeatures];
     
-    self.presenter = [AMKViewPresenter new];
+    self.presenter = [STKMRAIDViewPresenter new];
     self.presenter.delegate = self;
     self.presenter.frame = frame;
     
@@ -83,7 +77,7 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
         [container addSubview:self.presenter];
         [self.presenter presentAd:self.ad];
     } else {
-        self.activityIndicatorView = [[ASKSpinnerView alloc] initWithFrame:self.presenter.frame blurred:YES];
+        self.activityIndicatorView = [[STKSpinnerView alloc] initWithFrame:self.presenter.frame blurred:YES];
         self.activityIndicatorView.hidden = NO;
         [container addSubview:self.activityIndicatorView];
         [self.ad loadHTML:self.adContent];
@@ -92,7 +86,7 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 
 #pragma mark - AMKAdDelegate
 
-- (void)didLoadAd:(AMKAd *)ad {
+- (void)didLoadAd:(STKMRAIDAd *)ad {
     if (self.shouldCache) {
         [self.loadingDelegate adapterPreparedContent:self];
     } else {
@@ -105,19 +99,19 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
     }
 }
 
-- (void)didFailToLoadAd:(AMKAd *)ad withError:(NSError *)error {
-     if (self.shouldCache) {
-         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
-     } else {
-         [self.activityIndicatorView removeFromSuperview];
-         [self.displayDelegate adapter:self failedToPresentAdWithError:error];
-     }
+- (void)didFailToLoadAd:(STKMRAIDAd *)ad withError:(NSError *)error {
+    if (self.shouldCache) {
+        [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
+    } else {
+        [self.activityIndicatorView removeFromSuperview];
+        [self.displayDelegate adapter:self failedToPresentAdWithError:error];
+    }
 }
 
-- (void)didUserInteractionAd:(AMKAd *)ad withURL:(NSURL *)url {
+- (void)didUserInteractionAd:(STKMRAIDAd *)ad withURL:(NSURL *)url {
     [self.displayDelegate adapterRegisterUserInteraction:self];
     NSArray <NSURL *> *urls = url ? @[url] : @[];
-    [ASKSpinnerScreen show];
+    [STKSpinnerScreen show];
     [self.productPresenter presentUrls:urls];
 }
 
@@ -135,33 +129,41 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 #pragma mark - ASKProductControllerDelegate
 
 - (UIViewController *)presenterRootViewController {
-    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.ask_topPresentedViewController;
+    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
 }
 
-- (void)controller:(ASKProductController *)controller didDismissProduct:(NSURL *)productURL {
+- (void)controller:(STKProductController *)controller didDismissProduct:(NSURL *)productURL {
     [self.displayDelegate adapterDidDismissScreen:self];
 }
 
-- (void)controller:(ASKProductController *)controller didFailToPresentWithError:(NSError *)error {
-    [ASKSpinnerScreen hide];
+- (void)controller:(STKProductController *)controller didFailToPresentWithError:(NSError *)error {
+    [STKSpinnerScreen hide];
 }
 
-- (void)controller:(ASKProductController *)controller willLeaveApplicationToProduct:(NSURL *)productURL {
-    [ASKSpinnerScreen hide];
+- (void)controller:(STKProductController *)controller willLeaveApplicationToProduct:(NSURL *)productURL {
+    [STKSpinnerScreen hide];
     [self.displayDelegate adapterWillLeaveApplication:self];
 }
 
-- (void)controller:(ASKProductController *)controller willPresentProduct:(NSURL *)productURL {
-    [ASKSpinnerScreen hide];
+- (void)controller:(STKProductController *)controller willPresentProduct:(NSURL *)productURL {
+    [STKSpinnerScreen hide];
     [self.displayDelegate adapterWillPresentScreen:self];
 }
+
+- (void)controller:(nonnull STKProductController *)controller didPreloadProduct:(nonnull NSURL *)productURL {
+    [STKSpinnerScreen hide];
+    [self.loadingDelegate adapterPreparedContent:self];
+}
+
+- (void)controllerDidCompleteProcessing:(nonnull STKProductController *)controller {}
+
 
 #pragma mark - Private
 
 - (CGSize)sizeFromContentInfo:(NSDictionary *)contentInfo {
     NSNumber * width = contentInfo[@"width"];
     NSNumber * height = contentInfo[@"height"];
-    if ([width ask_number] != nil || [height ask_number] != nil) {
+    if (ANY(width).number != nil || ANY(height).number != nil) {
         return [self defaultAdSize];
     }
     if (width.floatValue <= 0 ||
@@ -173,9 +175,9 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
                       height.floatValue);
 }
 
-- (ASKProductController *)productPresenter {
+- (STKProductController *)productPresenter {
     if (!_productPresenter) {
-        _productPresenter = [ASKProductController new];
+        _productPresenter = [STKProductController new];
         _productPresenter.delegate = self;
     }
     return _productPresenter;

@@ -10,7 +10,6 @@ import UIKit
 import BidMachine
 
 class NativeAdViewCell: UITableViewCell, BDMNativeAdView {
-    
     @IBOutlet weak var titleLab: UILabel!
     @IBOutlet weak var descriptionLab: UILabel!
     @IBOutlet weak var icon: UIImageView!
@@ -20,28 +19,29 @@ class NativeAdViewCell: UITableViewCell, BDMNativeAdView {
     func titleLabel() -> UILabel {
         return titleLab
     }
+    
     func descriptionLabel() -> UILabel {
         return descriptionLab
     }
+    
     func iconView() -> UIImageView {
         return icon
     }
+    
     func mediaContainerView() -> UIView {
         return mediaContainer
     }
+    
     func callToActionLabel() -> UILabel {
         return callToActionLab
     }
-    
 }
 
 
 extension NativeAdViewCell: NibProvider {
+    static let reuseIdentifier: String = "NativeAdViewCellReuseID"
+
     static var nib: UINib {
         return UINib(nibName: "NativeAdViewCell", bundle: Bundle(for: self))
-    }
-    
-    static var reuseIdentifier: String {
-        return "NativeAdViewCellReuseID"
-    }
+    }    
 }

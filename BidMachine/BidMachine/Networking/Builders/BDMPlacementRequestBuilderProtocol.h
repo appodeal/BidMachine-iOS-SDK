@@ -9,14 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BDMPlacementAdUnit.h"
 
-@protocol BDMExtPlacementBuilder <NSObject>
-
-@property (nonatomic, readonly) id placement;
-
-- (id<BDMExtPlacementBuilder>(^)(NSString *))appendAdSpaceId;
-
-@end
 
 @protocol BDMNativeFormatTypeBuilder <NSObject>
 
@@ -51,7 +45,6 @@
 - (id<BDMDisplayPlacementBuilder>(^)(BOOL))appendInstl;
 - (id<BDMDisplayPlacementBuilder>(^)(unsigned int))appendApi;
 - (id<BDMDisplayPlacementBuilder>(^)(id<BDMNativeFormatBuilder>))appendNativeFmt;
-- (id<BDMDisplayPlacementBuilder>(^)(id<BDMExtPlacementBuilder>))appendExt;
 - (id<BDMDisplayPlacementBuilder>(^)(unsigned int))appendUnit;
 - (id<BDMDisplayPlacementBuilder>(^)(float))appendWidth;
 - (id<BDMDisplayPlacementBuilder>(^)(float))appendHeight;
@@ -66,7 +59,6 @@
 - (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendPos;
 - (id<BDMVideoPlacementBuilder>(^)(BOOL))appendskip;
 - (id<BDMVideoPlacementBuilder>(^)(NSArray<NSNumber *>*))appendCType;
-- (id<BDMVideoPlacementBuilder>(^)(id<BDMExtPlacementBuilder>))appendExt;
 - (id<BDMVideoPlacementBuilder> (^)(unsigned int))appendUnit;
 - (id<BDMVideoPlacementBuilder>(^)(float))appendWidth;
 - (id<BDMVideoPlacementBuilder>(^)(float))appendHeight;
@@ -89,6 +81,7 @@
 
 - (id<BDMPlacementRequestBuilder>(^)(id<BDMDisplayPlacementBuilder>))appendDisplayPlacement;
 - (id<BDMPlacementRequestBuilder>(^)(id<BDMVideoPlacementBuilder>))appendVideoPlacement;
+- (id<BDMDisplayPlacementBuilder>(^)(NSArray <id<BDMPlacementAdUnit>> *))appendHeaderBidding;
 
 @end
 

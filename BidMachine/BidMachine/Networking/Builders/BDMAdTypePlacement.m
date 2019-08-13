@@ -6,7 +6,7 @@
 
 #import "BDMAdTypePlacement.h"
 #import "BDMPlacementRequestBuilder.h"
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 #import "BDMDefines.h"
 
 
@@ -20,22 +20,6 @@
 }
 
 + (id<BDMPlacementRequestBuilder>)interstitialPlacementWithAdType:(BDMFullscreenAdType)type {
-    return [self interstitialPlacementWithAdSpace:nil adType:type];
-}
-
-+ (id<BDMPlacementRequestBuilder>)rewardedPlacementWithAdType:(BDMFullscreenAdType)type {
-    return [self rewardedPlacementWithAdSpace:nil adType:type];
-}
-
-+ (id<BDMPlacementRequestBuilder>)bannerPlacementWithAdSize:(BDMBannerAdSize)adSize {
-    return [self bannerPlacementWithAdSpace:nil adSize:adSize];
-}
-
-+ (id<BDMPlacementRequestBuilder>)nativePlacementWithAdType:(BDMNativeAdType)type {
-    return [self nativePlacementWithAdSpace:nil type:type];
-}
-
-+ (id<BDMPlacementRequestBuilder>)interstitialPlacementWithAdSpace:(NSString *)spaceId adType:(BDMFullscreenAdType)type {
     BDMPlacementRequestBuilder * builder = self.placementBuilder;
     if (type & BDMFullsreenAdTypeBanner) {
         builder = builder.appendDisplayPlacement(({
@@ -44,13 +28,9 @@
             display.appendInstl(YES);
             display.appendApi(5);
             display.appendUnit(1);
-            display.appendWidth(ask_screenWidth());
-            display.appendHeight(ask_screenHeight());
+            display.appendWidth(STKScreen.width);
+            display.appendHeight(STKScreen.height);
             display.appendMimes(@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"]);
-            display.appendExt(({
-                BDMExtPlacementBuilder *ext = BDMExtPlacementBuilder.new;
-                ext.appendAdSpaceId(spaceId);
-            }));
             display;
         }));
     }
@@ -61,18 +41,14 @@
             video.appendskip(YES);
             video.appendCType(@[@2, @3, @5, @6]);
             video.appendUnit(1);
-            video.appendWidth(ask_screenWidth());
-            video.appendHeight(ask_screenHeight());
+            video.appendWidth(STKScreen.width);
+            video.appendHeight(STKScreen.height);
             video.appendMimes(@[@"video/mpeg" , @"video/mp4", @"video/quicktime", @"video/avi"]);
             video.appendMaxdur(30);
             video.appendMindur(5);
             video.appendMinbitr(56);
             video.appendMaxbitr(4096);
             video.appendLinearity(1);
-            video.appendExt(({
-                BDMExtPlacementBuilder *ext = BDMExtPlacementBuilder.new;
-                ext.appendAdSpaceId(spaceId);
-            }));
             video;
         }));
     }
@@ -80,7 +56,7 @@
     return builder;
 }
 
-+ (id<BDMPlacementRequestBuilder>)rewardedPlacementWithAdSpace:(NSString *)spaceId adType:(BDMFullscreenAdType)type {
++ (id<BDMPlacementRequestBuilder>)rewardedPlacementWithAdType:(BDMFullscreenAdType)type {
     BDMPlacementRequestBuilder * builder = self.placementBuilder;
     if (type & BDMFullsreenAdTypeBanner) {
         builder = builder.appendDisplayPlacement(({
@@ -89,13 +65,9 @@
             display.appendInstl(YES);
             display.appendApi(5);
             display.appendUnit(1);
-            display.appendWidth(ask_screenWidth());
-            display.appendHeight(ask_screenHeight());
+            display.appendWidth(STKScreen.width);
+            display.appendHeight(STKScreen.height);
             display.appendMimes(@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"]);
-            display.appendExt(({
-                BDMExtPlacementBuilder *ext = BDMExtPlacementBuilder.new;
-                ext.appendAdSpaceId(spaceId);
-            }));
             display;
         }));
     }
@@ -107,26 +79,22 @@
             video.appendskip(false);
             video.appendCType(@[@2, @3, @5, @6]);
             video.appendUnit(1);
-            video.appendWidth(ask_screenWidth());
-            video.appendHeight(ask_screenHeight());
+            video.appendWidth(STKScreen.width);
+            video.appendHeight(STKScreen.height);
             video.appendMimes(@[@"video/mpeg" , @"video/mp4", @"video/quicktime", @"video/avi"]);
             video.appendMaxdur(30);
             video.appendMindur(5);
             video.appendMinbitr(56);
             video.appendMaxbitr(4096);
             video.appendLinearity(1);
-            video.appendExt(({
-                BDMExtPlacementBuilder *ext = BDMExtPlacementBuilder.new;
-                ext.appendAdSpaceId(spaceId);
-            }));
             video;
         }));
     }
     return builder.appendReward(YES);
 }
 
-+ (id<BDMPlacementRequestBuilder>)bannerPlacementWithAdSpace:(NSString *)spaceId adSize:(BDMBannerAdSize)adSize {
-    return self.placementBuilder
++ (id<BDMPlacementRequestBuilder>)bannerPlacementWithAdSize:(BDMBannerAdSize)adSize {
+    BDMPlacementRequestBuilder *builder = self.placementBuilder
     .appendDisplayPlacement(({
         BDMDisplayPlacementBuilder *display = BDMDisplayPlacementBuilder.new;
         display.appendInstl(NO);
@@ -134,28 +102,18 @@
         display.appendWidth(CGSizeFromBDMSize(adSize).width);
         display.appendHeight(CGSizeFromBDMSize(adSize).height);
         display.appendMimes(@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"]);
-        display.appendExt(({
-            BDMExtPlacementBuilder *ext = BDMExtPlacementBuilder.new;
-            ext.appendAdSpaceId(spaceId);
-            ext;
-        }));
         display.appendUnit(1);
         display;
     }));
+    return builder;
 }
 
-+ (id<BDMPlacementRequestBuilder>)nativePlacementWithAdSpace:(NSString *)spaceId
-                                             type:(BDMNativeAdType)type {
-    return self.placementBuilder
++ (id<BDMPlacementRequestBuilder>)nativePlacementWithAdType:(BDMNativeAdType)type {
+    BDMPlacementRequestBuilder *builder = self.placementBuilder
     .appendDisplayPlacement(({
         BDMDisplayPlacementBuilder *display = BDMDisplayPlacementBuilder.new;
         display.appendInstl(NO);
         display.appendMimes(@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"]);
-        display.appendExt(({
-            BDMExtPlacementBuilder *ext = BDMExtPlacementBuilder.new;
-            ext.appendAdSpaceId(spaceId);
-            ext;
-        }));
         display.appendNativeFmt(({
             BDMNativeFormatBuilder *native = BDMNativeFormatBuilder.new;
             native.appendTitle(({
@@ -213,6 +171,7 @@
         }));
         display;
     }));
+    return builder;
 }
 
 @end

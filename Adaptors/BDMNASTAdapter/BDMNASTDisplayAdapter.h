@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <BidMachine/BDMNativeAdProtocol.h>
-@import AppodealNASTKit;
+
+@import StackNASTKit;
 
 
 @interface BDMNASTDisplayAdapter : NSObject <BDMNativeAd>
 
-+ (instancetype)displayAdapterForAd:(ANKAd *)ad;
++ (instancetype)displayAdapterForAd:(STKNASTAd *)ad;
 
 @end
 
