@@ -1,6 +1,6 @@
 ![BidMachine iOS](https://appodeal-ios.s3-us-west-1.amazonaws.com/docs/bidmachine.png)
 
-BidMachine is ad advertising SDK for iOS written in Objective-C
+BidMachine is an advertising SDK for iOS written in Objective-C
 
 > Please read [documentation](https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation)
 
