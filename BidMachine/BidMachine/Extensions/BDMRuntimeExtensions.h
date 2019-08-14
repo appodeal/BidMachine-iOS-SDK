@@ -8,5 +8,5 @@
 
 #import <Foundation/Foundation.h>
 
-void adx_addConcreteProtocol(Protocol * protocol, Class destanationClass);
-void adx_loadConcreteProtocol(Protocol * protocol);
+void adx_addConcreteProtocol(Protocol *protocol, Class destinationClass);
+void adx_loadConcreteProtocol(Protocol *protocol);

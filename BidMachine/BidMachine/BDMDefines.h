@@ -52,6 +52,7 @@ FOUNDATION_EXPORT NSInteger const kBDMUndefinedYearOfBirth;
  - BDMErrorCodeInternal: Any internal SDK error
  - BDMErrorCodeHTTPServerError: Server return 4XX
  - BDMErrorCodeHTTPBadRequest: Server return 5XX
+ - BDMErrorCodeHeaderBiddingNetwork: Ad Network speicific error
  */
 typedef NS_ENUM(NSInteger, BDMErrorCode) {
     BDMErrorCodeUnknown = 0,
@@ -66,6 +67,7 @@ typedef NS_ENUM(NSInteger, BDMErrorCode) {
     BDMErrorCodeInternal = 108,
     BDMErrorCodeHTTPServerError = 109,
     BDMErrorCodeHTTPBadRequest = 110,
+    BDMErrorCodeHeaderBiddingNetwork = 200
 };
 
 /**
@@ -109,5 +111,34 @@ typedef NS_OPTIONS(NSUInteger, BDMNativeAdType) {
     BDMNativeAdTypeVideo    = 1 << 2,
     BDMNativeAdTypeAllMedia = BDMNativeAdTypeIcon | BDMNativeAdTypeImage | BDMNativeAdTypeVideo
 };
+
+/**
+ Supported ad units types configuration
+ 
+ - BDMNativeAdTypeIcon: Include icon image supports
+ - BDMNativeAdTypeImage: Include promo image support
+ - BDMNativeAdTypeVideo: Include video content supports
+ */
+typedef NS_ENUM(NSInteger, BDMAdUnitFormat) {
+    BDMAdUnitFormatUnknown = -1,
+    BDMAdUnitFormatInLineBanner,
+    BDMAdUnitFormatBanner320x50,
+    BDMAdUnitFormatBanner728x90,
+    BDMAdUnitFormatBanner300x250,
+    BDMAdUnitFormatInterstitialVideo,
+    BDMAdUnitFormatInterstitialStatic,
+    BDMAdUnitFormatInterstitialUnknown,
+    BDMAdUnitFormatRewardedVideo,
+    BDMAdUnitFormatRewardedPlayable,
+    BDMAdUnitFormatRewardedUnknown
+};
+
+typedef NSNumber BDMAdUnitFormatKey;
+
+BDMAdUnitFormatKey *BDMAdUnitFormatKeyFromEnum(BDMAdUnitFormat fmt);
+BDMAdUnitFormat BDMAdUnitFormatFromKey(BDMAdUnitFormatKey *key);
+BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *key);
+NSString *NSStringFromBDMAdUnitFormat(BDMAdUnitFormat fmt);
+
 
 CGSize CGSizeFromBDMSize(BDMBannerAdSize adSize);

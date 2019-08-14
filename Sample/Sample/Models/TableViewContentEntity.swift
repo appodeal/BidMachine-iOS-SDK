@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 struct TableViewContentEntity {
     var image: UIImage
     var title: String

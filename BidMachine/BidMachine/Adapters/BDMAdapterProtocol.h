@@ -16,6 +16,8 @@
 @protocol BDMNativeAdServiceAdapter;
 @protocol BDMNativeAd;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Parent adapter delegate protocol
  */
@@ -41,7 +43,7 @@
 
 /**
  Call when adapter failed to present ad
-
+ 
  @param adapter Adapter that try to present ad
  @param error Erroe object
  */
@@ -55,41 +57,21 @@
 /**
  Callback handler object
  */
-@property (nonatomic, weak) id<BDMAdapterLoadingDelegate> loadingDelegate;
+@property (nonatomic, weak, nullable) id<BDMAdapterLoadingDelegate> loadingDelegate;
 /**
  Callback handler object
  */
-@property (nonatomic, weak) id<BDMAdapterDisplayDelegate> displayDelegate;
+@property (nonatomic, weak, nullable) id<BDMAdapterDisplayDelegate> displayDelegate;
 /**
- Relative ad network class
-
- @return Class of relative ad network
+ Returned ad view
  */
-- (Class)relativeAdNetworkClass;
+@property (nonatomic, weak, readonly, nullable) UIView *adView;
 /**
  Call this method if adapter need to prepare content
  
  @param contentInfo Custom content info
  */
-- (void)prepareContent:(NSDictionary *)contentInfo;
-/**
- Getter for raw ad content data string
-
- @return raw ad content data string
- */
-- (NSString *)adContent;
-
-@optional
-/**
- Transfoms and populate adunit information for auction
- Need to implement if Third party SDK contains several info
- that Appodeal Ad Exchange SDK doesn't have
- 
- @param loadingParameters Recieved information
- @param error Autoreleasing error
- @return Prepared info dictionary
- */
-- (NSDictionary *)externalBiddingInformationForLoadingParamters:(NSDictionary *)loadingParameters error:(NSError **)error;
+- (void)prepareContent:(NSDictionary <NSString *, NSString *> *)contentInfo;
 
 @end
 
@@ -101,14 +83,21 @@
 /**
  Return nonnul root view controller for presenting product page
  and tracking viewability
-
+ 
  @param adapter Current presentig adapter
  @return Nonnul instance root view controller that view is superview of banner
  */
 - (UIViewController *)rootViewControllerForAdapter:(id<BDMBannerAdapter>)adapter;
 /**
- Called when user tap on banner
+ Return CGSize for banner loading
 
+ @param adapter Banner adapter
+ @return Size of adapter
+ */
+- (CGSize)sizeForAdapter:(id<BDMBannerAdapter>)adapter;
+/**
+ Called when user tap on banner
+ 
  @param adapter Current presentig adapter
  */
 - (void)adapterRegisterUserInteraction:(id<BDMBannerAdapter>)adapter;
@@ -138,13 +127,13 @@
 
 
 /**
-  Banner adapter protocol for rendering inline banner ad
+ Banner adapter protocol for rendering inline banner ad
  */
 @protocol BDMBannerAdapter <BDMAdapter>
 /**
  Callback handler
  */
-@property (nonatomic, weak) id <BDMBannerAdapterDisplayDelegate> displayDelegate;
+@property (nonatomic, weak, nullable) id <BDMBannerAdapterDisplayDelegate> displayDelegate;
 /**
  Call this method to start rendering banner ad
  @param container Container for presenting ad view
@@ -164,32 +153,32 @@
 /**
  Return nonnul root view controller for presenting ad content
  and tracking viewability
-
+ 
  @param adapter Current presenting adapter
  @return Nonnul instance root view controller
  */
 - (UIViewController *)rootViewControllerForAdapter:(id<BDMFullscreenAdapter>)adapter;
 /**
  Called when adapter will present screen
-
+ 
  @param adapter Current presenting adapter
  */
 - (void)adapterWillPresent:(id<BDMFullscreenAdapter>)adapter;
 /**
  Called when adapter dismiss ad screen
-
+ 
  @param adapter Current presenting adapter
  */
 - (void)adapterDidDismiss:(id<BDMFullscreenAdapter>)adapter;
 /**
  Called when user interact with adapter
-
+ 
  @param adapter Current presenting adapter
  */
 - (void)adapterRegisterUserInteraction:(id<BDMFullscreenAdapter>)adapter;
 /**
  Adapter finish reward action (video was fully watched, playable ad complete, etc)
-
+ 
  @param adapter Current presenting adapter
  */
 - (void)adapterFinishRewardAction:(id<BDMFullscreenAdapter>)adapter;
@@ -203,13 +192,7 @@
 /**
  Callback handler
  */
-@property (nonatomic, weak) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
-/**
- Getter for presented adView
- 
- @return presented adView
- */
-- (UIView *)adView;
+@property (nonatomic, weak, nullable) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
 /**
  Call this method to start present ad
  */
@@ -236,6 +219,8 @@
 
 @protocol BDMNativeAdServiceAdapter <BDMAdapter>
 
-@property (nonatomic, weak) id <BDMNativeAdServiceAdapterLoadingDelegate> loadingDelegate;
+@property (nonatomic, weak, nullable) id <BDMNativeAdServiceAdapterLoadingDelegate> loadingDelegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

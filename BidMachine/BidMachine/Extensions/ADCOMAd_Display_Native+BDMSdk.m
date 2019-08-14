@@ -7,7 +7,7 @@
 //
 
 #import "ADCOMAd_Display_Native+BDMSdk.h"
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 @implementation ADCOMAd_Display_Native (BDMSdk)
@@ -23,7 +23,7 @@
     }
     
     if (self.assetArray_Count > 0) {
-        ASKObject *assets = ASKObj(self.assetArray).transform(^id(ADCOMAd_Display_Native_Asset *obj, NSUInteger idx){
+        STKAny *assets = ANY(self.assetArray).flatMap(^id(ADCOMAd_Display_Native_Asset *obj) {
             if (obj.hasTitle) {
                 NSMutableDictionary *asset = NSMutableDictionary.dictionary;
                 NSMutableDictionary *value = NSMutableDictionary.dictionary;

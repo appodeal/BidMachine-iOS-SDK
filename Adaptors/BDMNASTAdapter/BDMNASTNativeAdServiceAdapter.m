@@ -11,23 +11,15 @@
 #import "BDMNASTDisplayAdapter.h"
 #import <BidMachine/NSError+BDMSdk.h>
 
-@import AppodealNASTKit;
+@import StackNASTKit;
 
 
 @implementation BDMNASTNativeAdServiceAdapter
 
-- (Class)relativeAdNetworkClass {
-    return BDMNASTNetwork.class;
-}
-
-- (NSString *)adContent {
-    return nil;
-}
-
-- (void)prepareContent:(NSDictionary *)contentInfo {
-    ANKManager * manager = ANKManager.new;
+- (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
+    STKNASTManager * manager = STKNASTManager.new;
     __weak typeof(self) weakSelf = self;
-    [manager parseAdFromJSON:contentInfo completion:^(ANKAd * ad, NSError * error) {
+    [manager parseAdFromJSON:contentInfo completion:^(STKNASTAd * ad, NSError * error) {
         if (error) {
             [weakSelf.loadingDelegate adapter:weakSelf failedToPrepareContentWithError: [error bdm_wrappedWithCode:BDMErrorCodeNoContent]];
         } else {
@@ -35,6 +27,10 @@
             [weakSelf.loadingDelegate service:weakSelf didLoadNativeAds:@[adapter]];
         }
     }];
+}
+
+- (UIView *)adView {
+    return nil;
 }
 
 @end

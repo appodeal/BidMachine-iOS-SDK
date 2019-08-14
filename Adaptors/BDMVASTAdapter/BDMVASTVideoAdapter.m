@@ -13,24 +13,18 @@
 #import "BDMVASTNetwork.h"
 
 @import BidMachine.Adapters;
-@import AppodealVASTKit;
-@import ASKExtension;
-@import ASKProductPresentation;
-@import ASKSpinner;
+@import StackVASTKit;
+@import StackUIKit;
 
 
-@interface BDMVASTVideoAdapter () <AVKControllerDelegate>
+@interface BDMVASTVideoAdapter () <STKVASTControllerDelegate>
 
-@property (nonatomic, strong) AVKController *videoController;
+@property (nonatomic, strong) STKVASTController *videoController;
 @property (nonatomic, copy) NSNumber *maxDuration;
 
 @end
 
 @implementation BDMVASTVideoAdapter
-
-- (Class)relativeAdNetworkClass {
-    return BDMVASTNetwork.class;
-}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -43,20 +37,15 @@
     return self.videoController.view;
 }
 
-- (void)prepareContent:(NSDictionary *)contentInfo {
+- (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
     NSString * rawXML = contentInfo[@"creative"];
-    self.maxDuration = [contentInfo[@"max_duration"] isKindOfClass:NSNumber.self] ? contentInfo[@"max_duration"] : self.maxDuration;
+    self.maxDuration = contentInfo[@"max_duration"] ? @(contentInfo[@"max_duration"].floatValue) : self.maxDuration;
     NSData * xmlData = [rawXML dataUsingEncoding:NSUTF8StringEncoding];
     
-    self.videoController = [AVKController new];
+    self.videoController = [STKVASTController new];
     self.videoController.delegate = self;
     [self.videoController loadForVastXML:xmlData];
 }
-
-- (NSString *)adContent {
-    return self.videoController.adCreative;
-}
-
 
 - (void)present {
     [self.videoController presentFromViewController:self.rootViewController];
@@ -77,53 +66,53 @@
 }
 
 - (UIViewController *)rootViewController {
-    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.ask_topPresentedViewController;
+    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
 }
 
 #pragma mark - AVKControllerDelegate
 
-- (void)vastControllerReady:(AVKController *)controller {
+- (void)vastControllerReady:(STKVASTController *)controller {
     [self.loadingDelegate adapterPreparedContent:self];
 }
 
-- (void)vastController:(AVKController *)controller didFailToLoad:(NSError *)error {
+- (void)vastController:(STKVASTController *)controller didFailToLoad:(NSError *)error {
     [self.loadingDelegate adapter:self failedToPrepareContentWithError: [error bdm_wrappedWithCode:BDMErrorCodeNoContent]];
 }
 
-- (void)vastController:(AVKController *)controller didFailWhileShow:(NSError *)error {
+- (void)vastController:(STKVASTController *)controller didFailWhileShow:(NSError *)error {
     [self.displayDelegate adapter:self failedToPresentAdWithError: [error bdm_wrappedWithCode:BDMErrorCodeBadContent]];
 }
 
-- (void)vastControllerDidClick:(AVKController *)controller clickURL:(NSString *)clickURL {
+- (void)vastControllerDidClick:(STKVASTController *)controller clickURL:(NSString *)clickURL {
     [self.displayDelegate adapterRegisterUserInteraction:self];
     NSURL *productLink = clickURL ? [NSURL URLWithString:clickURL] : nil;
     if (productLink) {
         [controller pause];
-        [ASKSpinnerScreen show];
+        [STKSpinnerScreen show];
         __weak typeof(controller) weakController = controller;
-        [ASKProductPresentation openURLs:@[productLink] success:^(NSURL *link) {
-            [ASKSpinnerScreen hide];
+        [STKProductPresentation openURLs:@[productLink] success:^(NSURL *link) {
+            [STKSpinnerScreen hide];
         } failure:^(NSError *error) {
-            [ASKSpinnerScreen hide];
+            [STKSpinnerScreen hide];
         } completion:^{
             [weakController resume];
         }];
     }
 }
 
-- (void)vastControllerDidDismiss:(AVKController *)controller {
+- (void)vastControllerDidDismiss:(STKVASTController *)controller {
     [self.displayDelegate adapterDidDismiss:self];
 }
 
-- (void)vastControllerDidFinish:(AVKController *)controller {
+- (void)vastControllerDidFinish:(STKVASTController *)controller {
     [self.displayDelegate adapterFinishRewardAction:self];
 }
 
-- (void)vastControllerDidPresent:(AVKController *)controller {
+- (void)vastControllerDidPresent:(STKVASTController *)controller {
     [self.displayDelegate adapterWillPresent:self];
 }
 
 /// Noop
-- (void)vastControllerDidSkip:(AVKController *)controller {}
+- (void)vastControllerDidSkip:(STKVASTController *)controller {}
 
 @end

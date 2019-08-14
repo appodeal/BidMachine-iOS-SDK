@@ -4,7 +4,7 @@
 #import "BDMApiRequest.h"
 #import "BDMAdTypePlacement.h"
 #import "BDMSdk.h"
-#import "BDMRequest+ParallelBidding.h"
+#import "BDMRequest+HeaderBidding.h"
 #import "BDMAuctionBuilder.h"
 #import "BDMAuctionSettings.h"
 

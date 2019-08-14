@@ -12,5 +12,7 @@
 
 @interface BDMBannerViewDisplayAd : BDMBaseDisplayAd
 
+@property (nonatomic, assign) BDMBannerAdSize adSize;
+
 @end
 

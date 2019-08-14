@@ -16,6 +16,7 @@ class Row {
     fileprivate var configure:((Row)->())?
 }
 
+
 class Section {
     let headerViewHeight: CGFloat = 25.0
     fileprivate var configure:((Section)->())?
@@ -32,6 +33,7 @@ class Section {
     var state: State = .collapsed
     var rows: [Row?] = []
     
+    @discardableResult
     func addRow(_ configure:@escaping (Row)->()) -> Section {
         let row = Row()
         row.configure = configure
@@ -40,6 +42,7 @@ class Section {
         return self
     }
 }
+
 
 class DataTableViewController: UITableViewController {
     private var sections: [Section?] = []
@@ -60,6 +63,7 @@ class DataTableViewController: UITableViewController {
         tableView.register(OnlyLabelTableViewCell.nib, forCellReuseIdentifier: OnlyLabelTableViewCell.reuseIdentifier)
     }
     
+    @discardableResult
     final func addSection(_ configure:@escaping (Section)->()) -> DataTableViewController {
         let sec = Section()
         sec.configure = configure
@@ -68,6 +72,7 @@ class DataTableViewController: UITableViewController {
         return self
     }
     
+    @discardableResult
     final func insertSection(_ index: Int ,_ configure:@escaping (Section)->()) -> DataTableViewController {
         let sec = Section()
         sec.configure = configure
@@ -91,20 +96,14 @@ class DataTableViewController: UITableViewController {
     open func setupSections() {}
 }
 
+
 extension DataTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = sections[section] else {
-            return 0
-        }
-        
-        guard section.state != .collapsed else {
-            return 0
-        }
-        
+        guard let section = sections[section], section.state != .collapsed else {  return 0 }
         return section.rows.count
     }
     
@@ -141,6 +140,7 @@ extension DataTableViewController {
     }
 }
 
+
 extension UITableView {
     func dequeueCell<T:NibProvider>() -> T {
         return dequeueReusableCell(withIdentifier: T.reuseIdentifier) as! T
@@ -150,9 +150,9 @@ extension UITableView {
 
 extension DataTableViewController {
     func addUserTargetingSection() {
-        let _ = addSection { section in
+        addSection { section in
             section.title = "User targeting"
-            let _ = section
+            section
                 .addRow {
                     [unowned self] row in
                     let cell: GeneratableDataTableViewCell = self.tableView.dequeueCell()
@@ -186,9 +186,9 @@ extension DataTableViewController {
     }
     
     func addLocationTargetingSection() {
-        let _ = addSection { section in
+        addSection { section in
             section.title = "Location targeting"
-            let _ = section
+            section
                 .addRow {
                     [unowned self] row in
                     let cell: LocationTableViewCell = self.tableView.dequeueCell()
@@ -221,9 +221,9 @@ extension DataTableViewController {
     }
     
     func addAppTargetingSection() {
-        let _ = addSection { [unowned self] section in
+        addSection { [unowned self] section in
             section.title = "Application targeting"
-            let _ = section
+            section
                 .addRow {
                     [unowned self] row in
                     let cell: DataTableViewCell = self.tableView.dequeueCell()
@@ -249,9 +249,9 @@ extension DataTableViewController {
     }
     
     func addAdResttrictionsSection() {
-        let _ = addSection { section in
+        addSection { section in
             section.title = "Ad restrictions"
-            let _ = section
+            section
                 .addRow {
                     [unowned self] row in
                     let cell: DataTableViewCell = self.tableView.dequeueCell()
@@ -277,9 +277,9 @@ extension DataTableViewController {
     }
     
     func addSdkRestrictionsSection() {
-        let _ = addSection { section in
+        addSection { section in
             section.title = "User restrictions"
-            let _ = section
+            section
                 .addRow {
                     [unowned self] row in
                     let cell: BooleanTableViewCell = self.tableView.dequeueCell()
@@ -290,16 +290,24 @@ extension DataTableViewController {
                 .addRow {
                     [unowned self] row in
                     let cell: BooleanTableViewCell = self.tableView.dequeueCell()
-                    cell.entity = BooleanEntity(info: "Subject to GDPR", value:SdkContext.shared.restriction.subjectToGDPR)
-                    cell.binding = { SdkContext.shared.restriction.subjectToGDPR = $0.value! }
+                    // SDK API
+//                    cell.entity = BooleanEntity(info: "Subject to GDPR", value: SdkContext.shared.restriction.subjectToGDPR)
+//                    cell.binding = { SdkContext.shared.restriction.subjectToGDPR = $0.value! }
+                    // User Defaults
+                    cell.entity = BooleanEntity(info: "Subject to GDPR", value: UserDefaults.standard.string(forKey: "IABConsent_SubjectToGDPR") == "1")
+                    cell.binding = { UserDefaults.standard.set($0.value! ? "1" : "0", forKey: "IABConsent_SubjectToGDPR") }
                     row.cell = cell
                 }
                 .addRow {
                     [unowned self] row in
                     let cell: GeneratableDataTableViewCell = self.tableView.dequeueCell()
                     cell.entity = DataEntity(info: "Consent string", type:.string, value: SdkContext.shared.restriction.consentString)
-                    cell.generate = { entity, closure in closure( DataEntity(info: "Consent string", type: .string, value: SdkContext.shared.consentString))}
-                    cell.binding = { SdkContext.shared.restriction.consentString = $0.value! }
+                    // SDK API
+//                    cell.generate = { entity, closure in closure( DataEntity(info: "Consent string", type: .string, value: SdkContext.shared.consentString)) }
+//                    cell.binding = { SdkContext.shared.restriction.consentString = $0.value! }
+                    // User Defaults
+                    cell.generate = { entity, closure in closure( DataEntity(info: "Consent string", type: .string, value: UserDefaults.standard.string(forKey: "IABConsent_ConsentString"))) }
+                    cell.binding = { UserDefaults.standard.set($0.value, forKey: "IABConsent_ConsentString") }
                     row.cell = cell
                 }
                 .addRow {
@@ -310,14 +318,6 @@ extension DataTableViewController {
                     row.cell = cell
             }
         }
-    }
-}
-
-
-fileprivate extension String {
-    func commaSeparatedList() -> [String] {
-        let array = self.components(separatedBy: ", ")
-        return array
     }
 }
 

@@ -30,7 +30,10 @@ BDM_SUBCLASSING_RESTRICTED
 /**
  * The consent string for sending the GDPR consent
  */
-@property (copy, nonatomic, readwrite, nullable) NSString * consentString;
-
+@property (copy, nonatomic, readwrite, nullable) NSString *consentString;
+/**
+ Indicates that SDK allow to pass user information to networks
+ */
+@property (assign, nonatomic, readonly) BOOL allowUserInformation;
 @end
 

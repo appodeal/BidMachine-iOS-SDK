@@ -9,12 +9,14 @@
 import UIKit
 import BidMachine
 
+
 class AppBehaviourConfiguration {
     var logging = true
     var toast = true
     var location = false
     var callbackLog = true
 }
+
 
 class SdkContext: NSObject {
     private struct Names {
@@ -27,20 +29,18 @@ class SdkContext: NSObject {
     static let shared = SdkContext()
     
     // Base 64 consent string
-    public let consentString = "BOQ7WlgOQ7WlgABABwAAABJOACgACAAQABA"
+    public let consentString = "DQO6WlgOQ7WlgABABwAAABJOACgACAAQABA"
     public var configuration: BDMSdkConfiguration
     public var targeting: BDMTargeting
     public var restriction: BDMUserRestrictions
     public var sellerId: String
     public var appConfiguration: AppBehaviourConfiguration
-
+    
     private var task: URLSessionDataTask?
     private var locationManager: CLLocationManager?
     
     public var currentLocation: CLLocation? {
-        get {
-            return locationManager?.location
-        }
+        get { return locationManager?.location }
     }
     
     override init() {
@@ -50,7 +50,7 @@ class SdkContext: NSObject {
         targeting = configuration.targeting ?? BDMTargeting()
         restriction = NSKeyedUnarchiver.unarchive(Names.restriction) ?? BDMUserRestrictions()
         sellerId = UserDefaults.standard.object(forKey: Names.sellerId).map { $0 as! String } ?? "1"
-
+        
         super.init()
     }
     
@@ -58,7 +58,7 @@ class SdkContext: NSObject {
         if (appConfiguration.location) {
             startReceivingLocationChanges()
         }
-    
+        
         configuration.targeting = targeting
         NSKeyedArchiver.archive(configuration, Names.configuration)
         NSKeyedArchiver.archive(restriction, Names.restriction)
@@ -84,20 +84,18 @@ class SdkContext: NSObject {
     }
 }
 
+
 extension NSKeyedUnarchiver {
     class func unarchive<T:NSCoding>(_ name:String) -> T? {
         var model: T?
         let url = URL(fileURLWithPath: NSTemporaryDirectory().appending(name))
-        do {
-            let data = try Data(contentsOf: url)
-            if #available(iOS 11.0, *) {
-                model = try unarchivedObject(ofClasses: [T.self], from: data) as? T
-            } else {
-                // Fallback on earlier versions
-            }
-        } catch {
-            return nil
+        let data = try? Data(contentsOf: url)
+        if #available(iOS 11.0, *) {
+            model = data.flatMap { try? unarchivedObject(ofClasses: [T.self], from: $0) as? T }
+        } else {
+            model = data.flatMap { unarchiveObject(with: $0) as? T }
         }
+        
         return model
     }
 }
@@ -106,16 +104,12 @@ extension NSKeyedArchiver {
     class func archive<T:NSCoding>(_ object:T, _ name:String) {
         let path = NSTemporaryDirectory().appending(name)
         var data: Data?
-        do {
-            if #available(iOS 11.0, *) {
-                data = try NSKeyedArchiver.archivedData(withRootObject: object, requiringSecureCoding: false)
-            } else {
-                // Fallback on earlier versions
-            }
-            try data?.write(to: URL(fileURLWithPath: path))
-        } catch {
-            print("Couldn't write file")
+        if #available(iOS 11.0, *) {
+            data = try? archivedData(withRootObject: object, requiringSecureCoding: false)
+        } else {
+            data = archivedData(withRootObject: object)
         }
+        try? data?.write(to: URL(fileURLWithPath: path))
     }
 }
 
@@ -123,16 +117,8 @@ extension NSKeyedUnarchiver {
     class func unarchiveCodable<T:Codable>( _ name:String) ->T? {
         var model: T?
         let url = URL(fileURLWithPath: NSTemporaryDirectory().appending(name))
-        do {
-            let data = try Data(contentsOf: url)
-            if #available(iOS 11.0, *) {
-                model = try JSONDecoder().decode(T.self, from: data)
-            } else {
-                // Fallback on earlier versions
-            }
-        } catch {
-            return nil
-        }
+        let data = try? Data(contentsOf: url)
+        model = data.flatMap { try? JSONDecoder().decode(T.self, from: $0) }
         return model
     }
 }
@@ -140,17 +126,8 @@ extension NSKeyedUnarchiver {
 extension NSKeyedArchiver {
     class func archiveCodable<T:Codable>(_ object:T, _ name:String) {
         let path = NSTemporaryDirectory().appending(name)
-        var data: Data?
-        do {
-            if #available(iOS 11.0, *) {
-                data = try JSONEncoder().encode(object)
-            } else {
-                // Fallback on earlier versions
-            }
-            try data?.write(to: URL(fileURLWithPath: path))
-        } catch {
-            print("Couldn't write file")
-        }
+        let data: Data? = try? JSONEncoder().encode(object)
+        try? data?.write(to: URL(fileURLWithPath: path))
     }
 }
 

@@ -7,12 +7,12 @@
 //
 
 #import "BDMViewabilityMetricAppodeal.h"
-#import <ASKViewabilityTracker/ASKViewabilityTracker.h>
+#import <StackUIKit/StackUIKit.h>
 
 @interface BDMViewabilityMetricAppodeal ()
 
 @property (nonatomic, strong) BDMViewabilityMetricConfiguration * configuration;
-@property (nonatomic, strong) ASKViewabilityTracker * tracker;
+@property (nonatomic, strong) STKViewabilityTracker * tracker;
 
 @end
 
@@ -37,13 +37,13 @@
 - (void)startViewabilityMonitoringForView:(UIView *)view
                                 startView:(dispatch_block_t)startView
                                finishView:(dispatch_block_t)finishView {
-    self.tracker = [ASKViewabilityTracker defaultTracker];
+    self.tracker = [[STKViewabilityTracker alloc] initWithWeakMode:YES];
     // Impression in tracker is first show on screen.
     // Add small delay
     self.tracker.impressionInterval = 0.1f;
     // For BidMachine we tracks impression as event that
     // target view was visible on screen for some interval
-    // as same as ASKViewabilityTracker viewable logic
+    // as same as STKViewabilityTracker viewable logic
     self.tracker.viewabilityInterval = self.configuration.impressionInterval;
     // Setup percent
     // Fix https://jira.appodeal.com/browse/SDK-649

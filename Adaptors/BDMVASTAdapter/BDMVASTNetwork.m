@@ -18,16 +18,16 @@
 
 #pragma mark - BDMNetwork
 
-+ (NSString *)name {
+- (NSString *)name {
     return @"vast";
 }
 
-+ (NSString *)sdkVersion {
+- (NSString *)sdkVersion {
     return @"1.3.18";
 }
 
-+ (Class<BDMFullscreenAdapter>)videoAdapterClassForSdk:(BDMSdk *)sdk {
-    return BDMVASTVideoAdapter.class;
+- (id<BDMFullscreenAdapter>)videoAdapterForSdk:(BDMSdk *)sdk {
+    return [BDMVASTVideoAdapter new];
 }
 
 

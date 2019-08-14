@@ -13,7 +13,6 @@
 @property (nonatomic, weak) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
 @property (nonatomic, weak) id <BDMAdapterLoadingDelegate> loadingDelegate;
 
-@property (nonatomic, strong) NSString *adContent;
 @property (nonatomic, assign, readwrite) BOOL rewarded;
 
 @end

@@ -5,18 +5,12 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "BDMPlacementRequestBuilderProtocol.h"
 #import "BDMDefines.h"
 
 
 @interface BDMAdTypePlacement : NSObject
-
-+ (id<BDMPlacementRequestBuilder>)interstitialPlacementWithAdSpace:(NSString *)spaceId adType:(BDMFullscreenAdType)type;
-+ (id<BDMPlacementRequestBuilder>)rewardedPlacementWithAdSpace:(NSString *)spaceId adType:(BDMFullscreenAdType)type;
-+ (id<BDMPlacementRequestBuilder>)bannerPlacementWithAdSpace:(NSString *)spaceId adSize:(BDMBannerAdSize)adSize;
-+ (id<BDMPlacementRequestBuilder>)nativePlacementWithAdSpace:(NSString *)spaceId
-                                                        type:(BDMNativeAdType)type;
-
 
 + (id<BDMPlacementRequestBuilder>)interstitialPlacementWithAdType:(BDMFullscreenAdType)type;
 + (id<BDMPlacementRequestBuilder>)rewardedPlacementWithAdType:(BDMFullscreenAdType)type;

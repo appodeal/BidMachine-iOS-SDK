@@ -18,6 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
     }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        let selectedController = (window?.rootViewController as? UINavigationController)
+            .flatMap { $0.topViewController }
+            .flatMap { $0 as? TabBarController }
+            .flatMap { $0.selectedViewController }
+        switch selectedController {
+        case is BannerVC, is InterstitialVC, is RewardedVideoVC: return .portrait
+        default: return .all
+        }
+    }
 }
 
 extension AppDelegate: BDMAdEventProducerDelegate  {

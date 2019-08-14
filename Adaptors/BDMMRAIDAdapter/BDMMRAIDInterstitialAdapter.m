@@ -13,37 +13,31 @@
 #import <BidMachine/NSError+BDMSdk.h>
 
 
-@import ASKSpinner;
-@import ASKProductPresentation;
-@import ASKGraphicButton;
-@import ASKExtension;
-@import AppodealMRAIDKit;
+@import StackUIKit;
+@import StackMRAIDKit;
 
 
-@interface BDMMRAIDInterstitialAdapter () <AMKAdDelegate, AMKWebServiceDelegate, AMKInterstitialPresenterDelegate, ASKProductControllerDelegate>
+@interface BDMMRAIDInterstitialAdapter () <STKMRAIDAdDelegate, STKMRAIDServiceDelegate, STKMRAIDInterstitialPresenterDelegate, STKProductControllerDelegate>
 
-@property (nonatomic, strong) AMKAd *ad;
-@property (nonatomic, strong) AMKInterstitialPresenter *presenter;
+@property (nonatomic, strong) STKMRAIDAd *ad;
+@property (nonatomic, strong) STKMRAIDInterstitialPresenter *presenter;
 
-@property (nonatomic, strong) ASKProductController *productPresenter;
-@property (nonatomic, strong) ASKSpinnerWindow *activityWindow;
+@property (nonatomic, strong) STKProductController *productPresenter;
+@property (nonatomic, strong) STKSpinnerWindow *activityWindow;
 
 @property (nonatomic, assign) BOOL shouldCache;
 @property (nonatomic, assign) NSTimeInterval closableViewDelay;
+@property (nonatomic, copy) NSString *adContent;
 
 @end
 
 @implementation BDMMRAIDInterstitialAdapter
 
-- (Class)relativeAdNetworkClass {
-    return BDMMRAIDNetwork.class;
-}
-
 - (UIView *)adView {
     return self.ad.webView;
 }
 
-- (void)prepareContent:(NSDictionary *)contentInfo {
+- (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
     self.adContent          = contentInfo[@"creative"];
     self.shouldCache        = contentInfo[@"should_cache"] ? [contentInfo[@"should_cache"] boolValue] : YES;
     self.closableViewDelay  = contentInfo[@"closable_view_delay"] ? [contentInfo[@"closable_view_delay"] floatValue] : 10.0f;
@@ -54,12 +48,12 @@
                                 kMRAIDPreloadURL
                                 ];
     
-    self.ad = [AMKAd new];
+    self.ad = [STKMRAIDAd new];
     self.ad.delegate = self;
-    self.ad.serviceManager.delegate = self;
-    [self.ad.serviceManager.configuration registerServices:mraidFeatures];
+    self.ad.service.delegate = self;
+    [self.ad.service.configuration registerServices:mraidFeatures];
     
-    self.presenter = [AMKInterstitialPresenter new];
+    self.presenter = [STKMRAIDInterstitialPresenter new];
     self.presenter.delegate = self;
     
     if (self.shouldCache) {
@@ -73,7 +67,7 @@
     if (self.shouldCache) {
         [self.presenter presentAd:self.ad];
     } else {
-        self.activityWindow = [[ASKSpinnerWindow alloc] initWithBlur:YES];
+        self.activityWindow = [[STKSpinnerWindow alloc] initWithBlur:YES];
         __weak typeof(self) weakSelf = self;
         BDMMRAIDClosableView *closableView = [BDMMRAIDClosableView closableView:self.closableViewDelay action:^(BDMMRAIDClosableView *closableView) {
             [weakSelf hideActivityWindow];
@@ -91,9 +85,9 @@
     self.activityWindow = nil;
 }
 
-- (ASKProductController *)productPresenter {
+- (STKProductController *)productPresenter {
     if (!_productPresenter) {
-        _productPresenter = [ASKProductController new];
+        _productPresenter = [STKProductController new];
         _productPresenter.delegate = self;
     }
     return _productPresenter;
@@ -101,7 +95,7 @@
 
 #pragma mark - AMKAdDelegate
 
-- (void)didLoadAd:(AMKAd *)ad {
+- (void)didLoadAd:(STKMRAIDAd *)ad {
     if (self.shouldCache) {
         [self.loadingDelegate adapterPreparedContent:self];
     } else {
@@ -110,7 +104,7 @@
     }
 }
 
-- (void)didFailToLoadAd:(AMKAd *)ad withError:(NSError *)error {
+- (void)didFailToLoadAd:(STKMRAIDAd *)ad withError:(NSError *)error {
     if (self.shouldCache) {
         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
     } else {
@@ -119,10 +113,10 @@
     }
 }
 
-- (void)didUserInteractionAd:(AMKAd *)ad withURL:(NSURL *)url {
+- (void)didUserInteractionAd:(STKMRAIDAd *)ad withURL:(NSURL *)url {
     [self.displayDelegate adapterRegisterUserInteraction:self];
     NSArray <NSURL *> *urls = url ? @[url] : @[];
-    [ASKSpinnerScreen show];
+    [STKSpinnerScreen show];
     [self.productPresenter presentUrls:urls];
 }
 
@@ -139,37 +133,44 @@
 
 #pragma mark - AMKInterstitialPresenterDelegate
 
-- (void)presenterDidAppear:(id<AMKPresenter>)presenter {
+- (void)presenterDidAppear:(id<STKMRAIDPresenter>)presenter {
     [self.displayDelegate adapterWillPresent:self];
 }
 
-- (void)presenterDidDisappear:(id<AMKPresenter>)presenter {
+- (void)presenterDidDisappear:(id<STKMRAIDPresenter>)presenter {
     [self.displayDelegate adapterDidDismiss:self];
 }
 
-- (void)presenterFailToPresent:(id<AMKPresenter>)presenter withError:(NSError *)error {
+- (void)presenterFailToPresent:(id<STKMRAIDPresenter>)presenter withError:(NSError *)error {
     NSError *wrappedError = [error bdm_wrappedWithCode:BDMErrorCodeBadContent];
     [self.displayDelegate adapter:self failedToPresentAdWithError:wrappedError];
 }
 
-#pragma mark - ASKProductControllerDelegate
+#pragma mark - STKProductControllerDelegate
 
 - (UIViewController *)presenterRootViewController {
-    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.ask_topPresentedViewController;
+    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
 }
 
-- (void)controller:(ASKProductController *)controller didFailToPresentWithError:(NSError *)error {
-    [ASKSpinnerScreen hide];
+- (void)controller:(STKProductController *)controller didFailToPresentWithError:(NSError *)error {
+    [STKSpinnerScreen hide];
 }
 
-- (void)controller:(ASKProductController *)controller willLeaveApplicationToProduct:(NSURL *)productURL {
-    [ASKSpinnerScreen hide];
+- (void)controller:(STKProductController *)controller willLeaveApplicationToProduct:(NSURL *)productURL {
+    [STKSpinnerScreen hide];
 }
 
-- (void)controller:(ASKProductController *)controller willPresentProduct:(NSURL *)productURL {
-    [ASKSpinnerScreen hide];
+- (void)controller:(STKProductController *)controller willPresentProduct:(NSURL *)productURL {
+    [STKSpinnerScreen hide];
 }
 
-- (void)controller:(ASKProductController *)controller didDismissProduct:(NSURL *)productURL {}
+- (void)controller:(STKProductController *)controller didDismissProduct:(NSURL *)productURL {}
+
+- (void)controller:(nonnull STKProductController *)controller didPreloadProduct:(nonnull NSURL *)productURL {
+    [self.loadingDelegate adapterPreparedContent:self];
+}
+
+
+- (void)controllerDidCompleteProcessing:(nonnull STKProductController *)controller {}
 
 @end

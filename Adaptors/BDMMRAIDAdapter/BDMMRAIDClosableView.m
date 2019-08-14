@@ -8,8 +8,8 @@
 
 #import "BDMMRAIDClosableView.h"
 
-@import ASKGraphicButton;
-@import ASKExtension;
+@import StackUIKit;
+@import StackFoundation;
 
 static CGFloat const kBDMMRAIDCloseControlInset = 5.f;
 static CGFloat const kBDMMRAIDCloseControlSize = 40.f;
@@ -18,7 +18,7 @@ static CGFloat const kBDMMRAIDCloseControlSize = 40.f;
 @interface BDMMRAIDClosableView ()
 
 @property (nonatomic, copy) void(^userActionCallback)(BDMMRAIDClosableView *);
-@property (nonatomic, strong) ASKCircleTimerButton *button;
+@property (nonatomic, strong) STKCircleTimerButton *button;
 @property (nonatomic, assign) NSTimeInterval timeout;
 
 @end
@@ -33,10 +33,10 @@ static CGFloat const kBDMMRAIDCloseControlSize = 40.f;
     if (self = [super init]) {
         self.userActionCallback = [action copy];
         self.timeout = timeout;
-        self.contentInsets = UIEdgeInsetsMake(kBDMMRAIDCloseControlInset,
-                                              kBDMMRAIDCloseControlInset,
-                                              kBDMMRAIDCloseControlInset,
-                                              kBDMMRAIDCloseControlInset);
+        [self addContentInsent:UIEdgeInsetsMake(kBDMMRAIDCloseControlInset,
+                                                kBDMMRAIDCloseControlInset,
+                                                kBDMMRAIDCloseControlInset,
+                                                kBDMMRAIDCloseControlInset)];
     }
     return self;
 }
@@ -49,10 +49,10 @@ static CGFloat const kBDMMRAIDCloseControlSize = 40.f;
     
     [self layoutInSuperview: superview];
     __weak typeof(self) weakSelf = self;
-    self.button = [ASKCircleTimerButton timerWithTimeInterval:self.timeout completion:^(ASKCircleTimerButton * button) {
+    self.button = [STKCircleTimerButton timerWithTimeInterval:self.timeout completion:^(STKCircleTimerButton * button) {
         [weakSelf addTarget:weakSelf action:@selector(closeTouched:)];
     }];
-    self.button.builder.appendFillColor([UIColor ask_colorFromHex:@"#52000000"]);
+    self.button.builder.appendFillColor(UIColor.stk_fromHex(@"#52000000"));
     [self layoutButton];
     [self.button fire];
 }
@@ -82,7 +82,7 @@ static CGFloat const kBDMMRAIDCloseControlSize = 40.f;
 }
 
 - (void)closeTouched:(id)sender {
-    ASK_RUN_BLOCK(self.userActionCallback, self);
+    STK_RUN_BLOCK(self.userActionCallback, self);
     self.userActionCallback = nil;
 }
 

@@ -10,7 +10,7 @@
 #import "BDMFactory+BDMServerCommunicator.h"
 #import "BDMSdk+Project.h"
 #import "BDMNativeAdProtocol.h"
-#import "BDMRequest+ParallelBidding.h"
+#import "BDMRequest+HeaderBidding.h"
 
 
 @interface BDMNativeAdService ()
@@ -28,7 +28,6 @@
 @implementation BDMNativeAdService
 
 - (void)makeRequest:(BDMRequest *)request {
-    self.segment = request.activeSegmentIdentifier;
 //    [self.serverCommunicator makeRequest:request.destinationURL
 //                          clientBodyData:[self.sdk exchangeRequestBodyFromSdkRequest:request interstitial:NO]];
 }

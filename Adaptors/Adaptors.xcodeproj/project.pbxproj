@@ -7,25 +7,90 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		008172997139F8D6BA89B341 /* Pods_BDMTapjoyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE9FB85885E50FE3543C81B /* Pods_BDMTapjoyAdapter.framework */; };
 		0E795DDD06B3BFE1A005B10E /* Pods_BDMVASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */; };
 		12FA7868E228EC4282895143 /* Pods_BDMMRAIDAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */; };
+		4220558322E1E0C600E1CA89 /* BDMAdColonyStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220558222E1E0C600E1CA89 /* BDMAdColonyStringTransformer.m */; };
+		4220558822E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220558722E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m */; };
+		4231D01A22E1B4DA002852CE /* BDMMyTargetSlotTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D01922E1B4DA002852CE /* BDMMyTargetSlotTransformer.m */; };
+		4231D01D22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D01C22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m */; };
+		4231D02022E1D3E7002852CE /* BDMMyTargetCustomParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D01F22E1D3E7002852CE /* BDMMyTargetCustomParams.m */; };
+		4231D02322E1D93C002852CE /* BDMMyTargetBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D02222E1D93C002852CE /* BDMMyTargetBannerAdapter.m */; };
+		4231D02C22E1DD84002852CE /* BDMAdColonyAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D02B22E1DD84002852CE /* BDMAdColonyAdNetwork.m */; };
+		4231D02D22E1DD84002852CE /* BDMAdColonyAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4231D02A22E1DD84002852CE /* BDMAdColonyAdNetwork.h */; };
 		4248C20C218F789A00279AE2 /* BDMNASTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C20B218F789A00279AE2 /* BDMNASTNetwork.m */; };
 		4248C20F218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */; };
+		42675D8B22E2151D008298F5 /* BDMVungleAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42675D8A22E2151D008298F5 /* BDMVungleAdNetwork.m */; };
+		42675D8C22E2151D008298F5 /* BDMVungleAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42675D8922E2151D008298F5 /* BDMVungleAdNetwork.h */; };
+		426AA22022EB12BA003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA21F22EB12BA003FA6AF /* BidMachine.framework */; };
+		426AA22222EB12C1003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA22122EB12C1003FA6AF /* BidMachine.framework */; };
+		426AA22422EB12C8003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA22322EB12C8003FA6AF /* BidMachine.framework */; };
+		426AA22622EB12CE003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA22522EB12CE003FA6AF /* BidMachine.framework */; };
+		426AA22822EB12D3003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA22722EB12D3003FA6AF /* BidMachine.framework */; };
+		4274FA7222E5B92C00EE0D47 /* BDMVungleValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7122E5B92C00EE0D47 /* BDMVungleValueTransformer.m */; };
+		4274FA7522E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7422E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m */; };
+		4274FA7E22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */; };
+		4274FA7F22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */; };
 		427DE27D21A453B7009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
 		427DE27E21A453C7009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
 		427DE27F21A453CE009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
 		428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */; };
+		42A93E4622E5ED4F005053A2 /* BDMTapjoyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */; };
+		42A93E4B22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4A22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m */; };
+		42A93E4E22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4D22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m */; };
+		42A93E5722E70368005053A2 /* BDMFacebookAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E5622E70368005053A2 /* BDMFacebookAdNetwork.m */; };
+		42A93E5822E70368005053A2 /* BDMFacebookAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42A93E5522E70368005053A2 /* BDMFacebookAdNetwork.h */; };
+		42A93E6022E70758005053A2 /* BDMFaceebookPlacementsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E5F22E70758005053A2 /* BDMFaceebookPlacementsTransformer.m */; };
+		42A93E6322E70B65005053A2 /* BDMFacebookStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E6222E70B65005053A2 /* BDMFacebookStringValueTransformer.m */; };
+		42A93E6B22E70D2B005053A2 /* BDMFacebookBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E6A22E70D2B005053A2 /* BDMFacebookBannerAdapter.m */; };
+		42A93E6F22E71754005053A2 /* BDMFacebookFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E6E22E71754005053A2 /* BDMFacebookFullscreenAdapter.m */; };
+		42A93E7322E75B37005053A2 /* BDMAdColonyAppOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E7222E75B37005053A2 /* BDMAdColonyAppOptions.m */; };
 		42BE023422A56A6000D391CC /* BDMMRAIDInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */; };
 		42C3FDAD21620E95004D3784 /* BDMMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */; };
 		42C3FDAE21620E95004D3784 /* NSError+BDMMRAIDAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */; };
 		42C3FDAF21620E95004D3784 /* BDMMRAIDNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */; };
 		42C3FDB521620EA2004D3784 /* BDMVASTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB221620EA2004D3784 /* BDMVASTNetwork.m */; };
 		42C3FDB621620EA2004D3784 /* BDMVASTVideoAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */; };
+		42D7311422DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D7311322DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m */; };
 		42DAE22422A54A370011E054 /* BDMMRAIDClosableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */; };
+		79978822E1EA2747B7F11089 /* Pods_BDMVungleAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E74BACA4EA25E25A80C13E /* Pods_BDMVungleAdapter.framework */; };
 		80B38B1994C2E73700CCE438 /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */; };
+		92793D7F2948104C6E408A03 /* Pods_BDMFacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC148F7343FB1A341B8BB6B1 /* Pods_BDMFacebookAdapter.framework */; };
+		F52C52821D02ABE089C16037 /* Pods_BDMMyTargetAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278F78036031FDA8E2C3580A /* Pods_BDMMyTargetAdapter.framework */; };
+		FA27E9B5975E1C3028F8162A /* Pods_BDMAdColonyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49A2C7BB3A2CD1613065E81 /* Pods_BDMAdColonyAdapter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4231D02622E1DD84002852CE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				4231D02D22E1DD84002852CE /* BDMAdColonyAdNetwork.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42675D8522E2151D008298F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				42675D8C22E2151D008298F5 /* BDMVungleAdNetwork.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4274FA7822E5E7A600EE0D47 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				4274FA7F22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		429C1976216014720048F400 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,22 +118,94 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42A93E5122E70368005053A2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				42A93E5822E70368005053A2 /* BDMFacebookAdNetwork.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D7310722DF5CF200AEB066 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0482996C7F3945E0F50244C1 /* Pods-BDMVungleAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVungleAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVungleAdapter/Pods-BDMVungleAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		04E74BACA4EA25E25A80C13E /* Pods_BDMVungleAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVungleAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4C8D8C2E4BBE85E3FD04E1 /* Pods-BDMMRAIDAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		12CB78823522354016B45971 /* Pods-BDMAdColonyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAdColonyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAdColonyAdapter/Pods-BDMAdColonyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		278F78036031FDA8E2C3580A /* Pods_BDMMyTargetAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMyTargetAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F30F3B440AF6ADD3A2CF023 /* Pods-BDMMRAIDAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		4220558122E1E0C600E1CA89 /* BDMAdColonyStringTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdColonyStringTransformer.h; sourceTree = "<group>"; };
+		4220558222E1E0C600E1CA89 /* BDMAdColonyStringTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdColonyStringTransformer.m; sourceTree = "<group>"; };
+		4220558622E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdColonyFullscreenAdapter.h; sourceTree = "<group>"; };
+		4220558722E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdColonyFullscreenAdapter.m; sourceTree = "<group>"; };
+		4231D01822E1B4DA002852CE /* BDMMyTargetSlotTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetSlotTransformer.h; sourceTree = "<group>"; };
+		4231D01922E1B4DA002852CE /* BDMMyTargetSlotTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetSlotTransformer.m; sourceTree = "<group>"; };
+		4231D01B22E1C6E5002852CE /* BDMMyTargetFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetFullscreenAdapter.h; sourceTree = "<group>"; };
+		4231D01C22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetFullscreenAdapter.m; sourceTree = "<group>"; };
+		4231D01E22E1D3E7002852CE /* BDMMyTargetCustomParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetCustomParams.h; sourceTree = "<group>"; };
+		4231D01F22E1D3E7002852CE /* BDMMyTargetCustomParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetCustomParams.m; sourceTree = "<group>"; };
+		4231D02122E1D93C002852CE /* BDMMyTargetBannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetBannerAdapter.h; sourceTree = "<group>"; };
+		4231D02222E1D93C002852CE /* BDMMyTargetBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetBannerAdapter.m; sourceTree = "<group>"; };
+		4231D02822E1DD84002852CE /* libBDMAdColonyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMAdColonyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4231D02A22E1DD84002852CE /* BDMAdColonyAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdColonyAdNetwork.h; sourceTree = "<group>"; };
+		4231D02B22E1DD84002852CE /* BDMAdColonyAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdColonyAdNetwork.m; sourceTree = "<group>"; };
 		4248C20A218F789A00279AE2 /* BDMNASTNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTNetwork.h; sourceTree = "<group>"; };
 		4248C20B218F789A00279AE2 /* BDMNASTNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTNetwork.m; sourceTree = "<group>"; };
 		4248C20D218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTNativeAdServiceAdapter.h; sourceTree = "<group>"; };
 		4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTNativeAdServiceAdapter.m; sourceTree = "<group>"; };
+		42675D8722E2151D008298F5 /* libBDMVungleAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMVungleAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		42675D8922E2151D008298F5 /* BDMVungleAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleAdNetwork.h; sourceTree = "<group>"; };
+		42675D8A22E2151D008298F5 /* BDMVungleAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMVungleAdNetwork.m; sourceTree = "<group>"; };
+		426AA21F22EB12BA003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		426AA22122EB12C1003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		426AA22322EB12C8003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		426AA22522EB12CE003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		426AA22722EB12D3003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4274FA7022E5B92C00EE0D47 /* BDMVungleValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleValueTransformer.h; sourceTree = "<group>"; };
+		4274FA7122E5B92C00EE0D47 /* BDMVungleValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMVungleValueTransformer.m; sourceTree = "<group>"; };
+		4274FA7322E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleFullscreenAdapter.h; sourceTree = "<group>"; };
+		4274FA7422E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMVungleFullscreenAdapter.m; sourceTree = "<group>"; };
+		4274FA7A22E5E7A600EE0D47 /* libBDMTapjoyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMTapjoyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyAdNetwork.h; sourceTree = "<group>"; };
+		4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyAdNetwork.m; sourceTree = "<group>"; };
 		427DE27C21A453B7009CCC25 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		428F5124218F7EED00BC9E2D /* BDMNASTDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTDisplayAdapter.h; sourceTree = "<group>"; };
 		428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTDisplayAdapter.m; sourceTree = "<group>"; };
 		429C1978216014720048F400 /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		429C1985216014850048F400 /* libBDMVASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMVASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		429C19922160149B0048F400 /* libBDMNASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMNASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A93E4422E5ED4F005053A2 /* BDMTapjoyValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyValueTransformer.h; sourceTree = "<group>"; };
+		42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyValueTransformer.m; sourceTree = "<group>"; };
+		42A93E4922E60209005053A2 /* BDMTapjoyFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyFullscreenAdapter.h; sourceTree = "<group>"; };
+		42A93E4A22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyFullscreenAdapter.m; sourceTree = "<group>"; };
+		42A93E4C22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyAuctionDataValueTransofrmer.h; sourceTree = "<group>"; };
+		42A93E4D22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyAuctionDataValueTransofrmer.m; sourceTree = "<group>"; };
+		42A93E5322E70368005053A2 /* libBDMFacebookAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMFacebookAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A93E5522E70368005053A2 /* BDMFacebookAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookAdNetwork.h; sourceTree = "<group>"; };
+		42A93E5622E70368005053A2 /* BDMFacebookAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookAdNetwork.m; sourceTree = "<group>"; };
+		42A93E5E22E70758005053A2 /* BDMFaceebookPlacementsTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFaceebookPlacementsTransformer.h; sourceTree = "<group>"; };
+		42A93E5F22E70758005053A2 /* BDMFaceebookPlacementsTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFaceebookPlacementsTransformer.m; sourceTree = "<group>"; };
+		42A93E6122E70B65005053A2 /* BDMFacebookStringValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookStringValueTransformer.h; sourceTree = "<group>"; };
+		42A93E6222E70B65005053A2 /* BDMFacebookStringValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookStringValueTransformer.m; sourceTree = "<group>"; };
+		42A93E6922E70D2B005053A2 /* BDMFacebookBannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookBannerAdapter.h; sourceTree = "<group>"; };
+		42A93E6A22E70D2B005053A2 /* BDMFacebookBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookBannerAdapter.m; sourceTree = "<group>"; };
+		42A93E6D22E71754005053A2 /* BDMFacebookFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookFullscreenAdapter.h; sourceTree = "<group>"; };
+		42A93E6E22E71754005053A2 /* BDMFacebookFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookFullscreenAdapter.m; sourceTree = "<group>"; };
+		42A93E7122E75B37005053A2 /* BDMAdColonyAppOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdColonyAppOptions.h; sourceTree = "<group>"; };
+		42A93E7222E75B37005053A2 /* BDMAdColonyAppOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdColonyAppOptions.m; sourceTree = "<group>"; };
 		42C3FDA521620E95004D3784 /* BDMMRAIDInterstitialAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDInterstitialAdapter.h; sourceTree = "<group>"; };
 		42C3FDA621620E95004D3784 /* NSError+BDMMRAIDAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BDMMRAIDAdapter.h"; sourceTree = "<group>"; };
 		42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDBannerAdapter.m; sourceTree = "<group>"; };
@@ -81,19 +218,58 @@
 		42C3FDB221620EA2004D3784 /* BDMVASTNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMVASTNetwork.m; sourceTree = "<group>"; };
 		42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMVASTVideoAdapter.m; sourceTree = "<group>"; };
 		42C3FDB421620EA2004D3784 /* BDMVASTNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMVASTNetwork.h; sourceTree = "<group>"; };
+		42D7310922DF5CF200AEB066 /* libBDMMyTargetAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMyTargetAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D7311222DF5D2E00AEB066 /* BDMMyTargetAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetAdNetwork.h; sourceTree = "<group>"; };
+		42D7311322DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetAdNetwork.m; sourceTree = "<group>"; };
 		42DAE22222A54A370011E054 /* BDMMRAIDClosableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDClosableView.h; sourceTree = "<group>"; };
 		42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDClosableView.m; sourceTree = "<group>"; };
 		44D3CEC6DB28E06E4E7949FD /* Pods-BDMNASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7031672E17455C461103AE4F /* Pods_OPBNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OPBNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C360C6F2F6BFF146C6C6466 /* Pods-BDMTapjoyAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		75B3E3BEE3C9A43EC392DC7C /* Pods-BDMTapjoyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		91025E1849D1EC144B762490 /* Pods-BDMVungleAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVungleAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVungleAdapter/Pods-BDMVungleAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		95C93ECC2AB534F4B7C3EDF0 /* Pods-BDMVASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		9E89893E04DC5053A339BD43 /* Pods-BDMMyTargetAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMyTargetAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMyTargetAdapter/Pods-BDMMyTargetAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		A49A2C7BB3A2CD1613065E81 /* Pods_BDMAdColonyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMAdColonyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE9FB85885E50FE3543C81B /* Pods_BDMTapjoyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMTapjoyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMRAIDAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5CB23B294E5E1FBE08663E8 /* Pods_OPBVASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OPBVASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91BAD9533A9000DB222A234 /* Pods-BDMFacebookAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMFacebookAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMFacebookAdapter/Pods-BDMFacebookAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		C9AF275D86EEF4063B093579 /* Pods-BDMMyTargetAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMyTargetAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMyTargetAdapter/Pods-BDMMyTargetAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		D018DEB957A24A69B05EECE5 /* Pods-BDMFacebookAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMFacebookAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMFacebookAdapter/Pods-BDMFacebookAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		FB9B7001D10CD9B53A4F79AB /* Pods-BDMAdColonyAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAdColonyAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAdColonyAdapter/Pods-BDMAdColonyAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		FC148F7343FB1A341B8BB6B1 /* Pods_BDMFacebookAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMFacebookAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4231D02522E1DD84002852CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				426AA22222EB12C1003FA6AF /* BidMachine.framework in Frameworks */,
+				FA27E9B5975E1C3028F8162A /* Pods_BDMAdColonyAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42675D8422E2151D008298F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				426AA22422EB12C8003FA6AF /* BidMachine.framework in Frameworks */,
+				79978822E1EA2747B7F11089 /* Pods_BDMVungleAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4274FA7722E5E7A600EE0D47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				426AA22622EB12CE003FA6AF /* BidMachine.framework in Frameworks */,
+				008172997139F8D6BA89B341 /* Pods_BDMTapjoyAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		429C1975216014720048F400 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,15 +297,76 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42A93E5022E70368005053A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				426AA22822EB12D3003FA6AF /* BidMachine.framework in Frameworks */,
+				92793D7F2948104C6E408A03 /* Pods_BDMFacebookAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D7310622DF5CF200AEB066 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				426AA22022EB12BA003FA6AF /* BidMachine.framework in Frameworks */,
+				F52C52821D02ABE089C16037 /* Pods_BDMMyTargetAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4231D02922E1DD84002852CE /* BDMAdColonyAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				42A93E6622E70CE5005053A2 /* Transoformers */,
+				4231D02A22E1DD84002852CE /* BDMAdColonyAdNetwork.h */,
+				4231D02B22E1DD84002852CE /* BDMAdColonyAdNetwork.m */,
+				4220558622E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.h */,
+				4220558722E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m */,
+				42A93E7122E75B37005053A2 /* BDMAdColonyAppOptions.h */,
+				42A93E7222E75B37005053A2 /* BDMAdColonyAppOptions.m */,
+			);
+			path = BDMAdColonyAdapter;
+			sourceTree = "<group>";
+		};
+		42675D8822E2151D008298F5 /* BDMVungleAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				42A93E6822E70D0C005053A2 /* Transformers */,
+				42675D8922E2151D008298F5 /* BDMVungleAdNetwork.h */,
+				42675D8A22E2151D008298F5 /* BDMVungleAdNetwork.m */,
+				4274FA7322E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.h */,
+				4274FA7422E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m */,
+			);
+			path = BDMVungleAdapter;
+			sourceTree = "<group>";
+		};
+		4274FA7B22E5E7A600EE0D47 /* BDMTapjoyAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				42A93E6522E70CD2005053A2 /* Transformers */,
+				4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */,
+				4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */,
+				42A93E4922E60209005053A2 /* BDMTapjoyFullscreenAdapter.h */,
+				42A93E4A22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m */,
+			);
+			path = BDMTapjoyAdapter;
+			sourceTree = "<group>";
+		};
 		429C195F2160127A0048F400 = {
 			isa = PBXGroup;
 			children = (
 				429C1979216014720048F400 /* BDMMRAIDAdapter */,
 				429C1986216014850048F400 /* BDMVASTAdapter */,
 				429C19932160149B0048F400 /* BDMNASTAdapter */,
+				42D7310A22DF5CF200AEB066 /* BDMMyTargetAdapter */,
+				4231D02922E1DD84002852CE /* BDMAdColonyAdapter */,
+				42675D8822E2151D008298F5 /* BDMVungleAdapter */,
+				4274FA7B22E5E7A600EE0D47 /* BDMTapjoyAdapter */,
+				42A93E5422E70368005053A2 /* BDMFacebookAdapter */,
 				429C19692160127A0048F400 /* Products */,
 				BFCA2E1CE2BD93ED3F976496 /* Pods */,
 				A42159B447762DCB7EC116EE /* Frameworks */,
@@ -142,6 +379,11 @@
 				429C1978216014720048F400 /* libBDMMRAIDAdapter.a */,
 				429C1985216014850048F400 /* libBDMVASTAdapter.a */,
 				429C19922160149B0048F400 /* libBDMNASTAdapter.a */,
+				42D7310922DF5CF200AEB066 /* libBDMMyTargetAdapter.a */,
+				4231D02822E1DD84002852CE /* libBDMAdColonyAdapter.a */,
+				42675D8722E2151D008298F5 /* libBDMVungleAdapter.a */,
+				4274FA7A22E5E7A600EE0D47 /* libBDMTapjoyAdapter.a */,
+				42A93E5322E70368005053A2 /* libBDMFacebookAdapter.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +426,101 @@
 			path = BDMNASTAdapter;
 			sourceTree = "<group>";
 		};
+		42A93E5422E70368005053A2 /* BDMFacebookAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				42A93E6C22E71728005053A2 /* Adapters */,
+				42A93E6422E70CC5005053A2 /* Transformers */,
+				42A93E5522E70368005053A2 /* BDMFacebookAdNetwork.h */,
+				42A93E5622E70368005053A2 /* BDMFacebookAdNetwork.m */,
+			);
+			path = BDMFacebookAdapter;
+			sourceTree = "<group>";
+		};
+		42A93E6422E70CC5005053A2 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				42A93E5E22E70758005053A2 /* BDMFaceebookPlacementsTransformer.h */,
+				42A93E5F22E70758005053A2 /* BDMFaceebookPlacementsTransformer.m */,
+				42A93E6122E70B65005053A2 /* BDMFacebookStringValueTransformer.h */,
+				42A93E6222E70B65005053A2 /* BDMFacebookStringValueTransformer.m */,
+			);
+			name = Transformers;
+			sourceTree = "<group>";
+		};
+		42A93E6522E70CD2005053A2 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				42A93E4422E5ED4F005053A2 /* BDMTapjoyValueTransformer.h */,
+				42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */,
+				42A93E4C22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.h */,
+				42A93E4D22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m */,
+			);
+			name = Transformers;
+			sourceTree = "<group>";
+		};
+		42A93E6622E70CE5005053A2 /* Transoformers */ = {
+			isa = PBXGroup;
+			children = (
+				4220558122E1E0C600E1CA89 /* BDMAdColonyStringTransformer.h */,
+				4220558222E1E0C600E1CA89 /* BDMAdColonyStringTransformer.m */,
+			);
+			name = Transoformers;
+			sourceTree = "<group>";
+		};
+		42A93E6722E70CF6005053A2 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				4231D01822E1B4DA002852CE /* BDMMyTargetSlotTransformer.h */,
+				4231D01922E1B4DA002852CE /* BDMMyTargetSlotTransformer.m */,
+			);
+			name = Transformers;
+			sourceTree = "<group>";
+		};
+		42A93E6822E70D0C005053A2 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				4274FA7022E5B92C00EE0D47 /* BDMVungleValueTransformer.h */,
+				4274FA7122E5B92C00EE0D47 /* BDMVungleValueTransformer.m */,
+			);
+			name = Transformers;
+			sourceTree = "<group>";
+		};
+		42A93E6C22E71728005053A2 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				42A93E6922E70D2B005053A2 /* BDMFacebookBannerAdapter.h */,
+				42A93E6A22E70D2B005053A2 /* BDMFacebookBannerAdapter.m */,
+				42A93E6D22E71754005053A2 /* BDMFacebookFullscreenAdapter.h */,
+				42A93E6E22E71754005053A2 /* BDMFacebookFullscreenAdapter.m */,
+			);
+			name = Adapters;
+			sourceTree = "<group>";
+		};
+		42A93E7022E71761005053A2 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				4231D01B22E1C6E5002852CE /* BDMMyTargetFullscreenAdapter.h */,
+				4231D01C22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m */,
+				4231D02122E1D93C002852CE /* BDMMyTargetBannerAdapter.h */,
+				4231D02222E1D93C002852CE /* BDMMyTargetBannerAdapter.m */,
+			);
+			name = Adapters;
+			sourceTree = "<group>";
+		};
+		42D7310A22DF5CF200AEB066 /* BDMMyTargetAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				42A93E7022E71761005053A2 /* Adapters */,
+				42A93E6722E70CF6005053A2 /* Transformers */,
+				42D7311222DF5D2E00AEB066 /* BDMMyTargetAdNetwork.h */,
+				42D7311322DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m */,
+				4231D01E22E1D3E7002852CE /* BDMMyTargetCustomParams.h */,
+				4231D01F22E1D3E7002852CE /* BDMMyTargetCustomParams.m */,
+			);
+			path = BDMMyTargetAdapter;
+			sourceTree = "<group>";
+		};
 		6500EE2221B00B0900E7D281 /* Supports */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,12 +535,20 @@
 		A42159B447762DCB7EC116EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				426AA22722EB12D3003FA6AF /* BidMachine.framework */,
+				426AA22522EB12CE003FA6AF /* BidMachine.framework */,
+				426AA22322EB12C8003FA6AF /* BidMachine.framework */,
+				426AA22122EB12C1003FA6AF /* BidMachine.framework */,
+				426AA21F22EB12BA003FA6AF /* BidMachine.framework */,
 				427DE27C21A453B7009CCC25 /* BidMachine.framework */,
-				B5CB23B294E5E1FBE08663E8 /* Pods_OPBVASTAdapter.framework */,
-				7031672E17455C461103AE4F /* Pods_OPBNASTAdapter.framework */,
 				B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */,
 				4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */,
 				3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */,
+				278F78036031FDA8E2C3580A /* Pods_BDMMyTargetAdapter.framework */,
+				A49A2C7BB3A2CD1613065E81 /* Pods_BDMAdColonyAdapter.framework */,
+				04E74BACA4EA25E25A80C13E /* Pods_BDMVungleAdapter.framework */,
+				ACE9FB85885E50FE3543C81B /* Pods_BDMTapjoyAdapter.framework */,
+				FC148F7343FB1A341B8BB6B1 /* Pods_BDMFacebookAdapter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -217,6 +562,16 @@
 				8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */,
 				95C93ECC2AB534F4B7C3EDF0 /* Pods-BDMVASTAdapter.debug.xcconfig */,
 				8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */,
+				C9AF275D86EEF4063B093579 /* Pods-BDMMyTargetAdapter.debug.xcconfig */,
+				9E89893E04DC5053A339BD43 /* Pods-BDMMyTargetAdapter.release.xcconfig */,
+				12CB78823522354016B45971 /* Pods-BDMAdColonyAdapter.debug.xcconfig */,
+				FB9B7001D10CD9B53A4F79AB /* Pods-BDMAdColonyAdapter.release.xcconfig */,
+				91025E1849D1EC144B762490 /* Pods-BDMVungleAdapter.debug.xcconfig */,
+				0482996C7F3945E0F50244C1 /* Pods-BDMVungleAdapter.release.xcconfig */,
+				75B3E3BEE3C9A43EC392DC7C /* Pods-BDMTapjoyAdapter.debug.xcconfig */,
+				5C360C6F2F6BFF146C6C6466 /* Pods-BDMTapjoyAdapter.release.xcconfig */,
+				C91BAD9533A9000DB222A234 /* Pods-BDMFacebookAdapter.debug.xcconfig */,
+				D018DEB957A24A69B05EECE5 /* Pods-BDMFacebookAdapter.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -224,6 +579,60 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4231D02722E1DD84002852CE /* BDMAdColonyAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4231D02E22E1DD84002852CE /* Build configuration list for PBXNativeTarget "BDMAdColonyAdapter" */;
+			buildPhases = (
+				8A74516A653C8D148FC6B914 /* [CP] Check Pods Manifest.lock */,
+				4231D02422E1DD84002852CE /* Sources */,
+				4231D02522E1DD84002852CE /* Frameworks */,
+				4231D02622E1DD84002852CE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMAdColonyAdapter;
+			productName = BDMAdColonyAdapter;
+			productReference = 4231D02822E1DD84002852CE /* libBDMAdColonyAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		42675D8622E2151D008298F5 /* BDMVungleAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42675D8F22E2151D008298F5 /* Build configuration list for PBXNativeTarget "BDMVungleAdapter" */;
+			buildPhases = (
+				9F728A987FB0BAB680349EE8 /* [CP] Check Pods Manifest.lock */,
+				42675D8322E2151D008298F5 /* Sources */,
+				42675D8422E2151D008298F5 /* Frameworks */,
+				42675D8522E2151D008298F5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMVungleAdapter;
+			productName = BDMVungleAdapter;
+			productReference = 42675D8722E2151D008298F5 /* libBDMVungleAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		4274FA7922E5E7A600EE0D47 /* BDMTapjoyAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4274FA8022E5E7A600EE0D47 /* Build configuration list for PBXNativeTarget "BDMTapjoyAdapter" */;
+			buildPhases = (
+				A8F47CF8661EFBA0F66AF37B /* [CP] Check Pods Manifest.lock */,
+				4274FA7622E5E7A600EE0D47 /* Sources */,
+				4274FA7722E5E7A600EE0D47 /* Frameworks */,
+				4274FA7822E5E7A600EE0D47 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMTapjoyAdapter;
+			productName = BDMTapjoyAdapter;
+			productReference = 4274FA7A22E5E7A600EE0D47 /* libBDMTapjoyAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		429C1977216014720048F400 /* BDMMRAIDAdapter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 429C197E216014720048F400 /* Build configuration list for PBXNativeTarget "BDMMRAIDAdapter" */;
@@ -278,6 +687,42 @@
 			productReference = 429C19922160149B0048F400 /* libBDMNASTAdapter.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		42A93E5222E70368005053A2 /* BDMFacebookAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42A93E5922E70368005053A2 /* Build configuration list for PBXNativeTarget "BDMFacebookAdapter" */;
+			buildPhases = (
+				6CC7DAE6EB548EFC1C3A0A7A /* [CP] Check Pods Manifest.lock */,
+				42A93E4F22E70368005053A2 /* Sources */,
+				42A93E5022E70368005053A2 /* Frameworks */,
+				42A93E5122E70368005053A2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMFacebookAdapter;
+			productName = BDMFacebookAdapter;
+			productReference = 42A93E5322E70368005053A2 /* libBDMFacebookAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		42D7310822DF5CF200AEB066 /* BDMMyTargetAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D7311122DF5CF300AEB066 /* Build configuration list for PBXNativeTarget "BDMMyTargetAdapter" */;
+			buildPhases = (
+				98936C91BDBAD87AA6AA9621 /* [CP] Check Pods Manifest.lock */,
+				42D7310522DF5CF200AEB066 /* Sources */,
+				42D7310622DF5CF200AEB066 /* Frameworks */,
+				42D7310722DF5CF200AEB066 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMMyTargetAdapter;
+			productName = BDMMyTargteAdapter;
+			productReference = 42D7310922DF5CF200AEB066 /* libBDMMyTargetAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -287,6 +732,15 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Stas Kochkin";
 				TargetAttributes = {
+					4231D02722E1DD84002852CE = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					42675D8622E2151D008298F5 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					4274FA7922E5E7A600EE0D47 = {
+						CreatedOnToolsVersion = 10.2;
+					};
 					429C1977216014720048F400 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -295,6 +749,12 @@
 					};
 					429C19912160149B0048F400 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					42A93E5222E70368005053A2 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					42D7310822DF5CF200AEB066 = {
+						CreatedOnToolsVersion = 10.2;
 					};
 				};
 			};
@@ -314,6 +774,11 @@
 				429C1977216014720048F400 /* BDMMRAIDAdapter */,
 				429C1984216014850048F400 /* BDMVASTAdapter */,
 				429C19912160149B0048F400 /* BDMNASTAdapter */,
+				42D7310822DF5CF200AEB066 /* BDMMyTargetAdapter */,
+				4231D02722E1DD84002852CE /* BDMAdColonyAdapter */,
+				42675D8622E2151D008298F5 /* BDMVungleAdapter */,
+				4274FA7922E5E7A600EE0D47 /* BDMTapjoyAdapter */,
+				42A93E5222E70368005053A2 /* BDMFacebookAdapter */,
 			);
 		};
 /* End PBXProject section */
@@ -355,6 +820,50 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6CC7DAE6EB548EFC1C3A0A7A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMFacebookAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A74516A653C8D148FC6B914 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMAdColonyAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		93432DD05BE4215D045AF7F0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,9 +882,107 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		98936C91BDBAD87AA6AA9621 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMMyTargetAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F728A987FB0BAB680349EE8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMVungleAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8F47CF8661EFBA0F66AF37B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMTapjoyAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4231D02422E1DD84002852CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4231D02C22E1DD84002852CE /* BDMAdColonyAdNetwork.m in Sources */,
+				4220558322E1E0C600E1CA89 /* BDMAdColonyStringTransformer.m in Sources */,
+				4220558822E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m in Sources */,
+				42A93E7322E75B37005053A2 /* BDMAdColonyAppOptions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42675D8322E2151D008298F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4274FA7222E5B92C00EE0D47 /* BDMVungleValueTransformer.m in Sources */,
+				4274FA7522E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m in Sources */,
+				42675D8B22E2151D008298F5 /* BDMVungleAdNetwork.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4274FA7622E5E7A600EE0D47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A93E4E22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m in Sources */,
+				42A93E4622E5ED4F005053A2 /* BDMTapjoyValueTransformer.m in Sources */,
+				42A93E4B22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m in Sources */,
+				4274FA7E22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		429C1974216014720048F400 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -407,9 +1014,117 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42A93E4F22E70368005053A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A93E5722E70368005053A2 /* BDMFacebookAdNetwork.m in Sources */,
+				42A93E6B22E70D2B005053A2 /* BDMFacebookBannerAdapter.m in Sources */,
+				42A93E6F22E71754005053A2 /* BDMFacebookFullscreenAdapter.m in Sources */,
+				42A93E6022E70758005053A2 /* BDMFaceebookPlacementsTransformer.m in Sources */,
+				42A93E6322E70B65005053A2 /* BDMFacebookStringValueTransformer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D7310522DF5CF200AEB066 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4231D01D22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m in Sources */,
+				4231D02322E1D93C002852CE /* BDMMyTargetBannerAdapter.m in Sources */,
+				4231D01A22E1B4DA002852CE /* BDMMyTargetSlotTransformer.m in Sources */,
+				42D7311422DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m in Sources */,
+				4231D02022E1D3E7002852CE /* BDMMyTargetCustomParams.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		4231D02F22E1DD84002852CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12CB78823522354016B45971 /* Pods-BDMAdColonyAdapter.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4231D03022E1DD84002852CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB9B7001D10CD9B53A4F79AB /* Pods-BDMAdColonyAdapter.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		42675D8D22E2151D008298F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91025E1849D1EC144B762490 /* Pods-BDMVungleAdapter.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		42675D8E22E2151D008298F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0482996C7F3945E0F50244C1 /* Pods-BDMVungleAdapter.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4274FA8122E5E7A600EE0D47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75B3E3BEE3C9A43EC392DC7C /* Pods-BDMTapjoyAdapter.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4274FA8222E5E7A600EE0D47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C360C6F2F6BFF146C6C6466 /* Pods-BDMTapjoyAdapter.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		429C196F2160127A0048F400 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -574,7 +1289,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WG4VFF78ZM;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -591,7 +1306,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WG4VFF78ZM;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -629,9 +1344,92 @@
 			};
 			name = Release;
 		};
+		42A93E5A22E70368005053A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C91BAD9533A9000DB222A234 /* Pods-BDMFacebookAdapter.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		42A93E5B22E70368005053A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D018DEB957A24A69B05EECE5 /* Pods-BDMFacebookAdapter.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		42D7310F22DF5CF300AEB066 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9AF275D86EEF4063B093579 /* Pods-BDMMyTargetAdapter.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		42D7311022DF5CF300AEB066 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E89893E04DC5053A339BD43 /* Pods-BDMMyTargetAdapter.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZLK3N5NR4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4231D02E22E1DD84002852CE /* Build configuration list for PBXNativeTarget "BDMAdColonyAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4231D02F22E1DD84002852CE /* Debug */,
+				4231D03022E1DD84002852CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42675D8F22E2151D008298F5 /* Build configuration list for PBXNativeTarget "BDMVungleAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42675D8D22E2151D008298F5 /* Debug */,
+				42675D8E22E2151D008298F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4274FA8022E5E7A600EE0D47 /* Build configuration list for PBXNativeTarget "BDMTapjoyAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4274FA8122E5E7A600EE0D47 /* Debug */,
+				4274FA8222E5E7A600EE0D47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		429C19632160127A0048F400 /* Build configuration list for PBXProject "Adaptors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -664,6 +1462,24 @@
 			buildConfigurations = (
 				429C19992160149B0048F400 /* Debug */,
 				429C199A2160149B0048F400 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42A93E5922E70368005053A2 /* Build configuration list for PBXNativeTarget "BDMFacebookAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A93E5A22E70368005053A2 /* Debug */,
+				42A93E5B22E70368005053A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D7311122DF5CF300AEB066 /* Build configuration list for PBXNativeTarget "BDMMyTargetAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D7310F22DF5CF300AEB066 /* Debug */,
+				42D7311022DF5CF300AEB066 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

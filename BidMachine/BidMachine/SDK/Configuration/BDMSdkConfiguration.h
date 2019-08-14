@@ -17,10 +17,14 @@ BDM_SUBCLASSING_RESTRICTED
 /**
  Targeting data. Can be nil
  */
-@property (copy, nonatomic, readwrite, nullable) BDMTargeting * targeting;
+@property (copy, nonatomic, readwrite, nullable) BDMTargeting *targeting;
 /**
  Enable/disable test mode
  */
 @property (assign, nonatomic, readwrite) BOOL testMode;
+/**
+ Base URL for SDK initialisation
+ */
+@property (copy, nonatomic, readwrite, nonnull) NSURL *baseURL;
 @end
 

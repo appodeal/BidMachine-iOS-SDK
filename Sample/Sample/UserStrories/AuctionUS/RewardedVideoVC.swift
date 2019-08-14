@@ -10,9 +10,10 @@ import UIKit
 import BidMachine
 import Toast_Swift
 
-class RewardedVideoVC: UIViewController {
+
+final class RewardedVideoVC: UIViewController {
     private let rewarded = BDMRewarded()
-    
+
     private lazy var request: BDMRewardedRequest = {
         let request = BDMRewardedRequest()
         return request
@@ -22,7 +23,6 @@ class RewardedVideoVC: UIViewController {
     
     @IBOutlet weak var loadButton: UIButton!
     @IBOutlet weak var presentButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,12 +58,14 @@ class RewardedVideoVC: UIViewController {
     
     @IBAction func configureRequest(_ sender: Any) {
         let requestVC: RewardedRequestVC? =  UIApplication.shared.mainStoryboard.instantiateVC()
+        requestVC?.add(self.request)
         requestVC?.onUpdateRequest = { [unowned self] request in
             request.map { self.request = $0 }
         }
         navigationController?.present(requestVC!, animated: true, completion: nil)
     }
 }
+
 
 extension RewardedVideoVC: BDMRequestDelegate {
     func requestDidExpire(_ request: BDMRequest) {
@@ -81,6 +83,7 @@ extension RewardedVideoVC: BDMRequestDelegate {
         ToastMaker.showToast(viewController: self, data: info)
     }
 }
+
 
 extension RewardedVideoVC: BDMRewardedDelegate {
     func rewardedReady(toPresent rewarded: BDMRewarded) {

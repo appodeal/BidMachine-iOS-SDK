@@ -5,10 +5,10 @@ explicit module BidMachine.Adapters {
     export *
 }
 
-explicit module BidMachine.ParalellBidding {
-    header "BDMSdk+ParallelBidding.h"
-    header "BDMRequest+ParallelBidding.h"
-    header "BDMNetworkItem.h"
-    header "BDMS2SMacros.h"
+explicit module BidMachine.HeaderBidding {
+    header "BDMAdUnit.h"
+    header "BDMAdNetworkConfiguration.h"
+    header "BDMSdkConfiguration+HeaderBidding.h"
+    header "BDMRequest+HeaderBidding.h"
     export *
 }

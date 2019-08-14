@@ -8,11 +8,12 @@
 
 import UIKit
 import BidMachine
-import BidMachine.ParalellBidding
+import BidMachine.HeaderBidding
+
 
 class RequestVC <T:BDMRequest>: DataTableViewController {
     open var onUpdateRequest:((T?)->())?
-   
+    
     private var pricefloors: [BDMPriceFloor?] = []
     private var request: T?
     
@@ -34,40 +35,53 @@ class RequestVC <T:BDMRequest>: DataTableViewController {
     }
     
     @IBAction private func saveAndCloseTouched(_ sender: Any) {
-        request.flatMap { $0.priceFloors = pricefloors.map{$0 ?? BDMPriceFloor()} }
-        request.flatMap { $0.targeting = SdkContext.shared.targeting }
+        request?.priceFloors = pricefloors.map { $0 ?? BDMPriceFloor() }
+        request?.targeting = SdkContext.shared.targeting
+        
         onUpdateRequest?(request)
         SdkContext.shared.synchronise()
         dismiss(animated: true, completion: nil)
     }
 }
 
-extension RequestVC {
+
+private extension RequestVC {
     func addPricefloorsSection() {
-        let _ = addSection { section in
+        addSection { section in
             section.title = "Auction"
             section.state = .expanded
-            for idx in 0...self.pricefloors.count + 3 {
-                if (idx < self.pricefloors.count) {
-                    let _ = section.addRow { [unowned self] row in
-                        let pricefloor = self.pricefloors[idx]
-                        let cell: DataTableViewCell = self.tableView.dequeueCell()
-                        cell.entity = DataEntity(info: "Pricefloor", type:.string, value:pricefloor?.toString())
-                        cell.binding = { self.pricefloors.insert($0.value!.toPricefloor(), at: idx) }
-                        row.cell = cell
+            // Add pricefloors
+            self.pricefloors.enumerated().forEach { pricefloor in
+                return section.addRow { [unowned self] row in
+                    let cell: DataTableViewCell = self.tableView.dequeueCell()
+                    cell.entity = DataEntity(info: "Pricefloor",
+                                             type:.string,
+                                             value:pricefloor.element?.toString())
+                    
+                    cell.binding = {
+                        self.pricefloors.insert($0.value!.toPricefloor(),
+                                                at: pricefloor.offset)
                     }
-                } else {
-                    let _ = section.addRow { [unowned self] row in
-                        let cell: DataTableViewCell = self.tableView.dequeueCell()
-                        cell.entity = DataEntity(info: "Pricefloor", type:.string, value:nil)
-                        cell.binding = { self.pricefloors.append($0.value?.toPricefloor()) }
-                        row.cell = cell
+                    row.cell = cell
+                }
+            }
+    
+            // Add empty fields for pricefloors
+            (self.pricefloors.count...self.pricefloors.count + 3).forEach { idx in
+                return section.addRow { [unowned self] row in
+                    let cell: DataTableViewCell = self.tableView.dequeueCell()
+                    cell.entity = DataEntity(info: "Pricefloor",
+                                             type:.string, value:nil)
+                    cell.binding = {
+                        self.pricefloors.append($0.value?.toPricefloor())
                     }
+                    row.cell = cell
                 }
             }
         }
     }
 }
+
 
 private extension String {
     func toPricefloor() -> BDMPriceFloor {
@@ -78,20 +92,14 @@ private extension String {
     }
 }
 
+
 private extension BDMPriceFloor {
     func toString() -> String {
         return "\(self.value):\(self.id)"
     }
 }
 
-class BannerRequestVC: RequestVC <BDMBannerRequest> {
-    
-}
 
-class InterstitialRequestVC: RequestVC <BDMInterstitialRequest> {
-    
-}
-
-class RewardedRequestVC: RequestVC <BDMRewardedRequest> {
-    
-}
+final class BannerRequestVC: RequestVC <BDMBannerRequest> {}
+final class InterstitialRequestVC: RequestVC <BDMInterstitialRequest> {}
+final class RewardedRequestVC: RequestVC <BDMRewardedRequest> {}

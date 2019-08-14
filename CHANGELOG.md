@@ -1,3 +1,13 @@
+# Version 1.3.0 (Aug 13th, 2019)
+
+- Add Header Bidding AdColony adapter
+- Add Header Bidding Tapjoy adapter
+- Add Header Bidding FacebookAudienceNetwork adapter
+- Add Header Bidding MyTarget adapter
+- Add Header Bidding Vungle adapter
+- Add ability to change base URL
+- Extend event tracking
+
 # Version 1.1.1 (Jun 19th, 2019)
 
 - Minor fixes in MRAID viewability tracking logic

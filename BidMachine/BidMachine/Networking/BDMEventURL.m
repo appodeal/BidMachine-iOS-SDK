@@ -34,18 +34,6 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event) {
     return tracker;
 }
 
-- (BDMEventURL *(^)(NSNumber *))extendedBySegment {
-    return ^id(NSNumber *segment) {
-        return [self trackerByReplaceMacros:@"SEGMENT" withParameter:segment.stringValue ?: @"-1"];
-    };
-}
-
-- (BDMEventURL *(^)(NSNumber *))extendedByPlacement {
-    return ^id(NSNumber *placement) {
-        return [self trackerByReplaceMacros:@"PLACEMENT" withParameter:placement.stringValue ?: @"-1"];
-    };
-}
-
 - (BDMEventURL *(^)(NSInteger))extendedByEvent {
     return ^id(NSInteger eventCode) {
         return [self trackerByReplaceMacros:@"BM_EVENT_CODE" withParameter:@(eventCode).stringValue];
@@ -75,6 +63,18 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event) {
 - (BDMEventURL *(^)(NSDate *))extendedByFinishTime {
     return ^id(NSDate *finishTime) {
         return [self trackerByReplaceMacros:@"BM_ACTION_FINISH" withParameter:@((long long)(finishTime.timeIntervalSince1970 * 1000)).stringValue];
+    };
+}
+
+- (BDMEventURL *(^)(NSString *))extendedByType {
+    return ^id(NSString *type) {
+        return [self trackerByReplaceMacros:@"BM_AD_TYPE" withParameter:type];
+    };
+}
+
+- (BDMEventURL *(^)(NSString *))extendedByAdNetwork {
+    return ^id(NSString *adNetwork) {
+        return [self trackerByReplaceMacros:@"HB_NETWORK" withParameter:adNetwork];
     };
 }
 

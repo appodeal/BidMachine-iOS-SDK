@@ -8,17 +8,16 @@
 
 import UIKit
 
+
 class StatusTableViewCell: UITableViewCell {
-    var entity: StatusEntity? {
-        didSet {
-            update()
-        }
-    }
-    
-    var binding:((StatusEntity)->())?
-    
     @IBOutlet weak var statusOptionLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
+    
+    var binding:((StatusEntity)->())?
+
+    var entity: StatusEntity? {
+        didSet { update() }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,15 +30,15 @@ class StatusTableViewCell: UITableViewCell {
     }
 }
 
+
 extension StatusTableViewCell: NibProvider {
+    static let reuseIdentifier: String = "StatusTableViewCellReuseID"
+
     static var nib: UINib {
         return UINib(nibName: "StatusTableViewCell", bundle: Bundle(for: self))
     }
-    
-    static var reuseIdentifier: String {
-        return "StatusTableViewCellReuseID"
-    }
 }
+
 
 extension StatusTableViewCell: BindingView {
     typealias T = StatusEntity

@@ -15,16 +15,14 @@ protocol BindingView {
 }
 
 class EnumTableViewCell: UITableViewCell {
-    var entity:StringEnumEntity? {
-        didSet {
-            update()
-        }
-    }
-    
-    var binding:((T)->())?
-    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var enumSegmentedControl: UISegmentedControl!
+    
+    var binding:((T)->())?
+
+    var entity:StringEnumEntity? {
+        didSet { update() }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

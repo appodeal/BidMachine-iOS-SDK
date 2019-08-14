@@ -15,11 +15,11 @@
 @interface BDMBaseDisplayAd : NSObject <BDMDisplayAd>
 
 @property (nonatomic, weak, readwrite) id<BDMDisplayAdDelegate> delegate;
-@property (nonatomic, weak, readonly) UIView * adView;
-@property (nonatomic, copy, readonly) NSString * responseID;
+@property (nonatomic, weak, readonly) UIView *adView;
+@property (nonatomic, copy, readonly) NSString *responseID;
 
-@property (nonatomic, copy, readonly) NSString * displayManager;
-@property (nonatomic, copy, readonly) BDMViewabilityMetricConfiguration * viewabilityConfig;
+@property (nonatomic, copy, readonly) NSString *displayManager;
+@property (nonatomic, copy, readonly) BDMViewabilityMetricConfiguration *viewabilityConfig;
 
 - (instancetype)initWithResponse:(BDMResponse *)response;
 - (void)prepareAdapter:(id<BDMAdapter>)adapter;

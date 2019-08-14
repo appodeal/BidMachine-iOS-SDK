@@ -13,7 +13,7 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <AdSupport/AdSupport.h>
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 SPEC_BEGIN(BDMAuctionSettingsSpec)
 

@@ -14,8 +14,9 @@
 
 @interface BDMBaseDisplayAd () <BDMAdapterLoadingDelegate>
 
-@property (nonatomic, strong, readwrite) BDMResponse * response;
+@property (nonatomic, strong, readwrite) BDMResponse *response;
 @property (nonatomic, assign, readwrite) BOOL hasLoadedCreative;
+
 @end
 
 @implementation BDMBaseDisplayAd

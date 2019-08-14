@@ -15,11 +15,9 @@ class ContentTableViewCell: UITableViewCell {
 }
 
 extension ContentTableViewCell: NibProvider {
+    static let reuseIdentifier: String = "ContentTableViewCellReuseID"
+
     static var nib: UINib {
         return UINib(nibName: "ContentTableViewCell", bundle: Bundle(for: self))
-    }
-    
-    static var reuseIdentifier: String {
-        return "ContentTableViewCellReuseID"
-    }
+    }    
 }

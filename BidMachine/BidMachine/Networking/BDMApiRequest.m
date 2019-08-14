@@ -7,14 +7,16 @@
 #import "BDMApiRequest.h"
 #import "BDMUserAgentProvider.h"
 #import "BDMSdk+Project.h"
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
+#include <ifaddrs.h>
+#include <arpa/inet.h>
 
 
-#define BDM_API_REQUEST_CONTENT_TYPE_OPEN_RTB   ask_debugSession() ? @"application/x-protobuf; messageType=bidmachine.protobuf.openrtb.Openrtb" : @"application/x-protobuf"
-#define BDM_API_REQUEST_CONTENT_TYPE_INIT       ask_debugSession() ? @"application/x-protobuf; messageType=bidmachine.protobuf.InitRequest" : @"application/x-protobuf"
+#define BDM_API_REQUEST_CONTENT_TYPE_OPEN_RTB   STKDevice.isDebug ? @"application/x-protobuf; messageType=bidmachine.protobuf.openrtb.Openrtb" : @"application/x-protobuf"
+#define BDM_API_REQUEST_CONTENT_TYPE_INIT       STKDevice.isDebug ? @"application/x-protobuf; messageType=bidmachine.protobuf.InitRequest" : @"application/x-protobuf"
 
 #define BDM_API_REQUEST_USER_AGENT              BDMUserAgentProvider.userAgent
-#define BDM_INIT_REQUEST_ENDPOINT               @"https://api.appodealx.com/init" // @"https://staging.appodealx.com/init"
+
 
 static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
 
@@ -30,7 +32,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
 + (BDMApiRequest *)request:(void (^)(BDMAuctionBuilder *))build {
     BDMAuctionBuilder * builder = [BDMAuctionBuilder new];
     build(builder);
-    NSURL *URL = [NSURL URLWithString:BDMSdk.sharedSdk.auctionSettings.auctionURL];
+    NSURL *URL = BDMSdk.sharedSdk.auctionSettings.auctionURL ? [NSURL URLWithString:BDMSdk.sharedSdk.auctionSettings.auctionURL] : [BDMSdk.sharedSdk.baseURL URLByAppendingPathComponent:@"auction"];
     BDMApiRequest * request = [BDMApiRequest requestWithURL:URL
                                                 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                             timeoutInterval:kBDMRequestTimeoutInterval];
@@ -49,7 +51,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
     BDMSessionBuilder *builder = [BDMSessionBuilder new];
     build(builder);
     
-    NSURL * URL = [NSURL URLWithString:BDM_INIT_REQUEST_ENDPOINT];
+    NSURL * URL = builder.baseURL;
     BDMApiRequest * request = [BDMApiRequest requestWithURL:URL
                                                 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                             timeoutInterval:kBDMRequestTimeoutInterval];
@@ -71,7 +73,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Destanation URL: %@\nMethod: %@\nHTTP Headers: %@\nBody: %@", self.URL, self.HTTPMethod, self.allHTTPHeaderFields, self.HTTPBodyModel];
+    return [NSString stringWithFormat:@"Destination URL: %@\nMethod: %@\nHTTP Headers: %@\nBody: %@", self.URL, self.HTTPMethod, self.allHTTPHeaderFields, self.HTTPBodyModel];
 }
 
 @end

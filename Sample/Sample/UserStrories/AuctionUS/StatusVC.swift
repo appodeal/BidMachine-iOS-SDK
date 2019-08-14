@@ -20,11 +20,10 @@ class StatusVC: DataTableViewController {
     }
     
     private func addStatusSection() {
-        let _ = addSection { section in
+        addSection { section in
             section.title = "Ad status"
             section.state = .expanded
-            
-            let _ = section
+            section
                 .addRow {
                     [unowned self] row in
                     let cell: StatusTableViewCell = self.tableView.dequeueCell()
@@ -41,11 +40,10 @@ class StatusVC: DataTableViewController {
     }
     
     private func addLocationSection(_ location:CLLocation) {
-        let _ = addSection { section in
+        addSection { section in
             section.title = "User location"
             section.state = .collapsed
-            
-            let _ = section
+            section
                 .addRow {
                     [unowned self] row in
                     let cell: DataTableViewCell = self.tableView.dequeueCell()

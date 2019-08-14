@@ -7,14 +7,16 @@
 //
 
 #import <Kiwi/Kiwi.h>
+#import <StackFoundation/StackFoundation.h>
 
-#import "Adcom.pbobjc.h"
+#import "BDMProtoAPI-Umbrella.h"
 #import "BDMAdTypePlacement.h"
 #import "BDMPlacementRequestBuilder.h"
 #import "BDMPlacementRequestBuilderProtocol.h"
-#import <ASKExtension/ASKExtension.h>
+#import "BDMAdNetworkConfiguration.h"
+#import "BDMDefines.h"
 
-#pragma mark - TODO extArrays for allAdTypes -
+
 
 SPEC_BEGIN(BDMAdTypePlacementSpec)
 
@@ -36,8 +38,8 @@ describe(@"BDMAdTypePlacementSpec", ^{
             [[[interstitial valueForKeyPath:@"placement.display.instl"] should] equal:theValue(YES)];
             [[[interstitial valueForKeyPath:@"placement.display.apiArray"] should] equal:[GPBEnumArray arrayWithValidationFunction:nil rawValue:5]];
             [[[interstitial valueForKeyPath:@"placement.display.unit"] should] equal:theValue(1)];
-            [[[interstitial valueForKeyPath:@"placement.display.w"] should] equal:theValue(ask_screenWidth())];
-            [[[interstitial valueForKeyPath:@"placement.display.h"] should] equal:theValue(ask_screenHeight())];
+            [[[interstitial valueForKeyPath:@"placement.display.w"] should] equal:theValue(STKScreen.width)];
+            [[[interstitial valueForKeyPath:@"placement.display.h"] should] equal:theValue(STKScreen.height)];
             [[[interstitial valueForKeyPath:@"placement.display.mimeArray"] should] equal:@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"]];
             [[[interstitial valueForKeyPath:@"placement.extArray.adSpaceId"] should] equal:@[]];
         });
@@ -46,12 +48,12 @@ describe(@"BDMAdTypePlacementSpec", ^{
 
             [[[interstitial valueForKeyPath:@"placement.video.pos"] should] equal:theValue(7)];
             [[[interstitial valueForKeyPath:@"placement.video.skip"] should] equal:theValue(YES)];
-            [[[interstitial valueForKeyPath:@"placement.video.ctypeArray"] should] equal:ASKObj(cTypeArray).reduce([GPBEnumArray array], ^(GPBEnumArray *array, NSNumber *value){
+            [[[interstitial valueForKeyPath:@"placement.video.ctypeArray"] should] equal:ANY(cTypeArray).reduce([GPBEnumArray array], ^(GPBEnumArray *array, NSNumber *value){
                 [array addValue:value.unsignedIntValue];
-            }).original];
+            }).value];
             [[[interstitial valueForKeyPath:@"placement.video.unit"] should] equal:theValue(1)];
-            [[[interstitial valueForKeyPath:@"placement.video.w"] should] equal:theValue(ask_screenWidth())];
-            [[[interstitial valueForKeyPath:@"placement.video.h"] should] equal:theValue(ask_screenHeight())];
+            [[[interstitial valueForKeyPath:@"placement.video.w"] should] equal:theValue(STKScreen.width)];
+            [[[interstitial valueForKeyPath:@"placement.video.h"] should] equal:theValue(STKScreen.height)];
             [[[interstitial valueForKeyPath:@"placement.video.mimeArray"] should] equal:@[@"video/mpeg" , @"video/mp4", @"video/quicktime", @"video/avi"]];
             [[[interstitial valueForKeyPath:@"placement.video.maxdur"] should] equal:theValue(30)];
             [[[interstitial valueForKeyPath:@"placement.video.mindur"] should] equal:theValue(5)];
@@ -67,8 +69,8 @@ describe(@"BDMAdTypePlacementSpec", ^{
             [[[rewarded valueForKeyPath:@"placement.display.instl"] should] equal:theValue(YES)];
             [[[rewarded valueForKeyPath:@"placement.display.apiArray"] should] equal:[GPBEnumArray arrayWithValidationFunction:nil rawValue:5]];
             [[[rewarded valueForKeyPath:@"placement.display.unit"] should] equal:theValue(1)];
-            [[[rewarded valueForKeyPath:@"placement.display.w"] should] equal:theValue(ask_screenWidth())];
-            [[[rewarded valueForKeyPath:@"placement.display.h"] should] equal:theValue(ask_screenHeight())];
+            [[[rewarded valueForKeyPath:@"placement.display.w"] should] equal:theValue(STKScreen.width)];
+            [[[rewarded valueForKeyPath:@"placement.display.h"] should] equal:theValue(STKScreen.height)];
             [[[rewarded valueForKeyPath:@"placement.display.mimeArray"] should] equal:@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"]];
             [[[rewarded valueForKeyPath:@"placement.extArray.adSpaceId"] should] equal:@[]];
         });
@@ -77,12 +79,12 @@ describe(@"BDMAdTypePlacementSpec", ^{
             
             [[[rewarded valueForKeyPath:@"placement.video.pos"] should] equal:theValue(7)];
             [[[rewarded valueForKeyPath:@"placement.video.skip"] should] equal:theValue(NO)];
-            [[[rewarded valueForKeyPath:@"placement.video.ctypeArray"] should] equal:ASKObj(cTypeArray).reduce([GPBEnumArray array], ^(GPBEnumArray *array, NSNumber *value){
+            [[[rewarded valueForKeyPath:@"placement.video.ctypeArray"] should] equal:ANY(cTypeArray).reduce([GPBEnumArray array], ^(GPBEnumArray *array, NSNumber *value){
                 [array addValue:value.unsignedIntValue];
-            }).original];
+            }).value];
             [[[rewarded valueForKeyPath:@"placement.video.unit"] should] equal:theValue(1)];
-            [[[rewarded valueForKeyPath:@"placement.video.w"] should] equal:theValue(ask_screenWidth())];
-            [[[rewarded valueForKeyPath:@"placement.video.h"] should] equal:theValue(ask_screenHeight())];
+            [[[rewarded valueForKeyPath:@"placement.video.w"] should] equal:theValue(STKScreen.width)];
+            [[[rewarded valueForKeyPath:@"placement.video.h"] should] equal:theValue(STKScreen.height)];
             [[[rewarded valueForKeyPath:@"placement.video.mimeArray"] should] equal:@[@"video/mpeg" , @"video/mp4", @"video/quicktime", @"video/avi"]];
             [[[rewarded valueForKeyPath:@"placement.video.maxdur"] should] equal:theValue(30)];
             [[[rewarded valueForKeyPath:@"placement.video.mindur"] should] equal:theValue(5)];
@@ -140,9 +142,9 @@ describe(@"BDMAdTypePlacementSpec", ^{
             [[[[native valueForKeyPath:@"placement.display.nativefmt.assetArray.id_p"] objectAtIndex:7] should] equal:theValue(7)];
             [[[[native valueForKeyPath:@"placement.display.nativefmt.assetArray.req"] objectAtIndex:7]  should] equal:theValue(0)];
             [[[[[native valueForKeyPath:@"placement.display.nativefmt.assetArray.video"] objectAtIndex:7] valueForKey:@"skip"] should] equal:theValue(0)];
-            [[[[[native valueForKeyPath:@"placement.display.nativefmt.assetArray.video"] objectAtIndex:7] valueForKey:@"ctypeArray"] should] equal:ASKObj(cTypeArray).reduce([GPBEnumArray array], ^(GPBEnumArray *array, NSNumber *value){
+            [[[[[native valueForKeyPath:@"placement.display.nativefmt.assetArray.video"] objectAtIndex:7] valueForKey:@"ctypeArray"] should] equal:ANY(cTypeArray).reduce([GPBEnumArray array], ^(GPBEnumArray *array, NSNumber *value){
                 [array addValue:value.unsignedIntValue];
-            }).original];
+            }).value];
         });
     });
     

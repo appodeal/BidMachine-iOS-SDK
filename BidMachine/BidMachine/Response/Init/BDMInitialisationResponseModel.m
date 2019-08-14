@@ -9,6 +9,7 @@
 #import "BDMInitialisationResponseModel.h"
 #import "BDMProtoAPI-Umbrella.h"
 #import "BDMTransformers.h"
+#import "BDMSdk+Project.h"
 
 
 @interface BDMInitialisationResponseModel ()

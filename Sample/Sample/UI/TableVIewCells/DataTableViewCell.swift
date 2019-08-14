@@ -9,17 +9,15 @@
 import UIKit
 
 class DataTableViewCell: UITableViewCell {
-    var entity: DataEntity? {
-        didSet {
-            update()
-        }
-    }
-    
-    var binding: ((DataEntity) -> ())?
-    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var userInputTextField: UITextField!
     @IBOutlet private weak var statusImageView: UIImageView!
+    
+    var binding: ((DataEntity) -> ())?
+
+    var entity: DataEntity? {
+        didSet { update() }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,42 +42,23 @@ class DataTableViewCell: UITableViewCell {
     }
     
     private func update() {
-        guard entity != nil else {
-            return
-        }
-        switch entity!.type {
-        case .commaSeparatedList:
-            userInputTextField.keyboardType = .default
-            userInputTextField.placeholder = "Comma separated list"
-            break
-        case .numeric:
-            userInputTextField.keyboardType = .numberPad
-            userInputTextField.placeholder = "Numeric value"
-            break
-        case .string:
-            userInputTextField.keyboardType = .default
-            userInputTextField.placeholder = "String value"
-            break
-        case .url:
-            userInputTextField.keyboardType = .URL
-            userInputTextField.placeholder = "URL value"
-            break
-        }
-        titleLabel.text = entity!.info
-        userInputTextField.text = entity!.value
+        guard let entity = entity else { return }
+        userInputTextField.setDataType(entity.type)
+        titleLabel.text = entity.info
+        userInputTextField.text = entity.value
         let _ = validate()
     }
 }
 
+
 extension DataTableViewCell: NibProvider {
+    static let reuseIdentifier: String = "DataTableViewCellCellReuseID"
+
     static var nib: UINib {
         return UINib(nibName: "DataTableViewCell", bundle: Bundle(for: self))
-    }
-    
-    static var reuseIdentifier: String {
-        return "DataTableViewCellCellReuseID"
-    }
+    }    
 }
+
 
 extension DataTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -94,6 +73,7 @@ extension DataTableViewCell: UITextFieldDelegate {
         return true
     }
 }
+
 
 extension DataTableViewCell: BindingView {
     typealias T = DataEntity

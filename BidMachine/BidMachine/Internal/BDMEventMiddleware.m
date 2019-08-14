@@ -11,7 +11,7 @@
 #import "NSArray+BDMEventURL.h"
 #import "BDMServerCommunicator.h"
 
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 
 static NSInteger const BDMEventError = 1000;
@@ -28,7 +28,11 @@ NSString *NSStringFromBDMEvent(BDMEvent event) {
         case BDMEventImpression: return @"Impression"; break;
         case BDMEventAuction: return @"Auction"; break;
         case BDMEventInitialisation: return @"Initialisation"; break;
+        case BDMEventHeaderBiddingNetworkInitializing: return @"Header Bidding network initialisation"; break;
+        case BDMEventHeaderBiddingNetworkPreparing: return @"Header Bidding network preparing"; break;
+        case BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared: return @"Header Bidding preparation"; break;
     }
+    return @"unspecified";
 }
 
 
@@ -49,6 +53,12 @@ BDMEvent BDMEventFromNSString(NSString *event) {
         return BDMEventAuction;
     } else if ([event isEqualToString:@"Initialisation"]) {
         return BDMEventInitialisation;
+    } else if ([event isEqualToString:@"Header Bidding network initialisation"]) {
+        return BDMEventHeaderBiddingNetworkInitializing;
+    } else if ([event isEqualToString:@"Header Bidding network preparing"]) {
+        return BDMEventHeaderBiddingNetworkPreparing;
+    } else if ([event isEqualToString:@"Header Bidding preparation"]) {
+        return BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared;
     }
     return 0;
 }
@@ -68,34 +78,42 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
         case BDMErrorCodeWasDestroyed: return @"Was destroyed"; break;
         case BDMErrorCodeHTTPBadRequest: return @"Bad request"; break;
         case BDMErrorCodeHTTPServerError: return @"Internal server error"; break;
+        case BDMErrorCodeHeaderBiddingNetwork: return @"Ad Network specific error"; break;
     }
 }
 
+NSString *NSStringFromBDMInternalPlacementType(BDMInternalPlacementType type) {
+    switch (type) {
+        case BDMInternalPlacementTypeInterstitial: return @"Interstitial"; break;
+        case BDMInternalPlacementTypeRewardedVideo: return  @"RewardedVideo"; break;
+        case BDMInternalPlacementTypeBanner: return @"Banner"; break;
+        case BDMInternalPlacementTypeNative: return @"Native"; break;
+    }
+    return @"Session";
+}
+
+BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
+    if ([type isEqualToString:@"Interstitial"]) {
+        return BDMInternalPlacementTypeInterstitial;
+    } else if ([type isEqualToString:@"RewardedVideo"]) {
+        return BDMInternalPlacementTypeRewardedVideo;
+    } else if ([type isEqualToString:@"Banner"]) {
+        return BDMInternalPlacementTypeBanner;
+    } else if ([type isEqualToString:@"Native"]) {
+        return BDMInternalPlacementTypeNative;
+    } else {
+        return 0;
+    }
+}
 
 @interface BDMEventMiddlewareBuilder ()
 
-@property (nonatomic, copy) NSNumber *(^updatePlacement)(void);
-@property (nonatomic, copy) NSNumber *(^updateSegment)(void);
 @property (nonatomic, copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
 @property (nonatomic, copy) id<BDMAdEventProducer> (^updateProducer)(void);
 
 @end
 
 @implementation BDMEventMiddlewareBuilder
-
-- (BDMEventMiddlewareBuilder *(^)(NSNumber *(^)(void)))segment {
-    return ^id(NSNumber *(^updateSegment)(void)) {
-        self.updateSegment = [updateSegment copy];
-        return self;
-    };
-}
-
-- (BDMEventMiddlewareBuilder *(^)(NSNumber *(^)(void)))placement {
-    return ^id(NSNumber *(^updatePlacement)(void)) {
-        self.updatePlacement = [updatePlacement copy];
-        return self;
-    };
-}
 
 - (BDMEventMiddlewareBuilder *(^)(NSArray<BDMEventURL *> *(^)(void)))events {
     return ^id(NSArray<BDMEventURL *> *(^updateEvents)(void)) {
@@ -117,12 +135,11 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
 @interface BDMEventMiddleware ()
 
 @property (nonatomic, strong) NSMutableDictionary <NSString *, NSDate *> *startTimeByEventType;
-@property (nonatomic, copy) NSNumber *(^updatePlacement)(void);
-@property (nonatomic, copy) NSNumber *(^updateSegment)(void);
 @property (nonatomic, copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
 @property (nonatomic, copy) id<BDMAdEventProducer> (^updateProducer)(void);
 
 @end
+
 
 @implementation BDMEventMiddleware
 
@@ -132,68 +149,77 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
     return [[self alloc] initWithBuilder:builder];
 }
 
-- (void)rejectAll:(BDMErrorCode)code {
-    NSArray <NSString *> *enumerator = [[self.startTimeByEventType copy] allKeys];
-    [enumerator enumerateObjectsUsingBlock:^(NSString *eventString, NSUInteger idx, BOOL *stop) {
-        BDMEvent event = BDMEventFromNSString(eventString);
-        // Send trackers for requiered events
-        if (event != BDMEventViewable &&
-            event != BDMEventClosed &&
-            event != BDMEventImpression &&
-            event != BDMEventClick) {
-            [self rejectEvent:event code:code];
-        // Just remove non required
-        } else {
-            [self.startTimeByEventType removeObjectForKey:eventString];
-        }
-    }];
+#pragma mark - Start
+
+- (void)startEvent:(BDMEvent)type {
+    [self startEvent:type
+           placement:NSNotFound];
 }
 
-- (void)rejectEvent:(BDMEvent)type
-               code:(BDMErrorCode)code {
-    NSString *eventString = NSStringFromBDMEvent(type);
-    NSDate *startTime = self.startTimeByEventType[eventString];
-    NSDate *finishTime = [NSDate date];
-    [self.startTimeByEventType removeObjectForKey:eventString];
-    
-    BDMLog(@"Handling lifecycle error: %@ for %@ event, timing: %1.2f sec",
-           NSStringFromBDMErrorCode(code),
-           eventString,
-           finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
-    
-    NSArray <BDMEventURL *> *trackers = ASK_RUN_BLOCK(self.updateEvents);
-    BDMEventURL *URL = [trackers bdm_searchTrackerOfType:BDMEventError];
-    if (!URL) {
+- (void)startEvent:(BDMEvent)type
+           network:(NSString *)network {
+    [self startEvent:type
+           placement:NSNotFound
+             network:network];
+}
+
+- (void)startEvent:(BDMEvent)type
+         placement:(BDMInternalPlacementType)placement {
+    [self startEvent:type
+           placement:placement
+             network:nil];
+}
+
+- (void)startEvent:(BDMEvent)type
+         placement:(BDMInternalPlacementType)placement
+           network:(NSString *)network {
+    NSString *key = [NSString stringWithFormat:@"%@:::%@:::%@",
+                     NSStringFromBDMEvent(type),
+                     NSStringFromBDMInternalPlacementType(placement),
+                     network ?: @"unspecified"];
+    NSDate *startTime = [NSDate date];
+    self.startTimeByEventType[key] = startTime;
+}
+
+#pragma mark - Fulfill
+
+- (void)fulfillEvent:(BDMEvent)type {
+    [self fulfillEvent:type placement:NSNotFound];
+}
+
+- (void)fulfillEvent:(BDMEvent)type
+             network:(NSString *)network {
+    [self fulfillEvent:type
+             placement:NSNotFound
+               network:network];
+}
+
+- (void)fulfillEvent:(BDMEvent)type
+           placement:(BDMInternalPlacementType)placement {
+    [self fulfillEvent:type
+             placement:placement
+               network:nil];
+}
+
+- (void)fulfillEvent:(BDMEvent)type
+           placement:(BDMInternalPlacementType)placement
+             network:(NSString *)network {
+    NSString *key = [NSString stringWithFormat:@"%@:::%@:::%@",
+                     NSStringFromBDMEvent(type),
+                     NSStringFromBDMInternalPlacementType(placement),
+                     network ?: @"unspecified"];
+    NSDate *startTime = self.startTimeByEventType[key];
+    if (!startTime) {
         return;
     }
     
-    URL = URL
-    .extendedByStartTime(startTime)
-    .extendedByFinishTime(finishTime)
-    .extendedByAction(type)
-    .extendedByErrorCode(code)
-    .extendedBySegment(ASK_RUN_BLOCK(self.updateSegment))
-    .extendedByPlacement(ASK_RUN_BLOCK(self.updatePlacement));
-    
-    [BDMServerCommunicator.sharedCommunicator trackEvent:URL];
-}
-
-- (void)startEvent:(BDMEvent)type {
-    NSString *eventString = NSStringFromBDMEvent(type);
-    NSDate *startTime = [NSDate date];
-    self.startTimeByEventType[eventString] = startTime;
-}
-
-- (void)fulfillEvent:(BDMEvent)type {
-    NSString *eventString = NSStringFromBDMEvent(type);
-    NSDate *startTime = self.startTimeByEventType[eventString];
     NSDate *finishTime = [NSDate date];
-    [self.startTimeByEventType removeObjectForKey:eventString];
+    [self.startTimeByEventType removeObjectForKey:key];
     
-    BDMLog(@"Handling %@ event, timing: %1.2f sec", eventString, finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
+    BDMLog(@"[Event] %@ event, timing: %1.2f sec", key, finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
     [self notifyProducerDelegateIfNeeded:type];
     
-    NSArray <BDMEventURL *> * trackers = ASK_RUN_BLOCK(self.updateEvents);
+    NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
     BDMEventURL *URL = [trackers bdm_searchTrackerOfType:type];
     if (!URL) {
         return;
@@ -204,8 +230,8 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
     URL = URL
     .extendedByStartTime(startTime)
     .extendedByFinishTime(finishTime)
-    .extendedBySegment(ASK_RUN_BLOCK(self.updateSegment))
-    .extendedByPlacement(ASK_RUN_BLOCK(self.updatePlacement));
+    .extendedByType(NSStringFromBDMInternalPlacementType(placement))
+    .extendedByAdNetwork(network);
     
     __weak typeof(self) weakSelf = self;
     [BDMServerCommunicator.sharedCommunicator trackEvent:URL
@@ -219,13 +245,125 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
                                                  }];
 }
 
+#pragma mark - Reject
+
+- (void)rejectEvent:(BDMEvent)type
+               code:(BDMErrorCode)code {
+    [self rejectEvent:type
+            placement:NSNotFound
+                 code:code];
+}
+
+- (void)rejectEvent:(BDMEvent)type
+            network:(NSString *)network
+               code:(BDMErrorCode)code {
+    [self rejectEvent:type
+            placement:NSNotFound
+              network:network
+                 code:code];
+}
+
+- (void)rejectEvent:(BDMEvent)type
+          placement:(BDMInternalPlacementType)placement
+               code:(BDMErrorCode)code {
+    [self rejectEvent:type
+            placement:placement
+              network:nil
+                 code:code];
+}
+
+- (void)rejectEvent:(BDMEvent)type
+          placement:(BDMInternalPlacementType)placement
+            network:(NSString *)network
+               code:(BDMErrorCode)code {
+    NSString *key = [NSString stringWithFormat:@"%@:::%@:::%@",
+                     NSStringFromBDMEvent(type),
+                     NSStringFromBDMInternalPlacementType(placement),
+                     network ?: @"unspecified"
+                     ];
+    NSDate *startTime = self.startTimeByEventType[key];
+    if (!startTime) {
+        return;
+    }
+    
+    NSDate *finishTime = [NSDate date];
+    [self.startTimeByEventType removeObjectForKey:key];
+    
+    BDMLog(@"[Event] lifecycle error: %@ for %@ event, timing: %1.2f sec",
+           NSStringFromBDMErrorCode(code),
+           key,
+           finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
+    
+    NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
+    BDMEventURL *URL = [trackers bdm_searchTrackerOfType:BDMEventError];
+    if (!URL) {
+        return;
+    }
+    
+    URL = URL
+    .extendedByStartTime(startTime)
+    .extendedByFinishTime(finishTime)
+    .extendedByAction(type)
+    .extendedByErrorCode(code)
+    .extendedByType(NSStringFromBDMInternalPlacementType(placement))
+    .extendedByAdNetwork(network);
+    
+    [BDMServerCommunicator.sharedCommunicator trackEvent:URL];
+}
+
+- (void)rejectAll:(BDMErrorCode)code {
+    NSArray <NSString *> *enumerator = [[self.startTimeByEventType copy] allKeys];
+    [enumerator enumerateObjectsUsingBlock:^(NSString *eventString, NSUInteger idx, BOOL *stop) {
+        BDMEvent event = BDMEventFromNSString(eventString);
+        // Send trackers for requiered events
+        if (event != BDMEventViewable &&
+            event != BDMEventClosed &&
+            event != BDMEventImpression &&
+            event != BDMEventClick) {
+            [self rejectEvent:event code:code];
+            // Just remove non required
+        } else {
+            [self.startTimeByEventType removeObjectForKey:eventString];
+        }
+    }];
+}
+
+#pragma mark - Remove
+
+- (void)removeEvent:(BDMEvent)type {
+    [self removeEvent:type network:nil];
+}
+
+- (void)removeEvent:(BDMEvent)type
+            network:(NSString *)network {
+    [self removeEvent:type
+            placement:NSNotFound
+              network:network];
+}
+
+- (void)removeEvent:(BDMEvent)type
+          placement:(BDMInternalPlacementType)placement {
+    [self removeEvent:type
+            placement:placement
+              network:nil];
+}
+
+- (void)removeEvent:(BDMEvent)type
+          placement:(BDMInternalPlacementType)placement
+            network:(NSString *)network {
+    NSString *key = [NSString stringWithFormat:@"%@:::%@:::%@",
+                     NSStringFromBDMEvent(type),
+                     NSStringFromBDMInternalPlacementType(placement),
+                     network ?: @"unspecified"
+                     ];
+    [self.startTimeByEventType removeObjectForKey:key];
+}
+
 #pragma mark - Private
 
 - (instancetype)initWithBuilder:(BDMEventMiddlewareBuilder *)builder {
     if (self = [super init]) {
         self.updateEvents           = [builder.updateEvents copy];
-        self.updatePlacement        = [builder.updatePlacement copy];
-        self.updateSegment          = [builder.updateSegment copy];
         self.updateProducer         = [builder.updateProducer copy];
         self.startTimeByEventType   = [[NSMutableDictionary alloc] init];
     }
@@ -242,7 +380,7 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
         return;
     }
     
-    BDMLog(@"Handling tracking error: %@ for event %@, timing: %1.2f sec",
+    BDMLog(@"[Event] tracking error: %@ for event %@, timing: %1.2f sec",
            NSStringFromBDMErrorCode(code),
            NSStringFromBDMEvent(event),
            finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
@@ -251,9 +389,7 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
     .extendedByStartTime(startTime)
     .extendedByFinishTime(finishTime)
     .extendedByEvent(event)
-    .extendedByErrorCode(code)
-    .extendedBySegment(ASK_RUN_BLOCK(self.updateSegment))
-    .extendedByPlacement(ASK_RUN_BLOCK(self.updatePlacement));
+    .extendedByErrorCode(code);
     
     [BDMServerCommunicator.sharedCommunicator trackEvent:url];
 }
@@ -261,10 +397,10 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
 - (void)notifyProducerDelegateIfNeeded:(BDMEvent)event {
     switch (event) {
         case BDMEventViewable: {
-            [[ASK_RUN_BLOCK(self.updateProducer) producerDelegate] didProduceImpression:ASK_RUN_BLOCK(self.updateProducer)];
+            [[STK_RUN_BLOCK(self.updateProducer) producerDelegate] didProduceImpression:STK_RUN_BLOCK(self.updateProducer)];
             break; }
         case BDMEventClick: {
-            [[ASK_RUN_BLOCK(self.updateProducer) producerDelegate] didProduceUserAction:ASK_RUN_BLOCK(self.updateProducer)];
+            [[STK_RUN_BLOCK(self.updateProducer) producerDelegate] didProduceUserAction:STK_RUN_BLOCK(self.updateProducer)];
             break; }
         default: break;
     }

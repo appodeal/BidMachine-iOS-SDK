@@ -45,13 +45,13 @@
 /**
  Auction info. Nil if auction not performed or failed
  */
-@property (copy, nonatomic, readonly, nullable) BDMAuctionInfo * info;
+@property (copy, nonatomic, readonly, nullable) BDMAuctionInfo *info;
 /**
  Bids configuration for current request
  */
-@property (copy, nonatomic, readwrite, nonnull) NSArray <BDMPriceFloor *> * priceFloors;
+@property (copy, nonatomic, readwrite, nonnull) NSArray <BDMPriceFloor *> *priceFloors;
 /**
  Current targeting data for request
  */
-@property (copy, nonatomic, readwrite, nullable) BDMTargeting * targeting;
+@property (copy, nonatomic, readwrite, nullable) BDMTargeting *targeting;
 @end

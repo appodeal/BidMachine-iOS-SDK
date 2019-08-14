@@ -70,10 +70,66 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "429C195121600F6B0048F400"
-               BuildableName = "DisplayKit.framework"
-               BlueprintName = "DisplayKit"
-               ReferencedContainer = "container:../DisplayKit/DisplayKit.xcodeproj">
+               BlueprintIdentifier = "4231D02722E1DD84002852CE"
+               BuildableName = "libBDMAdColonyAdapter.a"
+               BlueprintName = "BDMAdColonyAdapter"
+               ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42A93E5222E70368005053A2"
+               BuildableName = "libBDMFacebookAdapter.a"
+               BlueprintName = "BDMFacebookAdapter"
+               ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42D7310822DF5CF200AEB066"
+               BuildableName = "libBDMMyTargetAdapter.a"
+               BlueprintName = "BDMMyTargetAdapter"
+               ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4274FA7922E5E7A600EE0D47"
+               BuildableName = "libBDMTapjoyAdapter.a"
+               BlueprintName = "BDMTapjoyAdapter"
+               ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42675D8622E2151D008298F5"
+               BuildableName = "libBDMVungleAdapter.a"
+               BlueprintName = "BDMVungleAdapter"
+               ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

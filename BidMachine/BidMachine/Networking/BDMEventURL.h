@@ -31,14 +31,6 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event);
 
 @property (nonatomic, readonly, assign) NSInteger type;
 /**
- Replace macros PLACEMENT in URL
- */
-@property (nonatomic, readonly, copy) BDMEventURL *(^extendedByPlacement)(NSNumber *);
-/**
- Replace macros SEGMENT in URL
- */
-@property (nonatomic, readonly, copy) BDMEventURL *(^extendedBySegment)(NSNumber *);
-/**
  Replace BM_ACTION_START in URL
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByStartTime)(NSDate *);
@@ -50,10 +42,29 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event);
  Replace macros 
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByAction)(NSInteger);
+/**
+ Replace event macros
+ */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByEvent)(NSInteger);
-
+/**
+ Replace error codes
+ */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByErrorCode)(BDMErrorCode);
+/**
+ Replace type
+ */
+@property (nonatomic, readonly, copy) BDMEventURL *(^extendedByType)(NSString *);
+/**
+ Replace network name
+ */
+@property (nonatomic, readonly, copy) BDMEventURL *(^extendedByAdNetwork)(NSString *);
+/**
+ Instantiate event
 
+ @param stringURL Destination URL string
+ @param type Type of event
+ @return Event URL
+ */
 + (BDMEventURL *)trackerWithStringURL:(NSString *)stringURL type:(NSInteger)type;
 
 @end

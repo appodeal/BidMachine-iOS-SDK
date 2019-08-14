@@ -15,9 +15,9 @@
 @interface BDMBannerViewDisplayAd () <BDMBannerAdapterDisplayDelegate, BDMViewabilityMetricProviderDelegate>
 
 @property (nonatomic, strong) id <BDMBannerAdapter> adapter;
-@property (nonatomic, strong) BDMViewabilityMetricProvider * metricProvider;
-@property (nonatomic, weak) UIViewController * rootViewController;
-@property (nonatomic, weak) UIView * container;
+@property (nonatomic, strong) BDMViewabilityMetricProvider *metricProvider;
+@property (nonatomic, weak) UIViewController *rootViewController;
+@property (nonatomic, weak) UIView *container;
 
 @end
 
@@ -94,6 +94,10 @@
 
 - (UIViewController *)rootViewControllerForAdapter:(id<BDMBannerAdapter>)adapter {
     return self.rootViewController;
+}
+
+- (CGSize)sizeForAdapter:(id<BDMBannerAdapter>)adapter {
+    return CGSizeFromBDMSize(self.adSize);
 }
 
 - (void)adapterWillPresentScreen:(id<BDMBannerAdapter>)adapter {

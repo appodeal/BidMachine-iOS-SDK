@@ -9,18 +9,15 @@
 import UIKit
 
 class BooleanTableViewCell: UITableViewCell {
-    var entity: BooleanEntity? {
-        didSet {
-            update()
-        }
-    }
-
-    var binding: ((BooleanEntity) -> ())?
-    
-    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var booleanSwitch: UISwitch!
 
+    var binding: ((BooleanEntity) -> ())?
+
+    var entity: BooleanEntity? {
+        didSet { update() }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         update()
@@ -46,12 +43,10 @@ class BooleanTableViewCell: UITableViewCell {
 }
 
 extension BooleanTableViewCell: NibProvider {
+    static let reuseIdentifier: String = "BooleanTableViewCellReuseID"
+
     static var nib: UINib {
         return UINib(nibName: "BooleanTableViewCell", bundle: Bundle(for: self))
-    }
-    
-    static var reuseIdentifier: String {
-        return "BooleanTableViewCellReuseID"
     }
 }
 

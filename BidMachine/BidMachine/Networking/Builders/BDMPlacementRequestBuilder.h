@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 #import "BDMPlacementRequestBuilderProtocol.h"
 
+
 @interface BDMPlacementRequestBuilder : NSObject <BDMPlacementRequestBuilder>
 
 @end
@@ -16,10 +17,6 @@
 @end
 
 @interface BDMDisplayPlacementBuilder : NSObject <BDMDisplayPlacementBuilder>
-
-@end
-
-@interface BDMExtPlacementBuilder : NSObject <BDMExtPlacementBuilder>
 
 @end
 

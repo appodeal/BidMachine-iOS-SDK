@@ -14,7 +14,9 @@
 @interface BDMSessionBuilder : NSObject
 
 @property (nonatomic, readonly) GPBMessage *message;
+@property (nonatomic, readonly) NSURL *baseURL;
 
+- (BDMSessionBuilder *(^)(NSURL *))appendBaseURL;
 - (BDMSessionBuilder *(^)(NSString *))appendSellerID;
 - (BDMSessionBuilder *(^)(BDMTargeting *))appendTargeting;
 

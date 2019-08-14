@@ -13,8 +13,9 @@
 
 @interface BDMRegistry : NSObject
 
-- (void)registerNetworkClass:(NSString *)networkClassString;
-- (Class<BDMNetwork>)networkClassByName:(NSString *)name;
+- (void)registerNetworkClass:(Class<BDMNetwork>)networkClass;
+- (void)initNetworks;
+- (id<BDMNetwork>)networkByName:(NSString *)name;
 
 - (id <BDMBannerAdapter>)bannerAdapterForNetwork:(NSString *)networkName;
 - (id <BDMFullscreenAdapter>)interstitialAdAdapterForNetwork:(NSString *)networkName;

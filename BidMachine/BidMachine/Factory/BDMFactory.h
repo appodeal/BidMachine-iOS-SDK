@@ -9,20 +9,33 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BDMDefines.h"
+#import "BDMHeaderBiddingController.h"
+#import "BDMRequest+Private.h"
+
 
 @class BDMSdk;
 @class BDMRegistry;
-@class BDMNetworkConfigurator;
-@class BDMInitializationOperation;
-@class BDMNetworkItem;
+@class BDMHeaderBiddingInitialisationOperation;
+@class BDMHeaderBiddingPreparationOperation;
+@class BDMAdNetworkConfiguration;
+@protocol BDMPlacementAdUnit;
+
 
 @interface BDMFactory : NSObject
 
+@property (nonatomic, readonly) UIViewController *topPresentedViewController;
+@property (nonatomic, readonly) BDMSdk *sharedSdk;
+@property (nonatomic, readonly) BDMRegistry *registry;
+
 + (instancetype)sharedFactory;
-- (BDMSdk *)sharedSdk;
-- (BDMRegistry *)registry;
-- (BDMNetworkConfigurator *)configurator;
-- (BDMInitializationOperation *)initializeNetworkOperation:(NSArray<BDMNetworkItem *> *)networks;
-- (UIViewController *)topPresentedViewController;
+
+- (BDMHeaderBiddingInitialisationOperation *)initialisationOperationForNetworks:(NSArray <BDMAdNetworkConfiguration *> *)networks
+                                                                     controller:(BDMHeaderBiddingController *)controller
+                                                              waitUntilFinished:(BOOL)waitUntilFinished;
+
+- (BDMHeaderBiddingPreparationOperation *)preparationOperationForNetworks:(NSArray <BDMAdNetworkConfiguration *> *)networks
+                                                               controller:(BDMHeaderBiddingController *)controller
+                                                                placement:(BDMInternalPlacementType)placement;
 
 @end

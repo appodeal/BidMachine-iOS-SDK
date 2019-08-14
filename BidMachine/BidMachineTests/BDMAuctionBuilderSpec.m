@@ -2,7 +2,7 @@
 #import "Openrtb.pbobjc.h"
 #import "Adcom.pbobjc.h"
 #import <CoreLocation/CoreLocation.h>
-#import <ASKExtension/ASKExtension.h>
+#import <StackFoundation/StackFoundation.h>
 
 #import "BDMAuctionBuilder.h"
 #import "BDMAdTypePlacement.h"
@@ -171,7 +171,7 @@ describe(@"AuctionBuilderSpec", ^{
         [[theValue(context.device.type) should] equal:theValue(4)];
         [[context.device.ua shouldNot] beNil];
         [[theValue(context.device.lmt) should] beFalse];
-        [[theValue(context.device.contype) should] equal:theValue(BDMTransformers.connectionType(ask_connectionTypeString()))];
+        [[theValue(context.device.contype) should] equal:theValue(BDMTransformers.connectionType(STKConnection.statusName))];
         [[context.device.mccmnc shouldNot] beNil];
         [[context.device.carrier shouldNot] beNil];
         [[theValue(context.device.w) should] equal:theValue(UIScreen.mainScreen.bounds.size.width * UIScreen.mainScreen.scale)];
@@ -189,7 +189,7 @@ describe(@"AuctionBuilderSpec", ^{
         if (BDMSdk.sharedSdk.restrictions.subjectToGDPR && BDMSdk.sharedSdk.restrictions.consentString == nil) {
             [[context.device.ifa should] equal:@"00000000-0000-0000-0000-000000000000"];
         } else {
-            [[context.device.ifa should] equal:ask_advertisingID()];
+            [[context.device.ifa should] equal:STKAd.advertisingIdentifier];
         }
     });
     context(@"user data", ^{
