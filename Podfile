@@ -56,6 +56,10 @@ def facebook
   pod 'FBAudienceNetwork', '~> 5.4'
 end
 
+def mintegral
+  pod 'MintegralSDK', '~> 5.5'
+end
+
 # Targets configuration
 target 'BidMachine' do
   project 'BidMachine/BidMachine.xcodeproj'
@@ -111,6 +115,12 @@ target 'BDMFacebookAdapter' do
   stack_modules
 end
 
+target 'BDMMintegralAdapter' do
+  project 'Adaptors/Adaptors.xcodeproj'
+  mintegral
+  stack_modules
+end
+
 target 'Sample' do
   project 'Sample/Sample.xcodeproj'
   mraid
@@ -121,6 +131,7 @@ target 'Sample' do
   vungle
   tapjoy
   facebook
+  mintegral
   stack_modules
   protobuf
   toasts
