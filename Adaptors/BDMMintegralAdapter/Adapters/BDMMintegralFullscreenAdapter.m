@@ -53,11 +53,11 @@
 
 - (void)present {
     UIViewController *rootViewController = [self.displayDelegate rootViewControllerForAdapter:self];
-    if ([[MTGBidRewardAdManager sharedInstance] isVideoReadyToPlay:@"your unitId"] && self.rewarded) {
+    if ([[MTGBidRewardAdManager sharedInstance] isVideoReadyToPlay:self.unitId] && self.rewarded) {
         [self.displayDelegate adapterWillPresent:self];
         [[MTGBidRewardAdManager sharedInstance] showVideo:self.unitId
                                              withRewardId:@""
-                                                   userId:[[BDMSdk sharedSdk] configuration]
+                                                   userId:@""
                                                  delegate:self
                                            viewController:rootViewController];
     } else if ([_ivBidAdManager isVideoReadyToPlay:self.unitId] && !self.rewarded) {

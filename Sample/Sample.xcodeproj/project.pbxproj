@@ -67,6 +67,7 @@
 		D9393B6421AC256B007B52B7 /* AuctionInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9393B6321AC256B007B52B7 /* AuctionInfoVC.swift */; };
 		D98AE1C42175EDEC00414343 /* InterstitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98AE1C32175EDEC00414343 /* InterstitialVC.swift */; };
 		D98AE1C62175EDFE00414343 /* BannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98AE1C52175EDFE00414343 /* BannerVC.swift */; };
+		D99FF2B0230A8FD70060FA8E /* libBDMMintegralAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D99FF2AF230A8FD70060FA8E /* libBDMMintegralAdapter.a */; };
 		D9A4956D21AD9D85007A7611 /* ToastMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4956C21AD9D85007A7611 /* ToastMaker.swift */; };
 		D9B5670F21AFF97D0045E95D /* NativeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B5670E21AFF97D0045E95D /* NativeTableVC.swift */; };
 		D9BBD5E321CA35C0006233F9 /* CornerCasesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BBD5E221CA35C0006233F9 /* CornerCasesVC.swift */; };
@@ -150,6 +151,7 @@
 		D9393B6321AC256B007B52B7 /* AuctionInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionInfoVC.swift; sourceTree = "<group>"; };
 		D98AE1C32175EDEC00414343 /* InterstitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialVC.swift; sourceTree = "<group>"; };
 		D98AE1C52175EDFE00414343 /* BannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerVC.swift; sourceTree = "<group>"; };
+		D99FF2AF230A8FD70060FA8E /* libBDMMintegralAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMMintegralAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A4956C21AD9D85007A7611 /* ToastMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMaker.swift; sourceTree = "<group>"; };
 		D9B5670E21AFF97D0045E95D /* NativeTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTableVC.swift; sourceTree = "<group>"; };
 		D9BBD5E221CA35C0006233F9 /* CornerCasesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerCasesVC.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				4220558522E1F26200E1CA89 /* libBDMAdColonyAdapter.a in Frameworks */,
 				4231D01722E0CAFC002852CE /* libBDMMyTargetAdapter.a in Frameworks */,
 				424A9F6C21B82647008335EE /* libBDMMRAIDAdapter.a in Frameworks */,
+				D99FF2B0230A8FD70060FA8E /* libBDMMintegralAdapter.a in Frameworks */,
 				424A9F6E21B82647008335EE /* libBDMNASTAdapter.a in Frameworks */,
 				424A9F7021B82647008335EE /* libBDMVASTAdapter.a in Frameworks */,
 				424A9F7121B8264F008335EE /* libxml2.2.tbd in Frameworks */,
@@ -304,6 +307,7 @@
 		ABBBB8C34D78D07CCC36518F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D99FF2AF230A8FD70060FA8E /* libBDMMintegralAdapter.a */,
 				42A93E5C22E705EC005053A2 /* libBDMFacebookAdapter.a */,
 				42A93E4722E5ED6E005053A2 /* libBDMTapjoyAdapter.a */,
 				42675D9022E216CE008298F5 /* libBDMVungleAdapter.a */,

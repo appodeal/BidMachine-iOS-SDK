@@ -13,6 +13,17 @@
         {
             "ad_units": [
                 {
+                    "unit_id": "113049",
+                    "format": "interstitial"
+                }
+            ],
+            "app_id": "108013",
+            "network": "mintegral",
+            "network_class": "BDMMintegralAdNetwork"
+        },
+        {
+            "ad_units": [
+                {
                     "slot_id": "576962",
                     "format": "banner_300x250"
                 }
