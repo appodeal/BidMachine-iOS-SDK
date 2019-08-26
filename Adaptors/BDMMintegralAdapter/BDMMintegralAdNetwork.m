@@ -16,7 +16,7 @@
 
 @interface BDMMintegralAdNetwork()
 
-@property (nonatomic, strong) NSString *appId;
+@property (nonatomic, copy) NSString *appId;
 
 @end
 
@@ -36,6 +36,12 @@
         [self syncMetadata];
         self.appId = [BDMMintegralValueTransformer.new transformedValue:parameters[@"app_id"]];
         NSString *apiKey = [BDMMintegralValueTransformer.new transformedValue:parameters[@"api_key"]];
+        if (!self.appId || !apiKey) {
+            NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                            description:@"Mintegral adapter was not receive valid initialization data"];
+            STK_RUN_BLOCK(completion, nil, error);
+            return;
+        }
         [[MTGSDK sharedInstance] setAppID:self.appId ApiKey:apiKey];
         STK_RUN_BLOCK(completion, NO, nil);
     });
@@ -49,7 +55,7 @@
         NSString *unitId = [BDMMintegralValueTransformer.new transformedValue:parameters[@"unit_id"]];
         if (!self.appId || !buyeruid || !unitId) {
             NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
-                                            description:@"MintegralNetwork adapter was not receive valid bidding data"];
+                                            description:@"Mintegral adapter was not receive valid bidding data"];
             STK_RUN_BLOCK(completion, nil, error);
             return;
         }

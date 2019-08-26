@@ -15,8 +15,9 @@
 
 @interface BDMMintegralFullscreenAdapter() <MTGRewardAdLoadDelegate, MTGRewardAdShowDelegate, MTGBidInterstitialVideoDelegate>
 
-@property (nonatomic, strong) MTGBidInterstitialVideoAdManager *ivBidAdManager;
-@property (nonatomic, strong) NSString *unitId;
+@property (nonatomic, strong) MTGBidInterstitialVideoAdManager *interstitialBidAdManager;
+@property (nonatomic, strong) MTGBidRewardAdManager *rewardedBidAdManager;
+@property (nonatomic, copy) NSString *unitId;
 
 @end
 
@@ -26,28 +27,35 @@
     return nil;
 }
 
+- (MTGBidRewardAdManager *)rewardedBidAdManager {
+    return [MTGBidRewardAdManager sharedInstance];
+}
+
+- (MTGBidInterstitialVideoAdManager *)interstitialBidAdManager {
+    if (!_interstitialBidAdManager) {
+        _interstitialBidAdManager = [[MTGBidInterstitialVideoAdManager alloc] initWithUnitID:self.unitId
+                                                                                    delegate:self];
+    }
+    return _interstitialBidAdManager;
+}
+
 - (void)prepareContent:(nonnull NSDictionary<NSString *,NSString *> *)contentInfo {
     BDMMintegralValueTransformer *transformer = [BDMMintegralValueTransformer new];
     NSString *bidToken = [transformer transformedValue:contentInfo[@"bid_token"]];
     self.unitId = [transformer transformedValue:contentInfo[@"unit_id"]];
     if (!bidToken || !self.unitId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
-                                        description:@"MintegralAdNetwork wasn't recived valid bidding data"];
+                                        description:@"Mintegral adapter was not recive valid bidding data"];
         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
         return;
     }
     
     if (self.rewarded) {
-        [[MTGBidRewardAdManager sharedInstance] loadVideoWithBidToken:bidToken
-                                                               unitId:self.unitId
-                                                             delegate:self];
+        [self.rewardedBidAdManager loadVideoWithBidToken:bidToken
+                                                  unitId:self.unitId
+                                                delegate:self];
     } else {
-        if (!_ivBidAdManager ) {
-            _ivBidAdManager = [[MTGBidInterstitialVideoAdManager alloc] initWithUnitID:self.unitId
-                                                                              delegate:self];
-            _ivBidAdManager.delegate = self;
-            [_ivBidAdManager loadAdWithBidToken:bidToken];
-        }
+        [self.interstitialBidAdManager loadAdWithBidToken:bidToken];
     }
 }
 
@@ -60,8 +68,8 @@
                                                    userId:@""
                                                  delegate:self
                                            viewController:rootViewController];
-    } else if ([_ivBidAdManager isVideoReadyToPlay:self.unitId] && !self.rewarded) {
-        [_ivBidAdManager showFromViewController:rootViewController];
+    } else if ([self.interstitialBidAdManager isVideoReadyToPlay:self.unitId] && !self.rewarded) {
+        [self.interstitialBidAdManager showFromViewController:rootViewController];
     }
 }
 

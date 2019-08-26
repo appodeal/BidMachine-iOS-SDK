@@ -11,7 +11,7 @@
 @implementation BDMMintegralValueTransformer
 
 + (Class)transformedValueClass {
-    return [NSArray class];
+    return [NSString class];
 }
 
 + (BOOL)allowsReverseTransformation {
