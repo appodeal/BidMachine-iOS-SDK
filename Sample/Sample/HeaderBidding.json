@@ -13,11 +13,16 @@
         {
             "ad_units": [
                 {
-                    "unit_id": "113049",
+                    "unit_id": "140138",
                     "format": "interstitial"
+                },
+                {
+                    "unit_id": "140136",
+                    "format": "rewarded"
                 }
             ],
-            "app_id": "108013",
+            "app_id": "117851",
+            "api_key": "8627b127f51e01875ba2e2fd71a88f95",
             "network": "mintegral",
             "network_class": "BDMMintegralAdNetwork"
         },

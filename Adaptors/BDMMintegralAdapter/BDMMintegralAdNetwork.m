@@ -32,9 +32,13 @@
 
 - (void)initialiseWithParameters:(NSDictionary<NSString *,id> *)parameters
                       completion:(void (^)(BOOL, NSError * _Nullable))completion {
-    [self syncMetadata];
-    self.appId = [BDMMintegralValueTransformer.new transformedValue:parameters[@"app_id"]];
-    STK_RUN_BLOCK(completion, NO, nil);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self syncMetadata];
+        self.appId = [BDMMintegralValueTransformer.new transformedValue:parameters[@"app_id"]];
+        NSString *apiKey = [BDMMintegralValueTransformer.new transformedValue:parameters[@"api_key"]];
+        [[MTGSDK sharedInstance] setAppID:self.appId ApiKey:apiKey];
+        STK_RUN_BLOCK(completion, NO, nil);
+    });
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
