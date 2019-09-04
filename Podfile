@@ -57,7 +57,7 @@ def facebook
 end
 
 def mintegral
-  pod 'MintegralSDK', '~> 5.5'
+  pod 'MintegralSDK', '~> 5.6'
 end
 
 # Targets configuration

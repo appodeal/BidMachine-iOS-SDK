@@ -56,4 +56,12 @@ Pod::Spec.new do |s|
     ss.dependency 'BidMachine/Core'
     ss.dependency 'VungleSDK-iOS', '~> 6.3'
   end
+
+  s.subspec 'MintegralAdapter' do |ss|
+    ss.vendored_libraries = 'BDMMintegralAdapter.embeddedframework/*.a' 
+    ss.vendored_frameworks = 'BDMMintegralAdapter.embeddedframework/*.framework'
+    ss.frameworks =  'CoreGraphics', 'Foundation', 'UIKit', 'AdSupport', 'StoreKit', 'QuartzCore', 'CoreLocation', 'CoreTelephony', 'MobileCoreServices', 'Accelerate', 'WebKit'
+    ss.libraries = 'sqlite3.0', 'z'
+    ss.dependency 'BidMachine/Core'
+  end
 end

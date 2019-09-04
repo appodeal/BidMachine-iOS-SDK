@@ -132,6 +132,20 @@
                ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D99FF29B23069A030060FA8E"
+               BuildableName = "libBDMMintegralAdapter.a"
+               BlueprintName = "BDMMintegralAdapter"
+               ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

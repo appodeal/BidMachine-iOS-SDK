@@ -96,7 +96,7 @@
 #pragma mark - Private
 
 - (void)prepareDisplayAd {
-    NSError * error;
+    NSError *error;
     self.displayAd = [BDMFactory.sharedFactory displayAdWithRequest:self.currentRequest error:&error];
     if (error) {
         [self.delegate rewarded:self failedWithError:error];

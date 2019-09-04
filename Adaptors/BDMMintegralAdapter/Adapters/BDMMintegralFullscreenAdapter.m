@@ -8,10 +8,12 @@
 
 #import "BDMMintegralFullscreenAdapter.h"
 #import "BDMMintegralValueTransformer.h"
+
 #import <MTGSDKReward/MTGBidRewardAdManager.h>
 #import <MTGSDKInterstitialVideo/MTGBidInterstitialVideoAdManager.h>
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKBidding/MTGBiddingRequest.h>
+
 
 @interface BDMMintegralFullscreenAdapter() <MTGRewardAdLoadDelegate, MTGRewardAdShowDelegate, MTGBidInterstitialVideoDelegate>
 
@@ -61,9 +63,9 @@
 
 - (void)present {
     UIViewController *rootViewController = [self.displayDelegate rootViewControllerForAdapter:self];
-    if ([[MTGBidRewardAdManager sharedInstance] isVideoReadyToPlay:self.unitId] && self.rewarded) {
+    if ([self.rewardedBidAdManager isVideoReadyToPlay:self.unitId] && self.rewarded) {
         [self.displayDelegate adapterWillPresent:self];
-        [[MTGBidRewardAdManager sharedInstance] showVideo:self.unitId
+        [self.rewardedBidAdManager showVideo:self.unitId
                                              withRewardId:@""
                                                    userId:@""
                                                  delegate:self

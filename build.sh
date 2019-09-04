@@ -29,6 +29,7 @@ export ADAPTERS=(
     "BDMAdColonyAdapter"
     "BDMVungleAdapter"
     "BDMTapjoyAdapter"
+    "BDMMintegralAdapter"
     )
 
 # Utility 
@@ -63,7 +64,7 @@ function build_mangled_binary {
                 DEPLOYMENT_POSTPROCESSING=YES \
                 GCC_GENERATE_DEBUGGING_SYMBOLS=NO \
                 build \
-                CONFIGURATION_BUILD_DIR="$output" > "$output/$scheme_id-$sdk_id-build.log"
+                CONFIGURATION_BUILD_DIR="$output" | xcpretty > "$output/$scheme_id-$sdk_id-build.log"
 }
 
 function rebuild_components {
@@ -120,7 +121,14 @@ function copy_adapters {
 
     for adapter in ${ADAPTERS[@]}; do 
         echo -e "${INFO}Copy $adapter${INFO}"
-       mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a" 
+        if [[ "$adapter" == "BDMMintegralAdapter" ]]; then
+            mkdir "$RELEASE_DIR/$adapter.embeddedframework"
+            mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/$adapter.embeddedframework/lib$adapter.a"
+            cp -r "$PWD/Pods/MintegralSDK/" "$RELEASE_DIR/$adapter.embeddedframework"
+        else     
+            mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a"
+        fi 
+
     done
 }
 
