@@ -58,7 +58,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'MintegralAdapter' do |ss|
-    ss.vendored_libraries = 'BDMMintegralAdapter.embeddedframework/*.a' 
+    ss.vendored_libraries = 'libBDMMintegralAdapter.a' 
     ss.dependency 'BidMachine/Core'
     ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
     ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
