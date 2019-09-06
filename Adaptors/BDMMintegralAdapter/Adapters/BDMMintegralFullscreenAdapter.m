@@ -9,16 +9,16 @@
 #import "BDMMintegralFullscreenAdapter.h"
 #import "BDMMintegralValueTransformer.h"
 
-#import <MTGSDKReward/MTGBidRewardAdManager.h>
+#import "BDMMintegralVideoAdProxy.h"
 #import <MTGSDKInterstitialVideo/MTGBidInterstitialVideoAdManager.h>
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKBidding/MTGBiddingRequest.h>
 
 
-@interface BDMMintegralFullscreenAdapter() <MTGRewardAdLoadDelegate, MTGRewardAdShowDelegate, MTGBidInterstitialVideoDelegate>
+@interface BDMMintegralFullscreenAdapter() <MTGBidInterstitialVideoDelegate>
 
 @property (nonatomic, strong) MTGBidInterstitialVideoAdManager *interstitialBidAdManager;
-@property (nonatomic, strong) MTGBidRewardAdManager *rewardedBidAdManager;
+@property (nonatomic, strong) BDMMintegralVideoAdProxy *rewardedBidAdManagerProxy;
 @property (nonatomic, copy) NSString *unitId;
 
 @end
@@ -29,8 +29,8 @@
     return nil;
 }
 
-- (MTGBidRewardAdManager *)rewardedBidAdManager {
-    return [MTGBidRewardAdManager sharedInstance];
+- (BDMMintegralVideoAdProxy *)rewardedBidAdManagerProxy {
+    return [BDMMintegralVideoAdProxy sharedInstance];
 }
 
 - (MTGBidInterstitialVideoAdManager *)interstitialBidAdManager {
@@ -53,9 +53,9 @@
     }
     
     if (self.rewarded) {
-        [self.rewardedBidAdManager loadVideoWithBidToken:bidToken
+        [self.rewardedBidAdManagerProxy loadVideoWithBidToken:bidToken
                                                   unitId:self.unitId
-                                                delegate:self];
+                                                adapter:self];
     } else {
         [self.interstitialBidAdManager loadAdWithBidToken:bidToken];
     }
@@ -63,13 +63,12 @@
 
 - (void)present {
     UIViewController *rootViewController = [self.displayDelegate rootViewControllerForAdapter:self];
-    if ([self.rewardedBidAdManager isVideoReadyToPlay:self.unitId] && self.rewarded) {
+    if ([self.rewardedBidAdManagerProxy.manager isVideoReadyToPlay:self.unitId] && self.rewarded) {
         [self.displayDelegate adapterWillPresent:self];
-        [self.rewardedBidAdManager showVideo:self.unitId
+        [self.rewardedBidAdManagerProxy showVideo:self.unitId
                                              withRewardId:@""
                                                    userId:@""
-                                                 delegate:self
-                                           viewController:rootViewController];
+                                                 adapter:self];
     } else if ([self.interstitialBidAdManager isVideoReadyToPlay:self.unitId] && !self.rewarded) {
         [self.interstitialBidAdManager showFromViewController:rootViewController];
     }
@@ -109,45 +108,5 @@
 - (void)onInterstitialVideoEndCardShowSuccess:(MTGBidInterstitialVideoAdManager *)adManager {}
 - (void)onInterstitialVideoShowSuccess:(MTGBidInterstitialVideoAdManager *)adManager {}
 - (void)onInterstitialAdLoadSuccess:(MTGBidInterstitialVideoAdManager *)adManager {}
-
-#pragma mark - MTGRewardAdShowDelegate
-
-- (void)onVideoAdShowFailed:(NSString *)unitId
-                  withError:(NSError *)error {
-    [self.displayDelegate adapter:self failedToPresentAdWithError:error];
-}
-
-- (void)onVideoAdClicked:(NSString *)unitId {
-    [self.displayDelegate adapterRegisterUserInteraction:self];
-}
-
-- (void)onVideoAdDismissed:(NSString *)unitId
-             withConverted:(BOOL)converted
-            withRewardInfo:(MTGRewardAdInfo *)rewardInfo {
-    [self.displayDelegate adapterFinishRewardAction:self];
-}
-
-- (void)onVideoAdDidClosed:(NSString *)unitId {
-    [self.displayDelegate adapterDidDismiss:self];
-}
-
-// No-op
-- (void)onVideoAdShowSuccess:(NSString *)unitId {}
-- (void)onVideoPlayCompleted:(NSString *)unitId {}
-- (void)onVideoEndCardShowSuccess:(NSString *)unitId {}
-
-#pragma mark - MTGRewardAdLoadDelegate
-
-- (void)onVideoAdLoadSuccess:(NSString *)unitId {
-    [self.loadingDelegate adapterPreparedContent:self];
-}
-
-- (void)onVideoAdLoadFailed:(NSString *)unitId
-                      error:(NSError *)error {
-    [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
-}
-
-// No-op
-- (void)onAdLoadSuccess:(NSString *)unitId {}
 
 @end

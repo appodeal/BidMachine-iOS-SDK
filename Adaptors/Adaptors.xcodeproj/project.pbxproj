@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		008172997139F8D6BA89B341 /* Pods_BDMTapjoyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE9FB85885E50FE3543C81B /* Pods_BDMTapjoyAdapter.framework */; };
-		0E795DDD06B3BFE1A005B10E /* Pods_BDMVASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */; };
-		12FA7868E228EC4282895143 /* Pods_BDMMRAIDAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */; };
-		365EE75AD9A5C85A09EDF5DC /* Pods_BDMMintegralAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929BCDB28E52141C1FAA72EC /* Pods_BDMMintegralAdapter.framework */; };
+		16B6EBBBD195E93B2C7E39D7 /* Pods_BDMMyTargetAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71E2287F979FC7008C4DAE2 /* Pods_BDMMyTargetAdapter.framework */; };
+		1F810E42EA53AE181C714C0F /* Pods_BDMFacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F992BCB6DD8A5EAF29BF14 /* Pods_BDMFacebookAdapter.framework */; };
+		35D6D4629476D37923A31DDC /* Pods_BDMTapjoyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D96961115DE7E7A9E686542 /* Pods_BDMTapjoyAdapter.framework */; };
 		4220558322E1E0C600E1CA89 /* BDMAdColonyStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220558222E1E0C600E1CA89 /* BDMAdColonyStringTransformer.m */; };
 		4220558822E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220558722E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m */; };
 		4231D01A22E1B4DA002852CE /* BDMMyTargetSlotTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D01922E1B4DA002852CE /* BDMMyTargetSlotTransformer.m */; };
@@ -23,18 +22,10 @@
 		4248C20F218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */; };
 		42675D8B22E2151D008298F5 /* BDMVungleAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42675D8A22E2151D008298F5 /* BDMVungleAdNetwork.m */; };
 		42675D8C22E2151D008298F5 /* BDMVungleAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42675D8922E2151D008298F5 /* BDMVungleAdNetwork.h */; };
-		426AA22022EB12BA003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA21F22EB12BA003FA6AF /* BidMachine.framework */; };
-		426AA22222EB12C1003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA22122EB12C1003FA6AF /* BidMachine.framework */; };
-		426AA22422EB12C8003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA22322EB12C8003FA6AF /* BidMachine.framework */; };
-		426AA22622EB12CE003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA22522EB12CE003FA6AF /* BidMachine.framework */; };
-		426AA22822EB12D3003FA6AF /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426AA22722EB12D3003FA6AF /* BidMachine.framework */; };
 		4274FA7222E5B92C00EE0D47 /* BDMVungleValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7122E5B92C00EE0D47 /* BDMVungleValueTransformer.m */; };
 		4274FA7522E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7422E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m */; };
 		4274FA7E22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */; };
 		4274FA7F22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */; };
-		427DE27D21A453B7009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
-		427DE27E21A453C7009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
-		427DE27F21A453CE009CCC25 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DE27C21A453B7009CCC25 /* BidMachine.framework */; };
 		428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */; };
 		42A93E4622E5ED4F005053A2 /* BDMTapjoyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */; };
 		42A93E4B22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4A22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m */; };
@@ -54,16 +45,26 @@
 		42C3FDB621620EA2004D3784 /* BDMVASTVideoAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */; };
 		42D7311422DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D7311322DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m */; };
 		42DAE22422A54A370011E054 /* BDMMRAIDClosableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */; };
-		79978822E1EA2747B7F11089 /* Pods_BDMVungleAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E74BACA4EA25E25A80C13E /* Pods_BDMVungleAdapter.framework */; };
-		80B38B1994C2E73700CCE438 /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */; };
-		92793D7F2948104C6E408A03 /* Pods_BDMFacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC148F7343FB1A341B8BB6B1 /* Pods_BDMFacebookAdapter.framework */; };
+		9534F9245F0973BD8906FCB6 /* Pods_BDMVungleAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378DAD09175B0FC316F3BA94 /* Pods_BDMVungleAdapter.framework */; };
+		A5B636371B2263C47C98EA6D /* Pods_BDMMRAIDAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB56E632941241FD0461A22 /* Pods_BDMMRAIDAdapter.framework */; };
+		C776572A4F61897F67D0DB94 /* Pods_BDMAdColonyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F2B0654B110FB406C5BAE5 /* Pods_BDMAdColonyAdapter.framework */; };
+		D926898E23214DE800B79B2C /* BDMMintegralVideoAdProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D926898D23214DE800B79B2C /* BDMMintegralVideoAdProxy.m */; };
+		D96FFF06232146B400298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
+		D96FFF07232146C900298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
+		D96FFF08232146D000298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
+		D96FFF09232146D500298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
+		D96FFF0A232146DA00298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
+		D96FFF0B232146DF00298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
+		D96FFF0C2321471000298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
+		D96FFF0D2321471600298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
+		D96FFF0E2321471C00298B27 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96FFF05232146B400298B27 /* BidMachine.framework */; };
 		D99FF2A023069A030060FA8E /* BDMMintegralAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = D99FF29F23069A030060FA8E /* BDMMintegralAdNetwork.m */; };
 		D99FF2A123069A030060FA8E /* BDMMintegralAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D99FF29E23069A030060FA8E /* BDMMintegralAdNetwork.h */; };
-		D99FF2A623069D840060FA8E /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D99FF2A523069D840060FA8E /* BidMachine.framework */; };
 		D99FF2AA2306DE120060FA8E /* BDMMintegralValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D99FF2A92306DE120060FA8E /* BDMMintegralValueTransformer.m */; };
 		D99FF2AE2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D99FF2AD2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.m */; };
-		F52C52821D02ABE089C16037 /* Pods_BDMMyTargetAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278F78036031FDA8E2C3580A /* Pods_BDMMyTargetAdapter.framework */; };
-		FA27E9B5975E1C3028F8162A /* Pods_BDMAdColonyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49A2C7BB3A2CD1613065E81 /* Pods_BDMAdColonyAdapter.framework */; };
+		E5A090D0F9844BE9C3B59A5F /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515F8B54394B6A1AE78352C8 /* Pods_BDMNASTAdapter.framework */; };
+		E9B01EB423EC41E3F8E6C5AD /* Pods_BDMVASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2C20DEB72393C429F17C06 /* Pods_BDMVASTAdapter.framework */; };
+		F78EEC36B46F1493E4629715 /* Pods_BDMMintegralAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E073C1CD8790548776A72512 /* Pods_BDMMintegralAdapter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,11 +158,9 @@
 
 /* Begin PBXFileReference section */
 		0482996C7F3945E0F50244C1 /* Pods-BDMVungleAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVungleAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVungleAdapter/Pods-BDMVungleAdapter.release.xcconfig"; sourceTree = "<group>"; };
-		04E74BACA4EA25E25A80C13E /* Pods_BDMVungleAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVungleAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4C8D8C2E4BBE85E3FD04E1 /* Pods-BDMMRAIDAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		12CB78823522354016B45971 /* Pods-BDMAdColonyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAdColonyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAdColonyAdapter/Pods-BDMAdColonyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
-		278F78036031FDA8E2C3580A /* Pods_BDMMyTargetAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMyTargetAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		378DAD09175B0FC316F3BA94 /* Pods_BDMVungleAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVungleAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC6F167F77CBFF07A32793F /* Pods-BDMMintegralAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMintegralAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMintegralAdapter/Pods-BDMMintegralAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		3F30F3B440AF6ADD3A2CF023 /* Pods-BDMMRAIDAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		4220558122E1E0C600E1CA89 /* BDMAdColonyStringTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdColonyStringTransformer.h; sourceTree = "<group>"; };
@@ -186,11 +185,6 @@
 		42675D8722E2151D008298F5 /* libBDMVungleAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMVungleAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42675D8922E2151D008298F5 /* BDMVungleAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleAdNetwork.h; sourceTree = "<group>"; };
 		42675D8A22E2151D008298F5 /* BDMVungleAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMVungleAdNetwork.m; sourceTree = "<group>"; };
-		426AA21F22EB12BA003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		426AA22122EB12C1003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		426AA22322EB12C8003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		426AA22522EB12CE003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		426AA22722EB12D3003FA6AF /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4274FA7022E5B92C00EE0D47 /* BDMVungleValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleValueTransformer.h; sourceTree = "<group>"; };
 		4274FA7122E5B92C00EE0D47 /* BDMVungleValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMVungleValueTransformer.m; sourceTree = "<group>"; };
 		4274FA7322E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleFullscreenAdapter.h; sourceTree = "<group>"; };
@@ -198,7 +192,6 @@
 		4274FA7A22E5E7A600EE0D47 /* libBDMTapjoyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMTapjoyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyAdNetwork.h; sourceTree = "<group>"; };
 		4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyAdNetwork.m; sourceTree = "<group>"; };
-		427DE27C21A453B7009CCC25 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		428F5124218F7EED00BC9E2D /* BDMNASTDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTDisplayAdapter.h; sourceTree = "<group>"; };
 		428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTDisplayAdapter.m; sourceTree = "<group>"; };
 		429C1978216014720048F400 /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,32 +234,36 @@
 		42DAE22222A54A370011E054 /* BDMMRAIDClosableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDClosableView.h; sourceTree = "<group>"; };
 		42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDClosableView.m; sourceTree = "<group>"; };
 		44D3CEC6DB28E06E4E7949FD /* Pods-BDMNASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
-		4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D96961115DE7E7A9E686542 /* Pods_BDMTapjoyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMTapjoyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		515F8B54394B6A1AE78352C8 /* Pods_BDMNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C360C6F2F6BFF146C6C6466 /* Pods-BDMTapjoyAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		75B3E3BEE3C9A43EC392DC7C /* Pods-BDMTapjoyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		8AB56E632941241FD0461A22 /* Pods_BDMMRAIDAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMRAIDAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		8FF663A1FA78B57A1A754BD7 /* Pods-BDMMintegralAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMintegralAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMintegralAdapter/Pods-BDMMintegralAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		91025E1849D1EC144B762490 /* Pods-BDMVungleAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVungleAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVungleAdapter/Pods-BDMVungleAdapter.debug.xcconfig"; sourceTree = "<group>"; };
-		929BCDB28E52141C1FAA72EC /* Pods_BDMMintegralAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMintegralAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C93ECC2AB534F4B7C3EDF0 /* Pods-BDMVASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		9E89893E04DC5053A339BD43 /* Pods-BDMMyTargetAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMyTargetAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMyTargetAdapter/Pods-BDMMyTargetAdapter.release.xcconfig"; sourceTree = "<group>"; };
-		A49A2C7BB3A2CD1613065E81 /* Pods_BDMAdColonyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMAdColonyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACE9FB85885E50FE3543C81B /* Pods_BDMTapjoyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMTapjoyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMRAIDAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2F992BCB6DD8A5EAF29BF14 /* Pods_BDMFacebookAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMFacebookAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F2B0654B110FB406C5BAE5 /* Pods_BDMAdColonyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMAdColonyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91BAD9533A9000DB222A234 /* Pods-BDMFacebookAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMFacebookAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMFacebookAdapter/Pods-BDMFacebookAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		C9AF275D86EEF4063B093579 /* Pods-BDMMyTargetAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMyTargetAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMyTargetAdapter/Pods-BDMMyTargetAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		D018DEB957A24A69B05EECE5 /* Pods-BDMFacebookAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMFacebookAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMFacebookAdapter/Pods-BDMFacebookAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		D71E2287F979FC7008C4DAE2 /* Pods_BDMMyTargetAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMyTargetAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D926898C23214DE800B79B2C /* BDMMintegralVideoAdProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMintegralVideoAdProxy.h; sourceTree = "<group>"; };
+		D926898D23214DE800B79B2C /* BDMMintegralVideoAdProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMintegralVideoAdProxy.m; sourceTree = "<group>"; };
+		D96FFF05232146B400298B27 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99FF29C23069A030060FA8E /* libBDMMintegralAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMintegralAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99FF29E23069A030060FA8E /* BDMMintegralAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMintegralAdNetwork.h; sourceTree = "<group>"; };
 		D99FF29F23069A030060FA8E /* BDMMintegralAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMintegralAdNetwork.m; sourceTree = "<group>"; };
-		D99FF2A523069D840060FA8E /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99FF2A82306DE120060FA8E /* BDMMintegralValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMintegralValueTransformer.h; sourceTree = "<group>"; };
 		D99FF2A92306DE120060FA8E /* BDMMintegralValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMintegralValueTransformer.m; sourceTree = "<group>"; };
 		D99FF2AC2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMintegralFullscreenAdapter.h; sourceTree = "<group>"; };
 		D99FF2AD2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMintegralFullscreenAdapter.m; sourceTree = "<group>"; };
+		DE2C20DEB72393C429F17C06 /* Pods_BDMVASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E073C1CD8790548776A72512 /* Pods_BDMMintegralAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMintegralAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9B7001D10CD9B53A4F79AB /* Pods-BDMAdColonyAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAdColonyAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAdColonyAdapter/Pods-BDMAdColonyAdapter.release.xcconfig"; sourceTree = "<group>"; };
-		FC148F7343FB1A341B8BB6B1 /* Pods_BDMFacebookAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMFacebookAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,8 +271,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				426AA22222EB12C1003FA6AF /* BidMachine.framework in Frameworks */,
-				FA27E9B5975E1C3028F8162A /* Pods_BDMAdColonyAdapter.framework in Frameworks */,
+				D96FFF07232146C900298B27 /* BidMachine.framework in Frameworks */,
+				C776572A4F61897F67D0DB94 /* Pods_BDMAdColonyAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,8 +280,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				426AA22422EB12C8003FA6AF /* BidMachine.framework in Frameworks */,
-				79978822E1EA2747B7F11089 /* Pods_BDMVungleAdapter.framework in Frameworks */,
+				D96FFF08232146D000298B27 /* BidMachine.framework in Frameworks */,
+				9534F9245F0973BD8906FCB6 /* Pods_BDMVungleAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,8 +289,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				426AA22622EB12CE003FA6AF /* BidMachine.framework in Frameworks */,
-				008172997139F8D6BA89B341 /* Pods_BDMTapjoyAdapter.framework in Frameworks */,
+				D96FFF09232146D500298B27 /* BidMachine.framework in Frameworks */,
+				35D6D4629476D37923A31DDC /* Pods_BDMTapjoyAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,8 +298,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427DE27E21A453C7009CCC25 /* BidMachine.framework in Frameworks */,
-				12FA7868E228EC4282895143 /* Pods_BDMMRAIDAdapter.framework in Frameworks */,
+				D96FFF0C2321471000298B27 /* BidMachine.framework in Frameworks */,
+				A5B636371B2263C47C98EA6D /* Pods_BDMMRAIDAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,8 +307,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427DE27F21A453CE009CCC25 /* BidMachine.framework in Frameworks */,
-				0E795DDD06B3BFE1A005B10E /* Pods_BDMVASTAdapter.framework in Frameworks */,
+				D96FFF0D2321471600298B27 /* BidMachine.framework in Frameworks */,
+				E9B01EB423EC41E3F8E6C5AD /* Pods_BDMVASTAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,8 +316,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427DE27D21A453B7009CCC25 /* BidMachine.framework in Frameworks */,
-				80B38B1994C2E73700CCE438 /* Pods_BDMNASTAdapter.framework in Frameworks */,
+				D96FFF0E2321471C00298B27 /* BidMachine.framework in Frameworks */,
+				E5A090D0F9844BE9C3B59A5F /* Pods_BDMNASTAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,8 +325,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				426AA22822EB12D3003FA6AF /* BidMachine.framework in Frameworks */,
-				92793D7F2948104C6E408A03 /* Pods_BDMFacebookAdapter.framework in Frameworks */,
+				D96FFF0A232146DA00298B27 /* BidMachine.framework in Frameworks */,
+				1F810E42EA53AE181C714C0F /* Pods_BDMFacebookAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,8 +334,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				426AA22022EB12BA003FA6AF /* BidMachine.framework in Frameworks */,
-				F52C52821D02ABE089C16037 /* Pods_BDMMyTargetAdapter.framework in Frameworks */,
+				D96FFF06232146B400298B27 /* BidMachine.framework in Frameworks */,
+				16B6EBBBD195E93B2C7E39D7 /* Pods_BDMMyTargetAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,8 +343,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D99FF2A623069D840060FA8E /* BidMachine.framework in Frameworks */,
-				365EE75AD9A5C85A09EDF5DC /* Pods_BDMMintegralAdapter.framework in Frameworks */,
+				D96FFF0B232146DF00298B27 /* BidMachine.framework in Frameworks */,
+				F78EEC36B46F1493E4629715 /* Pods_BDMMintegralAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,22 +570,16 @@
 		A42159B447762DCB7EC116EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D99FF2A523069D840060FA8E /* BidMachine.framework */,
-				426AA22722EB12D3003FA6AF /* BidMachine.framework */,
-				426AA22522EB12CE003FA6AF /* BidMachine.framework */,
-				426AA22322EB12C8003FA6AF /* BidMachine.framework */,
-				426AA22122EB12C1003FA6AF /* BidMachine.framework */,
-				426AA21F22EB12BA003FA6AF /* BidMachine.framework */,
-				427DE27C21A453B7009CCC25 /* BidMachine.framework */,
-				B3F103542BBC9F6AD9E2E752 /* Pods_BDMMRAIDAdapter.framework */,
-				4E291C3C74F0BA33AD39B0F6 /* Pods_BDMNASTAdapter.framework */,
-				3BAE9786FC96FDB1B81D7E6F /* Pods_BDMVASTAdapter.framework */,
-				278F78036031FDA8E2C3580A /* Pods_BDMMyTargetAdapter.framework */,
-				A49A2C7BB3A2CD1613065E81 /* Pods_BDMAdColonyAdapter.framework */,
-				04E74BACA4EA25E25A80C13E /* Pods_BDMVungleAdapter.framework */,
-				ACE9FB85885E50FE3543C81B /* Pods_BDMTapjoyAdapter.framework */,
-				FC148F7343FB1A341B8BB6B1 /* Pods_BDMFacebookAdapter.framework */,
-				929BCDB28E52141C1FAA72EC /* Pods_BDMMintegralAdapter.framework */,
+				D96FFF05232146B400298B27 /* BidMachine.framework */,
+				C1F2B0654B110FB406C5BAE5 /* Pods_BDMAdColonyAdapter.framework */,
+				A2F992BCB6DD8A5EAF29BF14 /* Pods_BDMFacebookAdapter.framework */,
+				8AB56E632941241FD0461A22 /* Pods_BDMMRAIDAdapter.framework */,
+				E073C1CD8790548776A72512 /* Pods_BDMMintegralAdapter.framework */,
+				D71E2287F979FC7008C4DAE2 /* Pods_BDMMyTargetAdapter.framework */,
+				515F8B54394B6A1AE78352C8 /* Pods_BDMNASTAdapter.framework */,
+				4D96961115DE7E7A9E686542 /* Pods_BDMTapjoyAdapter.framework */,
+				DE2C20DEB72393C429F17C06 /* Pods_BDMVASTAdapter.framework */,
+				378DAD09175B0FC316F3BA94 /* Pods_BDMVungleAdapter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -618,9 +609,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D926898B23214DAD00B79B2C /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				D926898C23214DE800B79B2C /* BDMMintegralVideoAdProxy.h */,
+				D926898D23214DE800B79B2C /* BDMMintegralVideoAdProxy.m */,
+			);
+			path = Proxy;
+			sourceTree = "<group>";
+		};
 		D99FF29D23069A030060FA8E /* BDMMintegralAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				D926898B23214DAD00B79B2C /* Proxy */,
 				D99FF2AB2306E2450060FA8E /* Adapters */,
 				D99FF2A72306DDDB0060FA8E /* Transformers */,
 				D99FF29E23069A030060FA8E /* BDMMintegralAdNetwork.h */,
@@ -1158,6 +1159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D99FF2AE2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.m in Sources */,
+				D926898E23214DE800B79B2C /* BDMMintegralVideoAdProxy.m in Sources */,
 				D99FF2A023069A030060FA8E /* BDMMintegralAdNetwork.m in Sources */,
 				D99FF2AA2306DE120060FA8E /* BDMMintegralValueTransformer.m in Sources */,
 			);

@@ -98,7 +98,6 @@
 		6510F19B2183352400F528AD /* BDMAuctionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510F1992183352400F528AD /* BDMAuctionBuilder.m */; };
 		6510F19E2183461300F528AD /* BDMApiRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6510F19C2183461300F528AD /* BDMApiRequest.h */; };
 		6510F19F2183461300F528AD /* BDMApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510F19D2183461300F528AD /* BDMApiRequest.m */; };
-		651532E021A428A20098AC67 /* Pods_BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651532DF21A428A20098AC67 /* Pods_BidMachine.framework */; };
 		651D8DF8219EDC5100216162 /* BDMAdTypePlacement.h in Headers */ = {isa = PBXBuildFile; fileRef = 651D8DF6219EDC5100216162 /* BDMAdTypePlacement.h */; };
 		651D8DF9219EDC5100216162 /* BDMAdTypePlacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 651D8DF7219EDC5100216162 /* BDMAdTypePlacement.m */; };
 		65CE5DA121B14E5800652496 /* BDMSessionBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */; };
@@ -144,7 +143,8 @@
 		B993BB4020BFDA48000592D4 /* BDMNativeAdService.h in Headers */ = {isa = PBXBuildFile; fileRef = B993BB3E20BFDA48000592D4 /* BDMNativeAdService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B993BB4120BFDA48000592D4 /* BDMNativeAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = B993BB3F20BFDA48000592D4 /* BDMNativeAdService.m */; };
 		B993BB4420BFDA5B000592D4 /* BDMNativeAdProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B993BB4220BFDA5B000592D4 /* BDMNativeAdProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CEEC26FFC6A94A4CD08AF5ED /* Pods_BidMachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034127FD54BAC2A7BF5594F1 /* Pods_BidMachineTests.framework */; };
+		C41C59EB49949D4F91A14F31 /* Pods_BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51FB29B394FC1312044BA13 /* Pods_BidMachine.framework */; };
+		D69B3D605EB114A9D2B9D3CF /* Pods_BidMachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC5B56824AACD244FCD2AD /* Pods_BidMachineTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,7 +158,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		034127FD54BAC2A7BF5594F1 /* Pods_BidMachineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D061FBAE5064D3A046D090 /* Pods-BidMachineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachineTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests.release.xcconfig"; sourceTree = "<group>"; };
 		4204768E21353E1B00FA2261 /* BDMNativeAdProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAdProtocol.m; sourceTree = "<group>"; };
 		420476912135483600FA2261 /* BDMRuntimeExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRuntimeExtensions.h; sourceTree = "<group>"; };
@@ -258,8 +257,6 @@
 		6510F1992183352400F528AD /* BDMAuctionBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAuctionBuilder.m; sourceTree = "<group>"; };
 		6510F19C2183461300F528AD /* BDMApiRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMApiRequest.h; sourceTree = "<group>"; };
 		6510F19D2183461300F528AD /* BDMApiRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMApiRequest.m; sourceTree = "<group>"; };
-		651532D921A424B90098AC67 /* Pods_BidMachineKiwiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_BidMachineKiwiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		651532DF21A428A20098AC67 /* Pods_BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		651D8DF6219EDC5100216162 /* BDMAdTypePlacement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDMAdTypePlacement.h; path = BidMachine/Networking/Builders/BDMAdTypePlacement.h; sourceTree = SOURCE_ROOT; };
 		651D8DF7219EDC5100216162 /* BDMAdTypePlacement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BDMAdTypePlacement.m; path = BidMachine/Networking/Builders/BDMAdTypePlacement.m; sourceTree = SOURCE_ROOT; };
 		65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSessionBuilder.h; sourceTree = "<group>"; };
@@ -308,6 +305,8 @@
 		B993BB3E20BFDA48000592D4 /* BDMNativeAdService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNativeAdService.h; sourceTree = "<group>"; };
 		B993BB3F20BFDA48000592D4 /* BDMNativeAdService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAdService.m; sourceTree = "<group>"; };
 		B993BB4220BFDA5B000592D4 /* BDMNativeAdProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNativeAdProtocol.h; sourceTree = "<group>"; };
+		BBEC5B56824AACD244FCD2AD /* Pods_BidMachineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C51FB29B394FC1312044BA13 /* Pods_BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,7 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				651532E021A428A20098AC67 /* Pods_BidMachine.framework in Frameworks */,
+				C41C59EB49949D4F91A14F31 /* Pods_BidMachine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CFBD17B1FB982BE00C31DE6 /* BidMachine.framework in Frameworks */,
-				CEEC26FFC6A94A4CD08AF5ED /* Pods_BidMachineTests.framework in Frameworks */,
+				D69B3D605EB114A9D2B9D3CF /* Pods_BidMachineTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,9 +541,8 @@
 		7247214142D2333C97AE9F1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				651532DF21A428A20098AC67 /* Pods_BidMachine.framework */,
-				651532D921A424B90098AC67 /* Pods_BidMachineKiwiTests.framework */,
-				034127FD54BAC2A7BF5594F1 /* Pods_BidMachineTests.framework */,
+				C51FB29B394FC1312044BA13 /* Pods_BidMachine.framework */,
+				BBEC5B56824AACD244FCD2AD /* Pods_BidMachineTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
