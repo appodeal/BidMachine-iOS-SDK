@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.3.0"
+  s.version      = "1.3.1"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
