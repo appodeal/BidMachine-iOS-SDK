@@ -120,15 +120,8 @@ function copy_adapters {
     local universal_temp_dir=$TEMP_DIR/universal
 
     for adapter in ${ADAPTERS[@]}; do 
-        echo -e "${INFO}Copy $adapter${INFO}"
-        if [[ "$adapter" == "BDMMintegralAdapter" ]]; then
-            mkdir "$RELEASE_DIR/$adapter.embeddedframework"
-            mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/$adapter.embeddedframework/lib$adapter.a"
-            cp -r "$PWD/Pods/MintegralSDK/" "$RELEASE_DIR/$adapter.embeddedframework"
-        else     
-            mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a"
-        fi 
-
+        echo -e "${INFO}Copy $adapter${INFO}"    
+        mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a"
     done
 }
 

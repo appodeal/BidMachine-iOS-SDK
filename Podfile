@@ -57,7 +57,8 @@ def facebook
 end
 
 def mintegral
-  pod 'MintegralSDK', '~> 5.6'
+  pod 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
+  pod 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
 end
 
 # Targets configuration

@@ -59,9 +59,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'MintegralAdapter' do |ss|
     ss.vendored_libraries = 'BDMMintegralAdapter.embeddedframework/*.a' 
-    ss.vendored_frameworks = 'BDMMintegralAdapter.embeddedframework/*.framework'
-    ss.frameworks =  'CoreGraphics', 'Foundation', 'UIKit', 'AdSupport', 'StoreKit', 'QuartzCore', 'CoreLocation', 'CoreTelephony', 'MobileCoreServices', 'Accelerate', 'WebKit'
-    ss.libraries = 'sqlite3.0', 'z'
     ss.dependency 'BidMachine/Core'
+    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
+    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
   end
 end
