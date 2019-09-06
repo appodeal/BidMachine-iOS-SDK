@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.3.0"
+  s.version      = "1.3.1"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
@@ -55,5 +55,12 @@ Pod::Spec.new do |s|
     ss.vendored_libraries = 'libBDMVungleAdapter.a' 
     ss.dependency 'BidMachine/Core'
     ss.dependency 'VungleSDK-iOS', '~> 6.3'
+  end
+
+  s.subspec 'MintegralAdapter' do |ss|
+    ss.vendored_libraries = 'libBDMMintegralAdapter.a' 
+    ss.dependency 'BidMachine/Core'
+    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
+    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
   end
 end

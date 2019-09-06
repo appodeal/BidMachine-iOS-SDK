@@ -1,3 +1,7 @@
+# Version 1.3.1 (Sep 6th, 2019)
+
+- Add Header Bidding Mintegral adapter
+
 # Version 1.3.0 (Aug 13th, 2019)
 
 - Add Header Bidding AdColony adapter

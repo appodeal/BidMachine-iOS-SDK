@@ -29,6 +29,7 @@ export ADAPTERS=(
     "BDMAdColonyAdapter"
     "BDMVungleAdapter"
     "BDMTapjoyAdapter"
+    "BDMMintegralAdapter"
     )
 
 # Utility 
@@ -63,7 +64,7 @@ function build_mangled_binary {
                 DEPLOYMENT_POSTPROCESSING=YES \
                 GCC_GENERATE_DEBUGGING_SYMBOLS=NO \
                 build \
-                CONFIGURATION_BUILD_DIR="$output" > "$output/$scheme_id-$sdk_id-build.log"
+                CONFIGURATION_BUILD_DIR="$output" | xcpretty > "$output/$scheme_id-$sdk_id-build.log"
 }
 
 function rebuild_components {
@@ -119,8 +120,8 @@ function copy_adapters {
     local universal_temp_dir=$TEMP_DIR/universal
 
     for adapter in ${ADAPTERS[@]}; do 
-        echo -e "${INFO}Copy $adapter${INFO}"
-       mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a" 
+        echo -e "${INFO}Copy $adapter${INFO}"    
+        mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a"
     done
 }
 
