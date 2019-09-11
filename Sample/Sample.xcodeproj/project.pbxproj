@@ -65,6 +65,7 @@
 		D91F84AF2175CC12005A92F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91F84AD2175CC12005A92F1 /* LaunchScreen.storyboard */; };
 		D937DE092178759A00E11661 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937DE082178759A00E11661 /* TabBarController.swift */; };
 		D9393B6421AC256B007B52B7 /* AuctionInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9393B6321AC256B007B52B7 /* AuctionInfoVC.swift */; };
+		D971E2C1232927BE004E549F /* libBDMAmazonAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D971E2C0232927BE004E549F /* libBDMAmazonAdapter.a */; };
 		D98AE1C42175EDEC00414343 /* InterstitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98AE1C32175EDEC00414343 /* InterstitialVC.swift */; };
 		D98AE1C62175EDFE00414343 /* BannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98AE1C52175EDFE00414343 /* BannerVC.swift */; };
 		D99FF2B0230A8FD70060FA8E /* libBDMMintegralAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D99FF2AF230A8FD70060FA8E /* libBDMMintegralAdapter.a */; };
@@ -147,6 +148,7 @@
 		D91F84B02175CC12005A92F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D937DE082178759A00E11661 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D9393B6321AC256B007B52B7 /* AuctionInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionInfoVC.swift; sourceTree = "<group>"; };
+		D971E2C0232927BE004E549F /* libBDMAmazonAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMAmazonAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98AE1C32175EDEC00414343 /* InterstitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialVC.swift; sourceTree = "<group>"; };
 		D98AE1C52175EDFE00414343 /* BannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerVC.swift; sourceTree = "<group>"; };
 		D99FF2AF230A8FD70060FA8E /* libBDMMintegralAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMMintegralAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D971E2C1232927BE004E549F /* libBDMAmazonAdapter.a in Frameworks */,
 				424A9F6821B82647008335EE /* BidMachine.framework in Frameworks */,
 				42A93E5D22E705EC005053A2 /* libBDMFacebookAdapter.a in Frameworks */,
 				42A93E4822E5ED6E005053A2 /* libBDMTapjoyAdapter.a in Frameworks */,
@@ -308,6 +311,7 @@
 		ABBBB8C34D78D07CCC36518F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D971E2C0232927BE004E549F /* libBDMAmazonAdapter.a */,
 				D99FF2AF230A8FD70060FA8E /* libBDMMintegralAdapter.a */,
 				42A93E5C22E705EC005053A2 /* libBDMFacebookAdapter.a */,
 				42A93E4722E5ED6E005053A2 /* libBDMTapjoyAdapter.a */,
@@ -527,9 +531,16 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-resources.sh",
+				"${PODS_ROOT}/TapjoySDK/Tapjoy.framework/Resources/TapjoyResources.bundle",
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TapjoyResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -544,9 +555,24 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/StackAPI/StackAPI.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${PODS_ROOT}/DTBiOSSDK/DTBiOSSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StackAPI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTBiOSSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

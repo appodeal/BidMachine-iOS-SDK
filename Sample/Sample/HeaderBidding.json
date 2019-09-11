@@ -79,5 +79,20 @@
             ],
             "network": "adcolony",
             "network_class": "BDMAdColonyAdNetwork"
+        },
+        {
+            "ad_units": [
+                {
+                    "slot_uuid": "5ab6a4ae-4aa5-43f4-9da4-e30755f2b295",
+                    "format": "banner"
+                },
+                {
+                    "slot_uuid": "4e918ac0-5c68-4fe1-8d26-4e76e8f74831",
+                    "format": "interstitial"
+                }
+            ],
+            "app_key": "a9_onboarding_app_id",
+            "network": "amazon_ads",
+            "network_class": "BDMAmazonNetwork"
         }
 ]
