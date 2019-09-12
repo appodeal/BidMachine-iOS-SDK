@@ -63,4 +63,9 @@ Pod::Spec.new do |s|
     ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
     ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
   end
+
+  s.subspec 'CriteoAdapter' do |ss|
+    ss.vendored_libraries = 'libBDMCriteoAdapter.a' 
+    ss.dependency 'BidMachine/Core'
+  end
 end

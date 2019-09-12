@@ -30,6 +30,7 @@ export ADAPTERS=(
     "BDMVungleAdapter"
     "BDMTapjoyAdapter"
     "BDMMintegralAdapter"
+    "BDMCriteoAdapter"
     )
 
 # Utility 
