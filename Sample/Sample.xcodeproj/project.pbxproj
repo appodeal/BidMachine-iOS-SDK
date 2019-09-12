@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24F773B2D2506E1DAFD7BC42 /* Pods_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3FC264F6F94DDE5E210AC5 /* Pods_Sample.framework */; };
+		42022FB8232A439D00D75E2B /* libBDMCriteoAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42022FB7232A439D00D75E2B /* libBDMCriteoAdapter.a */; };
 		421429B622A9280D0019BAA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421429B522A9280D0019BAA1 /* AppDelegate.swift */; };
 		4220558522E1F26200E1CA89 /* libBDMAdColonyAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4220558422E1F26200E1CA89 /* libBDMAdColonyAdapter.a */; };
 		4231D01722E0CAFC002852CE /* libBDMMyTargetAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4231D01622E0CAFC002852CE /* libBDMMyTargetAdapter.a */; };
@@ -80,6 +81,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42022FB7232A439D00D75E2B /* libBDMCriteoAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMCriteoAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		421429B522A9280D0019BAA1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4220558422E1F26200E1CA89 /* libBDMAdColonyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMAdColonyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4231D01622E0CAFC002852CE /* libBDMMyTargetAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMMyTargetAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +180,7 @@
 				D99FF2B0230A8FD70060FA8E /* libBDMMintegralAdapter.a in Frameworks */,
 				424A9F6E21B82647008335EE /* libBDMNASTAdapter.a in Frameworks */,
 				424A9F7021B82647008335EE /* libBDMVASTAdapter.a in Frameworks */,
+				42022FB8232A439D00D75E2B /* libBDMCriteoAdapter.a in Frameworks */,
 				424A9F7121B8264F008335EE /* libxml2.2.tbd in Frameworks */,
 				427A0E5D2227F85B00A7416E /* CoreTelephony.framework in Frameworks */,
 				24F773B2D2506E1DAFD7BC42 /* Pods_Sample.framework in Frameworks */,
@@ -308,6 +311,7 @@
 		ABBBB8C34D78D07CCC36518F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42022FB7232A439D00D75E2B /* libBDMCriteoAdapter.a */,
 				D99FF2AF230A8FD70060FA8E /* libBDMMintegralAdapter.a */,
 				42A93E5C22E705EC005053A2 /* libBDMFacebookAdapter.a */,
 				42A93E4722E5ED6E005053A2 /* libBDMTapjoyAdapter.a */,

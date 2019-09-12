@@ -80,6 +80,11 @@ target 'BDMNASTAdapter' do
   nast
 end
 
+target 'BDMCriteoAdapter' do
+  project 'Adaptors/Adaptors.xcodeproj'
+  stack_modules
+end
+
 target 'BDMVASTAdapter' do
   project 'Adaptors/Adaptors.xcodeproj'
   stack_modules

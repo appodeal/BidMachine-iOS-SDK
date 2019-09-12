@@ -26,6 +26,8 @@
 		4274FA7522E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7422E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m */; };
 		4274FA7E22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */; };
 		4274FA7F22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */; };
+		427D1C7423293F2900874ED0 /* BDMCriteoAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 427D1C7323293F2900874ED0 /* BDMCriteoAdNetwork.m */; };
+		427D1C7623293F3D00874ED0 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427D1C7523293F3D00874ED0 /* BidMachine.framework */; };
 		428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */; };
 		42A93E4622E5ED4F005053A2 /* BDMTapjoyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */; };
 		42A93E4B22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4A22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m */; };
@@ -64,6 +66,7 @@
 		D99FF2AE2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D99FF2AD2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.m */; };
 		E5A090D0F9844BE9C3B59A5F /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515F8B54394B6A1AE78352C8 /* Pods_BDMNASTAdapter.framework */; };
 		E9B01EB423EC41E3F8E6C5AD /* Pods_BDMVASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2C20DEB72393C429F17C06 /* Pods_BDMVASTAdapter.framework */; };
+		ECA4BE3C13EDF56DDE8DACDB /* Pods_BDMCriteoAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588CF24A91669DB00A53AA22 /* Pods_BDMCriteoAdapter.framework */; };
 		F78EEC36B46F1493E4629715 /* Pods_BDMMintegralAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E073C1CD8790548776A72512 /* Pods_BDMMintegralAdapter.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +98,15 @@
 			dstSubfolderSpec = 16;
 			files = (
 				4274FA7F22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		427D1C6723293EEF00874ED0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +170,7 @@
 
 /* Begin PBXFileReference section */
 		0482996C7F3945E0F50244C1 /* Pods-BDMVungleAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVungleAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVungleAdapter/Pods-BDMVungleAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		0C1AE8A7058E35635EEE438C /* Pods-BDMCriteoAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMCriteoAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMCriteoAdapter/Pods-BDMCriteoAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		0D4C8D8C2E4BBE85E3FD04E1 /* Pods-BDMMRAIDAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		12CB78823522354016B45971 /* Pods-BDMAdColonyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAdColonyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAdColonyAdapter/Pods-BDMAdColonyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		378DAD09175B0FC316F3BA94 /* Pods_BDMVungleAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVungleAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +205,10 @@
 		4274FA7A22E5E7A600EE0D47 /* libBDMTapjoyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMTapjoyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyAdNetwork.h; sourceTree = "<group>"; };
 		4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyAdNetwork.m; sourceTree = "<group>"; };
+		427D1C6923293EEF00874ED0 /* libBDMCriteoAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMCriteoAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		427D1C7223293F2900874ED0 /* BDMCriteoAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMCriteoAdNetwork.h; sourceTree = "<group>"; };
+		427D1C7323293F2900874ED0 /* BDMCriteoAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMCriteoAdNetwork.m; sourceTree = "<group>"; };
+		427D1C7523293F3D00874ED0 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		428F5124218F7EED00BC9E2D /* BDMNASTDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTDisplayAdapter.h; sourceTree = "<group>"; };
 		428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTDisplayAdapter.m; sourceTree = "<group>"; };
 		429C1978216014720048F400 /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,8 +253,10 @@
 		44D3CEC6DB28E06E4E7949FD /* Pods-BDMNASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		4D96961115DE7E7A9E686542 /* Pods_BDMTapjoyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMTapjoyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		515F8B54394B6A1AE78352C8 /* Pods_BDMNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		588CF24A91669DB00A53AA22 /* Pods_BDMCriteoAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMCriteoAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C360C6F2F6BFF146C6C6466 /* Pods-BDMTapjoyAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		75B3E3BEE3C9A43EC392DC7C /* Pods-BDMTapjoyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		7ED90ACF6A2BB125301D0AD6 /* Pods-BDMCriteoAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMCriteoAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMCriteoAdapter/Pods-BDMCriteoAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		8AB56E632941241FD0461A22 /* Pods_BDMMRAIDAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMRAIDAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
@@ -291,6 +310,15 @@
 			files = (
 				D96FFF09232146D500298B27 /* BidMachine.framework in Frameworks */,
 				35D6D4629476D37923A31DDC /* Pods_BDMTapjoyAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		427D1C6623293EEF00874ED0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				427D1C7623293F3D00874ED0 /* BidMachine.framework in Frameworks */,
+				ECA4BE3C13EDF56DDE8DACDB /* Pods_BDMCriteoAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +417,15 @@
 			path = BDMTapjoyAdapter;
 			sourceTree = "<group>";
 		};
+		427D1C6A23293EEF00874ED0 /* BDMCriteoAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				427D1C7223293F2900874ED0 /* BDMCriteoAdNetwork.h */,
+				427D1C7323293F2900874ED0 /* BDMCriteoAdNetwork.m */,
+			);
+			path = BDMCriteoAdapter;
+			sourceTree = "<group>";
+		};
 		429C195F2160127A0048F400 = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +438,7 @@
 				4274FA7B22E5E7A600EE0D47 /* BDMTapjoyAdapter */,
 				42A93E5422E70368005053A2 /* BDMFacebookAdapter */,
 				D99FF29D23069A030060FA8E /* BDMMintegralAdapter */,
+				427D1C6A23293EEF00874ED0 /* BDMCriteoAdapter */,
 				429C19692160127A0048F400 /* Products */,
 				BFCA2E1CE2BD93ED3F976496 /* Pods */,
 				A42159B447762DCB7EC116EE /* Frameworks */,
@@ -419,6 +457,7 @@
 				4274FA7A22E5E7A600EE0D47 /* libBDMTapjoyAdapter.a */,
 				42A93E5322E70368005053A2 /* libBDMFacebookAdapter.a */,
 				D99FF29C23069A030060FA8E /* libBDMMintegralAdapter.a */,
+				427D1C6923293EEF00874ED0 /* libBDMCriteoAdapter.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -570,6 +609,7 @@
 		A42159B447762DCB7EC116EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				427D1C7523293F3D00874ED0 /* BidMachine.framework */,
 				D96FFF05232146B400298B27 /* BidMachine.framework */,
 				C1F2B0654B110FB406C5BAE5 /* Pods_BDMAdColonyAdapter.framework */,
 				A2F992BCB6DD8A5EAF29BF14 /* Pods_BDMFacebookAdapter.framework */,
@@ -580,6 +620,7 @@
 				4D96961115DE7E7A9E686542 /* Pods_BDMTapjoyAdapter.framework */,
 				DE2C20DEB72393C429F17C06 /* Pods_BDMVASTAdapter.framework */,
 				378DAD09175B0FC316F3BA94 /* Pods_BDMVungleAdapter.framework */,
+				588CF24A91669DB00A53AA22 /* Pods_BDMCriteoAdapter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -605,6 +646,8 @@
 				D018DEB957A24A69B05EECE5 /* Pods-BDMFacebookAdapter.release.xcconfig */,
 				3CC6F167F77CBFF07A32793F /* Pods-BDMMintegralAdapter.debug.xcconfig */,
 				8FF663A1FA78B57A1A754BD7 /* Pods-BDMMintegralAdapter.release.xcconfig */,
+				0C1AE8A7058E35635EEE438C /* Pods-BDMCriteoAdapter.debug.xcconfig */,
+				7ED90ACF6A2BB125301D0AD6 /* Pods-BDMCriteoAdapter.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -703,6 +746,24 @@
 			name = BDMTapjoyAdapter;
 			productName = BDMTapjoyAdapter;
 			productReference = 4274FA7A22E5E7A600EE0D47 /* libBDMTapjoyAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		427D1C6823293EEF00874ED0 /* BDMCriteoAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 427D1C7123293EEF00874ED0 /* Build configuration list for PBXNativeTarget "BDMCriteoAdapter" */;
+			buildPhases = (
+				119D5FB54B1E744C6E7EE82C /* [CP] Check Pods Manifest.lock */,
+				427D1C6523293EEF00874ED0 /* Sources */,
+				427D1C6623293EEF00874ED0 /* Frameworks */,
+				427D1C6723293EEF00874ED0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMCriteoAdapter;
+			productName = BDMCriteoAdapter;
+			productReference = 427D1C6923293EEF00874ED0 /* libBDMCriteoAdapter.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		429C1977216014720048F400 /* BDMMRAIDAdapter */ = {
@@ -831,6 +892,9 @@
 					4274FA7922E5E7A600EE0D47 = {
 						CreatedOnToolsVersion = 10.2;
 					};
+					427D1C6823293EEF00874ED0 = {
+						CreatedOnToolsVersion = 11.0;
+					};
 					429C1977216014720048F400 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -873,6 +937,7 @@
 				4274FA7922E5E7A600EE0D47 /* BDMTapjoyAdapter */,
 				42A93E5222E70368005053A2 /* BDMFacebookAdapter */,
 				D99FF29B23069A030060FA8E /* BDMMintegralAdapter */,
+				427D1C6823293EEF00874ED0 /* BDMCriteoAdapter */,
 			);
 		};
 /* End PBXProject section */
@@ -894,6 +959,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-BDMMintegralAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		119D5FB54B1E744C6E7EE82C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BDMCriteoAdapter-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1099,6 +1186,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		427D1C6523293EEF00874ED0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				427D1C7423293F2900874ED0 /* BDMCriteoAdNetwork.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		429C1974216014720048F400 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1245,6 +1340,34 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NZLK3N5NR4;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		427D1C6F23293EEF00874ED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C1AE8A7058E35635EEE438C /* Pods-BDMCriteoAdapter.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		427D1C7023293EEF00874ED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7ED90ACF6A2BB125301D0AD6 /* Pods-BDMCriteoAdapter.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1581,6 +1704,15 @@
 			buildConfigurations = (
 				4274FA8122E5E7A600EE0D47 /* Debug */,
 				4274FA8222E5E7A600EE0D47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		427D1C7123293EEF00874ED0 /* Build configuration list for PBXNativeTarget "BDMCriteoAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				427D1C6F23293EEF00874ED0 /* Debug */,
+				427D1C7023293EEF00874ED0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

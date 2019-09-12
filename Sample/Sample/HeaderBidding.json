@@ -79,5 +79,10 @@
             ],
             "network": "adcolony",
             "network_class": "BDMAdColonyAdNetwork"
+        },
+        {
+            "sender_id": "1",
+            "network": "criteo",
+            "network_class": "BDMCriteoAdNetwork"
         }
 ]
