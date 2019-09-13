@@ -9,9 +9,11 @@
 @import DTBiOSSDK;
 @import StackFoundation;
 
+#import "BDMAmazonValueTransformer.h"
 #import "BDMAmazonNetwork.h"
 #import "BDMAmazonBannerAdapter.h"
 #import "BDMAmazonInterstitialAdapter.h"
+#import "BDMAmazonUtils.h"
 
 @interface BDMAmazonNetwork() <DTBAdCallback>
 
@@ -22,23 +24,44 @@
 @implementation BDMAmazonNetwork
 
 - (NSString *)name {
-    return @"amazon_ads";
+    return @"amazon";
 }
 
 - (NSString *)sdkVersion {
     return [DTBAds version];
 }
 
+- (BDMAmazonUtils *)amazonUtils {
+    return [BDMAmazonUtils sharedInstance];
+}
+
 - (void)initialiseWithParameters:(NSDictionary<NSString *,id> *)parameters
                       completion:(void (^)(BOOL, NSError * _Nullable))completion {
-    [[DTBAds sharedInstance] setAppKey: @"your_app_id"];
+    NSString *appKey = [BDMAmazonValueTransformer.new transformedValue:parameters[@"app_key"]];
+    [[self amazonUtils] configureSlotsDict:parameters];
+    if (!appKey) {
+        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                        description:@"Amazon adapter was not receive valid initialization data"];
+        STK_RUN_BLOCK(completion, nil, error);
+        return;
+    }
+    [[DTBAds sharedInstance] setAppKey: appKey];
     [self syncMetadata];
+    STK_RUN_BLOCK(completion, YES, nil);
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
+    NSString *slotUUID = [BDMAmazonValueTransformer.new transformedValue:parameters[@"slot_uuid"]];
+    if (!slotUUID) {
+        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                        description:@"Amazon adapter was not receive valid bidding data"];
+        STK_RUN_BLOCK(completion, nil, error);
+        return;
+    }
     DTBAdLoader *amazonAdLoader = [DTBAdLoader new];
-    [amazonAdLoader setAdSizes:@[[[DTBAdSize alloc] initBannerAdSizeWithWidth:320 height:50 andSlotUUID:@""]]];
+    NSArray<DTBAdSize *> *adSizes = [[self amazonUtils] configureAdSizesWith:slotUUID];
+    [amazonAdLoader setAdSizes:adSizes];
     [amazonAdLoader loadAd:self];
     [self saveCompletion:completion];
 }
@@ -55,13 +78,12 @@
 
 - (void)syncMetadata {
     [[DTBAds sharedInstance] setLogLevel:BDMSdkLoggingEnabled ? DTBLogLevelAll : DTBLogLevelOff];
-//    [DTBAds enableGDPRSubjectWithConsentString:<#(NSString * _Nonnull)#>];
     [DTBAds sharedInstance].mraidPolicy = CUSTOM_MRAID;
     [DTBAds sharedInstance].mraidCustomVersions = @[@"1.0", @"2.0", @"3.0"];
+    
     [[DTBAds sharedInstance] setUseGeoLocation:YES];
-    [[DTBAds sharedInstance] setLogLevel:DTBLogLevelAll];
+    
     [[DTBAds sharedInstance] setTestMode:YES];
-//    A9_PRICE_POINTS_KEY
 }
 
 - (void)saveCompletion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
@@ -71,11 +93,24 @@
 #pragma mark - DTBAdCallback
 
 - (void)onSuccess:(DTBAdResponse *)adResponse {
-    
+    NSMutableDictionary *bidding = [[NSMutableDictionary alloc] initWithCapacity:6];
+    NSMutableDictionary *response = [[NSMutableDictionary alloc] initWithDictionary:adResponse.customTargeting];
+    NSString *slot = response[@"amznslots"];
+    bidding[@"amznslots"] = slot;
+    if (response[@"amzn_vid"]) {
+        bidding[@"amzn_vid"] = response[@"amzn_vid"];
+    } else {
+        bidding[@"amzn_h"] = response[@"amzn_h"];
+        bidding[@"amzn_b"] = response[@"amzn_b"];
+        bidding[@"amznrdr"] = [response[@"amznrdr"] firstObject];
+        bidding[@"amznp"] = [response[@"amznp"] firstObject];
+        bidding[@"dc"] = [response[@"dc"] firstObject];
+    }
+    if (self.completion) {
+        STK_RUN_BLOCK(self.completion, bidding, nil);
+    }
 }
 
-- (void)onFailure:(DTBAdError)error {
-    
-}
+- (void)onFailure:(DTBAdError)error { }
 
 @end

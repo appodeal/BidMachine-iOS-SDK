@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BDMAmazonInterstitialAdapter : NSObject <BDMFullscreenAdapter>
 
+@property (nonatomic, weak, nullable) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
+@property (nonatomic, weak, nullable) id <BDMAdapterLoadingDelegate> loadingDelegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

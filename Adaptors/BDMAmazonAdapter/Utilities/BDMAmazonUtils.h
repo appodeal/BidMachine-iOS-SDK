@@ -18,7 +18,10 @@ static NSString * const kAmazonSlotUUID = @"slot_uuid";
 
 @interface BDMAmazonUtils : NSObject
 
++ (instancetype)sharedInstance;
 + (NSDictionary<NSString *, id> *)biddingInformation:(NSDictionary<NSString *, id> *)loadingParams;
+- (void)configureSlotsDict:(NSDictionary *)dict;
+- (NSArray<DTBAdSize *> *)configureAdSizesWith:(NSString *)slotUUID;
 
 @end
 

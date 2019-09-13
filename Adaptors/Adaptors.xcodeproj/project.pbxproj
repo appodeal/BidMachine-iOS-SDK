@@ -60,6 +60,7 @@
 		D971E2BC2328DFF6004E549F /* BDMAmazonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D971E2BB2328DFF6004E549F /* BDMAmazonUtils.m */; };
 		D971E2BF23290BD1004E549F /* BDMAmazonInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D971E2BE23290BD1004E549F /* BDMAmazonInterstitialAdapter.m */; };
 		D971E2C223292C7E004E549F /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9403D222327D48C0091E61E /* BidMachine.framework */; };
+		D995F5BE232A5618007DE895 /* BDMAmazonValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D995F5BD232A5618007DE895 /* BDMAmazonValueTransformer.m */; };
 		D99FF2A023069A030060FA8E /* BDMMintegralAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = D99FF29F23069A030060FA8E /* BDMMintegralAdNetwork.m */; };
 		D99FF2A123069A030060FA8E /* BDMMintegralAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D99FF29E23069A030060FA8E /* BDMMintegralAdNetwork.h */; };
 		D99FF2AA2306DE120060FA8E /* BDMMintegralValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D99FF2A92306DE120060FA8E /* BDMMintegralValueTransformer.m */; };
@@ -276,6 +277,8 @@
 		D971E2BB2328DFF6004E549F /* BDMAmazonUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonUtils.m; sourceTree = "<group>"; };
 		D971E2BD23290BD1004E549F /* BDMAmazonInterstitialAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonInterstitialAdapter.h; sourceTree = "<group>"; };
 		D971E2BE23290BD1004E549F /* BDMAmazonInterstitialAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonInterstitialAdapter.m; sourceTree = "<group>"; };
+		D995F5BC232A5618007DE895 /* BDMAmazonValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonValueTransformer.h; sourceTree = "<group>"; };
+		D995F5BD232A5618007DE895 /* BDMAmazonValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonValueTransformer.m; sourceTree = "<group>"; };
 		D99FF29C23069A030060FA8E /* libBDMMintegralAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMintegralAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99FF29E23069A030060FA8E /* BDMMintegralAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMintegralAdNetwork.h; sourceTree = "<group>"; };
 		D99FF29F23069A030060FA8E /* BDMMintegralAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMintegralAdNetwork.m; sourceTree = "<group>"; };
@@ -648,6 +651,7 @@
 		D9403D182327D2550091E61E /* BDMAmazonAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				D995F5BB232A55FA007DE895 /* Transformers */,
 				D971E2B92328DFE1004E549F /* Utilities */,
 				D9403D192327D2550091E61E /* BDMAmazonNetwork.h */,
 				D9403D1A2327D2550091E61E /* BDMAmazonNetwork.m */,
@@ -666,6 +670,15 @@
 				D971E2BB2328DFF6004E549F /* BDMAmazonUtils.m */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D995F5BB232A55FA007DE895 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				D995F5BC232A5618007DE895 /* BDMAmazonValueTransformer.h */,
+				D995F5BD232A5618007DE895 /* BDMAmazonValueTransformer.m */,
+			);
+			path = Transformers;
 			sourceTree = "<group>";
 		};
 		D99FF29D23069A030060FA8E /* BDMMintegralAdapter */ = {
@@ -1253,6 +1266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D971E2BC2328DFF6004E549F /* BDMAmazonUtils.m in Sources */,
+				D995F5BE232A5618007DE895 /* BDMAmazonValueTransformer.m in Sources */,
 				D9403D1B2327D2550091E61E /* BDMAmazonNetwork.m in Sources */,
 				D90F94312327E366000FC1ED /* BDMAmazonBannerAdapter.m in Sources */,
 				D971E2BF23290BD1004E549F /* BDMAmazonInterstitialAdapter.m in Sources */,

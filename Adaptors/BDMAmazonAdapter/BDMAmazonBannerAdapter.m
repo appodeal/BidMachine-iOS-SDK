@@ -12,7 +12,7 @@
 @import StackFoundation;
 @import StackUIKit;
 
-@interface BDMAmazonBannerAdapter() <DTBAdCallback>
+@interface BDMAmazonBannerAdapter()
 
 @end
 
@@ -22,29 +22,9 @@
     return UIView.new;
 }
 
-- (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    CGSize bannerSize = [self.displayDelegate sizeForAdapter:self];
-    DTBAdSize *size = [[DTBAdSize alloc] initBannerAdSizeWithWidth:bannerSize.width
-                                                            height:bannerSize.height
-                                                       andSlotUUID:@"your_slot_uuid"];
-    DTBAdLoader *adLoader = [DTBAdLoader new];
-    [adLoader setSizes:size, nil];
-    [adLoader loadAd:self];
-}
+- (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {}
 
-- (void)presentInContainer:(UIView *)container {
-    
-}
-
-
-// Callbacks
-- (void)onFailure:(DTBAdError)error {
-    
-}
-
-- (void)onSuccess:(DTBAdResponse *)adResponse {
-    
-}
+- (void)presentInContainer:(UIView *)container {}
 
 
 @end

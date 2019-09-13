@@ -87,12 +87,12 @@
                     "format": "banner"
                 },
                 {
-                    "slot_uuid": "4e918ac0-5c68-4fe1-8d26-4e76e8f74831",
-                    "format": "interstitial"
+                    "slot_uuid": "4acc26e6-3ada-4ee8-bae0-753c1e0ad278",
+                    "format": "interstitial_video"
                 }
             ],
             "app_key": "a9_onboarding_app_id",
-            "network": "amazon_ads",
+            "network": "amazon",
             "network_class": "BDMAmazonNetwork"
         }
 ]

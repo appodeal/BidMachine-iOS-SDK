@@ -14,4 +14,8 @@
     return UIView.new;
 }
 
+- (void)prepareContent:(nonnull NSDictionary<NSString *,NSString *> *)contentInfo { }
+
+- (void)present { }
+
 @end
