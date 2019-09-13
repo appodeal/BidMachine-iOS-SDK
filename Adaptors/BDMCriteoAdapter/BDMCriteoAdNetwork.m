@@ -11,11 +11,11 @@
 #import <StackFoundation/StackFoundation.h>
 
 
-static NSString const * kAPDCriteoHost = @"gum.criteo.com";
-static NSString const * kAPDCriteoLaunchAppEvent = @"Launch";
-static NSString const * kAPDCriteoActiveAppEvent = @"Active";
-static NSString const * kAPDCriteoInactiveAppEvent = @"Inactive";
-static NSString const * kAPDCriteoZeroUUID = @"00000000-0000-0000-0000-000000000000";
+static NSString const *kBDMCriteoHost = @"gum.criteo.com";
+static NSString const *kBDMCriteoLaunchAppEvent = @"Launch";
+static NSString const *kBDMCriteoActiveAppEvent = @"Active";
+static NSString const *kBDMCriteoInactiveAppEvent = @"Inactive";
+static NSString const *kBDMCriteoZeroUUID = @"00000000-0000-0000-0000-000000000000";
 
 
 @interface BDMCriteoAdNetwork ()
@@ -73,15 +73,15 @@ static NSString const * kAPDCriteoZeroUUID = @"00000000-0000-0000-0000-000000000
 }
 
 - (void)appBecomeActive {
-    [self sendEvent:kAPDCriteoActiveAppEvent.copy];
+    [self sendEvent:kBDMCriteoActiveAppEvent.copy];
 }
 
 - (void)appBecomeInactive {
-    [self sendEvent:kAPDCriteoInactiveAppEvent.copy];
+    [self sendEvent:kBDMCriteoInactiveAppEvent.copy];
 }
 
 - (void)sendLaunchEvent {
-    [self sendEvent:kAPDCriteoLaunchAppEvent.copy];
+    [self sendEvent:kBDMCriteoLaunchAppEvent.copy];
 }
 
 #pragma mark - Networking
@@ -108,7 +108,7 @@ static NSString const * kAPDCriteoZeroUUID = @"00000000-0000-0000-0000-000000000
     // Get necessary data from source
     BOOL shouldRestrictParameters = BDMSdk.sharedSdk.restrictions.coppa || (BDMSdk.sharedSdk.restrictions.subjectToGDPR && !BDMSdk.sharedSdk.restrictions.hasConsent);
     
-    NSString *idfa = shouldRestrictParameters ? kAPDCriteoZeroUUID : ASIdentifierManager.sharedManager.advertisingIdentifier.UUIDString;
+    NSString *idfa = shouldRestrictParameters ? kBDMCriteoZeroUUID : ASIdentifierManager.sharedManager.advertisingIdentifier.UUIDString;
     NSString *appId = STKBundle.ID;
     NSString *limitAdTracking = @(!ASIdentifierManager.sharedManager.isAdvertisingTrackingEnabled).stringValue;
     // Create query item
@@ -119,7 +119,7 @@ static NSString const * kAPDCriteoZeroUUID = @"00000000-0000-0000-0000-000000000
     // Build URL from components
     NSURLComponents *components = [NSURLComponents new];
     components.scheme = @"https";
-    components.host = @"gum.criteo.com";
+    components.host = kBDMCriteoHost.copy;
     components.path = [NSString stringWithFormat:@"/appevent/v1/%@", self.senderID];
     components.queryItems = @[ idfaItem, appIdItem, eventTypeItem, limitAdTrackingItem ];
     NSURL * url = components.URL;
