@@ -81,7 +81,7 @@
     [DTBAds sharedInstance].mraidPolicy = CUSTOM_MRAID;
     [DTBAds sharedInstance].mraidCustomVersions = @[@"1.0", @"2.0", @"3.0"];
     
-    [[DTBAds sharedInstance] setUseGeoLocation:YES];
+    [[DTBAds sharedInstance] setUseGeoLocation:STKLocation.locationTrackingEnabled];
     
     [[DTBAds sharedInstance] setTestMode:YES];
 }
