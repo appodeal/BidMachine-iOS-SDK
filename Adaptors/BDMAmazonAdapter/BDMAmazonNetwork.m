@@ -99,13 +99,12 @@
     bidding[@"amznslots"] = slot;
     if (response[@"amzn_vid"]) {
         bidding[@"amzn_vid"] = response[@"amzn_vid"];
-    } else {
-        bidding[@"amzn_h"] = response[@"amzn_h"];
-        bidding[@"amzn_b"] = response[@"amzn_b"];
-        bidding[@"amznrdr"] = [response[@"amznrdr"] firstObject];
-        bidding[@"amznp"] = [response[@"amznp"] firstObject];
-        bidding[@"dc"] = [response[@"dc"] firstObject];
     }
+    bidding[@"amzn_h"] = response[@"amzn_h"];
+    bidding[@"amzn_b"] = response[@"amzn_b"];
+    bidding[@"amznrdr"] = [response[@"amznrdr"] firstObject];
+    bidding[@"amznp"] = [response[@"amznp"] firstObject];
+    bidding[@"dc"] = [response[@"dc"] firstObject];
     if (self.completion) {
         STK_RUN_BLOCK(self.completion, bidding, nil);
     }
