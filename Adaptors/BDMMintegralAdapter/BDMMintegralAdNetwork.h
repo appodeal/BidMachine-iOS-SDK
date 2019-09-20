@@ -10,6 +10,7 @@
 @import BidMachine;
 @import BidMachine.Adapters;
 
+
 @interface BDMMintegralAdNetwork : NSObject <BDMNetwork>
 
 @end

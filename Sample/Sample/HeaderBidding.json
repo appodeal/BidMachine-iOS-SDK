@@ -94,5 +94,10 @@
             "app_key": "a9_onboarding_app_id",
             "network": "amazon",
             "network_class": "BDMAmazonNetwork"
+        },
+        {
+            "sender_id": "1",
+            "network": "criteo",
+            "network_class": "BDMCriteoAdNetwork"
         }
 ]

@@ -96,10 +96,10 @@
     BDMAdNetworkConfigurationBuilder *build = [BDMAdNetworkConfigurationBuilder new];
     builder(build);
     BDMAdNetworkConfiguration *config;
-    if (build.name && build.networkClass && build.units.count) {
+    if (build.name && build.networkClass) {
         config = [[self alloc] initWithBuilder:build];
     } else {
-        BDMLog(@"One of required parameters not exists: name, networkClass, adUnits");
+        BDMLog(@"One of required parameters not exists: name, networkClass");
     }
     return config;
 }
