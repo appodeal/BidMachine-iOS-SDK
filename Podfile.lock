@@ -1,15 +1,16 @@
 PODS:
   - AdColony (3.3.8.1)
+  - DTBiOSSDK (3.0.0)
   - FBAudienceNetwork (5.5.0):
     - FBSDKCoreKit/Basics (>= 5.2.1)
-  - FBSDKCoreKit/Basics (5.5.0)
+  - FBSDKCoreKit/Basics (5.6.0)
   - Kiwi (3.0.0)
-  - MintegralAdSDK/BidInterstitialVideoAd (5.6.1):
+  - MintegralAdSDK/BidInterstitialVideoAd (5.7.1):
     - MintegralAdSDK/BidNativeAd
-  - MintegralAdSDK/BidNativeAd (5.6.1)
-  - MintegralAdSDK/BidRewardVideoAd (5.6.1):
+  - MintegralAdSDK/BidNativeAd (5.7.1)
+  - MintegralAdSDK/BidRewardVideoAd (5.7.1):
     - MintegralAdSDK/BidNativeAd
-  - myTargetSDK (5.3.5)
+  - myTargetSDK (5.3.6)
   - Protobuf (3.9.0)
   - StackAPI/BidMachine (0.1.2):
     - Protobuf (~> 3.8)
@@ -30,17 +31,18 @@ PODS:
     - StackModules (~> 0.6.3)
   - StackIAB/StackXML (0.5.2):
     - StackModules (~> 0.6.3)
-  - StackModules (0.6.7):
-    - StackModules/StackUIKit (= 0.6.7)
-  - StackModules/StackFoundation (0.6.7)
-  - StackModules/StackUIKit (0.6.7):
+  - StackModules (0.6.9):
+    - StackModules/StackUIKit (= 0.6.9)
+  - StackModules/StackFoundation (0.6.9)
+  - StackModules/StackUIKit (0.6.9):
     - StackModules/StackFoundation
-  - TapjoySDK (12.3.1)
+  - TapjoySDK (12.3.2)
   - Toast-Swift (4.0.1)
-  - VungleSDK-iOS (6.3.2)
+  - VungleSDK-iOS (6.4.3)
 
 DEPENDENCIES:
   - AdColony (~> 3.3)
+  - DTBiOSSDK (~> 3.0)
   - FBAudienceNetwork (~> 5.4)
   - Kiwi
   - MintegralAdSDK/BidInterstitialVideoAd (~> 5.6)
@@ -61,8 +63,12 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/appodeal/CocoaPods.git:
     - AdColony
+    - DTBiOSSDK
     - FBAudienceNetwork
     - StackAPI
+    - StackIAB
+    - StackModules
+    - TapjoySDK
   https://github.com/cocoapods/specs.git:
     - FBSDKCoreKit
     - Kiwi
@@ -71,25 +77,25 @@ SPEC REPOS:
     - Protobuf
     - StackIAB
     - StackModules
-    - TapjoySDK
     - Toast-Swift
     - VungleSDK-iOS
 
 SPEC CHECKSUMS:
   AdColony: 02925d4edc04fd9330d8955fff1fdb745f4bb582
+  DTBiOSSDK: 2591119b1fdccf1226bf53957d8f21aea5e0ce1b
   FBAudienceNetwork: 689585dc4db2b5d5dc0973d3e1e9e0adf52bd6be
-  FBSDKCoreKit: 7ade9cfea30eef2f6cf105a1aa904f89ea68fb7d
+  FBSDKCoreKit: d6655a343868d4bb5c29a60859bab07c3be14a0b
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  MintegralAdSDK: 407733329b09cfa2c656a432d3892c16262a69fb
-  myTargetSDK: 7a0e27a3423f1a2eead1633609a36c581df8c7ef
+  MintegralAdSDK: 844025de67aebf40a40ffacc28fbc7592b2e9671
+  myTargetSDK: 9f93610c6ad50c42809f5f42f7eb21f8743f4e14
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   StackAPI: 222922252854078576b896250fcfb385abd24cec
-  StackIAB: 628be1e047791019b486f005b6cc482eb17a8e5d
-  StackModules: febae949ee0427d6b83767a0df22238ae9b50fcb
-  TapjoySDK: 753e103874719a63dd37c479bd8046db3c274cd6
+  StackIAB: 1ed16132c93eb86e9b01cf4dae60e82eb952aaf6
+  StackModules: ebd9bf35996712e9ea7fbb60e8fddf8c9fccc028
+  TapjoySDK: 78e9f63857dd3b5f540cbcfde578f6e4ba9863fe
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
-  VungleSDK-iOS: 69a7f407b60281d2954ffc5eeeac349fbfed51d6
+  VungleSDK-iOS: 7d322054c5df9ad0d7776cddc9bce3a0b08cb173
 
-PODFILE CHECKSUM: 041e4199116f80e86c32d330ad7b540b37277989
+PODFILE CHECKSUM: be6d507cfe709c68d089e4f88c691abed402e152
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.5.3

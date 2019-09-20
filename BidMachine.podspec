@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.3.1"
+  s.version      = "1.3.2"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
@@ -62,5 +62,17 @@ Pod::Spec.new do |s|
     ss.dependency 'BidMachine/Core'
     ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
     ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
+  end
+
+  s.subspec 'CriteoAdapter' do |ss|
+    ss.vendored_libraries = 'libBDMCriteoAdapter.a' 
+    ss.dependency 'BidMachine/Core'
+  end
+
+  s.subspec 'AmazonAdapter' do |ss|
+    ss.vendored_libraries = 'BDMAmazonAdapter.embeddedframework/*.a' 
+    ss.vendored_frameworks = 'BDMAmazonAdapter.embeddedframework/*.framework' 
+
+    ss.dependency 'BidMachine/Core'
   end
 end
