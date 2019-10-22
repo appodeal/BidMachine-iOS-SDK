@@ -12,7 +12,7 @@
 #import <AdColony/AdColony.h>
 
 
-@interface BDMAdColonyFullscreenAdapter ()
+@interface BDMAdColonyFullscreenAdapter ()<AdColonyInterstitialDelegate>
 
 @property (nonatomic, weak) id<BDMAdColonyAdInterstitialProvider> provider;
 @property (nonatomic, strong) AdColonyInterstitial *interstitial;
@@ -48,7 +48,7 @@
         return;
     }
     
-    [self subscribe];
+    self.interstitial.delegate = self;
     [self.loadingDelegate adapterPreparedContent:self];
 }
 
@@ -62,28 +62,35 @@
     [self.interstitial showWithPresentingViewController:rootViewController];
 }
 
-- (void)subscribe {
-    __weak typeof(self) weakSelf = self;
-    [self.interstitial setExpire:^{
-        weakSelf.interstitial = nil;
-        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeWasExpired description:@"Interstitial was expired"];
-        [weakSelf.loadingDelegate adapter:weakSelf failedToPrepareContentWithError:error];
-    }];
+#pragma mark - AdColonyInterstitialDelegate
+
+- (void)adColonyInterstitialDidLoad:(AdColonyInterstitial * _Nonnull)interstitial {
     
-    [self.interstitial setOpen:^{
-        [weakSelf.displayDelegate adapterWillPresent:weakSelf];
-    }];
+}
+
+- (void)adColonyInterstitialDidFailToLoad:(AdColonyAdRequestError * _Nonnull)error {
     
-    [self.interstitial setClick:^{
-        [weakSelf.displayDelegate adapterRegisterUserInteraction:weakSelf];
-    }];
-    
-    [self.interstitial setClose:^{
-        if (weakSelf.rewarded) {
-            [weakSelf.displayDelegate adapterFinishRewardAction:weakSelf];
-        }
-        [weakSelf.displayDelegate adapterDidDismiss:weakSelf];
-    }];
+}
+
+- (void)adColonyInterstitialWillOpen:(AdColonyInterstitial * _Nonnull)interstitial {
+    [self.displayDelegate adapterWillPresent:self];
+}
+
+- (void)adColonyInterstitialDidClose:(AdColonyInterstitial * _Nonnull)interstitial {
+    if (self.rewarded) {
+        [self.displayDelegate adapterFinishRewardAction:self];
+    }
+    [self.displayDelegate adapterDidDismiss:self];
+}
+
+- (void)adColonyInterstitialExpired:(AdColonyInterstitial * _Nonnull)interstitial {
+    self.interstitial = nil;
+    NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeWasExpired description:@"Interstitial was expired"];
+    [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
+}
+
+- (void)adColonyInterstitialDidReceiveClick:(AdColonyInterstitial * _Nonnull)interstitial {
+    [self.displayDelegate adapterRegisterUserInteraction:self];
 }
 
 @end

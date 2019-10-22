@@ -37,11 +37,11 @@ def stack_modules
 end
 
 def vungle
-  pod 'VungleSDK-iOS', '~> 6.3'
+  pod 'VungleSDK-iOS', '~> 6.4'
 end
 
 def adcolony
-  pod 'AdColony', '~> 3.3'
+  pod 'AdColony', '~> 4.1'
 end
 
 def my_target 
@@ -53,12 +53,12 @@ def tapjoy
 end
 
 def facebook
-  pod 'FBAudienceNetwork', '~> 5.4'
+  pod 'FBAudienceNetwork', '~> 5.5'
 end
 
 def mintegral
-  pod 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
-  pod 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
+  pod 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.8'
+  pod 'MintegralAdSDK/BidRewardVideoAd', '~> 5.8'
 end
 
 def amazon

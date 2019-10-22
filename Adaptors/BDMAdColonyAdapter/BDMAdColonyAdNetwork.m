@@ -15,11 +15,12 @@
 #import "BDMAdColonyAppOptions.h"
 
 
-@interface BDMAdColonyAdNetwork ()
+@interface BDMAdColonyAdNetwork ()<AdColonyInterstitialDelegate>
 
 @property (nonatomic, strong) NSMutableArray <AdColonyZone *> *zones;
 @property (nonatomic, strong) NSPointerArray *interstitials;
 @property (nonnull, copy) NSString *appId;
+@property (nonatomic, copy) void(^interstitialCompletion)(AdColonyInterstitial *, NSError *);
 
 @end
 
@@ -107,20 +108,31 @@
     }
     
     __weak typeof(self) weakSelf = self;
-    [AdColony requestInterstitialInZone:zone.identifier options:nil success:^(AdColonyInterstitial *ad) {
-        @synchronized (weakSelf) {
-            [weakSelf.interstitials addPointer:(__bridge void *)(ad)];
+    self.interstitialCompletion = ^(AdColonyInterstitial *ad, NSError *error) {
+        if (ad) {
+            @synchronized (weakSelf) {
+                [weakSelf.interstitials addPointer:(__bridge void *)(ad)];
+            }
+            NSDictionary *clientParams = @{ @"app_id": appId, @"zone_id" : zoneId };
+            STK_RUN_BLOCK(completion, clientParams, nil);
+        } else {
+            NSError *wrapper = [error bdm_wrappedWithCode:BDMErrorCodeHeaderBiddingNetwork];
+            STK_RUN_BLOCK(completion, nil, wrapper);
         }
-        NSDictionary *clientParams = @{ @"app_id": appId, @"zone_id" : zoneId };
-        STK_RUN_BLOCK(completion, clientParams, nil);
-    } failure:^(AdColonyAdRequestError *error) {
-        NSError *wrapper = [error bdm_wrappedWithCode:BDMErrorCodeHeaderBiddingNetwork];
-        STK_RUN_BLOCK(completion, nil, wrapper);
-    }];
+    };
+    [AdColony requestInterstitialInZone:zone.identifier options:nil andDelegate:self];
 }
 
 - (id<BDMFullscreenAdapter>)videoAdapterForSdk:(BDMSdk *)sdk {
     return [[BDMAdColonyFullscreenAdapter alloc] initWithProvider:self];
+}
+
+- (void)adColonyInterstitialDidLoad:(AdColonyInterstitial * _Nonnull)interstitial {
+    STK_RUN_BLOCK(self.interstitialCompletion, interstitial, nil);
+}
+
+- (void)adColonyInterstitialDidFailToLoad:(AdColonyAdRequestError * _Nonnull)error {
+    STK_RUN_BLOCK(self.interstitialCompletion, nil, error);
 }
 
 #pragma mark - BDMAdColonyAdInterstitialProvider
