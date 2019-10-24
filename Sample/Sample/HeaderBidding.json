@@ -99,5 +99,20 @@
             "sender_id": "1",
             "network": "criteo",
             "network_class": "BDMCriteoAdNetwork"
+        },
+        {
+            "ad_units": [
+                {
+                    "adSpaceId": "",
+                    "format": "banner_320x50"
+                },
+                {
+                    "adSpaceId": "",
+                    "format": "interstitial_static"
+                }
+            ],
+            "publisherId": "a9_onboarding_app_id",
+            "network": "smaato",
+            "network_class": "BDMSmaatoAdNetwork"
         }
 ]
