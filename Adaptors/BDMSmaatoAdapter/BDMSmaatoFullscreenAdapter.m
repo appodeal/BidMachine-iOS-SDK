@@ -35,7 +35,7 @@
         return;
     }
     
-    if (self.rewarded) {
+    if (!self.rewarded) {
         [SmaatoSDK loadInterstitialForAdSpaceId:adSpaceId delegate:self];
     } else {
         [SmaatoSDK loadRewardedInterstitialForAdSpaceId:adSpaceId delegate:self];
