@@ -76,6 +76,7 @@
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
     BDMAdColonyStringTransformer *transformer = [BDMAdColonyStringTransformer new];
     NSString *zoneId = [transformer transformedValue:parameters[@"zone_id"]];

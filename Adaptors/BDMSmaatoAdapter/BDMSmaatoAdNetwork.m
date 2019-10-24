@@ -12,7 +12,10 @@
 #import "BDMSmaatoStringValueTransformer.h"
 
 @import SmaatoSDKCore;
+@import SmaatoSDKUnifiedBidding;
 @import StackFoundation;
+
+typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
 
 @interface BDMSmaatoAdNetwork()
 
@@ -55,21 +58,36 @@
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
     [self syncMetadata];
     NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"adSpaceId"]];
     if (!adSpaceId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
-                                        description:@"FBAudienceNetwork adapter was not receive valid bidding data"];
+                                        description:@"Smaato adapter was not receive valid bidding data"];
         STK_RUN_BLOCK(completion, nil, error);
         return;
     }
     
-    NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:3];
-    bidding[@"adSpaceId"] = adSpaceId;
-    bidding[@"publisherId"] = self.publisherId;
+    __weak typeof(self) weakself = self;
+    BDMSmaatoCompletionBlock smaatoCompletion = ^(SMAUbBid *bid, NSError *error) {
+        NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:3];
+        bidding[@"adSpaceId"] = adSpaceId;
+        bidding[@"publisherId"] = weakself.publisherId;
+        
+        if (bid) {
+            bidding[@"bidPrice"] = @(bid.bidPrice);
+        } else {
+            error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                   description:@"Smaato can't prebid adapter"];
+        }
+        
+        STK_RUN_BLOCK(completion, bidding, error);
+    };
     
-    STK_RUN_BLOCK(completion, bidding, nil);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self prebidSmaatoAdapter:adUnitFormat adSpaceId:adSpaceId completion:smaatoCompletion];
+    });
 }
 
 - (id<BDMBannerAdapter>)bannerAdapterForSdk:(BDMSdk *)sdk {
@@ -82,6 +100,27 @@
 
 - (id<BDMFullscreenAdapter>)videoAdapterForSdk:(BDMSdk *)sdk {
     return BDMSmaatoFullscreenAdapter.new;
+}
+
+- (void)prebidSmaatoAdapter:(BDMAdUnitFormat)adUnitFormat
+                  adSpaceId:(NSString *)adSpaceId
+                 completion:(BDMSmaatoCompletionBlock)completion {
+    if (adUnitFormat >= 0 && adUnitFormat < 4) {
+        SMAUbBannerSize size = kSMAUbBannerSizeXXLarge_320x50;
+        switch (adUnitFormat) {
+            case BDMAdUnitFormatBanner728x90: size = kSMAUbBannerSizeLeaderboard_728x90;
+            case BDMAdUnitFormatBanner300x250: size = kSMAUbBannerSizeMediumRectangle_300x250;
+            default: break;
+        }
+        [SmaatoSDK prebidBannerForAdSpaceId:adSpaceId bannerSize:size completion:completion];
+    } else if (adUnitFormat >= 4 && adUnitFormat < 7) {
+        [SmaatoSDK prebidInterstitialForAdSpaceId:adSpaceId completion:completion];
+    } else if (adUnitFormat >= 7 && adUnitFormat < 10) {
+        [SmaatoSDK prebidRewardedInterstitialForAdSpaceId:adSpaceId completion:completion];
+    } else {
+        NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"Smaato invalid ad unit format"];
+        STK_RUN_BLOCK(completion, nil, error);
+    }
 }
 
 #pragma mark - Private

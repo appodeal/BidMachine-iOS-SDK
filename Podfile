@@ -66,7 +66,8 @@ def amazon
 end
 
 def smaato
-  pod 'smaato-ios-sdk', '~> 21.1'
+  pod 'smaato-ios-sdk', '~> 21.2'
+  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '~> 21.2'
 end
 
 # Targets configuration

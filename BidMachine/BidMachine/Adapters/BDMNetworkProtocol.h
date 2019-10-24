@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <BidMachine/BDMAdapterProtocol.h>
-
+#import <BidMachine/BDMDefines.h>
 
 @class BDMSdk;
 @protocol BDMNetwork;
@@ -53,9 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
  that Appodeal Ad Exchange SDK doesn't have
  
  @param parameters Recieved information
+ @param adUnitFormat AdUnitFormat
  @param completion Block that fires when ad network finish inforamtion collection
  */
 - (void)collectHeaderBiddingParameters:(NSDictionary <NSString *, id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void(^_Nonnull)(NSDictionary <NSString *, id> *_Nullable, NSError *_Nullable))completion;
 /**
  Return banner adapter
