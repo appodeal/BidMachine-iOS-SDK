@@ -17,6 +17,7 @@
 @interface BDMSmaatoAdNetwork()
 
 @property (nonatomic, assign) BOOL initialized;
+@property (nonatomic, copy) NSString *publisherId;
 
 @end
 
@@ -44,9 +45,12 @@
         SMAConfiguration *configuration = [[SMAConfiguration alloc] initWithPublisherId:publisherId];
         configuration.logLevel = BDMSdkLoggingEnabled ? kSMALogLevelVerbose : kSMALogLevelError;
         [SmaatoSDK initSDKWithConfig:configuration];
+        self.initialized = YES;
+        self.publisherId = publisherId;
+        STK_RUN_BLOCK(completion, YES, nil);
     } else {
         NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"Smaato app id is not valid string"];
-        STK_RUN_BLOCK(completion, YES, error);
+        STK_RUN_BLOCK(completion, NO, error);
     }
 }
 
@@ -54,8 +58,7 @@
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
     [self syncMetadata];
     NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"adSpaceId"]];
-    NSString *publisherId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"publisherId"]];
-    if (!adSpaceId || !publisherId) {
+    if (!adSpaceId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:@"FBAudienceNetwork adapter was not receive valid bidding data"];
         STK_RUN_BLOCK(completion, nil, error);
@@ -64,7 +67,7 @@
     
     NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:3];
     bidding[@"adSpaceId"] = adSpaceId;
-    bidding[@"publisherId"] = publisherId;
+    bidding[@"publisherId"] = self.publisherId;
     
     STK_RUN_BLOCK(completion, bidding, nil);
 }
