@@ -79,6 +79,7 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
     [self syncMetadata];
     NSString *placement = [BDMVungleValueTransformer.new transformedValue:parameters[@"placement_id"]];

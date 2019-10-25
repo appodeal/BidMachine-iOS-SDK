@@ -54,7 +54,9 @@
                       placement:placement
                         network:network];
     __weak typeof(self) weakSelf = self;
-    [adNetwork collectHeaderBiddingParameters:adUnit.customParams completion:^(NSDictionary<NSString *,id> *bidding, NSError *error) {
+    [adNetwork collectHeaderBiddingParameters:adUnit.customParams
+                                 adUnitFormat:adUnit.format
+                                   completion:^(NSDictionary<NSString *,id> *bidding, NSError *error) {
         if (error || !bidding.count) {
             [weakSelf.middleware rejectEvent:BDMEventHeaderBiddingNetworkPreparing
                                    placement:placement

@@ -65,6 +65,11 @@ def amazon
   pod 'DTBiOSSDK', '~> 3.0'
 end
 
+def smaato
+  pod 'smaato-ios-sdk', '~> 21.2'
+  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '~> 21.2'
+end
+
 # Targets configuration
 target 'BidMachine' do
   project 'BidMachine/BidMachine.xcodeproj'
@@ -137,6 +142,12 @@ target 'BDMAmazonAdapter' do
   stack_modules
 end
 
+target 'BDMSmaatoAdapter' do
+  project 'Adaptors/Adaptors.xcodeproj'
+  smaato
+  stack_modules
+end
+
 target 'Sample' do
   project 'Sample/Sample.xcodeproj'
   mraid
@@ -149,6 +160,7 @@ target 'Sample' do
   facebook
   mintegral
   amazon
+  smaato
   stack_modules
   protobuf
   toasts

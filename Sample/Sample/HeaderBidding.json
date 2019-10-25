@@ -99,5 +99,24 @@
             "sender_id": "1",
             "network": "criteo",
             "network_class": "BDMCriteoAdNetwork"
+        },
+        {
+            "ad_units": [
+                {
+                    "ad_space_id": "130563103",
+                    "format": "banner_320x50"
+                },
+                {
+                    "ad_space_id": "130626426",
+                    "format": "interstitial_static"
+                },
+                {
+                    "ad_space_id": "130626428",
+                    "format": "rewarded"
+                }
+            ],
+            "publisher_id": "1100042525",
+            "network": "smaato",
+            "network_class": "BDMSmaatoAdNetwork"
         }
 ]

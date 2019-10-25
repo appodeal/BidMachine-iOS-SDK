@@ -32,6 +32,7 @@
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * clientParams,
                                                  NSError *error))completion {
     [self syncMetadata];
