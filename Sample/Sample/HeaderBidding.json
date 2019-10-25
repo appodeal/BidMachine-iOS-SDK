@@ -103,15 +103,19 @@
         {
             "ad_units": [
                 {
-                    "adSpaceId": "",
+                    "ad_space_id": "130563103",
                     "format": "banner_320x50"
                 },
                 {
-                    "adSpaceId": "",
+                    "ad_space_id": "130626426",
                     "format": "interstitial_static"
+                },
+                {
+                    "ad_space_id": "130626428",
+                    "format": "rewarded"
                 }
             ],
-            "publisherId": "a9_onboarding_app_id",
+            "publisher_id": "1100042525",
             "network": "smaato",
             "network_class": "BDMSmaatoAdNetwork"
         }

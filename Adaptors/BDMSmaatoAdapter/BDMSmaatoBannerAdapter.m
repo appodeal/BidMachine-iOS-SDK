@@ -25,7 +25,7 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:contentInfo[@"adSpaceId"]];
+    NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:contentInfo[@"ad_space_id"]];
     if (!adSpaceId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"BDMSmaatoBannerAdapter wasn't recived valid bidding data"];

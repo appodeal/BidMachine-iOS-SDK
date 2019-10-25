@@ -37,7 +37,7 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
 - (void)initialiseWithParameters:(NSDictionary<NSString *,id> *)parameters
                       completion:(void (^)(BOOL, NSError * _Nullable))completion {
     [self syncMetadata];
-    NSString *publisherId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"publisherId"]];
+    NSString *publisherId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"publisher_id"]];
     
     if (self.initialized) {
         STK_RUN_BLOCK(completion, NO, nil);
@@ -61,7 +61,7 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
     [self syncMetadata];
-    NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"adSpaceId"]];
+    NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"ad_space_id"]];
     if (!adSpaceId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:@"Smaato adapter was not receive valid bidding data"];
@@ -72,11 +72,11 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
     __weak typeof(self) weakself = self;
     BDMSmaatoCompletionBlock smaatoCompletion = ^(SMAUbBid *bid, NSError *error) {
         NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:3];
-        bidding[@"adSpaceId"] = adSpaceId;
-        bidding[@"publisherId"] = weakself.publisherId;
+        bidding[@"ad_space_id"] = adSpaceId;
+        bidding[@"publisher_id"] = weakself.publisherId;
         
         if (bid) {
-            bidding[@"bidPrice"] = @(bid.bidPrice);
+            bidding[@"bid_price"] = @(bid.bidPrice);
         } else {
             error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                    description:@"Smaato can't prebid adapter"];
