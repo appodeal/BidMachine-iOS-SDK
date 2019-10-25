@@ -12,6 +12,40 @@ PODS:
     - MintegralAdSDK/BidNativeAd
   - myTargetSDK (5.4.0)
   - Protobuf (3.10.0)
+  - smaato-ios-sdk (21.2.0):
+    - smaato-ios-sdk/Full (= 21.2.0)
+  - smaato-ios-sdk/Banner (21.2.0):
+    - smaato-ios-sdk/Modules/Banner
+    - smaato-ios-sdk/Modules/Core
+    - smaato-ios-sdk/Modules/RichMedia
+  - smaato-ios-sdk/Full (21.2.0):
+    - smaato-ios-sdk/Banner
+    - smaato-ios-sdk/Interstitial
+    - smaato-ios-sdk/RewardedAds
+  - smaato-ios-sdk/Interstitial (21.2.0):
+    - smaato-ios-sdk/Modules/Interstitial
+    - smaato-ios-sdk/Modules/RichMedia
+    - smaato-ios-sdk/Modules/Video
+  - smaato-ios-sdk/Modules/Banner (21.2.0):
+    - smaato-ios-sdk/Modules/Core
+  - smaato-ios-sdk/Modules/Core (21.2.0)
+  - smaato-ios-sdk/Modules/Interstitial (21.2.0):
+    - smaato-ios-sdk/Modules/Core
+  - smaato-ios-sdk/Modules/OpenMeasurement (21.2.0):
+    - smaato-ios-sdk/Modules/Core
+  - smaato-ios-sdk/Modules/RewardedAds (21.2.0):
+    - smaato-ios-sdk/Modules/Core
+  - smaato-ios-sdk/Modules/RichMedia (21.2.0):
+    - smaato-ios-sdk/Modules/Core
+    - smaato-ios-sdk/Modules/OpenMeasurement
+  - smaato-ios-sdk/Modules/UnifiedBidding (21.2.0):
+    - smaato-ios-sdk/Modules/Core
+  - smaato-ios-sdk/Modules/Video (21.2.0):
+    - smaato-ios-sdk/Modules/Core
+    - smaato-ios-sdk/Modules/OpenMeasurement
+  - smaato-ios-sdk/RewardedAds (21.2.0):
+    - smaato-ios-sdk/Modules/RewardedAds
+    - smaato-ios-sdk/Modules/Video
   - StackAPI/BidMachine (0.1.2):
     - Protobuf (~> 3.8)
   - StackIAB/StackMRAIDKit (0.5.4):
@@ -49,6 +83,8 @@ DEPENDENCIES:
   - MintegralAdSDK/BidRewardVideoAd (~> 5.8)
   - myTargetSDK (~> 5.3)
   - Protobuf
+  - smaato-ios-sdk (~> 21.2)
+  - smaato-ios-sdk/Modules/UnifiedBidding (~> 21.2)
   - StackAPI/BidMachine (~> 0.1.0)
   - StackIAB/StackMRAIDKit (~> 0.5.0)
   - StackIAB/StackNASTKit (~> 0.5.0)
@@ -66,7 +102,6 @@ SPEC REPOS:
     - FBAudienceNetwork
     - StackAPI
     - StackIAB
-    - StackModules
   https://github.com/CocoaPods/Specs.git:
     - AdColony
     - FBSDKCoreKit
@@ -74,6 +109,7 @@ SPEC REPOS:
     - MintegralAdSDK
     - myTargetSDK
     - Protobuf
+    - smaato-ios-sdk
     - StackModules
     - TapjoySDK
     - Toast-Swift
@@ -88,6 +124,7 @@ SPEC CHECKSUMS:
   MintegralAdSDK: 02144cbb6351138ebd0dd2dd259e5f5c868b890b
   myTargetSDK: 7e989946d2b28a4364e6b819fd25afcfd31f1b7b
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
+  smaato-ios-sdk: c5cb53ae857d5179065d2399c56b144a3ef652bd
   StackAPI: 222922252854078576b896250fcfb385abd24cec
   StackIAB: b620ba9d41bf6c744a2bb1c3cff7a51173cc0b96
   StackModules: ebd9bf35996712e9ea7fbb60e8fddf8c9fccc028
@@ -95,6 +132,6 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   VungleSDK-iOS: 8951559521dd73c3f947757e9a4c4bbfd8645b7f
 
-PODFILE CHECKSUM: ba5894446e28cd1e3e8c089b7d6024ef80fb7150
+PODFILE CHECKSUM: 2d50d17c4ac20e8cdb943b0c5cf1666515587bda
 
 COCOAPODS: 1.8.1

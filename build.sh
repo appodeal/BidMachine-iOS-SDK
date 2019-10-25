@@ -32,6 +32,7 @@ export ADAPTERS=(
     "BDMMintegralAdapter"
     "BDMCriteoAdapter"
     "BDMAmazonAdapter"
+    "BDMSmaatoAdapter"
     )
 
 # Utility 

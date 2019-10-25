@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.3.2"
+  s.version      = "1.3.3"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
@@ -27,22 +27,34 @@ Pod::Spec.new do |s|
     ss.dependency 'Protobuf', '~> 3.9'
   end
 
+  s.subspec 'Adapters' do |ss|
+    ss.dependency 'BidMachine/AdColonyAdapter'
+    ss.dependency 'BidMachine/FacebookAdapter'
+    ss.dependency 'BidMachine/MyTargetAdapter'
+    ss.dependency 'BidMachine/TapjoyAdapter'
+    ss.dependency 'BidMachine/VungleAdapter'
+    ss.dependency 'BidMachine/MintegralAdapter'
+    ss.dependency 'BidMachine/CriteoAdapter'
+    ss.dependency 'BidMachine/AmazonAdapter'
+    ss.dependency 'BidMachine/SmaatoAdapter'
+  end
+
   s.subspec 'AdColonyAdapter' do |ss|
     ss.vendored_libraries = 'libBDMAdColonyAdapter.a'
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'AdColony', '~> 3.3'
+    ss.dependency 'AdColony', '4.1.1'
   end
 
   s.subspec 'FacebookAdapter' do |ss|
     ss.vendored_libraries = 'libBDMFacebookAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'FBAudienceNetwork', '~> 5.4'
+    ss.dependency 'FBAudienceNetwork', '~> 5.5'
   end
 
   s.subspec 'MyTargetAdapter' do |ss|
     ss.vendored_libraries = 'libBDMMyTargetAdapter.a'
     ss.dependency 'BidMachine/Core' 
-    ss.dependency 'myTargetSDK', '~> 5.3'
+    ss.dependency 'myTargetSDK', '5.3.5'
   end
 
   s.subspec 'TapjoyAdapter' do |ss|
@@ -54,14 +66,14 @@ Pod::Spec.new do |s|
   s.subspec 'VungleAdapter' do |ss|
     ss.vendored_libraries = 'libBDMVungleAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'VungleSDK-iOS', '~> 6.3'
+    ss.dependency 'VungleSDK-iOS', '~> 6.4'
   end
 
   s.subspec 'MintegralAdapter' do |ss|
     ss.vendored_libraries = 'libBDMMintegralAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
-    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
+    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.8'
+    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '~> 5.8'
   end
 
   s.subspec 'CriteoAdapter' do |ss|
@@ -74,5 +86,12 @@ Pod::Spec.new do |s|
     ss.vendored_frameworks = 'BDMAmazonAdapter.embeddedframework/*.framework' 
 
     ss.dependency 'BidMachine/Core'
+  end
+
+  s.subspec 'SmaatoAdapter' do |ss|
+    ss.vendored_libraries = 'libBDMSmaatoAdapter.a' 
+    ss.dependency 'BidMachine/Core'
+    ss.dependency 'smaato-ios-sdk', '~> 21.2'
+    ss.dependency 'smaato-ios-sdk/Modules/UnifiedBidding', '~> 21.2'
   end
 end
