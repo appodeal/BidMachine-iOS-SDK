@@ -61,6 +61,7 @@
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
     [self syncMetadata];
     NSString *sdkKey = [Tapjoy.sharedTapjoyConnect limitedSdkKey];

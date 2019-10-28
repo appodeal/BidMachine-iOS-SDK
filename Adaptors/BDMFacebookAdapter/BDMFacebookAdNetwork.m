@@ -69,6 +69,7 @@
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
     [self syncMetadata];
     NSString *placement = [BDMFacebookStringValueTransformer.new transformedValue:parameters[@"facebook_key"]];

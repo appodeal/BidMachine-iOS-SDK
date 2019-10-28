@@ -51,6 +51,7 @@
                       completion:(void (^)(BOOL, NSError *))completion {}
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {}
 
 @end

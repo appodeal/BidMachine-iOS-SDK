@@ -37,11 +37,11 @@ def stack_modules
 end
 
 def vungle
-  pod 'VungleSDK-iOS', '~> 6.3'
+  pod 'VungleSDK-iOS', '~> 6.4'
 end
 
 def adcolony
-  pod 'AdColony', '~> 3.3'
+  pod 'AdColony', '~> 4.1'
 end
 
 def my_target 
@@ -53,16 +53,21 @@ def tapjoy
 end
 
 def facebook
-  pod 'FBAudienceNetwork', '~> 5.4'
+  pod 'FBAudienceNetwork', '~> 5.5'
 end
 
 def mintegral
-  pod 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.6'
-  pod 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
+  pod 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.8'
+  pod 'MintegralAdSDK/BidRewardVideoAd', '~> 5.8'
 end
 
 def amazon
   pod 'DTBiOSSDK', '~> 3.0'
+end
+
+def smaato
+  pod 'smaato-ios-sdk', '~> 21.2'
+  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '~> 21.2'
 end
 
 # Targets configuration
@@ -137,6 +142,12 @@ target 'BDMAmazonAdapter' do
   stack_modules
 end
 
+target 'BDMSmaatoAdapter' do
+  project 'Adaptors/Adaptors.xcodeproj'
+  smaato
+  stack_modules
+end
+
 target 'Sample' do
   project 'Sample/Sample.xcodeproj'
   mraid
@@ -149,6 +160,7 @@ target 'Sample' do
   facebook
   mintegral
   amazon
+  smaato
   stack_modules
   protobuf
   toasts

@@ -51,6 +51,7 @@
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
+                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
     NSString *slotUUID = [BDMAmazonValueTransformer.new transformedValue:parameters[@"slot_uuid"]];
     if (!slotUUID) {
