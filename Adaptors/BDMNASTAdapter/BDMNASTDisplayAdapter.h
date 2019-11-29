@@ -7,14 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BidMachine/BDMNativeAdProtocol.h>
+@import BidMachine.Adapters;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @import StackNASTKit;
 
+@interface BDMNASTDisplayAdapter : NSObject <BDMNativeAdAdapter>
 
-@interface BDMNASTDisplayAdapter : NSObject <BDMNativeAd>
+@property (nonatomic, weak, nullable) id<BDMNativeAdAdapterDelegate> delegate;
 
 + (instancetype)displayAdapterForAd:(STKNASTAd *)ad;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
