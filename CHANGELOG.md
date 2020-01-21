@@ -1,3 +1,8 @@
+# Version 1.4.1 (Jan 21th, 2020)
+
+- VAST/MRAID Small fixes
+- Add Public Publisher Api
+- Add Api for disable HB
 
 # Version 1.4.0 (Nov 29th, 2019)
 

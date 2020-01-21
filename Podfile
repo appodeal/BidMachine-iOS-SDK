@@ -38,37 +38,37 @@ def stack_modules
 end
 
 def vungle
-  pod 'VungleSDK-iOS', '~> 6.4'
+  pod 'VungleSDK-iOS', '6.4.6'
 end
 
 def adcolony
-  pod 'AdColony', '~> 4.1'
+  pod 'AdColony', '4.1.2'
 end
 
 def my_target 
-  pod 'myTargetSDK', '~> 5.3'
+  pod 'myTargetSDK', '5.4.2'
 end
 
 def tapjoy
-  pod 'TapjoySDK', '~> 12.3'
+  pod 'TapjoySDK', '12.3.4'
 end
 
 def facebook
-  pod 'FBAudienceNetwork', '~> 5.5'
+  pod 'FBAudienceNetwork', '5.6.0'
 end
 
 def mintegral
-  pod 'MintegralAdSDK/BidInterstitialVideoAd', '~> 5.8'
-  pod 'MintegralAdSDK/BidRewardVideoAd', '~> 5.8'
+  pod 'MintegralAdSDK/BidInterstitialVideoAd', '5.8.4.0'
+  pod 'MintegralAdSDK/BidRewardVideoAd', '5.8.4.0'
 end
 
 def amazon
-  pod 'DTBiOSSDK', '~> 3.0'
+  pod 'DTBiOSSDK', '3.0.0'
 end
 
 def smaato
-  pod 'smaato-ios-sdk', '~> 21.2'
-  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '~> 21.2'
+  pod 'smaato-ios-sdk', '21.2.2'
+  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.2.2'
 end
 
 # Targets configuration
