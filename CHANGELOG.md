@@ -1,3 +1,9 @@
+# Version 1.4.2 (Feb 23th, 2020)
+
+- VAST postbanner default close time fix
+- VAST postbanner Ipad orientation fix
+- MRAID offscreen loading append
+
 # Version 1.4.1 (Jan 21th, 2020)
 
 - VAST/MRAID Small fixes

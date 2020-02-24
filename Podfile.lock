@@ -3,7 +3,7 @@ PODS:
   - DTBiOSSDK (3.0.0)
   - FBAudienceNetwork (5.6.0):
     - FBSDKCoreKit/Basics (>= 5.2.1)
-  - FBSDKCoreKit/Basics (5.14.0)
+  - FBSDKCoreKit/Basics (6.0.0)
   - Kiwi (3.0.0)
   - MintegralAdSDK/BidInterstitialVideoAd (5.8.4.0):
     - MintegralAdSDK/BidNativeAd
@@ -11,7 +11,7 @@ PODS:
   - MintegralAdSDK/BidRewardVideoAd (5.8.4.0):
     - MintegralAdSDK/BidNativeAd
   - myTargetSDK (5.4.2)
-  - Protobuf (3.11.2)
+  - Protobuf (3.11.4)
   - smaato-ios-sdk (21.2.2):
     - smaato-ios-sdk/Full (= 21.2.2)
   - smaato-ios-sdk/Banner (21.2.2):
@@ -48,26 +48,26 @@ PODS:
     - smaato-ios-sdk/Modules/Video
   - StackAPI/BidMachine (0.2.1):
     - Protobuf (~> 3.8)
-  - StackIAB/StackMRAIDKit (0.5.10):
+  - StackIAB/StackMRAIDKit (0.5.12):
     - StackModules (~> 0.6.3)
-  - StackIAB/StackNASTKit (0.5.10):
+  - StackIAB/StackNASTKit (0.5.12):
     - StackIAB/StackVASTKit
     - StackModules (~> 0.6.3)
-  - StackIAB/StackRichMedia (0.5.10):
+  - StackIAB/StackRichMedia (0.5.12):
     - StackIAB/StackVASTAssets
     - StackIAB/StackVideoPlayer
     - StackModules (~> 0.6.3)
-  - StackIAB/StackVASTAssets (0.5.10):
+  - StackIAB/StackVASTAssets (0.5.12):
     - StackIAB/StackXML
     - StackModules (~> 0.6.3)
-  - StackIAB/StackVASTKit (0.5.10):
+  - StackIAB/StackVASTKit (0.5.12):
     - StackIAB/StackMRAIDKit
     - StackIAB/StackVASTAssets
     - StackIAB/StackVideoPlayer
     - StackModules (~> 0.6.3)
-  - StackIAB/StackVideoPlayer (0.5.10):
+  - StackIAB/StackVideoPlayer (0.5.12):
     - StackModules (~> 0.6.3)
-  - StackIAB/StackXML (0.5.10):
+  - StackIAB/StackXML (0.5.12):
     - StackModules (~> 0.6.3)
   - StackModules (0.6.10):
     - StackModules/StackUIKit (= 0.6.10)
@@ -126,14 +126,14 @@ SPEC CHECKSUMS:
   AdColony: 0a1e13349ce430ce29374c665611013fd78f792c
   DTBiOSSDK: 2591119b1fdccf1226bf53957d8f21aea5e0ce1b
   FBAudienceNetwork: b608516b0a24459b7ebcd09516493d8bf303ee9e
-  FBSDKCoreKit: a72c8d2c42aa4c4d5eaa5f160be9580750f70d2e
+  FBSDKCoreKit: fe738b172590e622c86735b45e20d196848b54df
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
   MintegralAdSDK: f26898e40a1676b53508ea4aa145ce70a897fc46
   myTargetSDK: ca4a115fb76143f0934e06763c5b02e284af74ec
-  Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
+  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   smaato-ios-sdk: fad41f668ceefe75ece6d46f729bea3ca26471ea
   StackAPI: 167af0648afbaa1b2b162069e3d6e5cb82b88979
-  StackIAB: bf7c65eb2972b2b45b2ebb749b17a75184987b26
+  StackIAB: 86b36b3b769ee8cf595968e9f07a577b3f934cc0
   StackModules: 4a89dc77f24bcf1500e112a5c9c73140ec8ee58f
   TapjoySDK: 4325bc3c42ae91fed30929792a71d380c63a3c6c
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
