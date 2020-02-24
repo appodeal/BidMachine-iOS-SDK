@@ -2,6 +2,7 @@
 
 - VAST postbanner default close time fix
 - VAST postbanner Ipad orientation fix
+- VAST postbanne static image style append
 - MRAID offscreen loading append
 
 # Version 1.4.1 (Jan 21th, 2020)
