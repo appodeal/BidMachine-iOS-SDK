@@ -138,6 +138,9 @@
 }
 
 - (void)presenterDidDisappear:(id<STKMRAIDPresenter>)presenter {
+    if (self.rewarded) {
+        [self.displayDelegate adapterFinishRewardAction:self];
+    }
     [self.displayDelegate adapterDidDismiss:self];
 }
 
