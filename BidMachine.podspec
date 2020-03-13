@@ -79,6 +79,7 @@ Pod::Spec.new do |s|
   s.subspec 'CriteoAdapter' do |ss|
     ss.vendored_libraries = 'libBDMCriteoAdapter.a' 
     ss.dependency 'BidMachine/Core'
+    ss.dependency 'CriteoPublisherSdk', '3.4.1'
   end
 
   s.subspec 'AmazonAdapter' do |ss|

@@ -777,7 +777,7 @@
 				MARKETING_VERSION = 1.4.2;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.easybrain.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bidmachine.sample;
 				PRODUCT_NAME = BidmachineSample;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sample/Sample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -808,7 +808,7 @@
 				MARKETING_VERSION = 1.4.2;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.easybrain.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bidmachine.sample;
 				PRODUCT_NAME = BidmachineSample;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sample/Sample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

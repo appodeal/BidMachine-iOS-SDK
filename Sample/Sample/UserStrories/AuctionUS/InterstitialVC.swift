@@ -56,6 +56,7 @@ class InterstitialVC: UIViewController {
     }
     
     @IBAction func prepareRequest(_ sender: Any) {
+        request.type = selectedType
         request.perform(with: self)
     }
     
