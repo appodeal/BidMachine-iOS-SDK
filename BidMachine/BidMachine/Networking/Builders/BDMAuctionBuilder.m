@@ -288,9 +288,12 @@
 
 - (ADCOMContext_Regs *)adcomContextRegsMessage {
     ADCOMContext_Regs *regs = [ADCOMContext_Regs message];
+    BDMRegsCcpaExtension *ccpa = [BDMRegsCcpaExtension message];
+    ccpa.usPrivacy = self.restrictions.USPrivacyString;
     
     regs.coppa = self.restrictions.coppa;
     regs.gdpr = self.restrictions.subjectToGDPR;
+    regs.extArray = @[ccpa].mutableCopy;
     
     return regs;
 }

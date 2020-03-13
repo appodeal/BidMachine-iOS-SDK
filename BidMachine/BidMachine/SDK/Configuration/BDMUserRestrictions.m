@@ -11,6 +11,7 @@
 
 @interface BDMUserRestrictions ()
 
+@property (nonatomic, copy) NSString *userDefaultsUSPrivacyString;
 @property (nonatomic, copy) NSString *userDefaultsConsentString;
 @property (nonatomic, copy) NSString *publisherDefinedConsentString;
 @property (nonatomic, assign) BOOL userDefaultsSubjectToGDPR;
@@ -23,8 +24,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.userDefaultsSubjectToGDPR = [NSUserDefaults.standardUserDefaults boolForKey:@"IABConsent_SubjectToGDPR"];
-        self.userDefaultsConsentString = [NSUserDefaults.standardUserDefaults objectForKey:@"IABConsent_ConsentString"];
+        self.userDefaultsSubjectToGDPR      = [NSUserDefaults.standardUserDefaults boolForKey:@"IABConsent_SubjectToGDPR"];
+        self.userDefaultsConsentString      = [NSUserDefaults.standardUserDefaults objectForKey:@"IABConsent_ConsentString"];
+        self.userDefaultsUSPrivacyString    = [NSUserDefaults.standardUserDefaults objectForKey:@"IABUSPrivacy_String"];
         self.coppa = NO;
         [self observeUserDefaults];
     }
@@ -46,6 +48,7 @@
     NSUserDefaults *defaults = (NSUserDefaults *)[notification object];
     self.userDefaultsSubjectToGDPR = [defaults boolForKey:@"IABConsent_SubjectToGDPR"];
     self.userDefaultsConsentString = [defaults objectForKey:@"IABConsent_ConsentString"];
+    self.userDefaultsUSPrivacyString = [defaults objectForKey:@"IABUSPrivacy_String"];
 }
 
 - (void)setConsentString:(NSString *)consentString {
@@ -62,6 +65,10 @@
 
 - (BOOL)subjectToGDPR {
     return self.publisherDefinedSubjectToGDPR || self.userDefaultsSubjectToGDPR;
+}
+
+- (NSString *)USPrivacyString {
+    return self.userDefaultsUSPrivacyString;
 }
 
 - (BOOL)allowUserInformation {
@@ -86,6 +93,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.publisherDefinedConsentString forKey:@"consentString"];
     [aCoder encodeBool:self.publisherDefinedSubjectToGDPR forKey:@"subjectToGDPR"];
+    [aCoder encodeObject:self.userDefaultsUSPrivacyString forKey:@"USPrivacyString"];
     [aCoder encodeBool:self.coppa forKey:@"coppa"];
     [aCoder encodeBool:self.hasConsent forKey:@"hasConsent"];
 }
@@ -95,6 +103,7 @@
     if (self) {
         self.publisherDefinedConsentString   = [aDecoder decodeObjectForKey:@"consentString"];
         self.publisherDefinedSubjectToGDPR   = [aDecoder decodeBoolForKey:@"subjectToGDPR"];
+        self.userDefaultsUSPrivacyString     = [aDecoder decodeObjectForKey:@"USPrivacyString"];
         self.coppa                           = [aDecoder decodeBoolForKey:@"coppa"];
         self.hasConsent                      = [aDecoder decodeBoolForKey:@"hasConsent"];
     }

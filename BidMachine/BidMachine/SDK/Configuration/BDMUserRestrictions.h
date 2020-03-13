@@ -35,5 +35,9 @@ BDM_SUBCLASSING_RESTRICTED
  Indicates that SDK allows to pass user information to networks
  */
 @property (assign, nonatomic, readonly) BOOL allowUserInformation;
+/**
+ IAB CCPA String
+ */
+@property (assign, nonatomic, readonly, nullable) NSString *USPrivacyString;
 @end
 
