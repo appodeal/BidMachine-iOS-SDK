@@ -1,19 +1,21 @@
 //
 //  BDMCriteoAdNetwork.h
-//  BDMCriteoAdapter
 //
-//  Created by Stas Kochkin on 11/09/2019.
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
 @import Foundation;
 @import BidMachine;
 @import BidMachine.Adapters;
+@import CriteoPublisherSdk;
 
-NS_ASSUME_NONNULL_BEGIN
 
-@interface BDMCriteoAdNetwork : NSObject <BDMNetwork>
+@protocol BDMCriteoAdNetworkProvider <NSObject>
+
+- (nullable CRBidToken *)bidTokenForAdUnitId:(nonnull NSString *)adUnitId;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@interface BDMCriteoAdNetwork : NSObject <BDMNetwork, BDMCriteoAdNetworkProvider>
+
+@end

@@ -96,7 +96,19 @@
             "network_class": "BDMAmazonNetwork"
         },
         {
-            "sender_id": "1",
+            "ad_units": [
+                {
+                    "ad_unit_id": "30s6zt3ayypfyemwjvmp",
+                    "format": "banner_320x50"
+                },
+                {
+                    "ad_unit_id": "6yws53jyfjgoq1ghnuqb",
+                    "format": "interstitial_static"
+                }
+            ],
+            "publisher_id": "B-057601",
+            "banner_ad_units": ["30s6zt3ayypfyemwjvmp"],
+            "interstitial_ad_units": ["6yws53jyfjgoq1ghnuqb"],
             "network": "criteo",
             "network_class": "BDMCriteoAdNetwork"
         },

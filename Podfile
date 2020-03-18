@@ -57,6 +57,10 @@ def facebook
   pod 'FBAudienceNetwork', '5.6.0'
 end
 
+def criteo
+  pod 'CriteoPublisherSdk', '3.4.1'
+end
+
 def mintegral
   pod 'MintegralAdSDK/BidInterstitialVideoAd', '5.8.4.0'
   pod 'MintegralAdSDK/BidRewardVideoAd', '5.8.4.0'
@@ -92,6 +96,7 @@ end
 
 target 'BDMCriteoAdapter' do
   project 'Adaptors/Adaptors.xcodeproj'
+  criteo
   stack_modules
 end
 
@@ -162,6 +167,7 @@ target 'Sample' do
   mintegral
   amazon
   smaato
+  criteo
   stack_modules
   protobuf
   toasts
