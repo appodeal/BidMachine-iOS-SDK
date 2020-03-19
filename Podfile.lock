@@ -1,15 +1,15 @@
 PODS:
-  - AdColony (4.1.2)
+  - AdColony (4.1.4)
   - CriteoPublisherSdk (3.4.1)
   - DTBiOSSDK (3.0.0)
-  - FBAudienceNetwork (5.6.0):
-    - FBSDKCoreKit/Basics (>= 5.2.1)
+  - FBAudienceNetwork (5.7.1):
+    - FBSDKCoreKit/Basics (>= 5.6.0)
   - FBSDKCoreKit/Basics (6.2.0)
   - Kiwi (3.0.0)
-  - MintegralAdSDK/BidInterstitialVideoAd (5.8.4.0):
+  - MintegralAdSDK/BidInterstitialVideoAd (6.0.0.0):
     - MintegralAdSDK/BidNativeAd
-  - MintegralAdSDK/BidNativeAd (5.8.4.0)
-  - MintegralAdSDK/BidRewardVideoAd (5.8.4.0):
+  - MintegralAdSDK/BidNativeAd (6.0.0.0)
+  - MintegralAdSDK/BidRewardVideoAd (6.0.0.0):
     - MintegralAdSDK/BidNativeAd
   - myTargetSDK (5.4.2)
   - Protobuf (3.11.4)
@@ -75,18 +75,18 @@ PODS:
   - StackModules/StackFoundation (0.6.10)
   - StackModules/StackUIKit (0.6.10):
     - StackModules/StackFoundation
-  - TapjoySDK (12.3.4)
+  - TapjoySDK (12.4.2)
   - Toast-Swift (4.0.1)
-  - VungleSDK-iOS (6.4.6)
+  - VungleSDK-iOS (6.5.2)
 
 DEPENDENCIES:
-  - AdColony (= 4.1.2)
+  - AdColony (= 4.1.4)
   - CriteoPublisherSdk (= 3.4.1)
   - DTBiOSSDK (= 3.0.0)
-  - FBAudienceNetwork (= 5.6.0)
+  - FBAudienceNetwork (= 5.7.1)
   - Kiwi
-  - MintegralAdSDK/BidInterstitialVideoAd (= 5.8.4.0)
-  - MintegralAdSDK/BidRewardVideoAd (= 5.8.4.0)
+  - MintegralAdSDK/BidInterstitialVideoAd (= 6.0.0.0)
+  - MintegralAdSDK/BidRewardVideoAd (= 6.0.0.0)
   - myTargetSDK (= 5.4.2)
   - Protobuf
   - smaato-ios-sdk (= 21.2.2)
@@ -99,20 +99,20 @@ DEPENDENCIES:
   - StackModules (~> 0.6.3)
   - StackModules/StackFoundation (~> 0.6.3)
   - StackModules/StackUIKit (~> 0.6.3)
-  - TapjoySDK (= 12.3.4)
+  - TapjoySDK (= 12.4.2)
   - Toast-Swift (~> 4.0.0)
-  - VungleSDK-iOS (= 6.4.6)
+  - VungleSDK-iOS (= 6.5.2)
 
 SPEC REPOS:
   https://github.com/appodeal/CocoaPods.git:
     - CriteoPublisherSdk
     - DTBiOSSDK
-    - FBAudienceNetwork
     - StackAPI
     - StackIAB
     - StackModules
   https://github.com/CocoaPods/Specs.git:
     - AdColony
+    - FBAudienceNetwork
     - FBSDKCoreKit
     - Kiwi
     - MintegralAdSDK
@@ -125,23 +125,23 @@ SPEC REPOS:
     - VungleSDK-iOS
 
 SPEC CHECKSUMS:
-  AdColony: 0a1e13349ce430ce29374c665611013fd78f792c
+  AdColony: fc02f429d6c4591567c7ae1426ebfcecb704b11f
   CriteoPublisherSdk: 9ea61c4f6facafd5bc003258d569e6510e06614c
   DTBiOSSDK: 2591119b1fdccf1226bf53957d8f21aea5e0ce1b
-  FBAudienceNetwork: b608516b0a24459b7ebcd09516493d8bf303ee9e
+  FBAudienceNetwork: 33fc8c8c07c1cdbf5279784b73729c6410809daa
   FBSDKCoreKit: a7bb9f5ac56c1e11d5f8ae0b90a3610f8744b43a
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  MintegralAdSDK: f26898e40a1676b53508ea4aa145ce70a897fc46
+  MintegralAdSDK: 00e3c264c3f1c9f9a2fe0ac830e0f185b7ef87e2
   myTargetSDK: ca4a115fb76143f0934e06763c5b02e284af74ec
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   smaato-ios-sdk: fad41f668ceefe75ece6d46f729bea3ca26471ea
   StackAPI: 8e454d27284321af8843dd6630e0f1084d36c4ac
   StackIAB: 02bac8c41f0252525ad1e1f1f9eb8841d112b413
   StackModules: 4a89dc77f24bcf1500e112a5c9c73140ec8ee58f
-  TapjoySDK: 4325bc3c42ae91fed30929792a71d380c63a3c6c
+  TapjoySDK: c8d73f291cfe922cb8bb2c3ae09b5af0b2863841
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
-  VungleSDK-iOS: 6bf8b4fef32afc169acbc1291485560c81ceb293
+  VungleSDK-iOS: b39f80d93c342cb07f9d83ab1105817ddcb61b72
 
-PODFILE CHECKSUM: c68b3a9261b57f501c75509ffae8983aaa50049e
+PODFILE CHECKSUM: 16613b085e2d5d05ab2399ecc00071f284c78786
 
 COCOAPODS: 1.8.0

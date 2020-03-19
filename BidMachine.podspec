@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.4.2"
+  s.version      = "1.4.3"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
@@ -42,13 +42,13 @@ Pod::Spec.new do |s|
   s.subspec 'AdColonyAdapter' do |ss|
     ss.vendored_libraries = 'libBDMAdColonyAdapter.a'
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'AdColony', '4.1.2'
+    ss.dependency 'AdColony', '4.1.4'
   end
 
   s.subspec 'FacebookAdapter' do |ss|
     ss.vendored_libraries = 'libBDMFacebookAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'FBAudienceNetwork', '5.6.0'
+    ss.dependency 'FBAudienceNetwork', '5.7.1'
   end
 
   s.subspec 'MyTargetAdapter' do |ss|
@@ -60,20 +60,20 @@ Pod::Spec.new do |s|
   s.subspec 'TapjoyAdapter' do |ss|
     ss.vendored_libraries = 'libBDMTapjoyAdapter.a'
     ss.dependency 'BidMachine/Core' 
-    ss.dependency 'TapjoySDK', '12.3.4'
+    ss.dependency 'TapjoySDK', '12.4.2'
   end
 
   s.subspec 'VungleAdapter' do |ss|
     ss.vendored_libraries = 'libBDMVungleAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'VungleSDK-iOS', '6.4.6'
+    ss.dependency 'VungleSDK-iOS', '6.5.2'
   end
 
   s.subspec 'MintegralAdapter' do |ss|
     ss.vendored_libraries = 'libBDMMintegralAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '5.8.4.0'
-    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '5.8.4.0'
+    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '6.0.0.0'
+    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '6.0.0.0'
   end
 
   s.subspec 'CriteoAdapter' do |ss|
