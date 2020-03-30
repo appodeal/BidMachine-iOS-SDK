@@ -23,6 +23,10 @@ BDM_SUBCLASSING_RESTRICTED
  */
 @property (nonatomic, copy, readonly, nullable) NSString * creativeID;
 /**
+ Creative deal id
+ */
+@property (nonatomic, copy, readonly, nullable) NSString * dealID;
+/**
  Creative cid
  */
 @property (nonatomic, copy, readonly, nullable) NSString * cID;
@@ -38,5 +42,9 @@ BDM_SUBCLASSING_RESTRICTED
  Auction price
  */
 @property (nonatomic, copy, readonly, nullable) NSNumber * price;
+/**
+ Creative format
+*/
+@property (nonatomic, assign, readonly) BDMCreativeFormat format;
 @end
 

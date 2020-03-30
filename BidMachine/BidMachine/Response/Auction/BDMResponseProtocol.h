@@ -10,13 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "BDMEventURL.h"
 #import "BDMViewabilityMetricProvider.h"
-
-
-typedef NS_ENUM(NSInteger, BDMCreativeFormat) {
-    BDMCreativeFormatBanner = 0,
-    BDMCreativeFormatVideo,
-    BDMCreativeFormatNative
-};
+#import "BDMDefines.h"
 
 @protocol BDMCreative <NSObject, NSCopying>
 
@@ -40,6 +34,7 @@ typedef NS_ENUM(NSInteger, BDMCreativeFormat) {
 @property (nonatomic, copy, readonly) NSString * pricingType;
 @property (nonatomic, copy, readonly) NSNumber * expirationTime;
 @property (nonatomic, copy, readonly) NSString * cid;
+@property (nonatomic, copy, readonly) NSString * deal;
 
 @property (nonatomic, copy, readonly) id<BDMCreative> creative;
 

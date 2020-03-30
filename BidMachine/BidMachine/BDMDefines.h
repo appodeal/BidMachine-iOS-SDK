@@ -133,12 +133,25 @@ typedef NS_ENUM(NSInteger, BDMAdUnitFormat) {
     BDMAdUnitFormatRewardedUnknown
 };
 
+/**
+Supported crative format
+
+- BDMCreativeFormatBanner: Mraid content
+- BDMCreativeFormatVideo: Vast content
+- BDMCreativeFormatNative: Nast content
+*/
+typedef NS_ENUM(NSInteger, BDMCreativeFormat) {
+    BDMCreativeFormatBanner = 0,
+    BDMCreativeFormatVideo,
+    BDMCreativeFormatNative
+};
+
 typedef NSNumber BDMAdUnitFormatKey;
 
 BDMAdUnitFormatKey *BDMAdUnitFormatKeyFromEnum(BDMAdUnitFormat fmt);
 BDMAdUnitFormat BDMAdUnitFormatFromKey(BDMAdUnitFormatKey *key);
 BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *key);
 NSString *NSStringFromBDMAdUnitFormat(BDMAdUnitFormat fmt);
-
+NSString *NSStringFromBDMCreativeFormat(BDMCreativeFormat fmt);
 
 CGSize CGSizeFromBDMSize(BDMBannerAdSize adSize);

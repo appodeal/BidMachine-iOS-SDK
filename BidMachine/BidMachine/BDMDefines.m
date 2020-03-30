@@ -75,3 +75,11 @@ NSString *NSStringFromBDMAdUnitFormat(BDMAdUnitFormat fmt) {
         case BDMAdUnitFormatRewardedUnknown: return @"rewarded"; break;
     }
 }
+
+NSString *NSStringFromBDMCreativeFormat(BDMCreativeFormat fmt) {
+    switch (fmt) {
+        case BDMCreativeFormatBanner: return @"display"; break;
+        case BDMCreativeFormatVideo: return @"video"; break;
+        case BDMCreativeFormatNative: return @"native"; break;
+    }
+}

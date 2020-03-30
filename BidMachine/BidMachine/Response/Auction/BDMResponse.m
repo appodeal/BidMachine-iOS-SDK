@@ -20,6 +20,7 @@
 @property (nonatomic, copy, readwrite) NSString * demandSource;
 @property (nonatomic, copy, readwrite) NSNumber * expirationTime;
 @property (nonatomic, copy, readwrite) NSString * cid;
+@property (nonatomic, copy, readwrite) NSString * deal;
 
 @property (nonatomic, copy, readwrite) BDMCreative * creative;
 @property (nonatomic, strong) ORTBOpenrtb * message;
@@ -41,7 +42,8 @@
         self.demandSource = seat.seat;
         ORTBResponse_Seatbid_Bid * bid = seat.bidArray.firstObject;
         // Save response data
-        self.identifier = bid.deal;
+        self.identifier = bid.id_p;
+        self.deal = bid.deal;
         self.cid = bid.cid;
         
         self.expirationTime = [@(bid.exp) isEqual:@(0)] ? [NSNumber numberWithInt:1740] : @(bid.exp);
@@ -77,6 +79,7 @@
     copy.demandSource = self.demandSource;
     copy.expirationTime = self.expirationTime;
     copy.cid = self.cid;
+    copy.deal = self.deal;
     copy.creative = self.creative;
     copy.message = self.message;
     

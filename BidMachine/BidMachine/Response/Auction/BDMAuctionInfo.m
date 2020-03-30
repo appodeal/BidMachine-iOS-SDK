@@ -15,9 +15,11 @@
 @property (nonatomic, copy, readwrite, nullable) NSString * bidID;
 @property (nonatomic, copy, readwrite, nullable) NSString * creativeID;
 @property (nonatomic, copy, readwrite, nullable) NSString * cID;
+@property (nonatomic, copy, readwrite, nullable) NSString * dealID;
 @property (nonatomic, copy, readwrite, nullable) NSArray <NSString *> * adDomains;
 @property (nonatomic, copy, readwrite, nullable) NSString * demandSource;
 @property (nonatomic, copy, readwrite, nullable) NSNumber * price;
+@property (nonatomic, assign, readwrite) BDMCreativeFormat format;
 
 @end
 
@@ -29,8 +31,10 @@
         self.demandSource   = response.demandSource;
         self.price          = response.price;
         self.cID            = response.cid;
+        self.dealID         = response.deal;
         self.creativeID     = response.creative.ID;
         self.adDomains      = response.creative.adDomains;
+        self.format         = response.creative.format;
     }
     return self;
 }
@@ -44,7 +48,9 @@
     copy.demandSource   = self.demandSource;
     copy.price          = self.price;
     copy.cID            = self.cID;
+    copy.dealID         = self.dealID;
     copy.adDomains      = self.adDomains;
+    copy.format         = self.format;
     return copy;
 }
 
