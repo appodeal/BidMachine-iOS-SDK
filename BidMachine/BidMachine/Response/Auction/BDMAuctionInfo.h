@@ -46,5 +46,14 @@ BDM_SUBCLASSING_RESTRICTED
  Creative format
 */
 @property (nonatomic, assign, readonly) BDMCreativeFormat format;
+/**
+ Transform model to key-value map
+*/
+- (nonnull NSDictionary *)extras;
+/**
+ Transform model to key-value map
+*/
+- (nonnull NSDictionary *)extrasWithCustomParams:(nullable NSDictionary *)params;
+
 @end
 

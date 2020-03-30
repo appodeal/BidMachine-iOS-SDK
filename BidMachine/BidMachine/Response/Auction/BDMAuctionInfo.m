@@ -20,6 +20,7 @@
 @property (nonatomic, copy, readwrite, nullable) NSString * demandSource;
 @property (nonatomic, copy, readwrite, nullable) NSNumber * price;
 @property (nonatomic, assign, readwrite) BDMCreativeFormat format;
+@property (nonatomic, strong) NSNumberFormatter *formatter;
 
 @end
 
@@ -52,6 +53,34 @@
     copy.adDomains      = self.adDomains;
     copy.format         = self.format;
     return copy;
+}
+
+#pragma mark - Transform
+
+- (NSNumberFormatter *)formatter {
+    if (!_formatter) {
+        _formatter = [NSNumberFormatter new];
+        _formatter.numberStyle = NSNumberFormatterDecimalStyle;
+        _formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        _formatter.roundingMode = NSNumberFormatterRoundCeiling;
+        _formatter.positiveFormat = @"0.00";
+    }
+    return _formatter;
+}
+
+- (NSDictionary *)extras {
+    return [self extrasWithCustomParams:nil];
+}
+
+- (NSDictionary *)extrasWithCustomParams:(NSDictionary *)params {
+    NSMutableDictionary *extras = [NSMutableDictionary new];
+    extras[@"bm_id"] = self.bidID;
+    extras[@"bm_pf"] = [self.formatter stringFromNumber:self.price];
+    extras[@"bm_ad_type"] = NSStringFromBDMCreativeFormat(self.format);
+    if (params) {
+        [extras addEntriesFromDictionary:params];
+    }
+    return extras;
 }
 
 @end
