@@ -34,6 +34,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
 @property (nonatomic, copy, readwrite) NSString *displaymanager;
 @property (nonatomic, copy, readwrite) NSString *ID;
 @property (nonatomic, copy, readwrite) NSDictionary <NSString *, NSString *> *renderingInfo;
+@property (nonatomic, copy, readwrite) NSDictionary <NSString *, NSString *> *customParams;
 @property (nonatomic, assign, readwrite) BDMCreativeFormat format;
 
 @end
@@ -110,6 +111,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
         [renderingInfo addEntriesFromDictionary:BDMTransformers.jsonObject(headerBiddingAd.serverParams)];
     }
     self.renderingInfo = renderingInfo;
+    self.customParams = extensions.customParams;
 }
 
 - (void)populateEvents:(NSArray <ADCOMAd_Event *> *)events {
@@ -135,6 +137,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
     copy.adDomains           = self.adDomains;
     copy.ID                  = self.ID;
     copy.format              = self.format;
+    copy.customParams        = self.customParams;
     
     return copy;
 }    
