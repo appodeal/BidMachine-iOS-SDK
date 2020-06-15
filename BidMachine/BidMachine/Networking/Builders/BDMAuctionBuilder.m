@@ -203,6 +203,7 @@
 
 - (GPBAny *)adcomPlacementMessage {
     ADCOMPlacement * placement = (ADCOMPlacement *)self.placementBuilder.placement;
+    placement.secure = !STKDevice.isHTTPSupport;
     GPBAny *placementMessageAny = [GPBAny anyWithMessage:placement error:nil];
     return placementMessageAny;
 }
@@ -276,7 +277,13 @@
     user.yob        = self.request.targeting.yearOfBirth.unsignedIntValue;
     user.keywords   = self.request.targeting.keywords;
     user.id_p       = self.request.targeting.userId;
-    user.consent    = self.restrictions.consentString;
+    
+    if (self.restrictions.consentString) {
+        user.consent    = self.restrictions.consentString;
+    } else {
+        user.consent    = self.restrictions.hasConsent ? @"1" : @"0";
+    }
+    
     user.geo = ({
         ADCOMContext_Geo *geo = [ADCOMContext_Geo message];
         geo.country = self.request.targeting.country;
