@@ -28,9 +28,7 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
 
 + (ADCOMDeviceType (^)(STKDeviceType))deviceType {
     return ^ADCOMDeviceType (STKDeviceType type){
-        NSRange iPhoneRange = NSMakeRange(STKDeviceTypeIphone, STKDeviceTypeIphoneXSMax);
-        BOOL isIphone = NSLocationInRange(type, iPhoneRange);
-        return isIphone ? ADCOMDeviceType_DeviceTypePhoneDevice : ADCOMDeviceType_DeviceTypeTablet;
+        return STKDevice.isIphone ? ADCOMDeviceType_DeviceTypePhoneDevice : ADCOMDeviceType_DeviceTypeTablet;
     };
 }
 
