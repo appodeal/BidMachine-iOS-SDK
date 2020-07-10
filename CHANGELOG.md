@@ -1,3 +1,10 @@
+# Version 1.5.0 (Mar 18th, 2020)
+
+- SDK improvement
+- Append request extras method
+- Append request custom params
+- Small fixes
+
 # Version 1.4.3 (Mar 18th, 2020)
 
 - Vungle 6.4.6 - 6.5.2
@@ -6,7 +13,7 @@
 - FBAudienceNetwork 5.6.0 - 5.7.1
 - MintegralAdSDK 5.8.4.0 - 6.0.0.0
 - Append CCPA support
-- Append Crireo adapter 3.4.1
+- Append Criteo adapter 3.4.1
 - Bugfix: Append Interstitial Reward callback
 
 # Version 1.4.2 (Feb 23th, 2020)
