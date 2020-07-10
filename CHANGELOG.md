@@ -1,4 +1,4 @@
-# Version 1.5.0 (Mar 18th, 2020)
+# Version 1.5.0 (July 10th, 2020)
 
 - SDK improvement
 - Append request extras method
