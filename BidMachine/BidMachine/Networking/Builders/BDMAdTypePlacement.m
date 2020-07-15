@@ -125,15 +125,13 @@
             .appendIcon(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
                 fmt.appendId(1);
-                fmt.appendReq(1);
-                fmt = type & BDMNativeAdTypeIcon ? fmt : nil;
+                fmt.appendReq(type & BDMNativeAdTypeIcon);
                 fmt;
             }))
             .appendImage(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
                 fmt.appendId(2);
-                fmt.appendReq(1);
-                fmt = type & BDMNativeAdTypeImage ? fmt : nil;
+                fmt.appendReq(type & BDMNativeAdTypeImage);
                 fmt;
             }))
             .appendDescription(({
@@ -163,8 +161,7 @@
             .appendVideo(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
                 fmt.appendId(7);
-                fmt.appendReq(0);
-                fmt = type & BDMNativeAdTypeVideo ? fmt : nil;
+                fmt.appendReq(type & BDMNativeAdTypeVideo);
                 fmt;
             }));
             native;

@@ -64,7 +64,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.type = BDMNativeAdTypeAllMedia;
+        self.type = BDMNativeAdTypeIcon | BDMNativeAdTypeImage;
     }
     return self;
 }
