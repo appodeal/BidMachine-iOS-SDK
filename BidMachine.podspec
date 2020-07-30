@@ -48,7 +48,7 @@ Pod::Spec.new do |s|
   s.subspec 'FacebookAdapter' do |ss|
     ss.vendored_libraries = 'libBDMFacebookAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'FBAudienceNetwork', '5.7.1'
+    ss.dependency 'FBAudienceNetwork', '5.10.1'
   end
 
   s.subspec 'MyTargetAdapter' do |ss|

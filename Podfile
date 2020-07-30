@@ -54,7 +54,7 @@ def tapjoy
 end
 
 def facebook
-  pod 'FBAudienceNetwork', '5.7.1'
+  pod 'FBAudienceNetwork', '5.10.1'
 end
 
 def criteo
