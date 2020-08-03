@@ -1,4 +1,9 @@
 
+# Version 1.5.2 (Aug 3th, 2020)
+
+- Append Criteo rotation unit logic
+- Update FBAudienceNetwork 5.10.1
+
 # Version 1.5.1 (July 28th, 2020)
 
 - append fetcher
