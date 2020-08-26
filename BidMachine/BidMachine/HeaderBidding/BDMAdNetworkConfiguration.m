@@ -43,6 +43,13 @@
     return self;
 }
 
+- (BDMAdNetworkConfigurationBuilder * (^)(NSTimeInterval))appendTimeout {
+    return ^id(NSTimeInterval timeout){
+        self.preparationTimeout = timeout;
+        return self;
+    };
+}
+
 - (BDMAdNetworkConfigurationBuilder *(^)(NSString *))appendName {
     return ^id(NSString *name) {
         self.name = name;
@@ -57,9 +64,9 @@
     return _units;
 }
 
-- (BDMAdNetworkConfigurationBuilder * (^)(BDMAdUnitFormat, NSDictionary<NSString *,id> *))appendAdUnit {
-    return ^id(BDMAdUnitFormat fmt, NSDictionary *params) {
-        BDMAdUnit *unit = [BDMAdUnit adUnitWithFormat:fmt customParams:params];
+- (BDMAdNetworkConfigurationBuilder * (^)(BDMAdUnitFormat, NSDictionary<NSString *,id> *, NSDictionary<NSString *,id> *))appendAdUnit {
+    return ^id(BDMAdUnitFormat fmt, NSDictionary *params, NSDictionary *extras) {
+        BDMAdUnit *unit = [[BDMAdUnit alloc] initWithFormat:fmt customParams:params extras:extras];
         if (![self.units containsObject:unit]) {
             [self.units addObject:unit];
         }
@@ -138,7 +145,7 @@
         builder.appendInitializationParams(self.initializationParams);
         builder.appendNetworkClass(self.networkClass);
         [self.adUnits enumerateObjectsUsingBlock:^(BDMAdUnit *obj, NSUInteger idx, BOOL *stop) {
-            builder.appendAdUnit(obj.format, obj.customParams);
+            builder.appendAdUnit(obj.format, obj.customParams, obj.extras);
         }];
     }];
 }

@@ -49,7 +49,7 @@ BDM_SUBCLASSING_RESTRICTED
 /**
  Creative custom parameters
 */
-@property (nonatomic, copy, readonly, nullable) NSDictionary <NSString *, NSString *> *customParams;
+@property (nonatomic, copy, readonly, nullable) NSDictionary <NSString *, id> *customParams;
 /**
  Transform model to key-value map
 */

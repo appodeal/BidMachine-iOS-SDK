@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign, readwrite) BDMAdUnitFormat format;
 @property (nonatomic, copy,   readwrite) NSDictionary <NSString *, id> *customParams;
+@property (nonatomic, copy,   readwrite) NSDictionary <NSString *, id> *extras;
 
 @end
 
@@ -20,12 +21,19 @@
 @implementation BDMAdUnit
 
 - (instancetype)initWithFormat:(BDMAdUnitFormat)format
-                  customParams:(NSDictionary<NSString *,id> *)customParams {
+                  customParams:(NSDictionary<NSString *,id> *)customParams
+                        extras:(NSDictionary<NSString *,id> *)extras {
     if (self = [super init]) {
         self.format = format;
         self.customParams = customParams;
+        self.extras = extras;
     }
     return self;
+}
+
+- (instancetype)initWithFormat:(BDMAdUnitFormat)format
+                  customParams:(NSDictionary<NSString *,id> *)customParams {
+    return [self initWithFormat:format customParams:customParams extras:nil];
 }
 
 + (instancetype)adUnitWithFormat:(BDMAdUnitFormat)type customParams:(NSDictionary<NSString *,id> *)customParams {
@@ -39,23 +47,26 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeInteger:self.format forKey:@"format"];
     [aCoder encodeObject:self.customParams forKey:@"params"];
+    [aCoder encodeObject:self.extras forKey:@"extras"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     BDMAdUnitFormat format = [aDecoder decodeIntegerForKey:@"format"];
     NSDictionary *params = [aDecoder decodeObjectForKey:@"params"];
+    NSDictionary *extras = [aDecoder decodeObjectForKey:@"extras"];
     
-    return [self initWithFormat:format customParams:params];
+    return [self initWithFormat:format customParams:params extras:extras];
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {
-    return [[self.class alloc] initWithFormat:self.format customParams:self.customParams];;
+    return [[self.class alloc] initWithFormat:self.format customParams:self.customParams extras:self.extras];
 }
 
 - (BOOL)isEqual:(id)object {
     return [object isKindOfClass:BDMAdUnit.class] &&
     [(BDMAdUnit *)object format] == self.format &&
-    [[(BDMAdUnit *)object customParams] isEqual:self.customParams];
+    [[(BDMAdUnit *)object customParams] isEqual:self.customParams] &&
+    [[(BDMAdUnit *)object extras] isEqual:self.extras];
 }
 
 @end

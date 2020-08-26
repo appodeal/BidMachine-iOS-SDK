@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Adds network name, registered in ad network adapter and backend. Required
  */
+@property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendTimeout)(NSTimeInterval);
+/**
+ Adds network name, registered in ad network adapter and backend. Required
+ */
 @property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendName)(NSString *);
 /**
  Adds class of BDMNetwork. Required
@@ -29,9 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendNetworkClass)(Class<BDMNetwork>);
 /**
  Adds network ad units that contain info about
- ad format and network specific parameters. Required
+ ad format and network specific parameters and extras parameters. Required
  */
-@property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendAdUnit)(BDMAdUnitFormat, NSDictionary <NSString *, id> *);
+@property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendAdUnit)(BDMAdUnitFormat, NSDictionary <NSString *, id> *, NSDictionary <NSString *, id> *);
 /**
  Adds network specific parameters. Optional
  */

@@ -34,7 +34,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
 @property (nonatomic, copy, readwrite) NSString *displaymanager;
 @property (nonatomic, copy, readwrite) NSString *ID;
 @property (nonatomic, copy, readwrite) NSDictionary <NSString *, NSString *> *renderingInfo;
-@property (nonatomic, copy, readwrite) NSDictionary <NSString *, NSString *> *customParams;
+@property (nonatomic, copy, readwrite) NSDictionary <NSString *, id> *customParams;
 @property (nonatomic, assign, readwrite) BDMCreativeFormat format;
 
 @end
@@ -110,8 +110,18 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
         [renderingInfo addEntriesFromDictionary:BDMTransformers.jsonObject(headerBiddingAd.clientParams)];
         [renderingInfo addEntriesFromDictionary:BDMTransformers.jsonObject(headerBiddingAd.serverParams)];
     }
+    
+    NSMutableDictionary *customParams = BDMTransformers.jsonObject(extensions.customParams).mutableCopy;
+    if (headerBiddingAd.clientParams) {
+        NSMutableDictionary *extDict = NSMutableDictionary.new;
+        NSString *extString = headerBiddingAd.clientParams[@"bdm_ext"];
+        NSData *dataExt = [[NSData alloc] initWithBase64EncodedString:extString options:0];
+        extDict = [STKJSONSerialization JSONObjectWithData:dataExt options:NSJSONReadingAllowFragments error:nil];
+        [customParams addEntriesFromDictionary:extDict ?: @{}];
+    }
+    
     self.renderingInfo = renderingInfo;
-    self.customParams = extensions.customParams;
+    self.customParams = customParams;
 }
 
 - (void)populateEvents:(NSArray <ADCOMAd_Event *> *)events {

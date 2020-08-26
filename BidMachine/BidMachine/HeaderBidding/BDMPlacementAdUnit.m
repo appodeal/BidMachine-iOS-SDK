@@ -9,6 +9,8 @@
 #import "BDMPlacementAdUnit.h"
 #import "BDMAdUnit.h"
 
+#import <StackFoundation/StackFoundation.h>
+
 
 @interface BDMAdUnitExtended : BDMAdUnit <BDMPlacementAdUnit>
 
@@ -64,11 +66,13 @@
 + (id<BDMPlacementAdUnit>)placementAdUnitWithBuild:(void (^)(BDMPlacementAdUnitBuilder *))build {
     BDMPlacementAdUnitBuilder *builder = [BDMPlacementAdUnitBuilder new];
     build(builder);
-    BDMAdUnitExtended *placementAdUnit = [BDMAdUnitExtended adUnitWithFormat:builder.adUnit.format
-                                                                customParams:builder.adUnit.customParams];
+    BDMAdUnitExtended *placementAdUnit = [[BDMAdUnitExtended alloc] initWithFormat:builder.adUnit.format
+                                                                      customParams:builder.adUnit.customParams
+                                                                            extras:builder.adUnit.extras];
     placementAdUnit.bidder = builder.bidder;
     placementAdUnit.bidderSdkVersion = builder.sdkVer;
-    placementAdUnit.clientParams = builder.clientParams;
+    placementAdUnit.clientParams = [builder clientParamsWithExtras:builder.adUnit.extras];
+
     return placementAdUnit;
 }
 
@@ -98,6 +102,16 @@
         self.clientParams = clientParams;
         return self;
     };
+}
+
+- (NSDictionary *)clientParamsWithExtras:(NSDictionary <NSString *, id> *)extras {
+    NSMutableDictionary *params = self.clientParams.mutableCopy;
+    if (extras.count) {
+        NSData *data = [STKJSONSerialization dataWithJSONObject:extras options:NSJSONWritingFragmentsAllowed error:nil];
+        NSString * extString = [data base64EncodedStringWithOptions: 0];
+        params[@"bdm_ext"] = extString;
+    }
+    return params;
 }
 
 @end

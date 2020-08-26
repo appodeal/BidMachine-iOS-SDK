@@ -16,9 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, readonly) BDMAdUnitFormat format;
 @property (nonatomic, copy,   readonly) NSDictionary <NSString *, id> *customParams;
+@property (nonatomic, copy,   readonly) NSDictionary <NSString *, id> *extras;
 
 - (instancetype)initWithFormat:(BDMAdUnitFormat)format
                   customParams:(NSDictionary <NSString *, id> *)customParams;
+
+- (instancetype)initWithFormat:(BDMAdUnitFormat)format
+                  customParams:(NSDictionary <NSString *, id> *)customParams
+                        extras:(nullable NSDictionary <NSString *, id> *)extras;
 
 + (instancetype)adUnitWithFormat:(BDMAdUnitFormat)format
                     customParams:(NSDictionary <NSString *, id> *)customParams;
