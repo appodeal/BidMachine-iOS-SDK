@@ -50,7 +50,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
         // Parse ad model
         NSError * error;
         ADCOMAd * ad = [ADCOMAd parseFromData:data error:&error];
-        NSData * raw = ad.extArray.firstObject.value;
+        NSData * raw = ad.extProtoArray.firstObject.value;
         BDMAdExtension * extension = raw ? [BDMAdExtension parseFromData:raw error:&error] : nil;
         
         // Populate all data needed for adapter

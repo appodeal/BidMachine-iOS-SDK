@@ -13,15 +13,15 @@
 @implementation ADCOMAd (Private)
 
 - (BDMHeaderBiddingAd *)bdm_bannerHeaderBiddingAd {
-    return [self bdm_headerBiddingAdFromExtensions:self.display.banner.extArray];
+    return [self bdm_headerBiddingAdFromExtensions:self.display.banner.extProtoArray];
 }
 
 - (BDMHeaderBiddingAd *)bdm_videoHeaderBiddingAd {
-    return [self bdm_headerBiddingAdFromExtensions:self.video.extArray];
+    return [self bdm_headerBiddingAdFromExtensions:self.video.extProtoArray];
 }
 
 - (BDMHeaderBiddingAd *)bdm_nativeHeaderBiddingAd {
-    return [self bdm_headerBiddingAdFromExtensions:self.display.native.extArray];
+    return [self bdm_headerBiddingAdFromExtensions:self.display.native.extProtoArray];
 }
 
 - (BDMHeaderBiddingAd *)bdm_headerBiddingAdFromExtensions:(NSArray <GPBAny *> *)extensions {

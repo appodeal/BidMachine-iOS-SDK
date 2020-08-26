@@ -92,7 +92,7 @@
         // Setup items
         requestMessage.itemArray       = self.requestItemsMessage;
         // Setup extensions
-        requestMessage.extArray        = self.requestExtensionsMessage;
+        requestMessage.extProtoArray   = self.requestExtensionsMessage;
         requestMessage;
     });
     
@@ -302,7 +302,7 @@
     
     regs.coppa = self.restrictions.coppa;
     regs.gdpr = self.restrictions.subjectToGDPR;
-    regs.extArray = @[ccpa].mutableCopy;
+    regs.extProtoArray = @[ccpa].mutableCopy;
     
     return regs;
 }

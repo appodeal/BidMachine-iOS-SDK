@@ -55,11 +55,11 @@ BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
         NSArray <id<BDMPlacementAdUnit>> *displayExt = ANY(adUnits).filter(^BOOL(id<BDMPlacementAdUnit> unit) { return !isBDMAdUnitFormatVideo(unit.format); }).array;
         
         if (displayExt.count) {
-            self.placement.display.extArray = [self headerBiddingExt:displayExt];
+            self.placement.display.extProtoArray = [self headerBiddingExt:displayExt];
         }
         
         if (videoExt.count) {
-            self.placement.video.extArray = [self headerBiddingExt:videoExt];
+            self.placement.video.extProtoArray = [self headerBiddingExt:videoExt];
         }
         
         return self;
