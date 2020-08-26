@@ -40,7 +40,8 @@
 
 @property (nonatomic, copy, readonly) NSString *ssp;
 
-- (void)collectHeaderBiddingAdUnits:(BDMInternalPlacementType)placementType
+- (void)collectHeaderBiddingAdUnits:(NSArray <BDMAdNetworkConfiguration *> *)configs
+                          placement:(BDMInternalPlacementType)placementType
                          completion:(void (^)(NSArray<id<BDMPlacementAdUnit>> *))completion;
 
 - (void)initializeNetworks:(NSArray <BDMAdNetworkConfiguration *> *)configs

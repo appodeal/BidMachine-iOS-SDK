@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  Adds network ad units that contain info about
  ad format and network specific parameters and extras parameters. Required
  */
-@property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendAdUnit)(BDMAdUnitFormat, NSDictionary <NSString *, id> *, NSDictionary <NSString *, id> *);
+@property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendAdUnit)(BDMAdUnitFormat, NSDictionary <NSString *, id> *, NSDictionary <NSString *, id> *_Nullable);
 /**
  Adds network specific parameters. Optional
  */

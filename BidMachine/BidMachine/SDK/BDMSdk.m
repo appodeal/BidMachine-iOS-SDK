@@ -267,14 +267,17 @@
     [self.operationQueue addOperation:operation];
 }
 
-- (void)collectHeaderBiddingAdUnits:(BDMInternalPlacementType)placementType
+- (void)collectHeaderBiddingAdUnits:(NSArray<BDMAdNetworkConfiguration *> *)configs
+                          placement:(BDMInternalPlacementType)placementType
                          completion:(void (^)(NSArray<id<BDMPlacementAdUnit>> *))completion {
     [self.middleware startEvent:BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared
                       placement:placementType];
-    BDMHeaderBiddingInitialisationOperation *initialisation = [BDMFactory.sharedFactory initialisationOperationForNetworks:self.configuration.networkConfigurations
+    
+    NSArray<BDMAdNetworkConfiguration *> *networkConfigurations = configs.count ? configs : self.configuration.networkConfigurations;
+    BDMHeaderBiddingInitialisationOperation *initialisation = [BDMFactory.sharedFactory initialisationOperationForNetworks:networkConfigurations
                                                                                                                 controller:self.headerBiddingController
                                                                                                          waitUntilFinished:YES];
-    BDMHeaderBiddingPreparationOperation *preparation = [BDMFactory.sharedFactory preparationOperationForNetworks:self.configuration.networkConfigurations
+    BDMHeaderBiddingPreparationOperation *preparation = [BDMFactory.sharedFactory preparationOperationForNetworks:networkConfigurations
                                                                                                        controller:self.headerBiddingController
                                                                                                         placement:placementType];
     [preparation addDependency:initialisation];

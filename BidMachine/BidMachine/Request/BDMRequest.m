@@ -25,6 +25,7 @@
 @property (nonatomic, assign) BDMRequestState state;
 
 @property (copy, nonatomic) NSDictionary <NSString *, id> *customParameters;
+@property (copy, nonatomic, readwrite, nullable) NSArray <BDMAdNetworkConfiguration *> *networkConfigurations;
 
 @property (copy, nonatomic) NSString *adSpaceId;
 @property (copy, nonatomic) NSNumber *activeSegmentIdentifier;
@@ -83,7 +84,9 @@
     self.placementType = placementType;
     
     __weak typeof(self) weakSelf = self;
-    [BDMSdk.sharedSdk collectHeaderBiddingAdUnits:placementType completion:^(NSArray<id<BDMPlacementAdUnit>> *placememntAdUnits) {
+    [BDMSdk.sharedSdk collectHeaderBiddingAdUnits:self.networkConfigurations
+                                        placement:placementType
+                                       completion:^(NSArray<id<BDMPlacementAdUnit>> *placememntAdUnits) {
         // Append header bidding
         placementBuilder.appendHeaderBidding(placememntAdUnits);
         // Populate targeting

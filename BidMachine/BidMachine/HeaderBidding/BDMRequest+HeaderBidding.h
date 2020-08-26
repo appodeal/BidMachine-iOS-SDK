@@ -7,11 +7,16 @@
 //
 
 #import <BidMachine/BDMRequest.h>
+#import <BidMachine/BDMSdkConfiguration+HeaderBidding.h>
 
 @interface BDMRequest (HeaderBidding)
 /**
  Custom parameters fot request
  */
 @property (copy, nonatomic, readwrite, nullable) NSDictionary <NSString *, id> *customParameters;
+/**
+Header bidding configuration
+*/
+@property (copy, nonatomic, readwrite, nullable) NSArray <BDMAdNetworkConfiguration *> *networkConfigurations;
 
 @end
