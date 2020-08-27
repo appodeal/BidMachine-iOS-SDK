@@ -20,10 +20,8 @@
 - (void)commonInit {
     self.disableLogging = !BDMSdkLoggingEnabled;
     if (BDMSdk.sharedSdk.restrictions.subjectToGDPR && BDMSdk.sharedSdk.restrictions.consentString) {
-        self.gdprConsentString = BDMSdk.sharedSdk.restrictions.consentString;
-        self.gdprRequired = BDMSdk.sharedSdk.restrictions.subjectToGDPR;
-        [self setOption:@"explicit_consent_given" withNumericValue:@YES];
-        [self setOption:@"consent_response" withNumericValue:@(BDMSdk.sharedSdk.restrictions.hasConsent)];
+        [self setPrivacyFrameworkOfType:ADC_GDPR isRequired:YES];
+        [self setPrivacyConsentString:BDMSdk.sharedSdk.restrictions.consentString forType:ADC_GDPR];
     }
     
     if (!BDMSdk.sharedSdk.restrictions.allowUserInformation) {

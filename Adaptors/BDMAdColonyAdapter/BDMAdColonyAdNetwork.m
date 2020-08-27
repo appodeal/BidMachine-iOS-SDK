@@ -65,7 +65,6 @@
     __weak typeof(self) weakSelf = self;
     self.appId = appId;
     AdColonyAppOptions *options = [BDMAdColonyAppOptions new];
-    options.gdprConsentString = BDMSdk.sharedSdk.restrictions.consentString;
     [AdColony configureWithAppID:appId
                          zoneIDs:zones
                          options:options
