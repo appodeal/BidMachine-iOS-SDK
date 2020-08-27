@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   s.subspec 'AdColonyAdapter' do |ss|
     ss.vendored_libraries = 'libBDMAdColonyAdapter.a'
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'AdColony', '4.1.4'
+    ss.dependency 'AdColony', '4.3.0'
   end
 
   s.subspec 'FacebookAdapter' do |ss|
@@ -54,26 +54,26 @@ Pod::Spec.new do |s|
   s.subspec 'MyTargetAdapter' do |ss|
     ss.vendored_libraries = 'libBDMMyTargetAdapter.a'
     ss.dependency 'BidMachine/Core' 
-    ss.dependency 'myTargetSDK', '5.4.2'
+    ss.dependency 'myTargetSDK', '5.7.1'
   end
 
   s.subspec 'TapjoyAdapter' do |ss|
     ss.vendored_libraries = 'libBDMTapjoyAdapter.a'
     ss.dependency 'BidMachine/Core' 
-    ss.dependency 'TapjoySDK', '12.4.2'
+    ss.dependency 'TapjoySDK', '12.6.1'
   end
 
   s.subspec 'VungleAdapter' do |ss|
     ss.vendored_libraries = 'libBDMVungleAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'VungleSDK-iOS', '6.5.2'
+    ss.dependency 'VungleSDK-iOS', '6.7.0'
   end
 
   s.subspec 'MintegralAdapter' do |ss|
     ss.vendored_libraries = 'libBDMMintegralAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '6.0.0.0'
-    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '6.0.0.0'
+    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '6.3.7.0'
+    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '6.3.7.0'
   end
 
   s.subspec 'CriteoAdapter' do |ss|
@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   s.subspec 'SmaatoAdapter' do |ss|
     ss.vendored_libraries = 'libBDMSmaatoAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'smaato-ios-sdk', '21.2.2'
-    ss.dependency 'smaato-ios-sdk/Modules/UnifiedBidding', '21.2.2'
+    ss.dependency 'smaato-ios-sdk', '21.5.2'
+    ss.dependency 'smaato-ios-sdk/Modules/UnifiedBidding', '21.5.2'
   end
 end
