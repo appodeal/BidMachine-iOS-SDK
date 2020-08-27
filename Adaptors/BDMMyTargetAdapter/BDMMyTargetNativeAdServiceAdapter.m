@@ -39,7 +39,6 @@
     
     self.nativeAd = [[MTRGNativeAd alloc] initWithSlotId:slotId];
     self.nativeAd.delegate = self;
-    self.nativeAd.autoLoadImages = false;
     
     [BDMMyTargetCustomParams populate:self.nativeAd.customParams];
     [self.nativeAd loadFromBid:bid];

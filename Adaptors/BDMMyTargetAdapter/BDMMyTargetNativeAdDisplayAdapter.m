@@ -73,13 +73,13 @@
     
     
     if ([adRendering respondsToSelector:@selector(iconView)] && adRendering.iconView) {
-        adRendering.iconView.stkFastImageCache([NSURL URLWithString:self.iconUrl]);
+        UIView *adView = [MTRGNativeViewsFactory createIconAdView];
+        [adView removeFromSuperview];
+        [adView stk_edgesEqual:adRendering.iconView];
     }
     
     if ([adRendering respondsToSelector:@selector(mediaContainerView)] && adRendering.mediaContainerView) {
-        MTRGContentStreamAdView *adView = [MTRGContentStreamAdView createWithBanner:self.ad.banner];
-        [adView loadImages];
-        [self.ad registerView:adView withController:controller];
+        UIView *adView = [MTRGNativeViewsFactory createMediaAdView];
         [adView removeFromSuperview];
         [adView stk_edgesEqual:adRendering.mediaContainerView];
         
