@@ -20,12 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 - (void)loadVideoWithBidToken:(nonnull NSString *)bidToken
+                  placementId:(nullable NSString *)placementId
                        unitId:(nonnull NSString *)unitId
                       adapter:(nonnull id <BDMFullscreenAdapter>)adapter;
-- (void)showVideo:(nonnull NSString *)unitId
-     withRewardId:(nonnull NSString *)rewardId
-           userId:(nullable NSString *)userId
-          adapter:(nonnull id <BDMFullscreenAdapter>)adapter;
+
+- (void)showVideoWithPlacementId:(nullable NSString *)placementId
+                          unitId:(nonnull NSString *)unitId
+                    withRewardId:(nonnull NSString *)rewardId
+                          userId:(nullable NSString *)userId
+                         adapter:(nonnull id <BDMFullscreenAdapter>)adapter;
 
 @end
 

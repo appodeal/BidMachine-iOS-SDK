@@ -34,23 +34,27 @@
 }
 
 - (void)loadVideoWithBidToken:(NSString *)bidToken
+                  placementId:(NSString *)placementId
                        unitId:(NSString *)unitId
                       adapter:(id<BDMFullscreenAdapter>)adapter {
     if (!self.adIsLoading) {
         self.adIsLoading = YES;
         self.adapter = adapter;
         [self.manager loadVideoWithBidToken:bidToken
+                                placementId:placementId
                                      unitId:unitId
                                    delegate:self];
     }
 }
 
-- (void)showVideo:(NSString *)unitId
-     withRewardId:(NSString *)rewardId
-           userId:(NSString *)userId
-          adapter:(id<BDMFullscreenAdapter>)adapter {
+- (void)showVideoWithPlacementId:(NSString *)placementId
+                          unitId:(NSString *)unitId
+                    withRewardId:(NSString *)rewardId
+                          userId:(NSString *)userId
+                         adapter:(id<BDMFullscreenAdapter>)adapter {
     if ([self rootViewController]) {
-        [self.manager showVideo:unitId
+        [self.manager showVideoWithPlacementId:placementId
+                         unitId:unitId
                    withRewardId:rewardId
                          userId:userId
                        delegate:self

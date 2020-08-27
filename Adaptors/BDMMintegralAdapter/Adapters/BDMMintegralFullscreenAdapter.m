@@ -20,6 +20,7 @@
 @property (nonatomic, strong) MTGBidInterstitialVideoAdManager *interstitialBidAdManager;
 @property (nonatomic, strong) BDMMintegralVideoAdProxy *rewardedBidAdManagerProxy;
 @property (nonatomic, copy) NSString *unitId;
+@property (nonatomic, copy) NSString *placementId;
 
 @end
 
@@ -35,8 +36,9 @@
 
 - (MTGBidInterstitialVideoAdManager *)interstitialBidAdManager {
     if (!_interstitialBidAdManager) {
-        _interstitialBidAdManager = [[MTGBidInterstitialVideoAdManager alloc] initWithUnitID:self.unitId
-                                                                                    delegate:self];
+        _interstitialBidAdManager = [[MTGBidInterstitialVideoAdManager alloc] initWithPlacementId:self.placementId
+                                                                                           unitId:self.unitId
+                                                                                         delegate:self];
     }
     return _interstitialBidAdManager;
 }
@@ -45,6 +47,7 @@
     BDMMintegralValueTransformer *transformer = [BDMMintegralValueTransformer new];
     NSString *bidToken = [transformer transformedValue:contentInfo[@"bid_token"]];
     self.unitId = [transformer transformedValue:contentInfo[@"unit_id"]];
+    self.placementId = [transformer transformedValue:contentInfo[@"placement_id"]];
     if (!bidToken || !self.unitId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"Mintegral adapter was not recive valid bidding data"];
@@ -54,8 +57,9 @@
     
     if (self.rewarded) {
         [self.rewardedBidAdManagerProxy loadVideoWithBidToken:bidToken
-                                                  unitId:self.unitId
-                                                adapter:self];
+                                                  placementId:self.placementId
+                                                       unitId:self.unitId
+                                                      adapter:self];
     } else {
         [self.interstitialBidAdManager loadAdWithBidToken:bidToken];
     }
@@ -63,13 +67,13 @@
 
 - (void)present {
     UIViewController *rootViewController = [self.displayDelegate rootViewControllerForAdapter:self];
-    if ([self.rewardedBidAdManagerProxy.manager isVideoReadyToPlay:self.unitId] && self.rewarded) {
+    if ([self.rewardedBidAdManagerProxy.manager isVideoReadyToPlayWithPlacementId:self.placementId unitId:self.unitId] && self.rewarded) {
         [self.displayDelegate adapterWillPresent:self];
-        [self.rewardedBidAdManagerProxy showVideo:self.unitId
-                                             withRewardId:@""
-                                                   userId:@""
-                                                 adapter:self];
-    } else if ([self.interstitialBidAdManager isVideoReadyToPlay:self.unitId] && !self.rewarded) {
+        [self.rewardedBidAdManagerProxy showVideoWithPlacementId:self.placementId
+                                                          unitId:self.unitId withRewardId:@""
+                                                          userId:@""
+                                                         adapter:self];
+    } else if ([self.interstitialBidAdManager isVideoReadyToPlayWithPlacementId:self.placementId unitId:self.unitId] && !self.rewarded) {
         [self.interstitialBidAdManager showFromViewController:rootViewController];
     }
 }

@@ -54,8 +54,10 @@
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self syncMetadata];
+        BDMMintegralValueTransformer *transformer = [BDMMintegralValueTransformer new];
         NSString *buyeruid = [MTGBiddingSDK buyerUID];
-        NSString *unitId = [BDMMintegralValueTransformer.new transformedValue:parameters[@"unit_id"]];
+        NSString *unitId = [transformer transformedValue:parameters[@"unit_id"]];
+        NSString *placementId = [transformer transformedValue:parameters[@"placement_id"]];
         if (!self.appId || !buyeruid || !unitId) {
             NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                             description:@"Mintegral adapter was not receive valid bidding data"];
@@ -63,10 +65,11 @@
             return;
         }
         
-        NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:3];
+        NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:4];
         bidding[@"app_id"] = self.appId;
         bidding[@"buyeruid"] = buyeruid;
         bidding[@"unit_id"] = unitId;
+        bidding[@"placement_id"] = placementId;
         
         STK_RUN_BLOCK(completion, bidding, nil);
     });
