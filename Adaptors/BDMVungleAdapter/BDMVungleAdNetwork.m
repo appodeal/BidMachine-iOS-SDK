@@ -148,9 +148,21 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
     }
 }
 
-- (void)vungleWillCloseAdWithViewInfo:(VungleViewInfo *)info placementID:(NSString *)placementID {
+- (void)vungleWillCloseAdForPlacementID:(NSString *)placementID {
     for (BDMVungleFullscreenAdapter *adapter in self.delegates.allObjects.reverseObjectEnumerator) {
-        [adapter vungleWillCloseAdWithViewInfo: info placementID:placementID];
+        [adapter vungleWillCloseAdForPlacementID:placementID];
+    }
+}
+
+- (void)vungleTrackClickForPlacementID:(nullable NSString *)placementID {
+    for (BDMVungleFullscreenAdapter *adapter in self.delegates.allObjects.reverseObjectEnumerator) {
+        [adapter vungleTrackClickForPlacementID:placementID];
+    }
+}
+
+- (void)vungleRewardUserForPlacementID:(nullable NSString *)placementID {
+    for (BDMVungleFullscreenAdapter *adapter in self.delegates.allObjects.reverseObjectEnumerator) {
+        [adapter vungleRewardUserForPlacementID:placementID];
     }
 }
 

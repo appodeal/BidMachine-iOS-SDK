@@ -68,20 +68,28 @@
     [self.displayDelegate adapterWillPresent:self];
 }
 
-- (void)vungleWillCloseAdWithViewInfo:(VungleViewInfo *)info placementID:(NSString *)placementID {
+- (void)vungleWillCloseAdForPlacementID:(NSString *)placementID {
     if (![placementID isEqualToString:self.placement]) {
         return;
     }
     
-    if (info.didDownload.boolValue) {
-        [self.displayDelegate adapterRegisterUserInteraction:self];
-    }
-    
-    if (info.completedView.boolValue && self.rewarded) {
-        [self.displayDelegate adapterFinishRewardAction:self];
-    }
-    
     [self.displayDelegate adapterDidDismiss:self];
+}
+
+- (void)vungleTrackClickForPlacementID:(nullable NSString *)placementID {
+    if (![placementID isEqualToString:self.placement]) {
+        return;
+    }
+    
+    [self.displayDelegate adapterRegisterUserInteraction:self];
+}
+
+- (void)vungleRewardUserForPlacementID:(nullable NSString *)placementID {
+    if (![placementID isEqualToString:self.placement]) {
+        return;
+    }
+    
+    [self.displayDelegate adapterFinishRewardAction:self];
 }
 
 @end
