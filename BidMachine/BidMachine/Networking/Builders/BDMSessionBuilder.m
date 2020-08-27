@@ -57,6 +57,7 @@
     requestMessage.geo = self.geoMessage;
     requestMessage.deviceType = BDMTransformers.deviceType(STKDevice.type);
     requestMessage.ifv = STKAd.vendorIdentifier;
+    requestMessage.appVer = STKBundle.bundleVersion;
     
     if (!isGDPRRestricted && !isCoppa) {
         requestMessage.ifa = STKAd.advertisingIdentifier;
