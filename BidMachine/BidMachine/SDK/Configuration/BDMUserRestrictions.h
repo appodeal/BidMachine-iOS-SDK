@@ -37,7 +37,8 @@ BDM_SUBCLASSING_RESTRICTED
 @property (assign, nonatomic, readonly) BOOL allowUserInformation;
 /**
  IAB CCPA String
+ The Default is UserDefaults value
  */
-@property (assign, nonatomic, readonly, nullable) NSString *USPrivacyString;
+@property (copy, nonatomic, readwrite, nullable) NSString *USPrivacyString;
 @end
 

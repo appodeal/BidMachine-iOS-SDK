@@ -21,7 +21,7 @@
     self.disableLogging = !BDMSdkLoggingEnabled;
     if (BDMSdk.sharedSdk.restrictions.subjectToGDPR && BDMSdk.sharedSdk.restrictions.consentString) {
         [self setPrivacyFrameworkOfType:ADC_GDPR isRequired:YES];
-        [self setPrivacyConsentString:BDMSdk.sharedSdk.restrictions.consentString forType:ADC_GDPR];
+        [self setPrivacyConsentString:BDMSdk.sharedSdk.restrictions.hasConsent ? @"1" : @"0" forType:ADC_GDPR];
     }
     
     if (!BDMSdk.sharedSdk.restrictions.allowUserInformation) {
