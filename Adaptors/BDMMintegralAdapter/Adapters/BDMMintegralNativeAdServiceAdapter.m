@@ -30,6 +30,7 @@
     BDMMintegralValueTransformer *transformer = [BDMMintegralValueTransformer new];
     NSString *bidToken = [transformer transformedValue:contentInfo[@"bid_token"]];
     NSString *unitId = [transformer transformedValue:contentInfo[@"unit_id"]];
+    NSString *placementId = [transformer transformedValue:contentInfo[@"placement_id"]];
     if (!bidToken || !unitId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"Mintegral adapter was not recive valid bidding data"];
@@ -37,9 +38,10 @@
         return;
     }
     
-    self.nativeAdManager = [[MTGBidNativeAdManager alloc] initWithUnitID:unitId
-                                                          autoCacheImage:NO
-                                                presentingViewController:nil];
+    self.nativeAdManager = [[MTGBidNativeAdManager alloc] initWithPlacementId:placementId
+                                                                       unitID:unitId
+                                                               autoCacheImage:NO
+                                                     presentingViewController:nil];
     self.nativeAdManager.delegate = self;
     [self.nativeAdManager loadWithBidToken:bidToken];
 }

@@ -64,43 +64,49 @@
 
 #pragma mark - MTGRewardAdShowDelegate
 
-- (void)onVideoAdShowFailed:(NSString *)unitId
+- (void)onVideoAdShowFailed:(NSString *)placementId
+                     unitId:(NSString *)unitId
                   withError:(NSError *)error {
     [self.adapter.displayDelegate adapter:self.adapter failedToPresentAdWithError:error];
 }
 
-- (void)onVideoAdClicked:(NSString *)unitId {
+- (void)onVideoAdClicked:(NSString *)placementId
+                  unitId:(NSString *)unitId {
     [self.adapter.displayDelegate adapterRegisterUserInteraction:self.adapter];
 }
 
-- (void)onVideoAdDismissed:(NSString *)unitId
+- (void)onVideoAdDismissed:(NSString *)placementId
+                    unitId:(NSString *)unitId
              withConverted:(BOOL)converted
             withRewardInfo:(MTGRewardAdInfo *)rewardInfo {
     [self.adapter.displayDelegate adapterFinishRewardAction:self.adapter];
 }
 
-- (void)onVideoAdDidClosed:(NSString *)unitId {
+- (void)onVideoAdDidClosed:(NSString *)placementId
+                    unitId:(NSString *)unitId {
     [self.adapter.displayDelegate adapterDidDismiss:self.adapter];
 }
 
 // No-op
-- (void)onVideoAdShowSuccess:(NSString *)unitId {}
-- (void)onVideoPlayCompleted:(NSString *)unitId {}
-- (void)onVideoEndCardShowSuccess:(NSString *)unitId {}
+- (void)onVideoAdShowSuccess:(NSString *)placementId unitId:(NSString *)unitId {}
+- (void) onVideoPlayCompleted:(NSString *)placementId unitId:(NSString *)unitId {}
+- (void) onVideoEndCardShowSuccess:(NSString *)placementId unitId:(NSString *)unitId {}
 
 #pragma mark - MTGRewardAdLoadDelegate
 
-- (void)onVideoAdLoadSuccess:(NSString *)unitId {
+- (void)onVideoAdLoadSuccess:(NSString *)placementId
+                      unitId:(NSString *)unitId {
     self.adIsLoading = NO;
     [self.adapter.loadingDelegate adapterPreparedContent:self.adapter];
 }
 
-- (void)onVideoAdLoadFailed:(NSString *)unitId
+- (void)onVideoAdLoadFailed:(NSString *)placementId
+                     unitId:(NSString *)unitId
                       error:(NSError *)error {
     self.adIsLoading = NO;
     [self.adapter.loadingDelegate adapter:self.adapter failedToPrepareContentWithError:error];
 }
 
 // No-op
-- (void)onAdLoadSuccess:(NSString *)unitId {}
+- (void)onAdLoadSuccess:(NSString *)placementId unitId:(NSString *)unitId {}
 @end
