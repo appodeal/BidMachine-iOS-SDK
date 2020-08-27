@@ -117,9 +117,10 @@
 
 - (void)syncMetadata {
     [Tapjoy setDebugEnabled:NO];
-    [Tapjoy belowConsentAge:BDMSdk.sharedSdk.restrictions.coppa];
-    [Tapjoy subjectToGDPR:BDMSdk.sharedSdk.restrictions.subjectToGDPR];
-    [Tapjoy setUserConsent:BDMSdk.sharedSdk.restrictions.hasConsent ? @"1" : @"0"];
+    [[TJPrivacyPolicy sharedInstance] setBelowConsentAge:BDMSdk.sharedSdk.restrictions.coppa];
+    [[TJPrivacyPolicy sharedInstance] setSubjectToGDPR:BDMSdk.sharedSdk.restrictions.subjectToGDPR];
+    [[TJPrivacyPolicy sharedInstance] setUserConsent:BDMSdk.sharedSdk.restrictions.hasConsent ? @"1" : @"0"];
+    [[TJPrivacyPolicy sharedInstance] setUSPrivacy:BDMSdk.sharedSdk.restrictions.USPrivacyString];
 }
 
 @end
