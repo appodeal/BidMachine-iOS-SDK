@@ -37,19 +37,12 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     BDMHeaderBiddingInitialisationOperation *operation = [super operationOnThread:queue
                                                                            action:^(BDMAsyncOperation *operation) {
-                                                                               [(BDMHeaderBiddingInitialisationOperation *)operation execute];
-                                                                           }];
+        [(BDMHeaderBiddingInitialisationOperation *)operation execute];
+    }];
     operation.controller = controller;
     operation.waitUntilFinished = waitUntilFinished;
     operation.configs = networks;
     return operation;
-}
-
-- (dispatch_group_t)initializationGroup {
-    if (!_initializationGroup) {
-        _initializationGroup = dispatch_group_create();
-    }
-    return _initializationGroup;
 }
 
 - (void)complete {
@@ -59,6 +52,7 @@
     
     [super complete];
     [self.timer cancel];
+    self.initializationGroup = nil;
     self.executionTime = self.startTimestamp > 0 ? [NSDate stk_currentTimeInMilliseconds] - self.startTimestamp : 0;
 }
 
@@ -68,6 +62,7 @@
         return;
     }
     
+    self.initializationGroup = dispatch_group_create();
     self.startTimestamp = NSDate.stk_currentTimeInMilliseconds;
     [self.configs enumerateObjectsUsingBlock:^(BDMAdNetworkConfiguration *config, NSUInteger idx, BOOL *stop) {
         self.waitUntilFinished ? dispatch_group_enter(self.initializationGroup) : nil;
