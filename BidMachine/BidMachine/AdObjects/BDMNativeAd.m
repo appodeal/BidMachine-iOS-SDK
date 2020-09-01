@@ -174,7 +174,7 @@
 }
 
 - (NSString *)body {
-    return [self.displayAd assets].title;
+    return [self.displayAd assets].body;
 }
 
 - (NSString *)CTAText {
