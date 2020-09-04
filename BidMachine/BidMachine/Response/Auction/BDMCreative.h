@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "BDMResponseProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BDMCreative : NSObject <BDMCreative>
 
-+ (instancetype)parseFromData:(NSData *)data;
++ (instancetype)parseFromBid:(ORTBResponse_Seatbid_Bid *)bid;
 
 @end
+
+NS_ASSUME_NONNULL_END

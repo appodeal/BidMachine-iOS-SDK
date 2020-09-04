@@ -31,6 +31,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
 @property (nonatomic, copy, readwrite) NSArray <BDMEventURL *> *trackers;
 @property (nonatomic, copy, readwrite) BDMViewabilityMetricConfiguration * viewabilityConfig;
 @property (nonatomic, copy, readwrite) NSArray <NSString *> *adDomains;
+@property (nonatomic, copy, readwrite) NSArray <NSString *> *bundles;
 @property (nonatomic, copy, readwrite) NSString *displaymanager;
 @property (nonatomic, copy, readwrite) NSString *ID;
 @property (nonatomic, copy, readwrite) NSDictionary <NSString *, NSString *> *renderingInfo;
@@ -41,26 +42,28 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
 
 @implementation BDMCreative
 
-+ (instancetype)parseFromData:(NSData *)data {
-    return [[self alloc] initWithData:data];
++ (instancetype)parseFromBid:(ORTBResponse_Seatbid_Bid *)bid {
+    return [[self alloc] initWithBid:bid];
 }
 
-- (instancetype)initWithData:(NSData *)data {
+- (instancetype)initWithBid:(ORTBResponse_Seatbid_Bid *)bid {
     if (self = [super init]) {
         // Parse ad model
+        NSData *data = bid.media.value;
         NSError * error;
         ADCOMAd * ad = [ADCOMAd parseFromData:data error:&error];
         NSData * raw = ad.extProtoArray.firstObject.value;
         BDMAdExtension * extension = raw ? [BDMAdExtension parseFromData:raw error:&error] : nil;
         
         // Populate all data needed for adapter
-        [self populateRenderingData:ad extensions:extension];
+        [self populateRenderingData:ad bid:bid extensions:extension];
         // Populate all events
         [self populateEvents:extension.eventArray];
         // Populate viewability
         [self populateVieabilityConfig:extension];
         // Populate info
         self.adDomains = ad.adomainArray.copy;
+        self.bundles = ad.bundleArray.copy;
         self.ID = ad.id_p;
     }
     return self;
@@ -68,7 +71,10 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
 
 #pragma mark - Private
 
-- (void)populateRenderingData:(ADCOMAd *)ad extensions:(BDMAdExtension *)extensions {
+- (void)populateRenderingData:(ADCOMAd *)ad
+                          bid:(ORTBResponse_Seatbid_Bid *)bid
+                   extensions:(BDMAdExtension *)extensions
+{
     NSMutableDictionary <NSString *, NSString *> * renderingInfo = [NSMutableDictionary new];
     BDMHeaderBiddingAd *headerBiddingAd;
     // Check DSP Creative from video placement first
@@ -80,6 +86,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
         renderingInfo[kBDMSkipOffset]                   = @(extensions.skipoffset).stringValue;
         renderingInfo[kBDMCompanionSkipOffset]          = @(extensions.companionSkipoffset).stringValue;
         renderingInfo[kBDMUseNativeClose]               = @(extensions.useNativeClose).stringValue;
+        [self populateRenderingInfo:renderingInfo withBid:bid];
     // Check DSP Creative from display placement
     } else if (ad.display.adm.length > 0) {
         // All video creatives are displayed by MRAID
@@ -91,11 +98,13 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
         renderingInfo[kBDMHeightKey]                    = @(ad.display.h).stringValue;
         renderingInfo[kBDMSkipOffset]                   = @(extensions.skipoffset).stringValue;
         renderingInfo[kBDMUseNativeClose]               = @(extensions.useNativeClose).stringValue;
+        [self populateRenderingInfo:renderingInfo withBid:bid];
     // Check DSP Creative of native fmt
     } else if (ad.display.native.assetArray.count > 0) {
         self.displaymanager = @"nast";
         self.format = BDMCreativeFormatNative;
         renderingInfo = ad.display.native.JSONRepresentation;
+        [self populateRenderingInfo:renderingInfo withBid:bid];
     } else {
         // Then try to get Header Bidding Ad
         if ((headerBiddingAd = ad.bdm_nativeHeaderBiddingAd)) {
@@ -135,6 +144,17 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
     self.viewabilityConfig = config;
 }
 
+- (void)populateRenderingInfo:(NSMutableDictionary <NSString *, NSString *> *)info withBid:(ORTBResponse_Seatbid_Bid *)bid {
+    NSDictionary *bidExtension = bid.ext.fields.copy;
+    info[@"STKProductParameterItemIdentifier"]                      = bidExtension[@"sourceapp"];
+    info[@"STKProductParameterClickThrough"]                        = bidExtension[@"?"];
+    info[@"STKProductParameterAdNetworkAttributionSignature"]       = bidExtension[@"signature"];
+    info[@"STKProductParameterAdNetworkCampaignIdentifier"]         = bidExtension[@"campaign"];
+    info[@"STKProductParameterAdNetworkIdentifier"]                 = bidExtension[@"network"];
+    info[@"STKProductParameterAdNetworkNonce"]                      = bidExtension[@"nonce"];
+    info[@"STKProductParameterAdNetworkTimestamp"]                  = bidExtension[@"timestamp"];
+}
+
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -145,6 +165,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
     copy.displaymanager      = self.displaymanager;
     copy.renderingInfo       = self.renderingInfo;
     copy.adDomains           = self.adDomains;
+    copy.bundles             = self.bundles;
     copy.ID                  = self.ID;
     copy.format              = self.format;
     copy.customParams        = self.customParams;

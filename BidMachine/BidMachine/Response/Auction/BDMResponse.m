@@ -54,7 +54,7 @@
         self.price = @(bid.price);
         // Populate creative with bid
         if (bid.media.value) {
-            self.creative = [BDMCreative parseFromData:bid.media.value];
+            self.creative = [BDMCreative parseFromBid:bid];
         }
     }
     return self;

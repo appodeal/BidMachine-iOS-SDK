@@ -21,6 +21,10 @@ FOUNDATION_EXPORT NSString * const kBDMVersion;
 
 #define BDMLog(fmt, ...)  BDMSdkLoggingEnabled ? NSLog(@"[BidMachine][%@] "fmt, kBDMVersion, ##__VA_ARGS__) : nil
 
+typedef NSString BDMFmwName;
+FOUNDATION_EXPORT BDMFmwName * const BDMNativeFramework;
+FOUNDATION_EXPORT BDMFmwName * const BDMNUnityFramework;
+
 /// Domain of OpenBids SDK errors
 FOUNDATION_EXPORT NSString * kBDMErrorDomain;
 /// Indicates that logging was enabled

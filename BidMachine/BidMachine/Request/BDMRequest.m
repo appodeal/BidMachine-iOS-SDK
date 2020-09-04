@@ -107,6 +107,7 @@
             weakSelf.response = response;
             weakSelf.state = BDMRequestStateSuccessful;
             [weakSelf.middleware fulfillEvent:BDMEventAuction];
+            [weakSelf saveContextualData];
             [weakSelf beginExpirationMonitoring];
             [weakSelf notifyDelegatesOnSuccess];
         } failure:^(NSError *error) {
@@ -125,6 +126,11 @@
     BDMLog(@"Auction invalidating: %@", self);
     self.expirationTimer = nil;
     self.response = nil;
+}
+
+- (void)saveContextualData {
+    [BDMSdk.sharedSdk.contextualController registerLastBundle:self.response.creative.bundles.firstObject forPlacement:self.placementType];
+    [BDMSdk.sharedSdk.contextualController registerLastAdomain:self.response.creative.adDomains.firstObject forPlacement:self.placementType];
 }
 
 - (void)beginExpirationMonitoring {

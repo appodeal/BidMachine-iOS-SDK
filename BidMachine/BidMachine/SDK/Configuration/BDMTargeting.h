@@ -13,68 +13,44 @@
 
 
 BDM_SUBCLASSING_RESTRICTED
-/**
- Targeting model for SDK
- */
+
+/// Targeting model for SDK
 @interface BDMTargeting : NSObject <NSCopying, NSSecureCoding>
-/**
- Vendor-specific ID for the user
- */
+/// Vendor-specific ID for the user
 @property (copy, nonatomic, readwrite, nonnull) NSString *userId;
-/**
- User gender in OpenRTB 2.5 format
- */
+/// User gender in OpenRTB 2.5 format
 @property (copy, nonatomic, readwrite, nonnull) BDMUserGender *gender;
-/**
- User gender yob in OpenRTB 2.5 format
- */
+///  User gender yob in OpenRTB 2.5 format
 @property (copy, nonatomic, readwrite, nonnull) NSNumber *yearOfBirth;
-/**
- User age
- */
+///  User age
 @property (copy, nonatomic, readonly, nullable) NSNumber *userAge;
-/**
- Comma separated list of keywords about the app
- */
+/// Comma separated list of keywords about the app
 @property (copy, nonatomic, readwrite, nullable) NSString *keywords;
-/**
- List of blocked advertiser categories using the IAB content categories.
- */
+/// List of blocked advertiser categories using the IAB content categories.
 @property (copy, nonatomic, readwrite, nullable) NSArray <NSString *> *blockedCategories;
-/**
- List of blocked advertisers by their domains (e.g., “ford.com”).
- */
+/// List of blocked advertisers by their domains (e.g., “ford.com”).
 @property (copy, nonatomic, readwrite, nullable) NSArray <NSString *> *blockedAdvertisers;
-/**
- List of blocked applications by their platform-specific exchange-independent application identifiers. Usually store IDs.
- */
+/// List of blocked applications by their platform-specific exchange-independent application identifiers. Usually store IDs.
 @property (copy, nonatomic, readwrite, nullable) NSArray <NSString *> *blockedApps;
-/**
- Current location of user device. If location services enabled in application, sdk will take location by itself
- */
+/// Current location of user device. If location services enabled in application, sdk will take location by itself
 @property (copy, nonatomic, readwrite, nullable) CLLocation *deviceLocation;
-/**
- User country
- */
+/// User country
 @property (copy, nonatomic, readwrite, nullable) NSString *country;
-/**
- User city
- */
+/// User city
 @property (copy, nonatomic, readwrite, nullable) NSString *city;
-/**
- User zip code
- */
+/// User zip code
 @property (copy, nonatomic, readwrite, nullable) NSString *zip;
-/**
- App's Store URL
- */
+/// App's Store URL
 @property (copy, nonatomic, readwrite, nullable) NSURL *storeURL;
-/**
- Numeric store id identifier
- */
+/// Numeric store id identifier
 @property (copy, nonatomic, readwrite, nullable) NSString *storeId;
-/**
- Paid version of app
- */
+/// Paid version of app
 @property (assign, nonatomic, readwrite) BOOL paid;
+/// Apple App Store category definitions. For example, "games"
+@property (copy, nonatomic, readwrite, nullable) NSString *storeCategory;
+/// Apple App Store Sub category definitions. The array is always capped at 3 strings.
+@property (copy, nonatomic, readwrite, nullable) NSArray <NSString *> *storeSubcategory;
+/// A string value describing if the app is using the unity or native
+@property (copy, nonatomic, readwrite, nullable) BDMFmwName *frameworkName;
+
 @end

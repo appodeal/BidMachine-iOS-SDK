@@ -23,7 +23,17 @@
 
 + (ADCOMOS(^)(NSString *))osType;
 
++ (GPBStruct *)structFromValue:(NSDictionary *)value;
+
++ (GPBListValue *)listFromValue:(NSArray *)value;
+
++ (GPBValue *)valueFrom:(id)value;
+
 + (NSString *(^)(BDMUserGender *))gender;
+
++ (NSNumber *(^)(float))batteryLevel;
+
++ (NSNumber *(^)(NSNumber *))bytesToMb;
 
 + (ADCOMContext_Geo *(^)(CLLocation * userProvidedLocation))geoMessage;
 

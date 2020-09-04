@@ -46,13 +46,16 @@
     targetingCopy.blockedCategories     = self.blockedCategories;
     targetingCopy.blockedAdvertisers    = self.blockedAdvertisers;
     targetingCopy.blockedApps           = self.blockedApps;
-    targetingCopy.deviceLocation              = self.deviceLocation;
+    targetingCopy.deviceLocation        = self.deviceLocation;
     targetingCopy.country               = self.country;
     targetingCopy.city                  = self.city;
     targetingCopy.zip                   = self.zip;
     targetingCopy.paid                  = self.paid;
     targetingCopy.storeURL              = self.storeURL;
     targetingCopy.storeId               = self.storeId;
+    targetingCopy.storeCategory         = self.storeCategory;
+    targetingCopy.storeSubcategory      = self.storeSubcategory;
+    targetingCopy.frameworkName         = self.frameworkName;
     
     return targetingCopy;
 }
@@ -78,6 +81,9 @@
     [aCoder encodeObject:self.storeURL forKey:@"storeURL"];
     [aCoder encodeInteger:self.paid forKey:@"paid"];
     [aCoder encodeObject:self.storeId forKey:@"storeId"];
+    [aCoder encodeObject:self.storeCategory forKey:@"storeCategory"];
+    [aCoder encodeObject:self.storeSubcategory forKey:@"storeSubcategory"];
+    [aCoder encodeObject:self.frameworkName forKey:@"frameworkName"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -90,13 +96,16 @@
         self.blockedCategories     = [aDecoder decodeObjectForKey:@"blockedCategories"];
         self.blockedAdvertisers    = [aDecoder decodeObjectForKey:@"blockedAdvertisers"];
         self.blockedApps           = [aDecoder decodeObjectForKey:@"blockedApps"];
-        self.deviceLocation              = [aDecoder decodeObjectForKey:@"location"];
+        self.deviceLocation        = [aDecoder decodeObjectForKey:@"location"];
         self.country               = [aDecoder decodeObjectForKey:@"country"];
         self.city                  = [aDecoder decodeObjectForKey:@"city"];
         self.zip                   = [aDecoder decodeObjectForKey:@"zip"];
         self.storeURL              = [aDecoder decodeObjectForKey:@"storeURL"];
         self.paid                  = [aDecoder decodeIntegerForKey:@"paid"];
         self.storeId               = [aDecoder decodeObjectForKey:@"storeId"];
+        self.storeCategory         = [aDecoder decodeObjectForKey:@"storeCategory"];
+        self.storeSubcategory      = [aDecoder decodeObjectForKey:@"storeSubcategory"];
+        self.frameworkName         = [aDecoder decodeObjectForKey:@"frameworkName"];
     }
     return self;
 }

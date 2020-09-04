@@ -50,6 +50,34 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
     };
 }
 
++ (GPBStruct *)structFromValue:(NSDictionary *)value {
+    GPBStruct *model = [GPBStruct message];
+    ANY(value).reduce(model.fields, ^(NSMutableDictionary *map, NSString *key) {
+        map[key] = [self valueFrom:value[key]];
+    });
+    return model;
+}
+
++ (GPBListValue *)listFromValue:(NSArray *)value {
+    GPBListValue *listValue = [GPBListValue message];
+    listValue.valuesArray = ANY(value).flatMap(^id(id any) { return [self valueFrom:any]; }).array.mutableCopy;
+    return listValue;
+}
+
++ (GPBValue *)valueFrom:(id)value {
+    GPBValue *modelValue = [GPBValue message];
+    if (NSString.stk_isValid(value)) {
+        modelValue.stringValue = value;
+    } else if (NSNumber.stk_isValid(value)) {
+        modelValue.numberValue = [(NSNumber *)value doubleValue];
+    } else if (NSDictionary.stk_isValid(value) && ([[value allKeys] count] > 0)) {
+        modelValue.structValue = [self structFromValue:value];
+    } else if (NSArray.stk_isValid(value) && ([value count] > 0)) {
+        modelValue.listValue = [self listFromValue:value];
+    }
+    return modelValue;
+}
+
 + (NSString *(^)(BDMUserGender *))gender {
     return ^NSString *(BDMUserGender * gender){
         return ANY((@{kBDMUserGenderMale     : @"M",
@@ -58,6 +86,18 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
         }))
         .from(gender)
         .string;
+    };
+}
+
++ (NSNumber *(^)(float))batteryLevel {
+    return ^NSNumber *(float value) {
+        return value < 5 ? @(1) : @((value + 35) / 15);
+    };
+}
+
++ (NSNumber *(^)(NSNumber *))bytesToMb {
+    return ^NSNumber *(NSNumber *value) {
+        return @(value.integerValue / (1024 * 1024));
     };
 }
 
@@ -95,6 +135,8 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
             geo.lat = desiredLocation.coordinate.latitude;
             geo.lon = desiredLocation.coordinate.longitude;
         }
+        
+        geo.utcoffset = ([[NSTimeZone systemTimeZone] secondsFromGMT] / 60.0);
         return geo;
     };
 }

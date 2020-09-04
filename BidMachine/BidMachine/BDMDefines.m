@@ -14,6 +14,9 @@ NSString * const kBDMUserGenderMale     = @"M";
 NSString * const kBDMUserGenderFemale   = @"F";
 NSString * const kBDMUserGenderUnknown  = @"O";
 
+BDMFmwName * const BDMNativeFramework   = @"native";
+BDMFmwName * const BDMNUnityFramework   = @"unity";
+
 NSInteger const kBDMUndefinedYearOfBirth = 0;
 
 NSString * kBDMErrorDomain = @"com.adx.error";

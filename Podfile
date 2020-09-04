@@ -32,9 +32,9 @@ def toasts
 end
 
 def stack_modules
-  pod 'StackModules', '~> 0.7'
-  pod 'StackModules/StackFoundation', '~> 0.7'
-  pod 'StackModules/StackUIKit', '~> 0.7'
+  pod 'StackModules', '~> 0.8.0.2-Beta'
+  pod 'StackModules/StackFoundation', '~> 0.8.0.2-Beta'
+  pod 'StackModules/StackUIKit', '~> 0.8.0.2-Beta'
 end
 
 def vungle
