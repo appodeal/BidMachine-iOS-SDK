@@ -35,6 +35,8 @@
 
 + (NSNumber *(^)(NSNumber *))bytesToMb;
 
++ (NSString *)deviceAccessability;
+
 + (ADCOMContext_Geo *(^)(CLLocation * userProvidedLocation))geoMessage;
 
 + (NSArray <BDMEventURL *> *(^)(NSArray <ADCOMAd_Event *> *))eventURLs;

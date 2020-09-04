@@ -243,43 +243,43 @@
 
 - (ADCOMContext_App *)adcomContextAppMessage {
     ADCOMContext_App *app = [ADCOMContext_App message];
-    app.storeid     = self.request.targeting.storeId;
-    app.storeurl    = self.request.targeting.storeURL.absoluteString;
-    app.paid        = self.request.targeting.paid;
-    app.pub         = self.adcomContextAppPublisherMessage;
-    app.bundle      = STKBundle.ID;
-    app.ver         = STKBundle.bundleVersion;
-    app.name        = [NSBundle.mainBundle objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey];
-    app.ext         = self.appExtension;
+    app.storeid         = self.request.targeting.storeId;
+    app.storeurl        = self.request.targeting.storeURL.absoluteString;
+    app.paid            = self.request.targeting.paid;
+    app.pub             = self.adcomContextAppPublisherMessage;
+    app.bundle          = STKBundle.ID;
+    app.ver             = STKBundle.bundleVersion;
+    app.name            = [NSBundle.mainBundle objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey];
+    app.ext             = self.appExtension;
     return app;
 }
 
 - (ADCOMContext_Device *)adcomContextDeviceMessage {
     ADCOMContext_Device *device = [ADCOMContext_Device message];
-    device.type     = BDMTransformers.deviceType(STKDevice.type);
-    device.ua       = STKDevice.userAgent;
-    device.lmt      = !STKAd.advertisingTrackingEnabled;
-    device.contype  = BDMTransformers.connectionType(STKConnection.statusName);
-    device.mccmnc   = STKConnection.mccmnc;
-    device.carrier  = STKConnection.carrierName;
-    device.w        = STKScreen.width * STKScreen.ratio;
-    device.h        = STKScreen.height * STKScreen.ratio;
-    device.ppi      = STKScreen.ppi;
-    device.pxratio  = STKScreen.ratio;
-    device.os       = BDMTransformers.osType(STKDevice.os);
-    device.osv      = STKDevice.osv;
-    device.hwv      = STKDevice.hardwarev;
-    device.make     = STKDevice.maker;
-    device.model    = STKDevice.name;
-    device.lang     = STKDevice.language;
+    device.type         = BDMTransformers.deviceType(STKDevice.type);
+    device.ua           = STKDevice.userAgent;
+    device.lmt          = !STKAd.advertisingTrackingEnabled;
+    device.contype      = BDMTransformers.connectionType(STKConnection.statusName);
+    device.mccmnc       = STKConnection.mccmnc;
+    device.carrier      = STKConnection.carrierName;
+    device.w            = STKScreen.width * STKScreen.ratio;
+    device.h            = STKScreen.height * STKScreen.ratio;
+    device.ppi          = STKScreen.ppi;
+    device.pxratio      = STKScreen.ratio;
+    device.os           = BDMTransformers.osType(STKDevice.os);
+    device.osv          = STKDevice.osv;
+    device.hwv          = STKDevice.hardwarev;
+    device.make         = STKDevice.maker;
+    device.model        = STKDevice.name;
+    device.lang         = STKDevice.language;
     
-    device.geo      = BDMTransformers.geoMessage(self.request.targeting.deviceLocation);
-    device.ext      = self.deviceExtension;
+    device.geo          = BDMTransformers.geoMessage(self.request.targeting.deviceLocation);
+    device.ext          = self.deviceExtension;
     
     if (self.restrictions.subjectToGDPR && !self.restrictions.hasConsent) {
         device.ifa = @"00000000-0000-0000-0000-000000000000";
     } else {
-        device.ifa = STKAd.advertisingIdentifier;
+        device.ifa      = STKAd.advertisingIdentifier;
     }
     
     return device;
@@ -287,11 +287,11 @@
 
 - (ADCOMContext_User *)adcomContextUserMessage {
     ADCOMContext_User *user = [ADCOMContext_User message];
-    user.gender     = BDMTransformers.gender(self.request.targeting.gender);
-    user.yob        = self.request.targeting.yearOfBirth.unsignedIntValue;
-    user.keywords   = self.request.targeting.keywords;
-    user.id_p       = self.request.targeting.userId;
-    user.ext        = self.userExtension;
+    user.gender         = BDMTransformers.gender(self.request.targeting.gender);
+    user.yob            = self.request.targeting.yearOfBirth.unsignedIntValue;
+    user.keywords       = self.request.targeting.keywords;
+    user.id_p           = self.request.targeting.userId;
+    user.ext            = self.userExtension;
     
     if (self.restrictions.consentString) {
         user.consent    = self.restrictions.consentString;
@@ -301,9 +301,9 @@
     
     user.geo = ({
         ADCOMContext_Geo *geo = [ADCOMContext_Geo message];
-        geo.country = self.request.targeting.country;
-        geo.city    = self.request.targeting.city;
-        geo.zip     = self.request.targeting.zip;
+        geo.country     = self.request.targeting.country;
+        geo.city        = self.request.targeting.city;
+        geo.zip         = self.request.targeting.zip;
         geo;
     });
     return user;
@@ -312,11 +312,10 @@
 - (ADCOMContext_Regs *)adcomContextRegsMessage {
     ADCOMContext_Regs *regs = [ADCOMContext_Regs message];
     BDMRegsCcpaExtension *ccpa = [BDMRegsCcpaExtension message];
-    ccpa.usPrivacy = self.restrictions.USPrivacyString;
-    
-    regs.coppa = self.restrictions.coppa;
-    regs.gdpr = self.restrictions.subjectToGDPR;
-    regs.extProtoArray = @[ccpa].mutableCopy;
+    ccpa.usPrivacy      = self.restrictions.USPrivacyString;
+    regs.coppa          = self.restrictions.coppa;
+    regs.gdpr           = self.restrictions.subjectToGDPR;
+    regs.extProtoArray  = @[ccpa].mutableCopy;
     
     return regs;
 }
@@ -338,66 +337,62 @@
     }
     
     NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:3];
-    extension[@"version"] = @"2.0";
-    extension[@"sourceapp"] = self.request.targeting.storeId;
-    extension[@"skadnetids"] = STKBundle.registeredSKAdNetworkIdentifiers;
+    extension[@"version"]           = @"2.0";
+    extension[@"sourceapp"]         = self.request.targeting.storeId;
+    extension[@"skadnetids"]        = STKBundle.registeredSKAdNetworkIdentifiers;
     extension = @{@"skadn" : extension }.mutableCopy;
-    GPBStruct *extModel = [BDMTransformers structFromValue:extension];
+    GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
     return extModel;
 }
 
 - (GPBStruct *)deviceExtension {
     NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:1];
-    extension[@"ifv"] = STKAd.vendorIdentifier;
-#warning !!!
-//    extension[@"inputlanguage"] = STKDevice.language;
-    extension[@"diskspace"] = BDMTransformers.bytesToMb(STKDevice.freeDiskSpaceBytes);
-    extension[@"totaldisk"] = BDMTransformers.bytesToMb(STKDevice.totalDiskSpaceBytes);
-    extension[@"charging"] = @([STKDevice.batteryState isEqualToString:@"charging"]);
-#warning !!!
-//    extension[@"bluetooth"] = [STKDevice.blue isEqualToString:@"charging"] ? @(1) : @(0);
-//    extension[@"bluetoothname"] = [STKDevice.blue isEqualToString:@"charging"] ? @(1) : @(0);
-//    extension[@"headset"] = [STKDevice.blue isEqualToString:@"charging"] ? @(1) : @(0);
-    extension[@"batterylevel"] = BDMTransformers.batteryLevel(STKDevice.batteryLevel);
-#warning !!!
-    extension[@"batterysaver"] = @(STKDevice.lowPowerMode);
-    extension[@"darkmode"] = @([STKInterface.style isEqualToString:@"dark"]);
-#warning !!!
-//    extension[@"devicename"] = [STKInterface.style isEqualToString:@"dark"] ? @(1) : @(0);
-    extension[@"time"] = @(NSDate.stk_currentTimeInSeconds);
-#warning !!!
-//    extension[@"screenbright"] =
-    extension[@"jailbreak"] = @(STKDevice.isJailbroken);
-    extension[@"lastbootup"] = @(STKDevice.bootdate.stk_timeIntervalSince1970InMilliseconds);
-    extension[@"emoji"] = STKDevice.emoji;
-#warning !!!
-//    extension[@"access"] =  STKDevice.audioInput
-//    extension[@"headsetname"] = STKDevice.emoji;
-    extension[@"totalmem"] = @(STKDevice.totalRAM);
-    extension[@"atts"] = @(STKAd.trackingAuthorizationStatus);
-    GPBStruct *extModel = [BDMTransformers structFromValue:extension];
+    extension[@"ifv"]               = STKAd.vendorIdentifier;
+    extension[@"inputlanguage"]     = STKDevice.inputLanguage;
+    extension[@"diskspace"]         = BDMTransformers.bytesToMb(STKDevice.freeDiskSpaceBytes);
+    extension[@"totaldisk"]         = BDMTransformers.bytesToMb(STKDevice.totalDiskSpaceBytes);
+    extension[@"charging"]          = @([STKDevice.batteryState isEqualToString:@"charging"]);
+    extension[@"headset"]           = @(STKDevice.isHeadsetConnected);
+    extension[@"batterylevel"]      = BDMTransformers.batteryLevel(STKDevice.batteryLevel);
+    extension[@"batterysaver"]      = @(STKDevice.lowPowerMode);
+    extension[@"darkmode"]          = @([STKInterface.style isEqualToString:@"dark"]);
+    extension[@"devicename"]        = STKDevice.userName;
+    extension[@"time"]              = @(NSDate.stk_currentTimeInSeconds);
+    extension[@"screenbright"]      = @(STKDevice.brightness);
+    extension[@"jailbreak"]         = @(STKDevice.isJailbroken);
+    extension[@"lastbootup"]        = @(STKDevice.bootdate.stk_timeIntervalSince1970InMilliseconds);
+    extension[@"emoji"]             = STKDevice.emoji;
+    extension[@"access"]            = BDMTransformers.deviceAccessability;
+    extension[@"headsetname"]       = STKDevice.audioOutput;
+    extension[@"totalmem"]          = @(STKDevice.totalRAM);
+    extension[@"atts"]              = @(STKAd.trackingAuthorizationStatus);
+    GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
     return extModel;
+//    extension[@"bluetooth"] =
+//    extension[@"bluetoothname"] =
 }
+
+
 
 - (GPBStruct *)appExtension {
     NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:3];
-    extension[@"storecat"] = self.request.targeting.storeCategory;
-    extension[@"storesubcat"] = self.request.targeting.storeSubcategory;
-    extension[@"fmwname"] = self.request.targeting.frameworkName;
-    GPBStruct *extModel = [BDMTransformers structFromValue:extension];
+    extension[@"storecat"]          = self.request.targeting.storeCategory;
+    extension[@"storesubcat"]       = self.request.targeting.storeSubcategory;
+    extension[@"fmwname"]           = self.request.targeting.frameworkName;
+    GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
     return extModel;
 }
 
 - (GPBStruct *)userExtension {
     NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:7];
-    extension[@"impdepth"] = @(self.contextualData.impressions);
-    extension[@"sessionduration"] = @(self.contextualData.sessionDuration);
-    extension[@"lastbundle"] = self.contextualData.lastBundle;
-    extension[@"lastadomain"] = self.contextualData.lastAdomain;
-    extension[@"clickrate"] = @(self.contextualData.clickRate);
-    extension[@"lastclick"] = @(self.contextualData.lastClickForImpression);
-    extension[@"completionrate"] = @(self.contextualData.completionRate);
-    GPBStruct *extModel = [BDMTransformers structFromValue:extension];
+    extension[@"impdepth"]          = @(self.contextualData.impressions);
+    extension[@"sessionduration"]   = @(self.contextualData.sessionDuration);
+    extension[@"lastbundle"]        = self.contextualData.lastBundle;
+    extension[@"lastadomain"]       = self.contextualData.lastAdomain;
+    extension[@"clickrate"]         = @(self.contextualData.clickRate);
+    extension[@"lastclick"]         = @(self.contextualData.lastClickForImpression);
+    extension[@"completionrate"]    = @(self.contextualData.completionRate);
+    GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
     return extModel;
 }
 

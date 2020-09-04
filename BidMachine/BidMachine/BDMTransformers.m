@@ -5,6 +5,7 @@
 //
 
 #import "BDMTransformers.h"
+#import <UIKit/UIKit.h>
 
 @implementation BDMTransformers
 
@@ -99,6 +100,15 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
     return ^NSNumber *(NSNumber *value) {
         return @(value.integerValue / (1024 * 1024));
     };
+}
+
++ (NSString *)deviceAccessability {
+    return [@[@(UIAccessibilityIsBoldTextEnabled()),
+              @(UIAccessibilityIsShakeToUndoEnabled()),
+              @(UIAccessibilityIsReduceMotionEnabled()),
+              @(UIAccessibilityDarkerSystemColorsEnabled()),
+              @(UIAccessibilityIsReduceTransparencyEnabled())] componentsJoinedByString:@""];
+    
 }
 
 + (ADCOMContext_Geo *(^)(CLLocation *))geoMessage {

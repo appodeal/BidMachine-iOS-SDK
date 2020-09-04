@@ -76,10 +76,10 @@ PODS:
     - StackModules (~> 0.6)
   - StackIAB/StackXML (0.5.17):
     - StackModules (~> 0.6)
-  - StackModules (0.8.0.2-Beta):
-    - StackModules/StackUIKit (= 0.8.0.2-Beta)
-  - StackModules/StackFoundation (0.8.0.2-Beta)
-  - StackModules/StackUIKit (0.8.0.2-Beta):
+  - StackModules (0.8.0.3-Beta):
+    - StackModules/StackUIKit (= 0.8.0.3-Beta)
+  - StackModules/StackFoundation (0.8.0.3-Beta)
+  - StackModules/StackUIKit (0.8.0.3-Beta):
     - StackModules/StackFoundation
   - TapjoySDK (12.6.1)
   - Toast-Swift (4.0.1)
@@ -102,9 +102,9 @@ DEPENDENCIES:
   - StackIAB/StackNASTKit (~> 0.5.0)
   - StackIAB/StackRichMedia (~> 0.5.0)
   - StackIAB/StackVASTKit (~> 0.5.0)
-  - StackModules (~> 0.8.0.2-Beta)
-  - StackModules/StackFoundation (~> 0.8.0.2-Beta)
-  - StackModules/StackUIKit (~> 0.8.0.2-Beta)
+  - StackModules (~> 0.8.0.3-Beta)
+  - StackModules/StackFoundation (~> 0.8.0.3-Beta)
+  - StackModules/StackUIKit (~> 0.8.0.3-Beta)
   - TapjoySDK (= 12.6.1)
   - Toast-Swift (~> 4.0.0)
   - VungleSDK-iOS (= 6.7.0)
@@ -143,11 +143,11 @@ SPEC CHECKSUMS:
   smaato-ios-sdk: 2be81511a3fe8adb27c08804b12c6c7f956963ac
   StackAPI: 0c48d817256cdde98f50d65c729a4c5c8ac1b1d1
   StackIAB: e30a4523f384d02fcfda16b8e593b7dd0f9c83a2
-  StackModules: 3c0ecbc2ee07326aeecb60b20f1aec09e1549900
+  StackModules: d92597a370dba15acbe1abba70513e47c1461977
   TapjoySDK: ab02725a55e84c2fdd6fafc872cb00bd58e8adb2
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   VungleSDK-iOS: 85456e060a3f26a0e03f9d4841495976326a7d05
 
-PODFILE CHECKSUM: 56e32a144ed6b7bff1ddca9639f358d6f4b412cc
+PODFILE CHECKSUM: 29138a499cf20cf3f92fb02d785437747a4fd3d0
 
 COCOAPODS: 1.9.1
