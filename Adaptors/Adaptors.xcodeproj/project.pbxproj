@@ -29,7 +29,6 @@
 		4248C20F218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C20E218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m */; };
 		42675D8B22E2151D008298F5 /* BDMVungleAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42675D8A22E2151D008298F5 /* BDMVungleAdNetwork.m */; };
 		42675D8C22E2151D008298F5 /* BDMVungleAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42675D8922E2151D008298F5 /* BDMVungleAdNetwork.h */; };
-		4274FA7222E5B92C00EE0D47 /* BDMVungleValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7122E5B92C00EE0D47 /* BDMVungleValueTransformer.m */; };
 		4274FA7522E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7422E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m */; };
 		4274FA7E22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */; };
 		4274FA7F22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */; };
@@ -240,8 +239,6 @@
 		42675D8722E2151D008298F5 /* libBDMVungleAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMVungleAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42675D8922E2151D008298F5 /* BDMVungleAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleAdNetwork.h; sourceTree = "<group>"; };
 		42675D8A22E2151D008298F5 /* BDMVungleAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMVungleAdNetwork.m; sourceTree = "<group>"; };
-		4274FA7022E5B92C00EE0D47 /* BDMVungleValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleValueTransformer.h; sourceTree = "<group>"; };
-		4274FA7122E5B92C00EE0D47 /* BDMVungleValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMVungleValueTransformer.m; sourceTree = "<group>"; };
 		4274FA7322E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMVungleFullscreenAdapter.h; sourceTree = "<group>"; };
 		4274FA7422E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMVungleFullscreenAdapter.m; sourceTree = "<group>"; };
 		4274FA7A22E5E7A600EE0D47 /* libBDMTapjoyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMTapjoyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -513,7 +510,6 @@
 		42675D8822E2151D008298F5 /* BDMVungleAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				42A93E6822E70D0C005053A2 /* Transformers */,
 				42675D8922E2151D008298F5 /* BDMVungleAdNetwork.h */,
 				42675D8A22E2151D008298F5 /* BDMVungleAdNetwork.m */,
 				4274FA7322E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.h */,
@@ -654,15 +650,6 @@
 				42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */,
 				42A93E4C22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.h */,
 				42A93E4D22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m */,
-			);
-			name = Transformers;
-			sourceTree = "<group>";
-		};
-		42A93E6822E70D0C005053A2 /* Transformers */ = {
-			isa = PBXGroup;
-			children = (
-				4274FA7022E5B92C00EE0D47 /* BDMVungleValueTransformer.h */,
-				4274FA7122E5B92C00EE0D47 /* BDMVungleValueTransformer.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -1384,7 +1371,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4274FA7222E5B92C00EE0D47 /* BDMVungleValueTransformer.m in Sources */,
 				4274FA7522E5D5CC00EE0D47 /* BDMVungleFullscreenAdapter.m in Sources */,
 				42675D8B22E2151D008298F5 /* BDMVungleAdNetwork.m in Sources */,
 			);

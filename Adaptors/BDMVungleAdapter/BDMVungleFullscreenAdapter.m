@@ -6,8 +6,11 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
+@import StackFoundation;
+
+#import "BDMVungleAdNetwork.h"
 #import "BDMVungleFullscreenAdapter.h"
-#import "BDMVungleValueTransformer.h"
+
 
 @interface BDMVungleFullscreenAdapter ()
 
@@ -22,7 +25,7 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    self.placement = [BDMVungleValueTransformer.new transformedValue:contentInfo[@"placement_id"]];
+    self.placement = ANY(contentInfo).from(BDMVunglePlacementIDKey).string;
     if (self.placement && [VungleSDK.sharedSDK isAdCachedForPlacementID:self.placement]) {
         [self.loadingDelegate adapterPreparedContent:self];
     } else {
