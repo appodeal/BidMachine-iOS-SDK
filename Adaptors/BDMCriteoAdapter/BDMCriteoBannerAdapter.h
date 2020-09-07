@@ -4,12 +4,8 @@
 //  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
-@import Foundation;
-@import BidMachine;
-@import BidMachine.Adapters;
-@import CriteoPublisherSdk;
-
 #import "BDMCriteoAdNetwork.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 

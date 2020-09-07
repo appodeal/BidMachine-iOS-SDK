@@ -4,14 +4,16 @@
 //  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
+@import StackFoundation;
+
 #import "BDMCriteoInterstitialAdapter.h"
 
-#import <StackFoundation/StackFoundation.h>
 
 @interface BDMCriteoInterstitialAdapter ()<CRInterstitialDelegate>
 
-@property (nonatomic, weak) id<BDMCriteoAdNetworkProvider> provider;
 @property (nonatomic, strong) CRInterstitial *interstitial;
+@property (nonatomic,   weak) id<BDMCriteoAdNetworkProvider> provider;
+
 
 @end
 
@@ -29,8 +31,8 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *adUnitId = contentInfo[@"ad_unit_id"];
-    if (!NSString.stk_isValid(adUnitId)) {
+    NSString *adUnitId = ANY(contentInfo).from(BDMCriteoAdUnitIDKey).string;
+    if (!adUnitId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"Criteo wasn't recived valid bidding data"];
         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];

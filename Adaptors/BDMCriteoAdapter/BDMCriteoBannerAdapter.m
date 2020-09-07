@@ -4,15 +4,16 @@
 //  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
+@import StackUIKit;
+@import StackFoundation;
+
 #import "BDMCriteoBannerAdapter.h"
 
-#import <StackUIKit/StackUIKit.h>
-#import <StackFoundation/StackFoundation.h>
 
 @interface BDMCriteoBannerAdapter () <CRBannerViewDelegate>
 
-@property (nonatomic, weak) id<BDMCriteoAdNetworkProvider> provider;
 @property (nonatomic, strong) CRBannerView *bannerView;
+@property (nonatomic,   weak) id<BDMCriteoAdNetworkProvider> provider;
 
 @end
 
@@ -30,8 +31,8 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *adUnitId = contentInfo[@"ad_unit_id"];
-    if (!NSString.stk_isValid(adUnitId)) {
+    NSString *adUnitId = ANY(contentInfo).from(BDMCriteoAdUnitIDKey).string;
+    if (!adUnitId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"Criteo wasn't recived valid bidding data"];
         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
@@ -55,7 +56,6 @@
 
 - (void)presentInContainer:(UIView *)container {
     [container.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [container addSubview:self.bannerView];
     [self.bannerView stk_edgesEqual:container];
 }
 
