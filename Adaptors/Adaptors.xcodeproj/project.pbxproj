@@ -35,9 +35,7 @@
 		427D1C7423293F2900874ED0 /* BDMCriteoAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 427D1C7323293F2900874ED0 /* BDMCriteoAdNetwork.m */; };
 		427D1C7623293F3D00874ED0 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427D1C7523293F3D00874ED0 /* BidMachine.framework */; };
 		428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F5125218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m */; };
-		42A93E4622E5ED4F005053A2 /* BDMTapjoyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */; };
 		42A93E4B22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4A22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m */; };
-		42A93E4E22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4D22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m */; };
 		42A93E5722E70368005053A2 /* BDMFacebookAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E5622E70368005053A2 /* BDMFacebookAdNetwork.m */; };
 		42A93E5822E70368005053A2 /* BDMFacebookAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42A93E5522E70368005053A2 /* BDMFacebookAdNetwork.h */; };
 		42A93E6022E70758005053A2 /* BDMFaceebookPlacementsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E5F22E70758005053A2 /* BDMFaceebookPlacementsTransformer.m */; };
@@ -253,12 +251,8 @@
 		429C1978216014720048F400 /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		429C1985216014850048F400 /* libBDMVASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMVASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		429C19922160149B0048F400 /* libBDMNASTAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMNASTAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		42A93E4422E5ED4F005053A2 /* BDMTapjoyValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyValueTransformer.h; sourceTree = "<group>"; };
-		42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyValueTransformer.m; sourceTree = "<group>"; };
 		42A93E4922E60209005053A2 /* BDMTapjoyFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyFullscreenAdapter.h; sourceTree = "<group>"; };
 		42A93E4A22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyFullscreenAdapter.m; sourceTree = "<group>"; };
-		42A93E4C22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTapjoyAuctionDataValueTransofrmer.h; sourceTree = "<group>"; };
-		42A93E4D22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTapjoyAuctionDataValueTransofrmer.m; sourceTree = "<group>"; };
 		42A93E5322E70368005053A2 /* libBDMFacebookAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMFacebookAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A93E5522E70368005053A2 /* BDMFacebookAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookAdNetwork.h; sourceTree = "<group>"; };
 		42A93E5622E70368005053A2 /* BDMFacebookAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookAdNetwork.m; sourceTree = "<group>"; };
@@ -521,7 +515,6 @@
 		4274FA7B22E5E7A600EE0D47 /* BDMTapjoyAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				42A93E6522E70CD2005053A2 /* Transformers */,
 				4274FA7C22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.h */,
 				4274FA7D22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m */,
 				42A93E4922E60209005053A2 /* BDMTapjoyFullscreenAdapter.h */,
@@ -639,17 +632,6 @@
 				42A93E5F22E70758005053A2 /* BDMFaceebookPlacementsTransformer.m */,
 				42A93E6122E70B65005053A2 /* BDMFacebookStringValueTransformer.h */,
 				42A93E6222E70B65005053A2 /* BDMFacebookStringValueTransformer.m */,
-			);
-			name = Transformers;
-			sourceTree = "<group>";
-		};
-		42A93E6522E70CD2005053A2 /* Transformers */ = {
-			isa = PBXGroup;
-			children = (
-				42A93E4422E5ED4F005053A2 /* BDMTapjoyValueTransformer.h */,
-				42A93E4522E5ED4F005053A2 /* BDMTapjoyValueTransformer.m */,
-				42A93E4C22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.h */,
-				42A93E4D22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -1380,8 +1362,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42A93E4E22E6E6F0005053A2 /* BDMTapjoyAuctionDataValueTransofrmer.m in Sources */,
-				42A93E4622E5ED4F005053A2 /* BDMTapjoyValueTransformer.m in Sources */,
 				42A93E4B22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m in Sources */,
 				4274FA7E22E5E7A600EE0D47 /* BDMTapjoyAdNetwork.m in Sources */,
 			);

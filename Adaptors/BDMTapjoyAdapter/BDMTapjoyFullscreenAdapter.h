@@ -13,9 +13,9 @@
 
 @interface BDMTapjoyFullscreenAdapter : NSObject <BDMFullscreenAdapter>
 
-@property (nonatomic, weak, nullable) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
-@property (nonatomic, weak, nullable) id <BDMAdapterLoadingDelegate> loadingDelegate;
 @property (nonatomic, assign, readwrite) BOOL rewarded;
+@property (nonatomic, weak, nullable) id <BDMAdapterLoadingDelegate> loadingDelegate;
+@property (nonatomic, weak, nullable) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
 
 @end
 

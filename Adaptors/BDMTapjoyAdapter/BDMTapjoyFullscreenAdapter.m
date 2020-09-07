@@ -6,11 +6,10 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
+#import "BDMTapjoyAdNetwork.h"
 #import "BDMTapjoyFullscreenAdapter.h"
-#import "BDMTapjoyValueTransformer.h"
-#import "BDMTapjoyAuctionDataValueTransofrmer.h"
 
-#import <Tapjoy/Tapjoy.h>
+@import StackFoundation;
 
 
 @interface BDMTapjoyFullscreenAdapter () <TJPlacementDelegate, TJPlacementVideoDelegate>
@@ -27,18 +26,18 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *plcName = [BDMTapjoyValueTransformer.new transformedValue:contentInfo[@"placement_name"]];
-    if (!plcName) {
+    NSString *placementName = ANY(contentInfo).from(BDMTapjoyPlacementKey).string;
+    if (!placementName) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"Tapjoy placement wasn't found"];
         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
         return;
     }
     
-    self.placement = [TJPlacement limitedPlacementWithName:plcName mediationAgent:@"bidmachine" delegate:self];
-    self.placement.adapterVersion = kBDMVersion;
-    self.placement.videoDelegate = self;
-    self.placement.auctionData = [BDMTapjoyAuctionDataValueTransofrmer.new transformedValue:contentInfo];
+    self.placement = [TJPlacement limitedPlacementWithName:placementName mediationAgent:@"bidmachine" delegate:self];
+    self.placement.auctionData      = [self auctionDataFromContentInfo:contentInfo];
+    self.placement.adapterVersion   = kBDMVersion;
+    self.placement.videoDelegate    = self;
     
     if (self.placement.isContentReady) {
         [self.loadingDelegate adapterPreparedContent:self];
@@ -57,6 +56,16 @@
     }
     
     [self.placement showContentWithViewController:rootViewController];
+}
+
+#pragma mark - Private
+
+- (NSDictionary *)auctionDataFromContentInfo:(NSDictionary *)contentInfo {
+    NSMutableDictionary *auctionData = [contentInfo mutableCopy];
+    [auctionData removeObjectForKey:BDMTapjoyPlacementKey];
+    [auctionData removeObjectForKey:BDMTapjoyTokenKey];
+    [auctionData removeObjectForKey:BDMTapjoySDKKey];
+    return auctionData.copy;
 }
 
 #pragma mark - TJPlacementDelegate

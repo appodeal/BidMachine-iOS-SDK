@@ -6,13 +6,15 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
+@import StackFoundation;
+
 #import "BDMTapjoyAdNetwork.h"
-#import "BDMTapjoyValueTransformer.h"
 #import "BDMTapjoyFullscreenAdapter.h"
 
-#import <Tapjoy/Tapjoy.h>
-#import <StackFoundation/StackFoundation.h>
 
+NSString *const BDMTapjoySDKKey           = @"sdk_key";
+NSString *const BDMTapjoyTokenKey         = @"token";
+NSString *const BDMTapjoyPlacementKey     = @"placement_name";
 
 @interface BDMTapjoyAdNetwork ()
 
@@ -49,7 +51,7 @@
         STK_RUN_BLOCK(completion, NO, nil);
         return;
     }
-    NSString *sdkKey = [BDMTapjoyValueTransformer.new transformedValue:parameters[@"sdk_key"]];
+    NSString *sdkKey = ANY(parameters).from(BDMTapjoySDKKey).string;
     if (sdkKey) {
         self.completion = completion;
         [Tapjoy limitedConnect:sdkKey];
@@ -66,16 +68,16 @@
     [self syncMetadata];
     NSString *sdkKey = [Tapjoy.sharedTapjoyConnect limitedSdkKey];
     NSString *token = Tapjoy.getUserToken ?: @"1";
-    NSString *placement = [BDMTapjoyValueTransformer.new transformedValue:parameters[@"placement_name"]];
+    NSString *placement = ANY(parameters).from(BDMTapjoyPlacementKey).string;
     if (!sdkKey || !placement) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:@"Tapjoy adapter was not receive valid bidding data"];
         STK_RUN_BLOCK(completion, nil, error);
     } else {
         NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:3];
-        bidding[@"sdk_key"] = sdkKey;
-        bidding[@"placement_name"] = placement;
-        bidding[@"token"] = token;
+        bidding[BDMTapjoySDKKey]            = sdkKey;
+        bidding[BDMTapjoyTokenKey]          = token;
+        bidding[BDMTapjoyPlacementKey]      = placement;
         STK_RUN_BLOCK(completion, bidding, nil);
     }
 }
@@ -118,9 +120,16 @@
 - (void)syncMetadata {
     [Tapjoy setDebugEnabled:NO];
     [[TJPrivacyPolicy sharedInstance] setBelowConsentAge:BDMSdk.sharedSdk.restrictions.coppa];
-    [[TJPrivacyPolicy sharedInstance] setSubjectToGDPR:BDMSdk.sharedSdk.restrictions.subjectToGDPR];
-    [[TJPrivacyPolicy sharedInstance] setUserConsent:BDMSdk.sharedSdk.restrictions.hasConsent ? @"1" : @"0"];
-    [[TJPrivacyPolicy sharedInstance] setUSPrivacy:BDMSdk.sharedSdk.restrictions.USPrivacyString];
+    
+    if (BDMSdk.sharedSdk.restrictions.subjectToGDPR) {
+        [[TJPrivacyPolicy sharedInstance] setUserConsent:BDMSdk.sharedSdk.restrictions.hasConsent ? @"1" : @"0"];
+        [[TJPrivacyPolicy sharedInstance] setSubjectToGDPR:BDMSdk.sharedSdk.restrictions.subjectToGDPR];
+    }
+    
+    if (BDMSdk.sharedSdk.restrictions.subjectToCCPA) {
+        [[TJPrivacyPolicy sharedInstance] setUSPrivacy:BDMSdk.sharedSdk.restrictions.USPrivacyString];
+    }
+    
 }
 
 @end
