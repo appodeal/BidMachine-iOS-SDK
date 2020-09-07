@@ -6,12 +6,14 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
+@import StackFoundation;
+@import StackFoundation;
+@import FBAudienceNetwork;
+
+#import "BDMFacebookAdNetwork.h"
 #import "BDMFacebookNativeAdServiceAdapter.h"
-#import "BDMFacebookStringValueTransformer.h"
 #import "BDMFacebookNativeAdDisplayAdapter.h"
 
-@import FBAudienceNetwork;
-@import StackFoundation;
 
 @interface BDMFacebookNativeAdServiceAdapter()<FBNativeAdDelegate>
 
@@ -26,9 +28,9 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    BDMFacebookStringValueTransformer *transformer = [BDMFacebookStringValueTransformer new];
-    NSString *placement = [transformer transformedValue:contentInfo[@"facebook_key"]];
-    NSString *payload = [transformer transformedValue:contentInfo[@"bid_payload"]];
+    NSString *placement = ANY(contentInfo).from(BDMFacebookPlacementIDKey).string;
+    NSString *payload = ANY(contentInfo).from(BDMFacebookBidPayloadIDKey).string;
+    
     if (!placement || !payload) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"FBAudienceNetwork wasn'r recived valid bidding data"];

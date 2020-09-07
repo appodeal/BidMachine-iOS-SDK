@@ -38,8 +38,6 @@
 		42A93E4B22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E4A22E60209005053A2 /* BDMTapjoyFullscreenAdapter.m */; };
 		42A93E5722E70368005053A2 /* BDMFacebookAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E5622E70368005053A2 /* BDMFacebookAdNetwork.m */; };
 		42A93E5822E70368005053A2 /* BDMFacebookAdNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42A93E5522E70368005053A2 /* BDMFacebookAdNetwork.h */; };
-		42A93E6022E70758005053A2 /* BDMFaceebookPlacementsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E5F22E70758005053A2 /* BDMFaceebookPlacementsTransformer.m */; };
-		42A93E6322E70B65005053A2 /* BDMFacebookStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E6222E70B65005053A2 /* BDMFacebookStringValueTransformer.m */; };
 		42A93E6B22E70D2B005053A2 /* BDMFacebookBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E6A22E70D2B005053A2 /* BDMFacebookBannerAdapter.m */; };
 		42A93E6F22E71754005053A2 /* BDMFacebookFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E6E22E71754005053A2 /* BDMFacebookFullscreenAdapter.m */; };
 		42A93E7322E75B37005053A2 /* BDMAdColonyAppOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E7222E75B37005053A2 /* BDMAdColonyAppOptions.m */; };
@@ -256,10 +254,6 @@
 		42A93E5322E70368005053A2 /* libBDMFacebookAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMFacebookAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A93E5522E70368005053A2 /* BDMFacebookAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookAdNetwork.h; sourceTree = "<group>"; };
 		42A93E5622E70368005053A2 /* BDMFacebookAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookAdNetwork.m; sourceTree = "<group>"; };
-		42A93E5E22E70758005053A2 /* BDMFaceebookPlacementsTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFaceebookPlacementsTransformer.h; sourceTree = "<group>"; };
-		42A93E5F22E70758005053A2 /* BDMFaceebookPlacementsTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFaceebookPlacementsTransformer.m; sourceTree = "<group>"; };
-		42A93E6122E70B65005053A2 /* BDMFacebookStringValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookStringValueTransformer.h; sourceTree = "<group>"; };
-		42A93E6222E70B65005053A2 /* BDMFacebookStringValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookStringValueTransformer.m; sourceTree = "<group>"; };
 		42A93E6922E70D2B005053A2 /* BDMFacebookBannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookBannerAdapter.h; sourceTree = "<group>"; };
 		42A93E6A22E70D2B005053A2 /* BDMFacebookBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookBannerAdapter.m; sourceTree = "<group>"; };
 		42A93E6D22E71754005053A2 /* BDMFacebookFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookFullscreenAdapter.h; sourceTree = "<group>"; };
@@ -617,28 +611,8 @@
 		42A93E5422E70368005053A2 /* BDMFacebookAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				42A93E6C22E71728005053A2 /* Adapters */,
-				42A93E6422E70CC5005053A2 /* Transformers */,
 				42A93E5522E70368005053A2 /* BDMFacebookAdNetwork.h */,
 				42A93E5622E70368005053A2 /* BDMFacebookAdNetwork.m */,
-			);
-			path = BDMFacebookAdapter;
-			sourceTree = "<group>";
-		};
-		42A93E6422E70CC5005053A2 /* Transformers */ = {
-			isa = PBXGroup;
-			children = (
-				42A93E5E22E70758005053A2 /* BDMFaceebookPlacementsTransformer.h */,
-				42A93E5F22E70758005053A2 /* BDMFaceebookPlacementsTransformer.m */,
-				42A93E6122E70B65005053A2 /* BDMFacebookStringValueTransformer.h */,
-				42A93E6222E70B65005053A2 /* BDMFacebookStringValueTransformer.m */,
-			);
-			name = Transformers;
-			sourceTree = "<group>";
-		};
-		42A93E6C22E71728005053A2 /* Adapters */ = {
-			isa = PBXGroup;
-			children = (
 				42A93E6922E70D2B005053A2 /* BDMFacebookBannerAdapter.h */,
 				42A93E6A22E70D2B005053A2 /* BDMFacebookBannerAdapter.m */,
 				42A93E6D22E71754005053A2 /* BDMFacebookFullscreenAdapter.h */,
@@ -648,7 +622,7 @@
 				65BA8E3D23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.h */,
 				65BA8E3E23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.m */,
 			);
-			name = Adapters;
+			path = BDMFacebookAdapter;
 			sourceTree = "<group>";
 		};
 		42D7310A22DF5CF200AEB066 /* BDMMyTargetAdapter */ = {
@@ -1417,8 +1391,6 @@
 				65BA8E3C23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.m in Sources */,
 				42A93E6B22E70D2B005053A2 /* BDMFacebookBannerAdapter.m in Sources */,
 				42A93E6F22E71754005053A2 /* BDMFacebookFullscreenAdapter.m in Sources */,
-				42A93E6022E70758005053A2 /* BDMFaceebookPlacementsTransformer.m in Sources */,
-				42A93E6322E70B65005053A2 /* BDMFacebookStringValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
