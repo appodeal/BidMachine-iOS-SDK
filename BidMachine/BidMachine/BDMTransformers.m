@@ -29,7 +29,7 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
 
 + (ADCOMDeviceType (^)(STKDeviceType))deviceType {
     return ^ADCOMDeviceType (STKDeviceType type){
-        return STKDevice.isIphone ? ADCOMDeviceType_DeviceTypePhoneDevice : ADCOMDeviceType_DeviceTypeTablet;
+        return STKDevice.isIPhone ? ADCOMDeviceType_DeviceTypePhoneDevice : ADCOMDeviceType_DeviceTypeTablet;
     };
 }
 

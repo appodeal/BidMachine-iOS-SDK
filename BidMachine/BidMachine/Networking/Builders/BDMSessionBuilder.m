@@ -51,7 +51,7 @@
     requestMessage.sellerId = self.sellerID;
     requestMessage.bundle = STKBundle.ID;
     requestMessage.os = BDMTransformers.osType(STKDevice.os);
-    requestMessage.osv = STKDevice.osV;
+    requestMessage.osv = STKDevice.osv;
     requestMessage.sdk = @"BidMachine SDK";
     requestMessage.sdkver = kBDMVersion;
     requestMessage.geo = self.geoMessage;
