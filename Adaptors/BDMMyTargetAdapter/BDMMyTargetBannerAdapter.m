@@ -10,6 +10,7 @@
 @import MyTargetSDK;
 @import StackFoundation;
 
+#import "BDMMyTargetAdNetwork.h"
 #import "BDMMyTargetCustomParams.h"
 #import "BDMMyTargetBannerAdapter.h"
 
@@ -28,8 +29,8 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *slot = ANY(contentInfo).from(@"slot_id").string;
-    NSString *bid = ANY(contentInfo).from(@"bid_id").string;
+    NSString *slot = ANY(contentInfo).from(BDMMyTargetSlotIDKey).string;
+    NSString *bid = ANY(contentInfo).from(BDMMyTargetBidIDKey).string;
     
     NSUInteger slotId = [slot integerValue];
     if (slotId == 0 || bid == nil) {

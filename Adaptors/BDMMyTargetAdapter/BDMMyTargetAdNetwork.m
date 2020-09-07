@@ -6,13 +6,17 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import <MyTargetSDK/MyTargetSDK.h>
-#import <StackFoundation/StackFoundation.h>
+@import MyTargetSDK;
+@import StackFoundation;
 
 #import "BDMMyTargetAdNetwork.h"
 #import "BDMMyTargetBannerAdapter.h"
 #import "BDMMyTargetFullscreenAdapter.h"
 #import "BDMMyTargetNativeAdServiceAdapter.h"
+
+
+NSString *const BDMMyTargetSlotIDKey    = @"slot_id";
+NSString *const BDMMyTargetBidIDKey     = @"bid_id";
 
 
 @implementation BDMMyTargetAdNetwork
@@ -36,13 +40,13 @@
                             completion:(void (^)(NSDictionary<NSString *,id> * clientParams,
                                                  NSError *error))completion {
     [self syncMetadata];
-    NSString *slotId = ANY(parameters).from(@"slot_id").string;
+    NSString *slotId = ANY(parameters).from(BDMMyTargetSlotIDKey).string;
     NSString *bidId = MTRGManager.getBidderToken;
     NSDictionary *clientParams;
     NSError *error;
     if (slotId.length && bidId) {
-        clientParams = @{@"slot_id" : slotId,
-                         @"bid_id"  : bidId };
+        clientParams = @{ BDMMyTargetSlotIDKey : slotId,
+                          BDMMyTargetBidIDKey  : bidId };
     } else {
         error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                description:@"MyTarget ad unit not contains valid slot id"];
