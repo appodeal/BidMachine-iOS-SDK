@@ -6,13 +6,13 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMMyTargetNativeAdServiceAdapter.h"
-#import "BDMMyTargetNativeAdDisplayAdapter.h"
-#import "BDMMyTargetSlotTransformer.h"
-#import "BDMMyTargetCustomParams.h"
-
 @import StackUIKit;
 @import MyTargetSDK;
+@import StackFoundation;
+
+#import "BDMMyTargetCustomParams.h"
+#import "BDMMyTargetNativeAdServiceAdapter.h"
+#import "BDMMyTargetNativeAdDisplayAdapter.h"
 
 @interface BDMMyTargetNativeAdServiceAdapter ()<MTRGNativeAdDelegate>
 
@@ -27,8 +27,8 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *slot = [BDMMyTargetSlotTransformer.new transformedValue:contentInfo[@"slot_id"]];
-    NSString *bid = [BDMMyTargetSlotTransformer.new transformedValue:contentInfo[@"bid_id"]];
+    NSString *slot = ANY(contentInfo).from(@"slot_id").string;
+    NSString *bid = ANY(contentInfo).from(@"bid_id").string;
     
     NSUInteger slotId = [slot integerValue];
     if (slotId == 0 || bid == nil) {

@@ -6,11 +6,6 @@ PODS:
     - FBSDKCoreKit/Basics (>= 5.6.0)
   - FBSDKCoreKit/Basics (7.1.1)
   - Kiwi (3.0.0)
-  - MintegralAdSDK/BidInterstitialVideoAd (6.3.7.0):
-    - MintegralAdSDK/BidNativeAd
-  - MintegralAdSDK/BidNativeAd (6.3.7.0)
-  - MintegralAdSDK/BidRewardVideoAd (6.3.7.0):
-    - MintegralAdSDK/BidNativeAd
   - myTargetSDK (5.7.1)
   - Protobuf (3.13.0)
   - smaato-ios-sdk (21.5.2):
@@ -91,8 +86,6 @@ DEPENDENCIES:
   - DTBiOSSDK (= 3.0.0)
   - FBAudienceNetwork (= 5.10.1)
   - Kiwi
-  - MintegralAdSDK/BidInterstitialVideoAd (= 6.3.7.0)
-  - MintegralAdSDK/BidRewardVideoAd (= 6.3.7.0)
   - myTargetSDK (= 5.7.1)
   - Protobuf
   - smaato-ios-sdk (= 21.5.2)
@@ -121,7 +114,6 @@ SPEC REPOS:
     - FBAudienceNetwork
     - FBSDKCoreKit
     - Kiwi
-    - MintegralAdSDK
     - myTargetSDK
     - Protobuf
     - smaato-ios-sdk
@@ -137,7 +129,6 @@ SPEC CHECKSUMS:
   FBAudienceNetwork: 6cdcc40aa475e8045ab14398e181a3dc90a5014e
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  MintegralAdSDK: 3e0ce652e9e8cf24822b6b1ccacdbb6b838d9887
   myTargetSDK: d9352d173ddb0002468d5e35a54060cbff8a66d1
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   smaato-ios-sdk: 2be81511a3fe8adb27c08804b12c6c7f956963ac
@@ -148,6 +139,6 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   VungleSDK-iOS: 85456e060a3f26a0e03f9d4841495976326a7d05
 
-PODFILE CHECKSUM: 29138a499cf20cf3f92fb02d785437747a4fd3d0
+PODFILE CHECKSUM: d8ca89f538be9f16be585ce8ad43017c0d9dec8e
 
 COCOAPODS: 1.9.1

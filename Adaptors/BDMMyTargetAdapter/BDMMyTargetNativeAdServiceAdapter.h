@@ -12,7 +12,7 @@
 
 @interface BDMMyTargetNativeAdServiceAdapter : NSObject <BDMNativeAdServiceAdapter>
 
-@property (nonatomic, weak) id <BDMNativeAdServiceAdapterLoadingDelegate> loadingDelegate;
 @property (nonatomic, weak) id <BDMAdapterDisplayDelegate> displayDelegate;
+@property (nonatomic, weak) id <BDMNativeAdServiceAdapterLoadingDelegate> loadingDelegate;
 
 @end

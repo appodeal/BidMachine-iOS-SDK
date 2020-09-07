@@ -6,11 +6,11 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import <MyTargetSDK/MyTargetSDK.h>
+@import MyTargetSDK;
+@import StackFoundation;
 
-#import "BDMMyTargetFullscreenAdapter.h"
-#import "BDMMyTargetSlotTransformer.h"
 #import "BDMMyTargetCustomParams.h"
+#import "BDMMyTargetFullscreenAdapter.h"
 
 
 @interface BDMMyTargetFullscreenAdapter () <MTRGInterstitialAdDelegate>
@@ -27,8 +27,8 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *slot = [BDMMyTargetSlotTransformer.new transformedValue:contentInfo[@"slot_id"]];
-    NSString *bid = [BDMMyTargetSlotTransformer.new transformedValue:contentInfo[@"bid_id"]];
+    NSString *slot = ANY(contentInfo).from(@"slot_id").string;
+    NSString *bid = ANY(contentInfo).from(@"bid_id").string;
 
     NSUInteger slotId = [slot integerValue];
     if (slotId == 0 || bid == nil) {

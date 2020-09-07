@@ -8,6 +8,8 @@
 
 #import "BDMUserRestrictions.h"
 
+NSString * const BDMCCPAConsentCode  = @"1y";
+NSString * const BDMCCPANegativeCode = @"1n";
 
 @interface BDMUserRestrictions ()
 
@@ -77,8 +79,27 @@
     return self.publisherDefinedUSPrivacyString ?: self.userDefaultsUSPrivacyString;
 }
 
+- (BOOL)hasCCPAConsent {
+    return [self.CCPACode isEqualToString:BDMCCPAConsentCode];
+}
+
+- (BOOL)subjectToCCPA {
+    return [@[BDMCCPAConsentCode, BDMCCPANegativeCode] containsObject:self.CCPACode ?: @"Undefined"];
+}
+
 - (BOOL)allowUserInformation {
     return !self.coppa && (!self.subjectToGDPR || self.hasConsent);
+}
+
+- (NSString *)CCPACode {
+    NSString *code;
+    if (self.USPrivacyString.length == 4) {
+        char consentChar = [self.USPrivacyString.lowercaseString characterAtIndex:2];
+        char versionChar = [self.USPrivacyString.lowercaseString characterAtIndex:0];
+        code = [NSString stringWithFormat:@"%c,%c", versionChar, consentChar];
+        code = code.lowercaseString;
+    }
+    return code;
 }
 
 + (BOOL)supportsSecureCoding {

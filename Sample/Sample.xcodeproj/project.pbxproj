@@ -69,7 +69,6 @@
 		D971E2C1232927BE004E549F /* libBDMAmazonAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D971E2C0232927BE004E549F /* libBDMAmazonAdapter.a */; };
 		D98AE1C42175EDEC00414343 /* InterstitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98AE1C32175EDEC00414343 /* InterstitialVC.swift */; };
 		D98AE1C62175EDFE00414343 /* BannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98AE1C52175EDFE00414343 /* BannerVC.swift */; };
-		D99FF2B0230A8FD70060FA8E /* libBDMMintegralAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D99FF2AF230A8FD70060FA8E /* libBDMMintegralAdapter.a */; };
 		D9A4956D21AD9D85007A7611 /* ToastMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4956C21AD9D85007A7611 /* ToastMaker.swift */; };
 		D9B5670F21AFF97D0045E95D /* NativeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B5670E21AFF97D0045E95D /* NativeTableVC.swift */; };
 		D9BBD5E321CA35C0006233F9 /* CornerCasesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BBD5E221CA35C0006233F9 /* CornerCasesVC.swift */; };
@@ -185,7 +184,6 @@
 				4220558522E1F26200E1CA89 /* libBDMAdColonyAdapter.a in Frameworks */,
 				4231D01722E0CAFC002852CE /* libBDMMyTargetAdapter.a in Frameworks */,
 				424A9F6C21B82647008335EE /* libBDMMRAIDAdapter.a in Frameworks */,
-				D99FF2B0230A8FD70060FA8E /* libBDMMintegralAdapter.a in Frameworks */,
 				424A9F6E21B82647008335EE /* libBDMNASTAdapter.a in Frameworks */,
 				424A9F7021B82647008335EE /* libBDMVASTAdapter.a in Frameworks */,
 				42022FB8232A439D00D75E2B /* libBDMCriteoAdapter.a in Frameworks */,

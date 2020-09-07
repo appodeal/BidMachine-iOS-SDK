@@ -10,21 +10,14 @@
 #import <BidMachine/BDMTargeting.h>
 
 BDM_SUBCLASSING_RESTRICTED
-/**
- SDK configuration for initialisation
- */
+
+/// SDK configuration for initialisation
 @interface BDMSdkConfiguration : NSObject <NSCopying, NSSecureCoding>
-/**
- Targeting data. Can be nil
- */
+/// Targeting data. Can be nil
 @property (copy, nonatomic, readwrite, nullable) BDMTargeting *targeting;
-/**
- Enables/disables test mode
- */
+/// Enables/disables test mode
 @property (assign, nonatomic, readwrite) BOOL testMode;
-/**
- Base URL for SDK initialisation
- */
+/// Base URL for SDK initialisation
 @property (copy, nonatomic, readwrite, nonnull) NSURL *baseURL;
 @end
 
