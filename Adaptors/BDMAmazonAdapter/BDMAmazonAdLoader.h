@@ -6,10 +6,9 @@
 //  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
+#import "BDMAmazonNetwork.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @class BDMAmazonAdLoader;
 
@@ -17,11 +16,14 @@ typedef void(^BDMAmazonAdLoaderCompletion)(BDMAmazonAdLoader *_Nonnull loader,
                                            NSDictionary <NSString *, id> *_Nullable biddingParameters,
                                            NSError *_Nullable error);
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BDMAmazonAdLoader : NSObject
 
-- (instancetype)initWithServerParameters:(nonnull NSDictionary <NSString *, id> *)parameters;
+- (instancetype)initWithFormat:(BDMAdUnitFormat)format;
 
-- (void)prepareWithCompletion:(BDMAmazonAdLoaderCompletion)completion;
+- (void)prepareWithParameters:(NSDictionary <NSString *, id> *)parameters completion:(BDMAmazonAdLoaderCompletion)completion;
 
 @end
 
