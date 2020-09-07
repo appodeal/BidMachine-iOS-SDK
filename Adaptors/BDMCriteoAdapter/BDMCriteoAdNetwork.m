@@ -45,6 +45,7 @@ NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
 
 - (void)initialiseWithParameters:(NSDictionary<NSString *,id> *)parameters
                       completion:(void (^)(BOOL, NSError *))completion {
+    [self syncMetadata];
     if (self.hasBeenInitialized) {
         STK_RUN_BLOCK(completion, NO, nil);
         return;
@@ -87,6 +88,7 @@ NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
         STK_RUN_BLOCK(completion, nil, error);
         return;
     }
+    [self syncMetadata];
     
     CRAdUnit *adUnit = [self adUnitByFormat:adUnitFormat adUnitId:adUnitId];
     CRBidResponse *bidResponse = [self bidResponseForAdUnit:adUnit];
@@ -117,6 +119,12 @@ NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
     CRBidToken *bidToken = [self.bidTokenStorage objectForKey:adUnitId];
     [self.bidTokenStorage removeObjectForKey:adUnitId];
     return bidToken;
+}
+
+- (void)syncMetadata {
+    if (BDMSdk.sharedSdk.restrictions.subjectToCCPA) {
+        [Criteo.sharedCriteo setUsPrivacyOptOut:YES];
+    }
 }
 
 #pragma mark - Private

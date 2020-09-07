@@ -6,21 +6,25 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMSmaatoAdNetwork.h"
-#import "BDMSmaatoBannerAdapter.h"
-#import "BDMSmaatoFullscreenAdapter.h"
-#import "BDMSmaatoStringValueTransformer.h"
-
 @import SmaatoSDKCore;
 @import SmaatoSDKUnifiedBidding;
 @import StackFoundation;
+
+#import "BDMSmaatoAdNetwork.h"
+#import "BDMSmaatoBannerAdapter.h"
+#import "BDMSmaatoFullscreenAdapter.h"
+
+
+NSString *const BDMSmaatoIDKey          = @"publisher_id";
+NSString *const BDMSmaatoPriceKey       = @"bid_price";
+NSString *const BDMSmaatoSpaceIDKey     = @"ad_space_id";
 
 typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
 
 @interface BDMSmaatoAdNetwork()
 
 @property (nonatomic, assign) BOOL initialized;
-@property (nonatomic, copy) NSString *publisherId;
+@property (nonatomic,   copy) NSString *publisherId;
 
 @end
 
@@ -43,7 +47,7 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
         return;
     }
     
-    NSString *publisherId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"publisher_id"]];
+    NSString *publisherId = ANY(parameters).from(BDMSmaatoIDKey).string;
     if (publisherId) {
         SMAConfiguration *configuration = [[SMAConfiguration alloc] initWithPublisherId:publisherId];
         configuration.logLevel = BDMSdkLoggingEnabled ? kSMALogLevelVerbose : kSMALogLevelError;
@@ -60,7 +64,7 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
-    NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"ad_space_id"]];
+    NSString *adSpaceId = ANY(parameters).from(BDMSmaatoSpaceIDKey).string;
     if (!adSpaceId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:@"Smaato adapter was not receive valid bidding data"];
@@ -71,11 +75,11 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
     __weak typeof(self) weakself = self;
     BDMSmaatoCompletionBlock smaatoCompletion = ^(SMAUbBid *bid, NSError *error) {
         NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:3];
-        bidding[@"ad_space_id"] = adSpaceId;
-        bidding[@"publisher_id"] = weakself.publisherId;
+        bidding[BDMSmaatoSpaceIDKey] = adSpaceId;
+        bidding[BDMSmaatoIDKey] = weakself.publisherId;
         
         if (bid) {
-            bidding[@"bid_price"] = @(bid.bidPrice);
+            bidding[BDMSmaatoPriceKey] = @(bid.bidPrice);
         } else {
             error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                    description:@"Smaato can't prebid adapter"];
@@ -132,6 +136,7 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
         SmaatoSDK.userAge = targeting.userAge;
         SmaatoSDK.userRegion = targeting.country;
         SmaatoSDK.userZipCode = targeting.zip;
+        SmaatoSDK.requireCoppaCompliantAds = YES;
 
         if (targeting.deviceLocation) {
             SmaatoSDK.userLocation = [[SMALocation alloc] initWithLatitude:targeting.deviceLocation.coordinate.latitude

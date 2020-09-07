@@ -54,7 +54,6 @@
 		658CA9032361A58E00B6D234 /* BDMSmaatoAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9022361A58E00B6D234 /* BDMSmaatoAdNetwork.m */; };
 		658CA9062361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9052361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m */; };
 		658CA90F2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA90E2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m */; };
-		658CA9122361B40C00B6D234 /* BDMSmaatoStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9112361B40C00B6D234 /* BDMSmaatoStringValueTransformer.m */; };
 		65BA8E3023852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E2F23852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.m */; };
 		65BA8E3323852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E3223852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.m */; };
 		65BA8E3C23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E3B23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.m */; };
@@ -296,8 +295,6 @@
 		658CA9052361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSmaatoBannerAdapter.m; sourceTree = "<group>"; };
 		658CA90D2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSmaatoFullscreenAdapter.h; sourceTree = "<group>"; };
 		658CA90E2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSmaatoFullscreenAdapter.m; sourceTree = "<group>"; };
-		658CA9102361B40C00B6D234 /* BDMSmaatoStringValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSmaatoStringValueTransformer.h; sourceTree = "<group>"; };
-		658CA9112361B40C00B6D234 /* BDMSmaatoStringValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSmaatoStringValueTransformer.m; sourceTree = "<group>"; };
 		65BA8E2E23852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetNativeAdServiceAdapter.h; sourceTree = "<group>"; };
 		65BA8E2F23852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetNativeAdServiceAdapter.m; sourceTree = "<group>"; };
 		65BA8E3123852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetNativeAdDisplayAdapter.h; sourceTree = "<group>"; };
@@ -655,8 +652,6 @@
 				658CA9052361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m */,
 				658CA90D2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.h */,
 				658CA90E2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m */,
-				658CA9102361B40C00B6D234 /* BDMSmaatoStringValueTransformer.h */,
-				658CA9112361B40C00B6D234 /* BDMSmaatoStringValueTransformer.m */,
 			);
 			path = BDMSmaatoAdapter;
 			sourceTree = "<group>";
@@ -1381,7 +1376,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				658CA90F2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m in Sources */,
-				658CA9122361B40C00B6D234 /* BDMSmaatoStringValueTransformer.m in Sources */,
 				658CA9062361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m in Sources */,
 				658CA9032361A58E00B6D234 /* BDMSmaatoAdNetwork.m in Sources */,
 			);

@@ -11,9 +11,13 @@
 @import BidMachine.Adapters;
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BDMSmaatoBannerAdapter : NSObject <BDMBannerAdapter>
 
 @property (nonatomic, weak, nullable) id<BDMAdapterLoadingDelegate> loadingDelegate;
 @property (nonatomic, weak, nullable) id <BDMBannerAdapterDisplayDelegate> displayDelegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

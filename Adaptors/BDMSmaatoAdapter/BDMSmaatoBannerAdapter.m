@@ -6,11 +6,13 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMSmaatoBannerAdapter.h"
-#import "BDMSmaatoStringValueTransformer.h"
-
-@import SmaatoSDKBanner;
 @import StackUIKit;
+@import StackFoundation;
+@import SmaatoSDKBanner;
+
+#import "BDMSmaatoAdNetwork.h"
+#import "BDMSmaatoBannerAdapter.h"
+
 
 @interface BDMSmaatoBannerAdapter()<SMABannerViewDelegate>
 
@@ -25,7 +27,7 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:contentInfo[@"ad_space_id"]];
+    NSString *adSpaceId = ANY(contentInfo).from(BDMSmaatoSpaceIDKey).string;
     if (!adSpaceId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"BDMSmaatoBannerAdapter wasn't recived valid bidding data"];
@@ -42,7 +44,6 @@
 
 - (void)presentInContainer:(UIView *)container {
     [container.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [container addSubview:self.bannerView];
     [self.bannerView stk_edgesEqual:container];
 }
 

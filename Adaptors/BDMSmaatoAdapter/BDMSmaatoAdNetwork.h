@@ -12,6 +12,14 @@
 @import BidMachine.HeaderBidding;
 
 
+NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSString *const BDMSmaatoIDKey;
+FOUNDATION_EXPORT NSString *const BDMSmaatoPriceKey;
+FOUNDATION_EXPORT NSString *const BDMSmaatoSpaceIDKey;
+
 @interface BDMSmaatoAdNetwork : NSObject <BDMNetwork>
 
 @end
+
+NS_ASSUME_NONNULL_END
