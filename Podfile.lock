@@ -114,7 +114,6 @@ SPEC REPOS:
     - CriteoPublisherSdk
     - DTBiOSSDK
     - StackAPI
-    - StackIAB
     - StackModules
   https://github.com/CocoaPods/Specs.git:
     - AdColony
@@ -142,7 +141,7 @@ SPEC CHECKSUMS:
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   smaato-ios-sdk: 2be81511a3fe8adb27c08804b12c6c7f956963ac
   StackAPI: 0c48d817256cdde98f50d65c729a4c5c8ac1b1d1
-  StackIAB: e30a4523f384d02fcfda16b8e593b7dd0f9c83a2
+  StackIAB: df1acc44f094a25a1a572cea968890ebf2a13049
   StackModules: d92597a370dba15acbe1abba70513e47c1461977
   TapjoySDK: ab02725a55e84c2fdd6fafc872cb00bd58e8adb2
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
@@ -150,4 +149,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 29138a499cf20cf3f92fb02d785437747a4fd3d0
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

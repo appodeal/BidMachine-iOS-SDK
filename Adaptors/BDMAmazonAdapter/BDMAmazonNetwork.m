@@ -13,8 +13,8 @@
 #import "BDMAmazonNetwork.h"
 #import "BDMAmazonBannerAdapter.h"
 #import "BDMAmazonInterstitialAdapter.h"
-#import "BDMAmazonUtils.h"
 #import "BDMAmazonAdLoader.h"
+
 
 @interface BDMAmazonNetwork()
 
@@ -33,10 +33,6 @@
     return [DTBAds version];
 }
 
-- (BDMAmazonUtils *)amazonUtils {
-    return [BDMAmazonUtils sharedInstance];
-}
-
 - (NSHashTable<BDMAmazonAdLoader *> *)loaders {
     if (!_loaders) {
         _loaders = [[NSHashTable alloc] init];
@@ -53,7 +49,6 @@
     }
     
     NSString *appKey = [BDMAmazonValueTransformer.new transformedValue:parameters[@"app_key"]];
-    [self.amazonUtils configureSlotsDict:parameters];
     if (!appKey) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:@"Amazon adapter was not receive valid initialization data"];
@@ -69,7 +64,8 @@
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
-    BDMAmazonAdLoader *loader = [[BDMAmazonAdLoader alloc] initWithServerParameters:parameters];
+    BDMAmazonAdLoader *loader = [[BDMAmazonAdLoader alloc] initWithFormat:adUnitFormat
+                                                         serverParameters:parameters];
     [self.loaders addObject:loader];
     __weak typeof(self) weakSelf = self;
     [loader prepareWithCompletion:^(BDMAmazonAdLoader *loader,

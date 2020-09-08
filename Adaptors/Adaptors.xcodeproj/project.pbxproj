@@ -85,7 +85,6 @@
 		D9403D1B2327D2550091E61E /* BDMAmazonNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = D9403D1A2327D2550091E61E /* BDMAmazonNetwork.m */; };
 		D9403D1C2327D2550091E61E /* BDMAmazonNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D9403D192327D2550091E61E /* BDMAmazonNetwork.h */; };
 		D9403D232327D48C0091E61E /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9403D222327D48C0091E61E /* BidMachine.framework */; };
-		D971E2BC2328DFF6004E549F /* BDMAmazonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D971E2BB2328DFF6004E549F /* BDMAmazonUtils.m */; };
 		D971E2BF23290BD1004E549F /* BDMAmazonInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D971E2BE23290BD1004E549F /* BDMAmazonInterstitialAdapter.m */; };
 		D971E2C223292C7E004E549F /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9403D222327D48C0091E61E /* BidMachine.framework */; };
 		D995F5BE232A5618007DE895 /* BDMAmazonValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D995F5BD232A5618007DE895 /* BDMAmazonValueTransformer.m */; };
@@ -378,8 +377,6 @@
 		D9403D192327D2550091E61E /* BDMAmazonNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonNetwork.h; sourceTree = "<group>"; };
 		D9403D1A2327D2550091E61E /* BDMAmazonNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonNetwork.m; sourceTree = "<group>"; };
 		D9403D222327D48C0091E61E /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D971E2BA2328DFF6004E549F /* BDMAmazonUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonUtils.h; sourceTree = "<group>"; };
-		D971E2BB2328DFF6004E549F /* BDMAmazonUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonUtils.m; sourceTree = "<group>"; };
 		D971E2BD23290BD1004E549F /* BDMAmazonInterstitialAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonInterstitialAdapter.h; sourceTree = "<group>"; };
 		D971E2BE23290BD1004E549F /* BDMAmazonInterstitialAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonInterstitialAdapter.m; sourceTree = "<group>"; };
 		D995F5BC232A5618007DE895 /* BDMAmazonValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonValueTransformer.h; sourceTree = "<group>"; };
@@ -878,8 +875,6 @@
 		D971E2B92328DFE1004E549F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				D971E2BA2328DFF6004E549F /* BDMAmazonUtils.h */,
-				D971E2BB2328DFF6004E549F /* BDMAmazonUtils.m */,
 				42B3D15524FCF8C200977C16 /* BDMAmazonAdLoader.h */,
 				42B3D15624FCF8C200977C16 /* BDMAmazonAdLoader.m */,
 			);
@@ -1619,7 +1614,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D971E2BC2328DFF6004E549F /* BDMAmazonUtils.m in Sources */,
 				42B3D15724FCF8C200977C16 /* BDMAmazonAdLoader.m in Sources */,
 				D995F5BE232A5618007DE895 /* BDMAmazonValueTransformer.m in Sources */,
 				D9403D1B2327D2550091E61E /* BDMAmazonNetwork.m in Sources */,

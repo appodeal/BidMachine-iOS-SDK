@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <BidMachine/BidMachine.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,7 +20,8 @@ typedef void(^BDMAmazonAdLoaderCompletion)(BDMAmazonAdLoader *_Nonnull loader,
 
 @interface BDMAmazonAdLoader : NSObject
 
-- (instancetype)initWithServerParameters:(nonnull NSDictionary <NSString *, id> *)parameters;
+- (instancetype)initWithFormat:(BDMAdUnitFormat)foramt
+              serverParameters:(NSDictionary<NSString *,id> *)parameters;
 
 - (void)prepareWithCompletion:(BDMAmazonAdLoaderCompletion)completion;
 
