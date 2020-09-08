@@ -67,9 +67,9 @@
       adRendering:(id<BDMNativeAdRendering>)adRendering
        controller:(UIViewController *)controller
 {
-    adRendering.titleLabel.text = self.title;
-    adRendering.callToActionLabel.text = self.CTAText;
-    adRendering.descriptionLabel.text = self.body;
+    adRendering.titleLabel.text             = self.title;
+    adRendering.descriptionLabel.text       = self.body;
+    adRendering.callToActionLabel.text      = self.CTAText;
     
     
     if ([adRendering respondsToSelector:@selector(iconView)] && adRendering.iconView) {

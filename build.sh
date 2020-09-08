@@ -29,7 +29,6 @@ export ADAPTERS=(
     "BDMAdColonyAdapter"
     "BDMVungleAdapter"
     "BDMTapjoyAdapter"
-    "BDMMintegralAdapter"
     "BDMCriteoAdapter"
     "BDMAmazonAdapter"
     "BDMSmaatoAdapter"

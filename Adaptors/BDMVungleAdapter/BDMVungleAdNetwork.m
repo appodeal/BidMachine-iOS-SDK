@@ -6,22 +6,24 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import <StackFoundation/StackFoundation.h>
-#import <VungleSDK/VungleSDKHeaderBidding.h>
+@import StackFoundation;
 
 #import "BDMVungleAdNetwork.h"
-#import "BDMVungleValueTransformer.h"
 #import "BDMVungleFullscreenAdapter.h"
 
+
+NSString *const BDMVungleTokenKey               = @"token";
+NSString *const BDMVungleAppIDKey               = @"app_id";
+NSString *const BDMVunglePlacementIDKey         = @"placement_id";
 
 @interface BDMVungleAdNetwork () <VungleSDKDelegate, VungleSDKHeaderBidding>
 
 typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSError *);
 
-@property (nonatomic, copy) NSString *appId;
-@property (nonatomic, copy) void(^initialisationCompletion)(BOOL, NSError *);
-@property (nonatomic, copy) NSMapTable <NSString *, VungleHeaderBiddingCompletion> *completionByPlacement;
-@property (nonatomic, copy) NSHashTable <BDMVungleFullscreenAdapter *> *delegates;
+@property (nonatomic, copy, nullable) NSString *appId;
+@property (nonatomic, copy, nullable) void(^initialisationCompletion)(BOOL, NSError *);
+@property (nonatomic, copy,  nonnull) NSHashTable <BDMVungleFullscreenAdapter *> *delegates;
+@property (nonatomic, copy,  nonnull) NSMapTable <NSString *, VungleHeaderBiddingCompletion> *completionByPlacement;
 
 @end
 
@@ -59,7 +61,7 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
     }
     
     NSError *error = nil;
-    NSString *appId = [BDMVungleValueTransformer.new transformedValue:parameters[@"app_id"]];
+    NSString *appId = ANY(parameters).from(BDMVungleAppIDKey).string;
     
     if (appId) {
         self.appId = appId;
@@ -81,7 +83,7 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
-    NSString *placement = [BDMVungleValueTransformer.new transformedValue:parameters[@"placement_id"]];
+    NSString *placement = ANY(parameters).from(BDMVunglePlacementIDKey).string;
     
     if (!placement) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"Vungle placement id is not valid string"];
@@ -91,7 +93,8 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
     
     NSString *token = [VungleSDK.sharedSDK bidTokenForPlacement:placement];
     if (token) {
-        NSDictionary *bidding = @{ @"placement_id": placement, @"token": token };
+        NSDictionary *bidding = @{ BDMVunglePlacementIDKey  : placement,
+                                   BDMVungleTokenKey        : token };
         STK_RUN_BLOCK(completion, bidding, nil);
         return;
     }
@@ -183,8 +186,8 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
 - (void)placementPrepared:(NSString *)placement
              withBidToken:(NSString *)bidToken {
     NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:2];
-    bidding[@"placement_id"] = placement;
-    bidding[@"token"] = bidToken;
+    bidding[BDMVunglePlacementIDKey] = placement;
+    bidding[BDMVungleTokenKey] = bidToken;
     STK_RUN_BLOCK([self.completionByPlacement objectForKey:placement], bidding, nil);
     [self.completionByPlacement removeObjectForKey:placement];
 }
@@ -196,6 +199,11 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
     if (BDMSdk.sharedSdk.restrictions.subjectToGDPR) {
         VungleConsentStatus status = BDMSdk.sharedSdk.restrictions.hasConsent ? VungleConsentAccepted : VungleConsentDenied;
         [VungleSDK.sharedSDK updateConsentStatus:status consentMessageVersion:@""];
+    }
+    
+    if (BDMSdk.sharedSdk.restrictions.subjectToCCPA) {
+        VungleCCPAStatus status = BDMSdk.sharedSdk.restrictions.hasCCPAConsent ? VungleCCPAAccepted : VungleCCPADenied;
+        [VungleSDK.sharedSDK updateCCPAStatus:status];
     }
     
     [VungleSDK.sharedSDK setLoggingEnabled:BDMSdkLoggingEnabled];

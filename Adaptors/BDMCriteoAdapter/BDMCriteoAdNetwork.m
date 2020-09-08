@@ -4,12 +4,19 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
+@import StackFoundation;
+
 #import "BDMCriteoAdNetwork.h"
 #import "BDMCriteoBannerAdapter.h"
 #import "BDMCriteoInterstitialAdapter.h"
-#import <StackFoundation/StackFoundation.h>
-#import <CriteoPublisherSdk/CriteoPublisherSdk.h>
 
+
+NSString *const BDMCriteoIDKey                      = @"publisher_id";
+NSString *const BDMCriteoPriceKey                   = @"price";
+NSString *const BDMCriteoAdUnitIDKey                = @"ad_unit_id";
+NSString *const BDMCriteoOrienationKey              = @"orientation";
+NSString *const BDMCriteoBannerAdUnitsKey           = @"banner_ad_units";
+NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
 
 @interface BDMCriteoAdNetwork ()
 
@@ -38,14 +45,15 @@
 
 - (void)initialiseWithParameters:(NSDictionary<NSString *,id> *)parameters
                       completion:(void (^)(BOOL, NSError *))completion {
+    [self syncMetadata];
     if (self.hasBeenInitialized) {
         STK_RUN_BLOCK(completion, NO, nil);
         return;
     }
     
-    NSString *publisherId = parameters[@"publisher_id"];
-    NSArray *bannerAdUnitsArray = parameters[@"banner_ad_units"];
-    NSArray *interstitialAdUnitsArray = parameters[@"interstitial_ad_units"];
+    NSString *publisherId = ANY(parameters).from(BDMCriteoIDKey).string;
+    NSArray *bannerAdUnitsArray = ANY(parameters).from(BDMCriteoBannerAdUnitsKey).arrayOfString;
+    NSArray *interstitialAdUnitsArray = ANY(parameters).from(BDMCriteoInterstitialAdUnitsKey).arrayOfString;
     if (!NSString.stk_isValid(publisherId)) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:@"Criteo adapter was not receive valid publisher id"];
@@ -54,10 +62,10 @@
     }
     
     NSArray <CRBannerAdUnit *> *bannerAdUnits = ANY(bannerAdUnitsArray).flatMap(^CRBannerAdUnit *(NSString *value){
-        return NSString.stk_isValid(value) ? [self bannerAdUnit:value size:CGSizeZero] : nil;
+        return [self bannerAdUnit:value size:CGSizeZero];
     }).array;
     NSArray <CRInterstitialAdUnit *> *interstitialAdUnits = ANY(interstitialAdUnitsArray).flatMap(^CRInterstitialAdUnit *(NSString *value){
-        return NSString.stk_isValid(value) ? [self interstitialAdUnit:value] : nil;
+        return [self interstitialAdUnit:value];
     }).array;
     
     NSArray *adUnits = [NSArray stk_concat:bannerAdUnits, interstitialAdUnits, nil];
@@ -71,14 +79,16 @@
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
-    NSString *adUnitId = parameters[@"ad_unit_id"];
+    NSString *adUnitId = ANY(parameters).from(BDMCriteoAdUnitIDKey).string;
+    NSString *orientation = ANY(parameters).from(BDMCriteoOrienationKey).string;
     
-    if (!NSString.stk_isValid(adUnitId) || ![self isValidOrientation:parameters[@"orientation"]]) {
+    if (!NSString.stk_isValid(adUnitId) || ![self isValidOrientation:orientation]) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:@"Criteo adapter was not receive valid bidding data"];
         STK_RUN_BLOCK(completion, nil, error);
         return;
     }
+    [self syncMetadata];
     
     CRAdUnit *adUnit = [self adUnitByFormat:adUnitFormat adUnitId:adUnitId];
     CRBidResponse *bidResponse = [self bidResponseForAdUnit:adUnit];
@@ -90,8 +100,8 @@
     }
     
     NSMutableDictionary *bidding = [[NSMutableDictionary alloc] initWithCapacity:2];
-    bidding[@"price"] = @(bidResponse.price);
-    bidding[@"ad_unit_id"] = adUnitId;
+    bidding[BDMCriteoPriceKey] = @(bidResponse.price);
+    bidding[BDMCriteoAdUnitIDKey] = adUnitId;
     
     [self.bidTokenStorage setObject:bidResponse.bidToken forKey:adUnitId];
     STK_RUN_BLOCK(completion, bidding, nil);
@@ -109,6 +119,12 @@
     CRBidToken *bidToken = [self.bidTokenStorage objectForKey:adUnitId];
     [self.bidTokenStorage removeObjectForKey:adUnitId];
     return bidToken;
+}
+
+- (void)syncMetadata {
+    if (BDMSdk.sharedSdk.restrictions.subjectToCCPA) {
+        [Criteo.sharedCriteo setUsPrivacyOptOut:YES];
+    }
 }
 
 #pragma mark - Private

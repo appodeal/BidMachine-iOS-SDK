@@ -61,11 +61,6 @@ def criteo
   pod 'CriteoPublisherSdk', '3.4.1'
 end
 
-def mintegral
-  pod 'MintegralAdSDK/BidInterstitialVideoAd', '6.3.7.0'
-  pod 'MintegralAdSDK/BidRewardVideoAd', '6.3.7.0'
-end
-
 def amazon
   pod 'DTBiOSSDK', '3.0.0'
 end
@@ -136,12 +131,6 @@ target 'BDMFacebookAdapter' do
   stack_modules
 end
 
-target 'BDMMintegralAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
-  mintegral
-  stack_modules
-end
-
 target 'BDMAmazonAdapter' do
   project 'Adaptors/Adaptors.xcodeproj'
   amazon
@@ -164,7 +153,6 @@ target 'Sample' do
   vungle
   tapjoy
   facebook
-  mintegral
   amazon
   smaato
   criteo

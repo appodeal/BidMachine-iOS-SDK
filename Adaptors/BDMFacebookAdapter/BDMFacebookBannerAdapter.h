@@ -10,7 +10,6 @@
 @import BidMachine;
 @import BidMachine.Adapters;
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface BDMFacebookBannerAdapter : NSObject <BDMBannerAdapter>
 
@@ -18,6 +17,3 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id <BDMBannerAdapterDisplayDelegate> displayDelegate;
 
 @end
-
-
-NS_ASSUME_NONNULL_END

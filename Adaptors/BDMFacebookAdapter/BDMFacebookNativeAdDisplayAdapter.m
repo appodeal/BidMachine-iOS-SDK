@@ -6,14 +6,15 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMFacebookNativeAdDisplayAdapter.h"
-
 @import StackUIKit;
 @import StackFoundation;
 
+#import "BDMFacebookNativeAdDisplayAdapter.h"
+
+
 @interface BDMFacebookNativeAdDisplayAdapter ()<FBNativeAdDelegate>
 
-@property (nonatomic, strong) FBNativeAd *ad;
+@property(nonatomic, strong) FBNativeAd *ad;
 @property(nonatomic, readwrite, copy, nonnull) NSString *title;
 @property(nonatomic, readwrite, copy, nonnull) NSString *body;
 @property(nonatomic, readwrite, copy, nonnull) NSString *CTAText;
@@ -41,12 +42,12 @@
 - (void)parseAd:(FBNativeAd *)ad {
     NSDictionary *model = ANY(ad).from(@"dataModel.metadata").value;
     if (NSDictionary.stk_isValid(model)) {
-        self.title = ANY(model).from(@"title").string;
-        self.body = ANY(model).from(@"body").string;
-        self.CTAText = ANY(model).from(@"call_to_action").string;
-        self.iconUrl = ANY(model).from(@"icon.url").string;
-        self.mainImageUrl = ANY(model).from(@"image.url").string;
-        self.containsVideo = ad.adFormatType == FBAdFormatTypeVideo;
+        self.title              = ANY(model).from(@"title").string;
+        self.body               = ANY(model).from(@"body").string;
+        self.CTAText            = ANY(model).from(@"call_to_action").string;
+        self.iconUrl            = ANY(model).from(@"icon.url").string;
+        self.mainImageUrl       = ANY(model).from(@"image.url").string;
+        self.containsVideo      = ad.adFormatType == FBAdFormatTypeVideo;
     }
 }
 

@@ -6,19 +6,18 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMAdColonyFullscreenAdapter.h"
-#import "BDMAdColonyStringTransformer.h"
+@import AdColony;
+@import StackFoundation;
 
-#import <AdColony/AdColony.h>
+#import "BDMAdColonyFullscreenAdapter.h"
 
 
 @interface BDMAdColonyFullscreenAdapter ()<AdColonyInterstitialDelegate>
 
-@property (nonatomic, weak) id<BDMAdColonyAdInterstitialProvider> provider;
 @property (nonatomic, strong) AdColonyInterstitial *interstitial;
+@property (nonatomic,   weak) id<BDMAdColonyAdInterstitialProvider> provider;
 
 @end
-
 
 @implementation BDMAdColonyFullscreenAdapter
 
@@ -34,7 +33,7 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *zone = [BDMAdColonyStringTransformer.new transformedValue:contentInfo[@"zone_id"]];
+    NSString *zone = ANY(contentInfo).from(BDMAdColonyZoneIDKey).string;
     if (!zone) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeNoContent description:@"AdColony zone id wasn't found"];
         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];

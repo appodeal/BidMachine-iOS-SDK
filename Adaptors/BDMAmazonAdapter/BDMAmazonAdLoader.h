@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BidMachine/BidMachine.h>
 
+#import "BDMAmazonNetwork.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @class BDMAmazonAdLoader;
 
@@ -18,7 +18,11 @@ typedef void(^BDMAmazonAdLoaderCompletion)(BDMAmazonAdLoader *_Nonnull loader,
                                            NSDictionary <NSString *, id> *_Nullable biddingParameters,
                                            NSError *_Nullable error);
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BDMAmazonAdLoader : NSObject
+
 
 - (instancetype)initWithFormat:(BDMAdUnitFormat)foramt
               serverParameters:(NSDictionary<NSString *,id> *)parameters;

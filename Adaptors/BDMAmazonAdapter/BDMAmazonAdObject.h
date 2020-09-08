@@ -1,9 +1,9 @@
 //
-//  BDMAmazonBannerAdapter.h
+//  BDMAmazonAdObject.h
 //  BDMAmazonAdapter
 //
-//  Created by Yaroslav Skachkov on 9/10/19.
-//  Copyright © 2019 Stas Kochkin. All rights reserved.
+//  Created by Ilia Lozhkin on 07.09.2020.
+//  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
 @import Foundation;
@@ -16,6 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak, nullable) id <BDMAdapterLoadingDelegate> loadingDelegate;
 @property (nonatomic, weak, nullable) id <BDMBannerAdapterDisplayDelegate> displayDelegate;
+
+@end
+
+@interface BDMAmazonInterstitialAdapter : NSObject <BDMFullscreenAdapter>
+
+@property (nonatomic, weak, nullable) id <BDMAdapterLoadingDelegate> loadingDelegate;
+@property (nonatomic, weak, nullable) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
 
 @end
 

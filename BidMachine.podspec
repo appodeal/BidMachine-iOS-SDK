@@ -33,7 +33,6 @@ Pod::Spec.new do |s|
     ss.dependency 'BidMachine/MyTargetAdapter'
     ss.dependency 'BidMachine/TapjoyAdapter'
     ss.dependency 'BidMachine/VungleAdapter'
-    ss.dependency 'BidMachine/MintegralAdapter'
     ss.dependency 'BidMachine/CriteoAdapter'
     ss.dependency 'BidMachine/AmazonAdapter'
     ss.dependency 'BidMachine/SmaatoAdapter'
@@ -67,13 +66,6 @@ Pod::Spec.new do |s|
     ss.vendored_libraries = 'libBDMVungleAdapter.a' 
     ss.dependency 'BidMachine/Core'
     ss.dependency 'VungleSDK-iOS', '6.7.0'
-  end
-
-  s.subspec 'MintegralAdapter' do |ss|
-    ss.vendored_libraries = 'libBDMMintegralAdapter.a' 
-    ss.dependency 'BidMachine/Core'
-    ss.dependency 'MintegralAdSDK/BidInterstitialVideoAd', '6.3.7.0'
-    ss.dependency 'MintegralAdSDK/BidRewardVideoAd', '6.3.7.0'
   end
 
   s.subspec 'CriteoAdapter' do |ss|

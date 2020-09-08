@@ -6,15 +6,36 @@
 //  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMAmazonAdLoader.h"
-#import "BDMAmazonValueTransformer.h"
-#import "BDMAmazonCallbackProxy.h"
 
-@import BidMachine.Adapters;
-@import StackFoundation;
 @import DTBiOSSDK;
+@import StackFoundation;
+@import BidMachine.Adapters;
+
+#import "BDMAmazonAdLoader.h"
+
 
 #define dimension(phone, pad) UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? pad : phone
+
+
+@interface BDMAmazonCallbackProxy : NSObject <DTBAdCallback>
+
+@property (nonatomic, weak) id<DTBAdCallback> delegate;
+
+@end
+
+
+@implementation BDMAmazonCallbackProxy
+
+- (void)onSuccess:(DTBAdResponse *)adResponse {
+    [self.delegate onSuccess:adResponse];
+}
+
+- (void)onFailure:(DTBAdError)error {
+    [self.delegate onFailure:error];
+}
+
+@end
+
 
 @interface BDMAmazonAdLoader () <DTBAdCallback>
 
@@ -22,6 +43,7 @@
 @property (nonatomic, copy) BDMAmazonAdLoaderCompletion completion;
 @property (nonatomic, copy) NSDictionary <NSString *, id> *parameters;
 @property (nonatomic, assign) BDMAdUnitFormat format;
+
 
 @end
 
@@ -63,7 +85,7 @@
 #pragma mark - Private
 
 - (DTBAdSize *)adSizeWithError:(NSError **)error {
-    NSString *slotUUID = [BDMAmazonValueTransformer.new transformedValue:self.parameters[@"slot_uuid"]];
+    NSString *slotUUID = ANY(self.parameters).from(BDMAmazonSlotIdKey).string;
     if (!slotUUID) {
         NSError *_error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                          description:@"Amazon adapter was not receive valid bidding data"];

@@ -10,7 +10,14 @@
 @import BidMachine;
 @import BidMachine.Adapters;
 
+NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSString *const BDMMyTargetSlotIDKey;
+FOUNDATION_EXPORT NSString *const BDMMyTargetBidIDKey;
+
 @interface BDMMyTargetAdNetwork : NSObject <BDMNetwork>
 
 @end
+
+NS_ASSUME_NONNULL_END
 

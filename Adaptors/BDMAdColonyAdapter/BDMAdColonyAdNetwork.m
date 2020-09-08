@@ -6,21 +6,22 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import <AdColony/AdColony.h>
-#import <StackFoundation/StackFoundation.h>
+@import StackFoundation;
 
 #import "BDMAdColonyAdNetwork.h"
-#import "BDMAdColonyStringTransformer.h"
-#import "BDMAdColonyFullscreenAdapter.h"
 #import "BDMAdColonyAppOptions.h"
+#import "BDMAdColonyFullscreenAdapter.h"
 
+NSString *const BDMAdColonyAppIDKey     = @"app_id";
+NSString *const BDMAdColonyZoneIDKey    = @"zone_id";
+NSString *const BDMAdColonyZonesKey     = @"zones";
 
 @interface BDMAdColonyAdNetwork ()<AdColonyInterstitialDelegate>
 
-@property (nonatomic, strong) NSMutableArray <AdColonyZone *> *zones;
-@property (nonatomic, strong) NSPointerArray *interstitials;
-@property (nonnull, copy) NSString *appId;
-@property (nonatomic, copy) void(^interstitialCompletion)(AdColonyInterstitial *, NSError *);
+@property (nonatomic,   copy,  nonnull) NSString *appId;
+@property (nonatomic, strong,  nonnull) NSPointerArray *interstitials;
+@property (nonatomic, strong,  nonnull) NSMutableArray <AdColonyZone *> *zones;
+@property (nonatomic,   copy, nullable) void(^interstitialCompletion)(AdColonyInterstitial *, NSError *);
 
 @end
 
@@ -49,11 +50,9 @@
         return;
     }
     
-    BDMAdColonyStringTransformer *transformer = [BDMAdColonyStringTransformer new];
-    NSString *appId = [transformer transformedValue:parameters[@"app_id"]];
-    NSArray <NSString *> *zones = ANY(parameters[@"zones"])
-    .flatMap(^id(id val) { return [transformer transformedValue:val]; })
-    .array;
+    
+    NSString *appId = ANY(parameters).from(BDMAdColonyAppIDKey).string;
+    NSArray <NSString *> *zones = ANY(parameters).from(BDMAdColonyZonesKey).arrayOfString;
     
     if (!appId || !zones.count) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
@@ -77,8 +76,7 @@
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
-    BDMAdColonyStringTransformer *transformer = [BDMAdColonyStringTransformer new];
-    NSString *zoneId = [transformer transformedValue:parameters[@"zone_id"]];
+    NSString *zoneId = ANY(parameters).from(BDMAdColonyZoneIDKey).string;
     NSString *appId = self.appId;
     // Check that we have zone id
     if (!zoneId || !self.appId) {
@@ -102,7 +100,8 @@
     
     AdColonyInterstitial *interstitial = [self interstitialForZone:zoneId];
     if (interstitial != nil) {
-        NSDictionary *clientParams = @{ @"app_id": appId, @"zone_id" : zoneId };
+        NSDictionary *clientParams = @{ BDMAdColonyAppIDKey   : appId,
+                                        BDMAdColonyZoneIDKey  : zoneId };
         STK_RUN_BLOCK(completion, clientParams, nil);
         return;
     }
@@ -113,7 +112,8 @@
             @synchronized (weakSelf) {
                 [weakSelf.interstitials addPointer:(__bridge void *)(ad)];
             }
-            NSDictionary *clientParams = @{ @"app_id": appId, @"zone_id" : zoneId };
+            NSDictionary *clientParams = @{ BDMAdColonyAppIDKey   : appId,
+                                            BDMAdColonyZoneIDKey  : zoneId };
             STK_RUN_BLOCK(completion, clientParams, nil);
         } else {
             NSError *wrapper = [error bdm_wrappedWithCode:BDMErrorCodeHeaderBiddingNetwork];

@@ -9,11 +9,13 @@
 @import DTBiOSSDK;
 @import StackFoundation;
 
-#import "BDMAmazonValueTransformer.h"
 #import "BDMAmazonNetwork.h"
-#import "BDMAmazonBannerAdapter.h"
-#import "BDMAmazonInterstitialAdapter.h"
 #import "BDMAmazonAdLoader.h"
+#import "BDMAmazonAdObject.h"
+
+
+NSString *const BDMAmazonAppIDKey   = @"app_key";
+NSString *const BDMAmazonSlotIdKey  = @"slot_uuid";
 
 
 @interface BDMAmazonNetwork()
@@ -48,7 +50,7 @@
         return;
     }
     
-    NSString *appKey = [BDMAmazonValueTransformer.new transformedValue:parameters[@"app_key"]];
+    NSString *appKey = ANY(parameters).from(BDMAmazonAppIDKey).string;
     if (!appKey) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:@"Amazon adapter was not receive valid initialization data"];
@@ -88,10 +90,18 @@
 
 - (void)syncMetadata {
     [DTBAds.sharedInstance setLogLevel:BDMSdkLoggingEnabled ? DTBLogLevelAll : DTBLogLevelOff];
-    [DTBAds.sharedInstance setUseGeoLocation:STKLocation.locationTrackingEnabled];
-
+    
     DTBAds.sharedInstance.mraidPolicy = CUSTOM_MRAID;
     DTBAds.sharedInstance.mraidCustomVersions = @[@"1.0", @"2.0", @"3.0"];
+    
+    if (BDMSdk.sharedSdk.restrictions.subjectToGDPR) {
+        [DTBAds enableGDPRSubjectWithConsentString:BDMSdk.sharedSdk.restrictions.consentString ?: BDMSdk.sharedSdk.restrictions.hasConsent ? @"1" : @"0"];
+        
+    }
+    
+    if (BDMSdk.sharedSdk.restrictions.allowUserInformation) {
+        [DTBAds.sharedInstance setUseGeoLocation:STKLocation.locationTrackingEnabled];
+    }
 }
 
 @end

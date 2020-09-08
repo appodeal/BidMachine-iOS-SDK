@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BDMMyTargetNativeAdDisplayAdapter : NSObject <BDMNativeAdAdapter>
 
-@property (nonatomic, weak, nullable) id<BDMNativeAdAdapterDelegate> delegate;
-
 + (instancetype)displayAdapterForAd:(MTRGNativeAd *)ad;
+
+@property (nonatomic, weak, nullable) id<BDMNativeAdAdapterDelegate> delegate;
 
 @end
 

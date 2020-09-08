@@ -6,12 +6,13 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import <MyTargetSDK/MyTargetSDK.h>
-#import <StackUIKit/StackUIKit.h>
+@import StackUIKit;
+@import MyTargetSDK;
+@import StackFoundation;
 
-#import "BDMMyTargetBannerAdapter.h"
-#import "BDMMyTargetSlotTransformer.h"
+#import "BDMMyTargetAdNetwork.h"
 #import "BDMMyTargetCustomParams.h"
+#import "BDMMyTargetBannerAdapter.h"
 
 
 @interface BDMMyTargetBannerAdapter () <MTRGAdViewDelegate>
@@ -28,8 +29,8 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString *slot = [BDMMyTargetSlotTransformer.new transformedValue:contentInfo[@"slot_id"]];
-    NSString *bid = [BDMMyTargetSlotTransformer.new transformedValue:contentInfo[@"bid_id"]];
+    NSString *slot = ANY(contentInfo).from(BDMMyTargetSlotIDKey).string;
+    NSString *bid = ANY(contentInfo).from(BDMMyTargetBidIDKey).string;
     
     NSUInteger slotId = [slot integerValue];
     if (slotId == 0 || bid == nil) {
@@ -49,7 +50,6 @@
 - (void)presentInContainer:(UIView *)container {
     self.banner.viewController = [self.displayDelegate rootViewControllerForAdapter:self];
     [container.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [container addSubview:self.banner];
     [self.banner stk_edgesEqual:container];
 }
 

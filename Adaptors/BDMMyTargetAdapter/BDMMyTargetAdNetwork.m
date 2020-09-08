@@ -6,14 +6,17 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import <MyTargetSDK/MyTargetSDK.h>
-#import <StackFoundation/StackFoundation.h>
+@import MyTargetSDK;
+@import StackFoundation;
 
 #import "BDMMyTargetAdNetwork.h"
-#import "BDMMyTargetSlotTransformer.h"
-#import "BDMMyTargetFullscreenAdapter.h"
 #import "BDMMyTargetBannerAdapter.h"
+#import "BDMMyTargetFullscreenAdapter.h"
 #import "BDMMyTargetNativeAdServiceAdapter.h"
+
+
+NSString *const BDMMyTargetSlotIDKey    = @"slot_id";
+NSString *const BDMMyTargetBidIDKey     = @"bid_id";
 
 
 @implementation BDMMyTargetAdNetwork
@@ -37,11 +40,13 @@
                             completion:(void (^)(NSDictionary<NSString *,id> * clientParams,
                                                  NSError *error))completion {
     [self syncMetadata];
-    NSString *slotId = [BDMMyTargetSlotTransformer.new transformedValue:parameters[@"slot_id"]];
+    NSString *slotId = ANY(parameters).from(BDMMyTargetSlotIDKey).string;
+    NSString *bidId = MTRGManager.getBidderToken;
     NSDictionary *clientParams;
     NSError *error;
-    if (slotId.length) {
-        clientParams = [NSDictionary dictionaryWithObject:slotId forKey:@"slot_id"];
+    if (slotId.length && bidId) {
+        clientParams = @{ BDMMyTargetSlotIDKey : slotId,
+                          BDMMyTargetBidIDKey  : bidId };
     } else {
         error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                description:@"MyTarget ad unit not contains valid slot id"];
@@ -71,7 +76,11 @@
     MTRGPrivacy.userAgeRestricted = BDMSdk.sharedSdk.restrictions.coppa;
     
     if (BDMSdk.sharedSdk.restrictions.subjectToGDPR) {
-        MTRGPrivacy.userConsent = BDMSdk.sharedSdk.restrictions.hasConsent;
+        [MTRGPrivacy setUserConsent:BDMSdk.sharedSdk.restrictions.hasConsent];
+    }
+    
+    if (BDMSdk.sharedSdk.restrictions.subjectToCCPA) {
+        [MTRGPrivacy setCcpaUserConsent:BDMSdk.sharedSdk.restrictions.hasCCPAConsent];
     }
 }
 

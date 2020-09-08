@@ -10,12 +10,16 @@
 @import StackFoundation;
 
 #import "BDMFacebookAdNetwork.h"
-#import "BDMFaceebookPlacementsTransformer.h"
-#import "BDMFacebookStringValueTransformer.h"
 #import "BDMFacebookBannerAdapter.h"
 #import "BDMFacebookFullscreenAdapter.h"
 #import "BDMFacebookNativeAdServiceAdapter.h"
 
+
+NSString *const BDMFacebookAppIDKey             = @"app_id";
+NSString *const BDMFacebookTokenKey             = @"token";
+NSString *const BDMFacebookPlacementIDKey       = @"facebook_key";
+NSString *const BDMFacebookPlacementIDsKey      = @"placement_ids";
+NSString *const BDMFacebookBidPayloadIDKey      = @"bid_payload";
 
 @interface BDMFacebookAdNetwork ()
 
@@ -44,8 +48,8 @@
         return;
     }
     
-    NSArray <NSString *> *placements = [BDMFaceebookPlacementsTransformer.new transformedValue: parameters[@"placement_ids"]];
-    self.appId = [BDMFacebookStringValueTransformer.new transformedValue:parameters[@"app_id"]];
+    NSArray <NSString *> *placements = ANY(parameters).from(BDMFacebookPlacementIDsKey).arrayOfString;
+    self.appId = ANY(parameters).from(BDMFacebookAppIDKey).string; 
     
     if (!placements.count) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
@@ -72,7 +76,7 @@
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
-    NSString *placement = [BDMFacebookStringValueTransformer.new transformedValue:parameters[@"facebook_key"]];
+    NSString *placement = ANY(parameters).from(BDMFacebookPlacementIDKey).string;
     NSString *token = FBAdSettings.bidderToken;
     NSString *appId = self.appId;
     if (!placement || !token || !appId) {
@@ -82,10 +86,10 @@
         return;
     }
     
-    NSMutableDictionary *bidding = [NSMutableDictionary dictionaryWithCapacity:3];
-    bidding[@"token"] = token;
-    bidding[@"facebook_key"] = placement;
-    bidding[@"app_id"] = appId;
+    NSMutableDictionary *bidding            = [NSMutableDictionary dictionaryWithCapacity:3];
+    bidding[BDMFacebookTokenKey]            = token;
+    bidding[BDMFacebookAppIDKey]            = appId;
+    bidding[BDMFacebookPlacementIDKey]      = placement;
     
     STK_RUN_BLOCK(completion, bidding, nil);
 }
@@ -111,6 +115,14 @@
 - (void)syncMetadata {
     [FBAdSettings setLogLevel:BDMSdkLoggingEnabled ? FBAdLogLevelVerbose : FBAdLogLevelNone];
     [FBAdSettings setMixedAudience:BDMSdk.sharedSdk.restrictions.coppa];
+    
+    if (BDMSdk.sharedSdk.restrictions.subjectToCCPA) {
+        if (BDMSdk.sharedSdk.restrictions.hasCCPAConsent) {
+            [FBAdSettings setDataProcessingOptions:@[]];
+        } else {
+            [FBAdSettings setDataProcessingOptions:@[@"LDU"] country:0 state:0];
+        }
+    }
 }
 
 @end

@@ -11,10 +11,14 @@
 @import BidMachine.Adapters;
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BDMSmaatoFullscreenAdapter : NSObject <BDMFullscreenAdapter>
 
-@property (nonatomic, weak, nullable) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
-@property (nonatomic, weak, nullable) id <BDMAdapterLoadingDelegate> loadingDelegate;
 @property (nonatomic, assign, readwrite) BOOL rewarded;
+@property (nonatomic, weak, nullable) id <BDMAdapterLoadingDelegate> loadingDelegate;
+@property (nonatomic, weak, nullable) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

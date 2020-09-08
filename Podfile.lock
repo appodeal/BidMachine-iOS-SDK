@@ -6,11 +6,6 @@ PODS:
     - FBSDKCoreKit/Basics (>= 5.6.0)
   - FBSDKCoreKit/Basics (7.1.1)
   - Kiwi (3.0.0)
-  - MintegralAdSDK/BidInterstitialVideoAd (6.3.7.0):
-    - MintegralAdSDK/BidNativeAd
-  - MintegralAdSDK/BidNativeAd (6.3.7.0)
-  - MintegralAdSDK/BidRewardVideoAd (6.3.7.0):
-    - MintegralAdSDK/BidNativeAd
   - myTargetSDK (5.7.1)
   - Protobuf (3.13.0)
   - smaato-ios-sdk (21.5.2):
@@ -76,10 +71,10 @@ PODS:
     - StackModules (~> 0.6)
   - StackIAB/StackXML (0.5.17):
     - StackModules (~> 0.6)
-  - StackModules (0.8.0.3-Beta):
-    - StackModules/StackUIKit (= 0.8.0.3-Beta)
-  - StackModules/StackFoundation (0.8.0.3-Beta)
-  - StackModules/StackUIKit (0.8.0.3-Beta):
+  - StackModules (0.8.0.4-Beta):
+    - StackModules/StackUIKit (= 0.8.0.4-Beta)
+  - StackModules/StackFoundation (0.8.0.4-Beta)
+  - StackModules/StackUIKit (0.8.0.4-Beta):
     - StackModules/StackFoundation
   - TapjoySDK (12.6.1)
   - Toast-Swift (4.0.1)
@@ -91,8 +86,6 @@ DEPENDENCIES:
   - DTBiOSSDK (= 3.0.0)
   - FBAudienceNetwork (= 5.10.1)
   - Kiwi
-  - MintegralAdSDK/BidInterstitialVideoAd (= 6.3.7.0)
-  - MintegralAdSDK/BidRewardVideoAd (= 6.3.7.0)
   - myTargetSDK (= 5.7.1)
   - Protobuf
   - smaato-ios-sdk (= 21.5.2)
@@ -114,13 +107,13 @@ SPEC REPOS:
     - CriteoPublisherSdk
     - DTBiOSSDK
     - StackAPI
+    - StackIAB
     - StackModules
   https://github.com/CocoaPods/Specs.git:
     - AdColony
     - FBAudienceNetwork
     - FBSDKCoreKit
     - Kiwi
-    - MintegralAdSDK
     - myTargetSDK
     - Protobuf
     - smaato-ios-sdk
@@ -136,17 +129,16 @@ SPEC CHECKSUMS:
   FBAudienceNetwork: 6cdcc40aa475e8045ab14398e181a3dc90a5014e
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  MintegralAdSDK: 3e0ce652e9e8cf24822b6b1ccacdbb6b838d9887
   myTargetSDK: d9352d173ddb0002468d5e35a54060cbff8a66d1
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   smaato-ios-sdk: 2be81511a3fe8adb27c08804b12c6c7f956963ac
   StackAPI: 0c48d817256cdde98f50d65c729a4c5c8ac1b1d1
-  StackIAB: df1acc44f094a25a1a572cea968890ebf2a13049
-  StackModules: d92597a370dba15acbe1abba70513e47c1461977
+  StackIAB: e30a4523f384d02fcfda16b8e593b7dd0f9c83a2
+  StackModules: ea97863124ad65ac6aca810f1ae959a77fce17d3
   TapjoySDK: ab02725a55e84c2fdd6fafc872cb00bd58e8adb2
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   VungleSDK-iOS: 85456e060a3f26a0e03f9d4841495976326a7d05
 
-PODFILE CHECKSUM: 29138a499cf20cf3f92fb02d785437747a4fd3d0
+PODFILE CHECKSUM: d8ca89f538be9f16be585ce8ad43017c0d9dec8e
 
 COCOAPODS: 1.9.3
