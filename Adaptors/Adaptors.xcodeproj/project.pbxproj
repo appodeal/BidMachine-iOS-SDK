@@ -50,6 +50,7 @@
 		42A93E6B22E70D2B005053A2 /* BDMFacebookBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E6A22E70D2B005053A2 /* BDMFacebookBannerAdapter.m */; };
 		42A93E6F22E71754005053A2 /* BDMFacebookFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E6E22E71754005053A2 /* BDMFacebookFullscreenAdapter.m */; };
 		42A93E7322E75B37005053A2 /* BDMAdColonyAppOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A93E7222E75B37005053A2 /* BDMAdColonyAppOptions.m */; };
+		42B27F762507687F00DECFDF /* BDMAmazonCallbackProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B27F752507687F00DECFDF /* BDMAmazonCallbackProxy.m */; };
 		42B3D15724FCF8C200977C16 /* BDMAmazonAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D15624FCF8C200977C16 /* BDMAmazonAdLoader.m */; };
 		42BE023422A56A6000D391CC /* BDMMRAIDInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */; };
 		42C3FDAD21620E95004D3784 /* BDMMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */; };
@@ -291,6 +292,8 @@
 		42A93E6E22E71754005053A2 /* BDMFacebookFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookFullscreenAdapter.m; sourceTree = "<group>"; };
 		42A93E7122E75B37005053A2 /* BDMAdColonyAppOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdColonyAppOptions.h; sourceTree = "<group>"; };
 		42A93E7222E75B37005053A2 /* BDMAdColonyAppOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdColonyAppOptions.m; sourceTree = "<group>"; };
+		42B27F742507687F00DECFDF /* BDMAmazonCallbackProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonCallbackProxy.h; sourceTree = "<group>"; };
+		42B27F752507687F00DECFDF /* BDMAmazonCallbackProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonCallbackProxy.m; sourceTree = "<group>"; };
 		42B3D15524FCF8C200977C16 /* BDMAmazonAdLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonAdLoader.h; sourceTree = "<group>"; };
 		42B3D15624FCF8C200977C16 /* BDMAmazonAdLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonAdLoader.m; sourceTree = "<group>"; };
 		42C3FDA521620E95004D3784 /* BDMMRAIDInterstitialAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDInterstitialAdapter.h; sourceTree = "<group>"; };
@@ -877,6 +880,8 @@
 			children = (
 				42B3D15524FCF8C200977C16 /* BDMAmazonAdLoader.h */,
 				42B3D15624FCF8C200977C16 /* BDMAmazonAdLoader.m */,
+				42B27F742507687F00DECFDF /* BDMAmazonCallbackProxy.h */,
+				42B27F752507687F00DECFDF /* BDMAmazonCallbackProxy.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1619,6 +1624,7 @@
 				D9403D1B2327D2550091E61E /* BDMAmazonNetwork.m in Sources */,
 				D90F94312327E366000FC1ED /* BDMAmazonBannerAdapter.m in Sources */,
 				D971E2BF23290BD1004E549F /* BDMAmazonInterstitialAdapter.m in Sources */,
+				42B27F762507687F00DECFDF /* BDMAmazonCallbackProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

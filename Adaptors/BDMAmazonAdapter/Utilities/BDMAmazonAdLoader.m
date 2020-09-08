@@ -8,6 +8,7 @@
 
 #import "BDMAmazonAdLoader.h"
 #import "BDMAmazonValueTransformer.h"
+#import "BDMAmazonCallbackProxy.h"
 
 @import BidMachine.Adapters;
 @import StackFoundation;
@@ -40,12 +41,18 @@
     DTBAdSize *adSize = [self adSizeWithError:&error];
     if (error) {
         STK_RUN_BLOCK(completion, self, nil, error);
+        return;
     }
+    
     self.completion = completion;
     self.loader = [DTBAdLoader new];
-    [self.loader setAdSizes:@[adSize]];
+    
+    BDMAmazonCallbackProxy *proxy = [BDMAmazonCallbackProxy new];
+    proxy.delegate = self;
+    
     @try {
-        [self.loader loadAd:self];
+        [self.loader setAdSizes:@[adSize]];
+        [self.loader loadAd:proxy];
     } @catch (NSException *exception) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                         description:exception.debugDescription];
